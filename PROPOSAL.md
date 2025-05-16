@@ -6,8 +6,8 @@ Andy Li & Naomi Hsieh
 
 # IDEAS:
 
-1. Physics Simulations
-\nThis project would revolve around the user being able to choose one or more of the following physics simulations.
+1. Physics Simulations  
+This project would revolve around the user being able to choose one or more of the following physics simulations.
     1. Projectile Motion Simulation
         - The user would be able to explore different types of 1D and 2D kinematics, as well as observe the way vectors can be resolved in the horizontal and vertical directions.
         - Some of the types of kinematic themes would include ground-launched projectiles, horizontally-launched projectiles, projectiles that roll off a horizontal surface.
@@ -23,8 +23,8 @@ Andy Li & Naomi Hsieh
         - Here is a reference: https://phet.colorado.edu/en/simulations/ramp-forces-and-motion
 
 
-2. Pokemon-themed Mini Games
-\nThe user would be able to choose from a variety of small mini games, linked by their Pokemon theme. Some examples of the games are listed below. This project may be difficult to implement because of the graphics required. More time is needed to look into the feasibility of this aspect.
+2. Pokemon-themed Mini Games  
+The user would be able to choose from a variety of small mini games, linked by their Pokemon theme. Some examples of the games are listed below. This project may be difficult to implement because of the graphics required. More time is needed to look into the feasibility of this aspect.
     1. Mix And Match/Memory Card Game
           - This game would generate a set of random cards in pairs and allow the user to continuously pick two of them to guess-and-check until they have matched all of them, essentially following the basic mix-and-match format. This game mode would be themed around a certain thing (Pokemon was my NetLogo project theme, a food theme may be easier because Processing’s graphic designer capabilities seem to be worse than NetLogo’s (which are already bad). We could use the berries found in Pokemon (Razz Berry, Pinap Berry, Nanab Berry, etc.))
           - Here is the Pokemon game that inspired my NetLogo project: https://play.nintendo.com/activities/memory-match/pokemon-cafe-memory-match-activity/
@@ -38,6 +38,6 @@ Andy Li & Naomi Hsieh
           - This game would be a Pokemon-themed version of chess, with Pokemon replacing the basic chess pieces. We would encode it so that the player would be able to play against a friend. The players would click their chosen piece and then click on the square they would like to place their piece on (we would also mark the squares that the pieces could land on in some way).
           - Here is a link to a chess website that would be similar: https://www.chess.com/play (It would be similar to chess.com, but much more basic, as it is part of a set of minigames).
 
-3. Platform-themed Game
-\nThis would be a basic version of a platform game, we will most likely follow in Mario’s footsteps, but perhaps change up the graphics a little. We will encode a few different levels for the user to experience, with the user being able to jump on enemies to defeat them and hit blocks for power-ups, much like Mario. There will also be a time limit and a high score system. We may also include the hidden 1UPs and the special fireworks that show up when you finish the level at a time ending with 6 if time permits.
-\n\nHere is a link to a Mario platformer that would be similar: https://supermarioplay.com/  
+3. Platform-themed Game  
+This would be a basic version of a platform game, we will most likely follow in Mario’s footsteps, but perhaps change up the graphics a little. We will encode a few different levels for the user to experience, with the user being able to jump on enemies to defeat them and hit blocks for power-ups, much like Mario. There will also be a time limit and a high score system. We may also include the hidden 1UPs and the special fireworks that show up when you finish the level at a time ending with 6 if time permits.  
+Here is a link to a Mario platformer that would be similar: https://supermarioplay.com/  
