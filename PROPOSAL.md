@@ -39,5 +39,5 @@ The user would be able to choose from a variety of small mini games, linked by t
           - Here is a link to a chess website that would be similar: https://www.chess.com/play (It would be similar to chess.com, but much more basic, as it is part of a set of minigames).
 
 3. Platform-themed Game
-This would be a basic version of a platform game, we will most likely follow in Mario’s footsteps, but perhaps change up the graphics a little. We will encode a few different levels for the user to experience, with the user being able to jump on enemies to defeat them and hit blocks for power-ups, much like Mario. There will also be a time limit and a high score system. We may also include the hidden 1UPs and the special fireworks that show up when you finish the level at a time ending with 6 if time permits.
-Here is a link to a Mario platformer that would be similar: https://supermarioplay.com/  
+    - This would be a basic version of a platform game, we will most likely follow in Mario’s footsteps, but perhaps change up the graphics a little. We will encode a few different levels for the user to experience, with the user being able to jump on enemies to defeat them and hit blocks for power-ups, much like Mario. There will also be a time limit and a high score system. We may also include the hidden 1UPs and the special fireworks that show up when you finish the level at a time ending with 6 if time permits.
+    - Here is a link to a Mario platformer that would be similar: https://supermarioplay.com/  
