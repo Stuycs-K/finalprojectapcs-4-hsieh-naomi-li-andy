@@ -54,7 +54,7 @@ Our created project will be Pokemon Chess. The final product will act exactly li
 
 
 <br>
-**Nice to Have Features:** Once the MVP has been completed, we plan on drastically improving the User Interface. We want the user to see available positions that a clicked-on piece can move by highlighted grids. Furthermore, we want to make the grids more interesting by laying a Pokeball pattern on them, staying true to the whole Pokemon theme. We would polish the designs of the Pokemon icons and change colors (regular vs. shiny) between the pieces of Player 1 and Player 2 to easily differentiate them, rather than doing something more basic like different color outlines. The UI would also be improved in other aspects like the pawn promotion screen. We would include other additional features, such as drawing and forfeiting. If time provides and if feasible enough, we would look into audio and might add a soft Pokemon theme for the background, or the cries of Pokemon as they capture a piece.
+<b>>Nice to Have Features:</b> Once the MVP has been completed, we plan on drastically improving the User Interface. We want the user to see available positions that a clicked-on piece can move by highlighted grids. Furthermore, we want to make the grids more interesting by laying a Pokeball pattern on them, staying true to the whole Pokemon theme. We would polish the designs of the Pokemon icons and change colors (regular vs. shiny) between the pieces of Player 1 and Player 2 to easily differentiate them, rather than doing something more basic like different color outlines. The UI would also be improved in other aspects like the pawn promotion screen. We would include other additional features, such as drawing and forfeiting. If time provides and if feasible enough, we would look into audio and might add a soft Pokemon theme for the background, or the cries of Pokemon as they capture a piece.
 		<ul>
 		<li>Markers For Valid Moves <ul><li>When the player clicks on one of the pieces, the squares where that piece can move will be marked in some way.</li></ul></li>
 		<li>Drawing/Forfeiting<ul><li>A button would be available where a player could offer a draw (with the other player needing to agree) or end the game early by forfeiting.</li></ul></li>
@@ -67,6 +67,43 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 # Intended pacing:
 
 How you are breaking down the project and who is responsible for which parts.
-
-A timeline with expected completion dates of parts of the project. (CHANGE THIS!!!!!)
+ <ul>
+	 <li>End of 5/22: Code piece movement (excluding castling for now) [Knight, Rook, Bishop - ] & [Pawn, Queen, King - ].<ul>
+		<li>Pawn Movement []</li> 
+		<li>Knight Movement []</li> 
+		<li>Bishop Movement []</li> 
+		<li>Rook Movement []</li> 
+		<li>Queen Movement []</li> 
+		<li>King Movement []</li> 
+	 </ul></li>
+  	 <li>End of 5/23: Code basic capturing (excluding en passant for now) [Knight, Rook, Bishop - ] & [Pawn, Queen, King - ]<ul>
+		<li>Pawn Capturing []</li> 
+		<li>Knight Capturing []</li> 
+		<li>Bishop Capturing []</li> 
+		<li>Rook Capturing []</li> 
+		<li>Queen Capturing []</li> 
+		<li>King Capturing []</li> 
+	 </ul></li>
+    	 <li>End of 5/26: Complete setup of board <ul>
+		 <li>Icons drawn [Knight, Rook, Bishop - ] & [Pawn, Queen, King - ]</li>
+		 <li>Placement of pieces []</li>
+		 <li>Chessboard drawn (& designed) []</li>
+	 </ul></li>
+	 <li>End of 5/28: Code check & extra moves (castling, en passant, pawn promotion)<ul>
+		 <li>Check []</li>
+		 <li>Castling [] </li>
+		 <li>En Passant [] </li>
+		 <li>Pawn Promotion []</li>
+		 <li>If icons need more time [] </li>
+	 </ul></li>
+	 <li>End of 5/29: Code checkmate/stalemate <ul>
+		 <li>Checkmate []</li>
+		 <li>Stalemate []</li>
+	 </ul></li>
+	 <li>End of 6/1: Code extras (in order of priority)<ul>
+		<li>Markers for valid squares[]</li>
+		<li>Drawing/Forfeiting []</li>
+		<li>Sound []</li>
+	 </ul></li>
+ </ul>
 
