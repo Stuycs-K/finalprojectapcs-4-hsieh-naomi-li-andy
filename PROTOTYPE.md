@@ -73,7 +73,13 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 			<li>boolean canMove(int[] newPos): checks if newPos is an available square (and player is not in check or is in check but piece can do something) OR canCapture </li>
 			<li>boolean canCapture(int[] newPos): checks if there is an opposing piece on newPos (and player is not in check but piece can take the opposing piece giving the check)</li>
 			<li>boolean canCapture(Piece other): checks if other's position is reachable by piece in one move</li>
-			<li>void applyCheck(King other): checks if piece canCapture other; if so, set isCheck to true for other.</li>
+			<li>void applyCheck(King other): checks if piece canCapture other; if so, set inCheck to true for other.</li>
+			<li>boolean isAlive(): return alive</li>
+			<li>int[] getPos(): returns the current position of the piece</li>
+			<li>String getType(): returns the type of the piece</li>
+			<li>boolean getCheckStatus(): returns if the piece's king is currently in check.</li>
+			<li>void setCheckStatus(boolean status): sets inCheck to status</li>
+			<li>boolean side(): returns which side the piece is on (i.e. if it's on the shiny side, it will return true, else false)</li>
 		</ul></li>
   		<li>Instance Variables<ul>
 			<li>boolean alive</li>
@@ -87,6 +93,7 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 		<li>Child-Specific/Overridden Methods<ul>
 			<li>void castle(): if canMove & canCastle, updates the king and rook (that canCastle) positions to castle. </li>
 			<li>void applyCheck(): if inCheck, set all other pieces that are on the same side of you to have inCheck as true.</li>
+			<li>boolean castleStatus(): return canCastle</li>
 		</ul></li>
   		<li>Instance Variables<ul>
 			<li>boolean alive</li>
@@ -100,6 +107,7 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 	<li> Rook Class (extended from piece) <ul>
 		<li>Child-Specific/Overridden Methods<ul>
 			<li>when move() is run, it will set canCastle to false</li>
+			<li>boolean castleStatus(): return canCastle</li>
 		</ul></li>
   		<li>Instance Variables<ul>
 			<li>boolean alive</li>
@@ -112,8 +120,9 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 	</ul></li>
 	<li> Pawn Class (extended from piece) <ul>
 		<li>Child-Specific/Overridden Methods<ul>
-			<li>void canBeEnPassanted(int[] newPos): if newPos is two steps from its original position, then set enPassant and timeFrame to true</li>
+			<li>void setEnPassantStatus(int[] newPos): if newPos is two steps from its original position, then set enPassant and timeFrame to true</li>
 			<li>boolean canCapture(int[] newPos): if there is a pawn under the newPos that has enPassant as true and newPos is available, return true</li>
+			<li>boolean canBeEnPassanted(): return enPassant (if the piece can be enPassanted)</li>
 		</ul></li>
   		<li>Instance Variables<ul>
 			<li>boolean alive</li>
@@ -128,11 +137,13 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 	<li> Main Class <ul>
 		<li>Methods<ul>
 			<li>void setup(): sets up the board, size is 800, 800 with each square being 100x100</li>
-			<li>void draw(): draws a new board and places pieces in respective positions, updates canCastle for each king, rook</li>
+			<li>void draw(): draws a new board and places pieces in respective positions, updates canCastle for each king, rook. Also checks if any pawns can be promoted. If so, calls pawnPromotion() and sets pawnPromoting to true. (pawnPromotion will have drawn the screen before this) If pawnPromoting is true, remove the pawn from the ArrayList pieces and add a new piece of the type the player selected in the position of the pawn. </li>
 			<li>boolean gameOver(): checks if any opposing side has been checkmated or if it is a stalemate (i.e. if no pieces canMove() && inCheck -> checkmate, else if no pieces canMove() -> stalemate)</li>
+			<li>void pawnPromotion(): draws a selection screen for which piece to promote the pawn to</li>
 		</ul></li>
   		<li>Instance Variables<ul>
 			<li>ArrayList<Piece> pieces</li>
+			<li>boolean pawnPromoting</li>
 		</ul></li>
   	</ul></li>
 	
