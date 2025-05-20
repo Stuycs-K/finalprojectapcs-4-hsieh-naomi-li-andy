@@ -68,25 +68,45 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 <ul>
 	<li> Piece Class (abstract) <ul>
 		<li>Methods<ul>
-			<li>move()</li>
-			<li>capture(Piece other)</li>
-			<li>canMove()</li>
+			<li>void move(int[] newPos): pieces will call this function to move to the newPos position, set position to newPos</li>
+			<li>void capture(Piece other): called in move if canCapture, sets other's alive variable to false</li>
+			<li>boolean canMove(int[] newPos): checks if newPos is an available square (and player is not in check or is in check but piece can do something) OR canCapture </li>
+			<li>boolean canCapture(int[] newPos): checks if there is an opposing piece on newPos (and player is not in check but piece can take the opposing piece giving the check)</li>
+			<li>boolean canCapture(Piece other): checks if other's position is reachable by piece in one move</li>
+			<li>void applyCheck(King other): checks if piece canCapture other, if so, applyCheck to other.</li>
 		</ul></li>
   		<li>Instance Variables<ul>
 			<li>boolean alive</li>
-			<li>int[] position</li>
+			<li>int[] position (note: coordinates stored here will be one-digit, behaving as if it is 8x8 not 800x800)</li>
 			<li>String type</li>
+			<li>boolean inCheck</li>
+			<li>boolean shinySide</li>
+		</ul></li>
 	</ul></li>
-	<li> Board/Main Class <ul>
-		<li>Methods<ul>
-			<li>setup()</li>
-			<li>draw()</li>
-			<li>gameOver()</li>
+	<li> King Class (extended from piece) <ul>
+		<li>Child-Specific Methods<ul>
+			<li>void castle(): if canMove & canCastle, updates the king and rook (that canCastle) positions to castle. </li>
+			<li>void applyCheck()
 		</ul></li>
   		<li>Instance Variables<ul>
+			<li>boolean alive</li>
+			<li>int[] position (note: coordinates stored here will be one-digit, behaving as if it is 8x8 not 800x800)</li>
+			<li>String type</li>
+			<li>boolean inCheck</li>
+			<li>boolean shinySide</li>
 			<li>boolean canCastle</li>
-			<li>ArrayList<Piece> positions</li>
+		</ul></li>
 	</ul></li>
+	<li> Main Class <ul>
+		<li>Methods<ul>
+			<li>void setup(): sets up the board, size is 800, 800 with each square being 100x100</li>
+			<li>void draw(): draws a new board and places pieces in respective positions, updates canCastle for each king, rook</li>
+			<li>boolean gameOver(): checks if any opposing side has been checkmated or if it is a stalemate (i.e. if no pieces canMove() && inCheck -> checkmate, else if no pieces canMove() -> stalemate)</li>
+		</ul></li>
+  		<li>Instance Variables<ul>
+			<li>ArrayList<Piece> pieces</li>
+		</ul></li>
+  	</ul></li>
 	
  
 </ul></li>
@@ -131,6 +151,7 @@ How you are breaking down the project and who is responsible for which parts.
 	 </ul></li>
 	 <li>End of 6/1: Code extras (in order of priority)<ul>
 		<li>Markers for valid squares: Naomi</li>
+		<li>Gameover screen: Naomi</li>
 		<li>Drawing/Forfeiting: Andy</li>
 		<li>Sound: Andy</li>
 	 </ul></li>
