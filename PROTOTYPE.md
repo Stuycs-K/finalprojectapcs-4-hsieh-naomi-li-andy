@@ -64,7 +64,34 @@ Our created project will be Pokemon Chess. The final product will act exactly li
 		</ul>
 UML Diagrams and descriptions of key algorithms, classes, and how things fit together.
 
-
+**Descriptions**
+<ul>
+	<li> Piece Class (abstract) <ul>
+		<li>Methods<ul>
+			<li>move()</li>
+			<li>capture(Piece other)</li>
+			<li>canMove()</li>
+		</ul></li>
+  		<li>Instance Variables<ul>
+			<li>boolean alive</li>
+			<li>int[] position</li>
+			<li>String type</li>
+	</ul></li>
+	<li> Board/Main Class <ul>
+		<li>Methods<ul>
+			<li>setup()</li>
+			<li>draw()</li>
+			<li>gameOver()</li>
+		</ul></li>
+  		<li>Instance Variables<ul>
+			<li>boolean canCastle</li>
+			<li>ArrayList<Piece> positions</li>
+	</ul></li>
+	
+ 
+</ul></li>
+	
+</ul>
     
 # Intended pacing:
 
