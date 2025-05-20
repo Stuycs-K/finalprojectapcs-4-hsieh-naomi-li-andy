@@ -68,12 +68,12 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 <ul>
 	<li> Piece Class (abstract) <ul>
 		<li>Methods<ul>
-			<li>void move(int[] newPos): pieces will call this function to move to the newPos position, set position to newPos</li>
+			<li>void move(int[] newPos): pieces will call this function to move to the newPos position, set position to newPos, set all pawns enPassant to false.</li>
 			<li>void capture(Piece other): called in move if canCapture, sets other's alive variable to false</li>
 			<li>boolean canMove(int[] newPos): checks if newPos is an available square (and player is not in check or is in check but piece can do something) OR canCapture </li>
 			<li>boolean canCapture(int[] newPos): checks if there is an opposing piece on newPos (and player is not in check but piece can take the opposing piece giving the check)</li>
 			<li>boolean canCapture(Piece other): checks if other's position is reachable by piece in one move</li>
-			<li>void applyCheck(King other): checks if piece canCapture other, if so, applyCheck to other.</li>
+			<li>void applyCheck(King other): checks if piece canCapture other; if so, set isCheck to true for other.</li>
 		</ul></li>
   		<li>Instance Variables<ul>
 			<li>boolean alive</li>
@@ -84,9 +84,9 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 		</ul></li>
 	</ul></li>
 	<li> King Class (extended from piece) <ul>
-		<li>Child-Specific Methods<ul>
+		<li>Child-Specific/Overridden Methods<ul>
 			<li>void castle(): if canMove & canCastle, updates the king and rook (that canCastle) positions to castle. </li>
-			<li>void applyCheck()
+			<li>void applyCheck(): if inCheck, set all other pieces that are on the same side of you to have inCheck as true.</li>
 		</ul></li>
   		<li>Instance Variables<ul>
 			<li>boolean alive</li>
@@ -97,6 +97,34 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 			<li>boolean canCastle</li>
 		</ul></li>
 	</ul></li>
+	<li> Rook Class (extended from piece) <ul>
+		<li>Child-Specific/Overridden Methods<ul>
+			<li>when move() is run, it will set canCastle to false</li>
+		</ul></li>
+  		<li>Instance Variables<ul>
+			<li>boolean alive</li>
+			<li>int[] position (note: coordinates stored here will be one-digit, behaving as if it is 8x8 not 800x800)</li>
+			<li>String type</li>
+			<li>boolean inCheck</li>
+			<li>boolean shinySide</li>
+			<li>boolean canCastle</li>
+		</ul></li>
+	</ul></li>
+	<li> Pawn Class (extended from piece) <ul>
+		<li>Child-Specific/Overridden Methods<ul>
+			<li>void canBeEnPassanted(int[] newPos): if newPos is two steps from its original position, then set enPassant and timeFrame to true</li>
+			<li>boolean canCapture(int[] newPos): if there is a pawn under the newPos that has enPassant as true and newPos is available, return true</li>
+		</ul></li>
+  		<li>Instance Variables<ul>
+			<li>boolean alive</li>
+			<li>int[] position (note: coordinates stored here will be one-digit, behaving as if it is 8x8 not 800x800)</li>
+			<li>String type</li>
+			<li>boolean inCheck</li>
+			<li>boolean shinySide</li>
+			<li>boolean enPassant</li>
+		</ul></li>
+	</ul></li>
+	<li>Queen, Bishop, Knight classes are all extended from Piece and will have the same methods</li>
 	<li> Main Class <ul>
 		<li>Methods<ul>
 			<li>void setup(): sets up the board, size is 800, 800 with each square being 100x100</li>
