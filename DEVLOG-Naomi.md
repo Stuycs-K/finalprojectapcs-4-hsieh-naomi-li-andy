@@ -9,4 +9,7 @@ This document must be updated daily every time you finish a work session.
 Both of us worked on updating the proposal to be more specific regarding the Pokemon chess idea, and we sent the email regarding the revision to the proposal. We spent 25 minutes on this, and we will spend the rest of the class period beginning to build the prototype.
 
 At home: I updated the prototype description with more details on the exact things we will be implementing in our critical features and nice-to-have features in list format (note: had to take a few commits debugging). I also added a timeline of what our workflow will likely look like. (Total time elapsed ~40-50 minutes).
-### 2025-05-20 - Brief description
+### 2025-05-20 - Updated Prototype
+In Class: Andy and I worked out the timeline/breakdown of who's doing what of the project (~10 minutes) and for the rest of class I worked on the outline of the methods
+
+At home: I finished up the outline of the methods, writing down the classes, methods, and instance variables with descriptions for the methods (~40 minutes)
