@@ -71,41 +71,41 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 How you are breaking down the project and who is responsible for which parts.
  <ul>
 	 <li>End of 5/22: Code piece movement (excluding castling for now).<ul>
-		<li>Pawn Movement []</li> 
-		<li>Knight Movement []</li> 
-		<li>Bishop Movement []</li> 
-		<li>Rook Movement []</li> 
-		<li>Queen Movement []</li> 
-		<li>King Movement []</li> 
+		<li>Pawn Movement: Andy</li> 
+		<li>Knight Movement: Naomi</li> 
+		<li>Bishop Movement: Andy</li> 
+		<li>Rook Movement: Naomi</li> 
+		<li>Queen Movement: Andy</li> 
+		<li>King Movement: Naomi</li> 
 	 </ul></li>
   	 <li>End of 5/23: Code basic capturing (excluding en passant for now)<ul>
-		<li>Pawn Capturing []</li> 
-		<li>Knight Capturing []</li> 
-		<li>Bishop Capturing []</li> 
-		<li>Rook Capturing []</li> 
-		<li>Queen Capturing []</li> 
-		<li>King Capturing []</li> 
+		<li>Pawn Capturing: Andy</li> 
+		<li>Knight Capturing: Naomi</li> 
+		<li>Bishop Capturing: Andy</li> 
+		<li>Rook Capturing: Naomi</li> 
+		<li>Queen Capturing: Andy</li> 
+		<li>King Capturing: Naomi</li> 
 	 </ul></li>
     	 <li>End of 5/26: Complete setup of board <ul>
-		 <li>Icons drawn [Knight, Rook, Bishop - ] & [Pawn, Queen, King - ]</li>
-		 <li>Placement of pieces []</li>
-		 <li>Chessboard drawn (& designed) []</li>
+		 <li>Icons drawn: Andy and Naomi (split work depending on circumstances)</li>
+		 <li>Placement of pieces: Andy</li>
+		 <li>Chessboard drawn (& designed): Naomi</li>
 	 </ul></li>
 	 <li>End of 5/28: Code check & extra moves (castling, en passant, pawn promotion)<ul>
-		 <li>Check []</li>
-		 <li>Castling [] </li>
-		 <li>En Passant [] </li>
-		 <li>Pawn Promotion []</li>
-		 <li>If icons need more time [] </li>
+		 <li>Check: Andy</li>
+		 <li>Castling: Andy </li>
+		 <li>En Passant: Naomi </li>
+		 <li>Pawn Promotion: Naomi</li>
+		 <li>If icons need more time: Andy</li>
 	 </ul></li>
 	 <li>End of 5/29: Code checkmate/stalemate <ul>
-		 <li>Checkmate []</li>
-		 <li>Stalemate []</li>
+		 <li>Checkmate: Andy</li>
+		 <li>Stalemate: Naomi</li>
 	 </ul></li>
 	 <li>End of 6/1: Code extras (in order of priority)<ul>
-		<li>Markers for valid squares[]</li>
-		<li>Drawing/Forfeiting []</li>
-		<li>Sound []</li>
+		<li>Markers for valid squares: Naomi</li>
+		<li>Drawing/Forfeiting: Andy</li>
+		<li>Sound: Andy</li>
 	 </ul></li>
  </ul>
 
