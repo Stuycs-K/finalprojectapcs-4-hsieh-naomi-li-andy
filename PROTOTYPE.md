@@ -12,7 +12,7 @@ _**Period 4**_
 <br>
 **Group Members:** Andy Li and Naomi Hsieh
 <br>
-**Group Name:** TBD
+**Group Name:** Project AN
 <br>
 <br>
 **Brief Project Summary**: 
@@ -62,7 +62,10 @@ Our created project will be Pokemon Chess. The final product will act exactly li
 		<li>Drawing/Forfeiting<ul><li>A button would be available where a player could offer a draw (with the other player needing to agree) or end the game early by forfeiting.</li></ul></li>
 		<li>Sound<ul><li>The game would play an ambient Pokemon theme in the background, perhaps switch to a more exciting one when the king is in check, and a victory theme for checkmate. </li></ul></li> 
 		</ul>
+  <br>
 UML Diagrams and descriptions of key algorithms, classes, and how things fit together.
+
+![Image of UML](Chess.png?raw=true "Chess UML" )
 
 **Descriptions**
 <ul>
@@ -152,7 +155,7 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 	
 </ul>
     
-# Intended pacing:
+# Intended Pacing:
 
 How you are breaking down the project and who is responsible for which parts.
  <ul>
