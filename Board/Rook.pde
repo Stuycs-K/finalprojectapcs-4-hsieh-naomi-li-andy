@@ -6,6 +6,15 @@ public class Rook extends Piece{
   private boolean shinySide;
   private boolean canCastle;
   
+  public Rook(int[] position, boolean shinySide){
+    alive = true;
+    this.position = position;
+    type = "ROOK";
+    inCheck = false;
+    this.shinySide = shinySide;
+    canCastle = true;
+  }
+  
   public void capture(Piece other){}
   
   public boolean reachable(int[] newPos){

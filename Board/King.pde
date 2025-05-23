@@ -6,6 +6,15 @@ public class King extends Piece{
   private boolean shinySide;
   private boolean canCastle;
   
+  public King(int[] position, boolean shinySide){
+    alive = true;
+    this.position = position;
+    type = "KING";
+    inCheck = false;
+    this.shinySide = shinySide;
+    canCastle = true;
+  }
+  
   
   public void capture(Piece other){}
   

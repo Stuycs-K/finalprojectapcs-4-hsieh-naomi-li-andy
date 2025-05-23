@@ -5,6 +5,13 @@ public class Knight extends Piece{
   private boolean inCheck;
   private boolean shinySide;
   
+  public Knight(int[] position, boolean shinySide){
+    alive = true;
+    this.position = position;
+    type = "KNIGHT";
+    inCheck = false;
+    this.shinySide = shinySide;
+  }
   
   public void capture(Piece other){}
   
