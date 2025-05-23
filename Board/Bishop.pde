@@ -9,7 +9,8 @@ public class Bishop extends Piece{
   public void capture(Piece other){}
   
   public boolean reachable(int[] newPos){
-    return (newPos[0] % 2 == this.position[0] % 2 && newPos[1] % 2 == this.position[1] % 2);
+    return (newPos[1] - this.position[1]) / (newPos[0] - this.position[0]) == 1 ||
+    (newPos[1] - this.position[1]) / (newPos[0] - this.position[0]) == -1;
   }
   
   public boolean canMove(int[] newPos){
