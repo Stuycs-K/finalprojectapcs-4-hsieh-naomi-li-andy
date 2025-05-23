@@ -5,11 +5,32 @@ public class Knight extends Piece{
   private boolean inCheck;
   private boolean shinySide;
   
-  public void move(int[] newPos){}
   
   public void capture(Piece other){}
   
-  public boolean canMove(int[] newPos){}
+  public boolean reachable(int[] newPos){
+    return (newPos[0] == this.position[0] + 2 && newPos[1] == this.position[1] + 1)
+            || (newPos[0] == this.position[0] - 2 && newPos[1] == this.position[1] + 1)
+            || (newPos[0] == this.position[0] + 2 && newPos[1] == this.position[1] - 1)
+            || (newPos[0] == this.position[0] - 2 && newPos[1] == this.position[1] - 1)
+            || (newPos[1] == this.position[1] + 2 && newPos[0] == this.position[0] + 1)
+            || (newPos[1] == this.position[1] - 2 && newPos[0] == this.position[0] + 1)
+            || (newPos[1] == this.position[1] + 2 && newPos[0] == this.position[0] - 1)
+            || (newPos[1] == this.position[1] - 2 && newPos[0] == this.position[0] - 1); 
+  }
+  
+  public boolean canMove(int[] newPos){
+   boolean pieceOnPos = false;
+   int[] temp = new int[2];
+   for(int i = 0; i < Board.pieces.size(); i++){
+     temp = Board.pieces.get(i).getPos();
+     if(temp[0] == newPos[0] && temp[1] == newPos[1] && (Board.pieces.get(i).side() == this.side())){
+       pieceOnPos = true;
+     }
+    }
+    return !pieceOnPos && this.reachable(newPos);
+  }
+  
   
   public boolean canCapture(int[] newPos){}
   

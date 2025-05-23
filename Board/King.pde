@@ -6,11 +6,6 @@ public class King extends Piece{
   private boolean shinySide;
   private boolean canCastle;
   
-  public void move(int[] newPos){
-    if(canMove(newPos)){
-      this.position = newPos;
-    }
-  }
   
   public void capture(Piece other){}
   

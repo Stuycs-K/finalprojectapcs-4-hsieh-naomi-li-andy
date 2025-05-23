@@ -5,7 +5,11 @@ public abstract class Piece{
   private boolean inCheck;
   private boolean shinySide;
   
-  public abstract void move(int[] newPos);
+  public void move(int[] newPos){
+    if(canMove(newPos)){
+      this.position = newPos;
+    }
+  }
   
   public abstract void capture(Piece other);
   
