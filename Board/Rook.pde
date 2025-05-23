@@ -15,7 +15,6 @@ public class Rook extends Piece{
     canCastle = true;
   }
   
-  public void capture(Piece other){}
   
   public boolean reachable(int[] newPos){
     return (newPos[0] == this.position[0] || newPos[1] == this.position[1]) && !(newPos[0] == this.position[0] && newPos[1] == this.position[1]);  
@@ -34,7 +33,6 @@ public class Rook extends Piece{
     return !pieceOnPos && this.reachable(newPos) && !inCheck;
   }
   
-  public boolean canCapture(int[] newPos){}
   
   public boolean canCapture(Piece other){}
   

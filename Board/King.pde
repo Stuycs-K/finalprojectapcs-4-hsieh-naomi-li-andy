@@ -16,7 +16,6 @@ public class King extends Piece{
   }
   
   
-  public void capture(Piece other){}
   
   public boolean reachable(int[] newPos){
     for(int i = -1; i <= 1; i++){
@@ -48,7 +47,6 @@ public class King extends Piece{
     return !pieceOnPos && !willBeCaptured && this.reachable(newPos); 
   }
   
-  public boolean canCapture(int[] newPos){}
   
   public boolean canCapture(Piece other){}
   
