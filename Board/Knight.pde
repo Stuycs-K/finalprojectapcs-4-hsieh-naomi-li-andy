@@ -28,7 +28,7 @@ public class Knight extends Piece{
        pieceOnPos = true;
      }
     }
-    return !pieceOnPos && this.reachable(newPos);
+    return !pieceOnPos && this.reachable(newPos) && !inCheck;
   }
   
   
