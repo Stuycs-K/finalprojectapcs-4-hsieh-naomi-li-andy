@@ -17,6 +17,8 @@ public abstract class Piece{
   
   public abstract void applyCheck(King other);
   
+  public abstract boolean reachable(int[] newPos);
+  
   public boolean isAlive(){
       return alive;
   }

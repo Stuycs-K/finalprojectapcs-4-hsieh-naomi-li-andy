@@ -14,6 +14,20 @@ public class King extends Piece{
   
   public void capture(Piece other){}
   
+  public boolean reachable(int[] newPos){
+    for(int i = -1; i <= 1; i++){
+      for(int j = -1; j <= 1; j++){
+        if(!(i == 0 && j == 0) && newPos[0] == this.position[0] + i && newPos[1] == this.position[1] + j){
+          return true;
+        }
+        if(!(i == 0 && j == 0) && newPos[0] == this.position[0] + j && newPos[1] == this.position[1] + i){
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+  
   public boolean canMove(int[] newPos){
     boolean willBeCaptured = false;
     boolean pieceOnPos = false;
@@ -27,7 +41,7 @@ public class King extends Piece{
         willBeCaptured = true;
       }
     }
-    return !pieceOnPos && !willBeCaptured; 
+    return !pieceOnPos && !willBeCaptured && this.reachable(newPos); 
   }
   
   public boolean canCapture(int[] newPos){}
