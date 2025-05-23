@@ -13,6 +13,10 @@ public class Bishop extends Piece{
     this.shinySide = shinySide;
   }
   
+  public ArrayList<int[]> getLegalMoves(){
+    ArrayList<int[]> toReturn = new ArrayList<int[]>();
+  }
+  
   public void capture(Piece other){}
   
   public boolean reachable(int[] newPos){
