@@ -1,15 +1,12 @@
-<<<<<<< HEAD
 public class Piece{
-=======
+
 public abstract class Piece{
->>>>>>> 81baaa0fedc750a9f613f9bd91e69aab60c42daa
   private boolean alive;
   private int[] position;
   private String type;
   private boolean inCheck;
   private boolean shinySide;
   
-<<<<<<< HEAD
   public void move(int[] new Pos){
   }
   
@@ -44,7 +41,6 @@ public abstract class Piece{
   }
   
   public boolean side(){
-=======
   public void move(int[] newPos){
     if(canMove(newPos)){
       this.position = newPos;
@@ -85,6 +81,5 @@ public abstract class Piece{
   
   public boolean side(){
       return shinySide;
->>>>>>> 81baaa0fedc750a9f613f9bd91e69aab60c42daa
   }
 }
