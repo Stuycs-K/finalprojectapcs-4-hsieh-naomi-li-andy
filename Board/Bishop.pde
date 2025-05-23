@@ -15,6 +15,14 @@ public class Bishop extends Piece{
   
   public ArrayList<int[]> getLegalMoves(){
     ArrayList<int[]> toReturn = new ArrayList<int[]>();
+    for (int row = 0; row < 8; row++){
+      for (int col = 0; col < 8; col++){
+         if (reachable(new int[] {row, col})){
+            toReturn.add(new int[] {row, col});
+         }
+      }
+    }
+    return toReturn;
   }
   
   public void capture(Piece other){}

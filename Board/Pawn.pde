@@ -15,6 +15,18 @@ public class Pawn extends Piece{
   
   public void capture(Piece other){}
   
+  public ArrayList<int[]> getLegalMoves(){
+    ArrayList<int[]> toReturn = new ArrayList<int[]>();
+    for (int row = 0; row < 8; row++){
+      for (int col = 0; col < 8; col++){
+         if (reachable(new int[] {row, col})){
+            toReturn.add(new int[] {row, col});
+         }
+      }
+    }
+    return toReturn;
+  }
+  
   public boolean reachable(int[] newPos){
     return (newPos[0] == this.position[0] && newPos[1] == this.position[1] + 1);
   }
