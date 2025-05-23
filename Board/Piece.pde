@@ -1,10 +1,15 @@
+<<<<<<< HEAD
 public class Piece{
+=======
+public abstract class Piece{
+>>>>>>> 81baaa0fedc750a9f613f9bd91e69aab60c42daa
   private boolean alive;
   private int[] position;
   private String type;
   private boolean inCheck;
   private boolean shinySide;
   
+<<<<<<< HEAD
   public void move(int[] new Pos){
   }
   
@@ -39,5 +44,47 @@ public class Piece{
   }
   
   public boolean side(){
+=======
+  public void move(int[] newPos){
+    if(canMove(newPos)){
+      this.position = newPos;
+    }
+  }
+  
+  public abstract void capture(Piece other);
+  
+  public abstract boolean canMove(int[] newPos);
+   
+  public abstract boolean canCapture(int[] newPos);
+  
+  public abstract boolean canCapture(Piece other);
+  
+  public abstract void applyCheck(King other);
+  
+  public abstract boolean reachable(int[] newPos);
+  
+  public boolean isAlive(){
+      return alive;
+  }
+  
+  public int[] getPos(){
+      return position;
+  }
+  
+  public String getType(){
+      return type;
+  }
+  
+  public boolean getCheckStatus(){
+      return inCheck; 
+  }
+  
+  public void setCheckStatus(boolean status){
+      this.inCheck = status;
+  }
+  
+  public boolean side(){
+      return shinySide;
+>>>>>>> 81baaa0fedc750a9f613f9bd91e69aab60c42daa
   }
 }
