@@ -1,34 +1,22 @@
 public class Rook extends Piece{
-  boolean alive;
-  int[] position;
-  String type;
-  boolean inCheck;
-  boolean shinySide;
-  boolean canCastle;
+  private boolean alive;
+  private int[] position;
+  private String type;
+  private boolean inCheck;
+  private boolean shinySide;
+  private boolean canCastle;
   
   public void move(int[] newPos){}
   
   public void capture(Piece other){}
   
-  boolean canMove(int[] newPos){}
+  public boolean canMove(int[] newPos){}
   
-  boolean canCapture(int[] newPos){}
+  public boolean canCapture(int[] newPos){}
   
-  boolean canCapture(Piece other){}
+  public boolean canCapture(Piece other){}
   
-  void applyCheck(King other){}
+  public void applyCheck(King other){}
   
-  boolean isAlive(){}
-  
-  int[] getPos(){}
-  
-  String getType(){}
-  
-  boolean getCheckStatus(){}
-  
-  void setCheckStatus(boolean status){}
-  
-  boolean side(){}
-  
-  boolean castleStatus(){}
+  public boolean castleStatus(){}
 }

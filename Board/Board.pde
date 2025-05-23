@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-ArrayList<Piece> pieces;
+static ArrayList<Piece> pieces;
 boolean pawnPromoting;
 
 void setup(){}
