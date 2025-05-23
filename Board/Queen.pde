@@ -6,6 +6,7 @@ public class Bishop extends Piece{
   private boolean shinySide;
   
   
+  
   public void capture(Piece other){}
   
   public boolean reachable(int[] newPos){

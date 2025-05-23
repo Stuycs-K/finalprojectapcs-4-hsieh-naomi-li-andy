@@ -6,7 +6,15 @@ public class Rook extends Piece{
   private boolean shinySide;
   private boolean canCastle;
   
-  public void capture(Piece other){}
+  public Rook(int[] position, boolean shinySide){
+    alive = true;
+    this.position = position;
+    type = "ROOK";
+    inCheck = false;
+    this.shinySide = shinySide;
+    canCastle = true;
+  }
+  
   
   public boolean reachable(int[] newPos){
     return (newPos[0] == this.position[0] || newPos[1] == this.position[1]) && !(newPos[0] == this.position[0] && newPos[1] == this.position[1]);  
@@ -25,7 +33,6 @@ public class Rook extends Piece{
     return !pieceOnPos && this.reachable(newPos) && !inCheck;
   }
   
-  public boolean canCapture(int[] newPos){}
   
   public boolean canCapture(Piece other){}
   
