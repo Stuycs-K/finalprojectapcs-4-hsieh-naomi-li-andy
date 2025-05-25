@@ -34,7 +34,6 @@ public class Rook extends Piece{
   }
   
   
-  public boolean canCapture(Piece other){}
   
   public void applyCheck(King other){}
   

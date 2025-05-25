@@ -38,9 +38,6 @@ public class Knight extends Piece{
   }
   
   
-  
-  public boolean canCapture(Piece other){}
-  
   public void applyCheck(King other){}
 
 }

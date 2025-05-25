@@ -7,8 +7,6 @@ public class Bishop extends Piece{
   
   
   
-  public void capture(Piece other){}
-  
   public boolean reachable(int[] newPos){
     return (newPos[0] == this.position[0] || newPos[1] == this.position[1] ||
     ((newPos[1] - this.position[1]) / (newPos[0] - this.position[0])) == 1 ||
@@ -28,9 +26,6 @@ public class Bishop extends Piece{
   }
   
   
-  public boolean canCapture(int[] newPos){}
-  
-  public boolean canCapture(Piece other){}
   
   public void applyCheck(King other){}
 
