@@ -1,4 +1,4 @@
-public class Bishop extends Piece{
+public class Queen extends Piece{
    private boolean alive;
   private int[] position;
   private String type;

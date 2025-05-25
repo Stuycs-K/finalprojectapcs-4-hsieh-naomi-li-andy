@@ -55,5 +55,7 @@ public class King extends Piece{
   
   public void applyCheck(){}
   
-  public boolean castleStatus(){}
+  public boolean castleStatus(){
+    return canCastle;
+  }
 }

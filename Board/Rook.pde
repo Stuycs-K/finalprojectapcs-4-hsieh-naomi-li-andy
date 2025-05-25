@@ -37,5 +37,7 @@ public class Rook extends Piece{
   
   public void applyCheck(King other){}
   
-  public boolean castleStatus(){}
+  public boolean castleStatus(){
+    return canCastle;  
+  }
 }

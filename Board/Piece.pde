@@ -1,4 +1,4 @@
-public class Piece{
+
 
 public abstract class Piece{
   private boolean alive;
@@ -28,7 +28,7 @@ public abstract class Piece{
   public abstract boolean canMove(int[] newPos);
   
   public boolean canCapture(Piece other){
-    return this.getLegalMoves().contains(other.getPos);
+    return this.getLegalMoves().contains(other.getPos());
   }
   
   public abstract void applyCheck(King other);
@@ -51,7 +51,7 @@ public abstract class Piece{
       return alive;
   }
   
-  public boolean setAlive(boolean life){
+  public void setAlive(boolean life){
       alive = life;
   }
   
