@@ -47,6 +47,8 @@ public class King extends Piece{
     return !pieceOnPos && !willBeCaptured && this.reachable(newPos); 
   }
   
+ 
+  
   
   public boolean canCapture(Piece other){}
   

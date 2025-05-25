@@ -27,13 +27,25 @@ public abstract class Piece{
   
   public abstract boolean canMove(int[] newPos);
   
-  public abstract boolean canCapture(Piece other);
+  public boolean canCapture(Piece other){
+    return this.getLegalMoves().contains(other.getPos);
+  }
   
   public abstract void applyCheck(King other);
   
   public abstract boolean reachable(int[] newPos);
   
-  public abstract ArrayList<int[]> getLegalMoves();
+  public ArrayList<int[]> getLegalMoves(){
+    ArrayList<int[]> legalMoves = new ArrayList<int[]>();
+    for(int i = 0; i < 8; i++){
+      for(int j = 0; j < 8; j++){
+         if(canMove(new int[]{i, j})){
+            legalMoves.add(new int[]{i, j});
+         }
+      }
+    }
+    return legalMoves;
+  }
   
   public boolean isAlive(){
       return alive;
