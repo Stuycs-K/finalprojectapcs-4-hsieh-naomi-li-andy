@@ -47,8 +47,7 @@ public class King extends Piece{
     return !pieceOnPos && !willBeCaptured && this.reachable(newPos); 
   }
   
-  
-  public boolean canCapture(Piece other){}
+ 
   
   public void applyCheck(King other){}
   
@@ -56,5 +55,7 @@ public class King extends Piece{
   
   public void applyCheck(){}
   
-  public boolean castleStatus(){}
+  public boolean castleStatus(){
+    return canCastle;
+  }
 }
