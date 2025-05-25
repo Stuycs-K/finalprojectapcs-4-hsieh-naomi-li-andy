@@ -8,6 +8,8 @@ void setup(){}
 
 void draw(){}
 
-boolean gameOver(){}
+boolean gameOver(){
+  return true;
+}
 
 void pawnPromotion(){}
