@@ -178,18 +178,18 @@ How you are breaking down the project and who is responsible for which parts.
 		 <li>Placement of pieces: Andy</li>
 		 <li>Chessboard drawn (& designed): Naomi</li>
 	 </ul></li>
-	 <li>End of 5/28: Code check & extra moves (castling, en passant, pawn promotion)<ul>
+	 <li>End of 5/30 <s>5/28</s>: Code check & extra moves (castling, en passant, pawn promotion)<ul>
 		 <li>Check: Andy</li>
 		 <li>Castling: Andy </li>
 		 <li>En Passant: Naomi </li>
 		 <li>Pawn Promotion: Naomi</li>
 		 <li>If icons need more time: Andy</li>
 	 </ul></li>
-	 <li>End of 5/29: Code checkmate/stalemate <ul>
+	 <li>End of 6/1 <s>5/29</s>: Code checkmate/stalemate <ul>
 		 <li>Checkmate: Andy</li>
 		 <li>Stalemate: Naomi</li>
 	 </ul></li>
-	 <li>End of 6/1: Code extras (in order of priority)<ul>
+	 <li>End of 6/8 <s>6/1</s>: Code extras (in order of priority)<ul>
 		<li>Markers for valid squares: Naomi</li>
 		<li>Gameover screen: Naomi</li>
 		<li>Drawing/Forfeiting: Andy</li>
