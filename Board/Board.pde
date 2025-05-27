@@ -1,7 +1,9 @@
 import java.util.*;
 import java.io.*;
 
-static ArrayList<Piece> pieces;
+static ArrayList<Piece> pieces = new ArrayList<Piece>(0);
+static ArrayList<Piece> white = new ArrayList<Piece>(0);
+static ArrayList<Piece> black = new ArrayList<Piece>(0);
 boolean pawnPromoting;
 
 /*void mew(float x, float y, boolean shiny){
@@ -222,10 +224,8 @@ void pokeball(color ballColor, color base, float x, float y) {
 
 void setup() {
   // Adding Pawns to each side with a for loop (0, 0) represents top left hand corner and (7,7) represents bottom right hand corner)
-  ArrayList<Piece> white = new ArrayList<Piece>();
-  ArrayList<Piece> black = new ArrayList<Piece>();
   for (int count = 0; count < 8; count++){
-    black.add(new Pawn(new int[] {count , 1}, true));
+    black.add(new Pawn(new int[] {count, 1}, true));
   }
   for (int count = 0; count < 8; count++){
     white.add(new Pawn(new int[] {count, 6}, false));
@@ -273,15 +273,20 @@ void setup() {
     }
     switcher = !switcher;
   }
-  ditto(50, 50, true);
-  ditto(150, 50, false);
-  spheal(50, 150, true);
-  spheal(150, 150, false);
-  piplup(50, 250, true);
-  piplup(150, 250, false);
+
+ 
 }
 
-void draw(){}
+void draw(){
+   for (int count = 0; count < 8; count++){
+    if (white.get(count).getType().equals("PAWN")){
+      ditto(count * 100 + 50, 150, false);
+    }
+    if (black.get(count).getType().equals("PAWN")){
+      ditto(count * 100 + 50, height - 150, true);
+    }
+  }
+}
 
 
 boolean gameOver() {

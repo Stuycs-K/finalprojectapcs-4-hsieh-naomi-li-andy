@@ -46,5 +46,9 @@ public class Pawn extends Piece{
   
   
   public void applyCheck(King other){}
+  
+  public String getType(){
+    return "PAWN";
+  }
 
 }
