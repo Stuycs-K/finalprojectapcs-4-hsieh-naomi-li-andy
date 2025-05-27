@@ -16,3 +16,9 @@ At home, I completed Part 2 of the necessary tasks to be completed for Stage 1 o
 In class, Naomi and I worked on laying out the methods for each class in their respective files and branching as well as thinking out how to approach the methods (~40 minutes).
 
 At home, I completed finished the movement behavior for the aforementioned chess pieces (queen, bishop, and pawn) and merged everything into the main while trying to resolve merge conflicts (~50 minutes).
+
+### 2025-05-23 - getLegalMoves
+In class, I worked on polishing my three subclasses, specifically implementing a new method (getLegalMoves()) that would make future endeavors such as highlighting all possible moves much easier. I also added missing code like constructors and fixed move booleans (~35 minutes).
+
+### 2025-05-23 - Setup and Debugging
+At home, I began by testing out a setup after Naomi finished the foundational chessboard. I initialized the white and black side as well as displayed the initial positions of all the pieces. In doing this, I noticed various exceptions being thrown so I fixed all of those by manually testing and subsequently implementing methods in each of the subclasss. I also added my code for a Rowlet piece, which still needs to be cleaned up to fit with the rest of the icons (total: ~75 minutes).
