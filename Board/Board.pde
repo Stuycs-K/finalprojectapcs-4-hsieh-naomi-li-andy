@@ -7,6 +7,24 @@ static ArrayList<Piece> black = new ArrayList<Piece>(0);
 
 boolean pawnPromoting;
 
+void gulpin(float x, float y, boolean shiny){
+  if(shiny){
+    fill(0, 0, 255);
+  }
+  else{
+    fill(20, 170, 10);
+  }
+  circle(x, y, 64);
+  fill(255, 255, 0);
+  pushMatrix();
+   translate(x-23, y-17);
+   rotate(-PI/6);
+   ellipse(0, 0, 30, 15);
+   popMatrix();
+   strokeWeight(3);
+   line(x+3, y-2, x+9, y-6);
+   line(x+20, y-6, x+26, y-2);
+}
 /*void mew(float x, float y, boolean shiny){
  if(shiny){
  fill(135, 206, 235);
@@ -304,10 +322,10 @@ void pokeball(color ballColor, color base, float x, float y) {
 }
 
 void setup() {
+  
   // Adding Pawns to each side with a for loop (0, 0) represents top left hand corner and (7,7) represents bottom right hand corner)
   for (int count = 0; count < 8; count++){
     black.add(new Pawn(new int[] {count, 1}, true));
-    occupied.add(0, 8)
   }
   for (int count = 0; count < 8; count++){
     white.add(new Pawn(new int[] {count, 6}, false));
@@ -375,6 +393,7 @@ void setup() {
    }
    
    rowlet(150, 50);
+   gulpin(750, 750, false);
 }
 
 void draw(){
