@@ -17,7 +17,52 @@ public class Rook extends Piece{
   
   
   public boolean reachable(int[] newPos){
-    return (newPos[0] == this.position[0] || newPos[1] == this.position[1]) && !(newPos[0] == this.position[0] && newPos[1] == this.position[1]);  
+    if(newPos[0] == this.position[0] && newPos[1] == this.position[1]){
+      return false;
+    }
+    else if(newPos[0] == this.position[0]){
+      if(newPos[1] < this.position[1]){
+        for(int i = 1; i < this.position[1]; i++){
+          if(shinySide){
+             for(Piece p : white){
+               if(p.getPos()[0] == newPos[0] && p.getPos()[1] == newPos[1]+i){
+                  return false;
+               }
+             }
+          }
+          else{
+            for(Piece p : black){
+               if(p.getPos()[0] == newPos[0] && p.getPos()[1] == newPos[1]+i){
+                  return false;
+               }
+             }
+          }
+        }
+        return true;
+      }
+    }
+    else if(newPos[1] == this.position[1]){
+      if(newPos[0] < this.position[0]){
+        for(int i = 1; i < this.position[0]; i++){
+          if(shinySide){
+             for(Piece p : white){
+               if(p.getPos()[1] == newPos[1] && p.getPos()[0] == newPos[0]+i){
+                  return false;
+               }
+             }
+          }
+          else{
+            for(Piece p : black){
+               if(p.getPos()[1] == newPos[1] && p.getPos()[0] == newPos[0]+i){
+                  return false;
+               }
+             }
+          }
+        }
+        return true;
+      }
+    }
+    return false;
   }
   
   
