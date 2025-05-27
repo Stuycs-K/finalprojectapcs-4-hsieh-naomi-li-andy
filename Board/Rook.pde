@@ -24,7 +24,7 @@ public class Rook extends Piece{
   public boolean canMove(int[] newPos){
    boolean pieceOnPos = false;
    int[] temp = new int[2];
-   for(int i = 0; i < Board.pieces.size(); i++){
+   for(int i = 0; i < Board.white.size() + Board.black.size(); i++){
      temp = Board.pieces.get(i).getPos();
      if(temp[0] == newPos[0] && temp[1] == newPos[1] && (Board.pieces.get(i).side() == this.side())){
        pieceOnPos = true;
@@ -33,6 +33,17 @@ public class Rook extends Piece{
     return !pieceOnPos && this.reachable(newPos) && !inCheck;
   }
   
+  public String getType(){
+    return "ROOK";
+  }
+  
+  public int[] getPos(){
+      return position;
+  }
+  
+  public boolean side(){
+      return shinySide;
+  }
   
   
   public void applyCheck(King other){}

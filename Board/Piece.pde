@@ -11,7 +11,7 @@ public abstract class Piece{
   public void move(int[] newPos){
     if(canMove(newPos)){
       this.position = newPos;
-      for(int i = 0; i < Board.pieces.size(); i++){
+      for(int i = 0; i < Board.white.size() + Board.black.size(); i++){
         if(pieces.get(i).getPos().equals(newPos)){
              capture(pieces.get(i), newPos);
         }
