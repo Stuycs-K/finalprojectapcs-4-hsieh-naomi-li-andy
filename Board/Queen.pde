@@ -1,4 +1,4 @@
-public class Bishop extends Piece{
+public class Queen extends Piece{
    private boolean alive;
   private int[] position;
   private String type;
@@ -13,7 +13,6 @@ public class Bishop extends Piece{
     this.shinySide = shinySide;
   }
   
-  public void capture(Piece other){}
   
   public ArrayList<int[]> getLegalMoves(){
     ArrayList<int[]> toReturn = new ArrayList<int[]>();
@@ -46,9 +45,6 @@ public class Bishop extends Piece{
   }
   
   
-  public boolean canCapture(int[] newPos){}
-  
-  public boolean canCapture(Piece other){}
   
   public void applyCheck(King other){}
 

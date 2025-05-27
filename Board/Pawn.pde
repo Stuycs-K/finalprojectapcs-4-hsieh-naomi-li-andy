@@ -27,6 +27,7 @@ public class Pawn extends Piece{
     return toReturn;
   }
   
+
   public boolean reachable(int[] newPos){
     return (newPos[0] == this.position[0] && newPos[1] == this.position[1] + 1);
   }
@@ -43,10 +44,6 @@ public class Pawn extends Piece{
     return !pieceOnPos && this.reachable(newPos) && !inCheck;
   }
   
-  
-  public boolean canCapture(int[] newPos){}
-  
-  public boolean canCapture(Piece other){}
   
   public void applyCheck(King other){}
 
