@@ -43,6 +43,9 @@ public class Bishop extends Piece{
     return !pieceOnPos && this.reachable(newPos) && !inCheck;
   }
   
+  public String getType(){
+    return "BISHOP";
+  }
   
   public void applyCheck(King other){}
 

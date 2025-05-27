@@ -55,6 +55,10 @@ public class King extends Piece{
   
   public void applyCheck(){}
   
+  public String getType(){
+    return "KING";
+  }
+  
   public boolean castleStatus(){
     return canCastle;
   }

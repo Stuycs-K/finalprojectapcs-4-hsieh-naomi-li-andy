@@ -44,7 +44,9 @@ public class Queen extends Piece{
     return !pieceOnPos && this.reachable(newPos) && !inCheck;
   }
   
-  
+  public String getType(){
+    return "QUEEN";
+  }
   
   public void applyCheck(King other){}
 

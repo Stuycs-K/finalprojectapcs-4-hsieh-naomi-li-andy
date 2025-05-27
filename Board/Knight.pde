@@ -37,6 +37,9 @@ public class Knight extends Piece{
     return !pieceOnPos && this.reachable(newPos) && !inCheck;
   }
   
+  public String getType(){
+    return "KNIGHT";
+  }
   
   public void applyCheck(King other){}
 

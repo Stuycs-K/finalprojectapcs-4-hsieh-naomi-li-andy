@@ -33,6 +33,9 @@ public class Rook extends Piece{
     return !pieceOnPos && this.reachable(newPos) && !inCheck;
   }
   
+  public String getType(){
+    return "ROOK";
+  }
   
   
   public void applyCheck(King other){}
