@@ -221,6 +221,18 @@ void pokeball(color ballColor, color base, float x, float y) {
 }
 
 void setup() {
+  // Adding Pawns to each side with a for loop (0, 0) represents top left hand corner and (7,7) represents bottom right hand corner)
+  ArrayList<Piece> white = new ArrayList<Piece>();
+  for (int count = 0; count < 8; count++){
+    white.add(new Pawn(new int[] {count , 0}, true));
+  }
+  ArrayList<Piece> black = new ArrayList<Piece>();
+  for (int count = 0; count < 8; count++){
+    black.add(new Pawn(new int[] {count, 7}, false));
+  }
+  // Adding Bishops
+  white.add(new Bishop
+  
   size(800, 800);
   boolean switcher = true;
   for (int i = 0; i < 8; i++) {
