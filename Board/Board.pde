@@ -11,21 +11,39 @@ Piece selectedPiece;
 
 void gulpin(float x, float y, boolean shiny){
   if(shiny){
-    fill(0, 0, 255);
+    fill(108, 186, 204);
   }
   else{
-    fill(20, 170, 10);
+    fill(132, 194, 40);
   }
   circle(x, y, 64);
-  fill(255, 255, 0);
+  
+   ellipse(x+15, y+4, 20, 10);
+   ellipse(x+15, y+12, 20, 10);
+    if(shiny){
+    stroke(108, 186, 204);
+  }
+  else{
+    stroke(132, 194, 40);
+  }
+  rect(x+3, y-2, 15, 25);
+  stroke(0);
+   strokeWeight(3);
+   line(x+3, y-2, x+9, y-6);
+   line(x+20, y-6, x+26, y-2);
+   strokeWeight(2);
+  if(shiny){
+    fill(255, 192, 103);
+  }
+  else{
+    fill(255, 241, 100);
+  }
   pushMatrix();
    translate(x-23, y-17);
    rotate(-PI/6);
    ellipse(0, 0, 30, 15);
    popMatrix();
-   strokeWeight(3);
-   line(x+3, y-2, x+9, y-6);
-   line(x+20, y-6, x+26, y-2);
+   
 }
 /*void mew(float x, float y, boolean shiny){
  if(shiny){
