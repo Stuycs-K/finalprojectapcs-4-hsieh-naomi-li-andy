@@ -4,6 +4,7 @@ import java.io.*;
 static ArrayList<Piece> pieces = new ArrayList<Piece>(0);
 static ArrayList<Piece> white = new ArrayList<Piece>(0);
 static ArrayList<Piece> black = new ArrayList<Piece>(0);
+
 boolean pawnPromoting;
 
 /*void mew(float x, float y, boolean shiny){
@@ -306,6 +307,7 @@ void setup() {
   // Adding Pawns to each side with a for loop (0, 0) represents top left hand corner and (7,7) represents bottom right hand corner)
   for (int count = 0; count < 8; count++){
     black.add(new Pawn(new int[] {count, 1}, true));
+    occupied.add(0, 8)
   }
   for (int count = 0; count < 8; count++){
     white.add(new Pawn(new int[] {count, 6}, false));
