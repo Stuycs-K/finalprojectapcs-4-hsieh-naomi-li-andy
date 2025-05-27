@@ -179,6 +179,86 @@ void piplup(float x, float y, boolean shiny){
   ellipse(x+17, y-5, 3, 5);
 }
 
+void rowlet(int x, int y){
+  //place 2d Primatives relative to x and y.
+  
+  // creates the head shape
+  fill(224, 187, 141);
+  ellipse(x, y + 40, 290, 300);
+  noFill();
+  noStroke();
+  fill(255);
+  circle(x - 40, y, 120);
+  circle(x + 40, y, 120);
+  // creates the nose
+  
+  stroke(0);
+  fill(235, 166, 5);
+  ellipse(x, y+11, 31, 60);
+  fill(235);
+  ellipse(x, y-4, 31, 65);
+  noFill();
+  arc(x-20, y+13, 45, 72, 0, 0.4);
+
+
+  
+  endShape(CLOSE);
+  // creates the lower body
+  noStroke();
+  fill(255);
+  ellipse(x, y + 140, 290, 100);
+  noFill();
+  stroke(0);
+  ellipse(x, y + 40, 290, 300);
+  //creates the leaves
+  fill(76, 168, 96);
+  stroke(0);
+   beginShape();
+  vertex(x, y+85);
+  vertex(x, y+100);
+  vertex(x-30, y+115);
+  vertex(x-55,y+110);
+  vertex(x-60,y+105);
+  vertex(x-70, y+90);
+  vertex(x-60,y+75);
+  vertex(x-55,y+70);
+  vertex(x-25, y+65);
+  endShape(CLOSE);
+  beginShape();
+  vertex(x, y+85);
+  vertex(x, y+100);
+  vertex(x+30, y+115);
+  vertex(x+55,y+110);
+  vertex(x+60,y+105);
+  vertex(x+70, y+90);
+  vertex(x+60,y+75);
+  vertex(x+55,y+70);
+  vertex(x+25, y+65);
+  endShape(CLOSE);
+  noFill();
+  line(x+4, y+95, x+20, y+88);
+  line(x+20, y+88, x+22, y+89);
+  line(x+22, y+89, x+24, y+89);
+  line(x-4, y+95, x-20, y+88);
+  line(x-20, y+88, x-22, y+89);
+  line(x-22, y+89, x-24, y+89);
+  //creates the eyes
+  fill(0);
+  ellipse(x - 50, y-5, 25, 40);
+  ellipse(x + 50, y-5, 25, 40);
+  noFill();
+  fill(255);
+  ellipse(x - 50, y-5, 12, 15);
+  ellipse(x + 50, y-5, 12, 15);
+  noFill();
+  //details
+  stroke(0);
+  line(x-63, y-37, x - 35, y - 17);
+  line(x+63, y-37, x + 35, y - 17);
+  //change colors and try out different processing commands.
+}
+
+
 void ditto(float x, float y, boolean shiny) {
   if (shiny) {
     fill(102, 204, 234);
@@ -291,6 +371,8 @@ void setup() {
        piplup(black.get(incrementer).getPos()[0] * 100 + 50, 50, black.get(incrementer).side());
      }
    }
+   
+   rowlet(150, 50);
 }
 
 void draw(){
