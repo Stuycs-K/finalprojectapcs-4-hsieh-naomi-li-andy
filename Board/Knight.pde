@@ -41,6 +41,10 @@ public class Knight extends Piece{
     return "KNIGHT";
   }
   
+  public int[] getPos(){
+      return position;
+  }
+  
   public void applyCheck(King other){}
 
 }

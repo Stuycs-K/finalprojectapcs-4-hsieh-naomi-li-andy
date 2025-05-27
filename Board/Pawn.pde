@@ -50,5 +50,9 @@ public class Pawn extends Piece{
   public String getType(){
     return "PAWN";
   }
+  
+  public int[] getPos(){
+      return position;
+  }
 
 }

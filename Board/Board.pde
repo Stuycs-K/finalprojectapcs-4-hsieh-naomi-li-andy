@@ -273,19 +273,16 @@ void setup() {
     }
     switcher = !switcher;
   }
-
- 
+   // SETUP OF PIECES
+   for (int incrementer = 0; incrementer < 8; incrementer++){
+     if (white.get(incrementer).getType().equals("PAWN")){
+       ditto(white.get(incrementer).getPos()[0] * 100 + 50, height - 150, false);
+     }
+   }
 }
 
 void draw(){
-   for (int count = 0; count < 8; count++){
-    if (white.get(count).getType().equals("PAWN")){
-      ditto(count * 100 + 50, 150, false);
-    }
-    if (black.get(count).getType().equals("PAWN")){
-      ditto(count * 100 + 50, height - 150, true);
-    }
-  }
+   
 }
 
 

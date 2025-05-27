@@ -37,6 +37,10 @@ public class Rook extends Piece{
     return "ROOK";
   }
   
+  public int[] getPos(){
+      return position;
+  }
+  
   
   public void applyCheck(King other){}
   

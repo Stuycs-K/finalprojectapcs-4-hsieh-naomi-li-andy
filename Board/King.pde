@@ -59,6 +59,10 @@ public class King extends Piece{
     return "KING";
   }
   
+  public int[] getPos(){
+      return position;
+  }
+  
   public boolean castleStatus(){
     return canCastle;
   }

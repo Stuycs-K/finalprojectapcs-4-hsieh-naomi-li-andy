@@ -47,6 +47,10 @@ public class Bishop extends Piece{
     return "BISHOP";
   }
   
+  public int[] getPos(){
+      return position;
+  }
+  
   public void applyCheck(King other){}
 
 }
