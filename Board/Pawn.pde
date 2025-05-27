@@ -54,5 +54,9 @@ public class Pawn extends Piece{
   public int[] getPos(){
       return position;
   }
+  
+  public boolean side(){
+      return shinySide;
+  }
 
 }

@@ -276,19 +276,19 @@ void setup() {
    // SETUP OF WHITE PIECES
    for (int incrementer = 0; incrementer < white.size(); incrementer++){
      if (white.get(incrementer).getType().equals("PAWN")){
-       ditto(white.get(incrementer).getPos()[0] * 100 + 50, height - 150, false);
+       ditto(white.get(incrementer).getPos()[0] * 100 + 50, height - 150, white.get(incrementer).side());
      }
      else{
-       piplup(white.get(incrementer).getPos()[0] * 100 + 50, height - 50, false);
+       piplup(white.get(incrementer).getPos()[0] * 100 + 50, height - 50, white.get(incrementer).side());
      }
    }
    // SETUP OF BLACK PIECES
    for (int incrementer = 0; incrementer < black.size(); incrementer++){
      if (black.get(incrementer).getType().equals("PAWN")){
-       ditto(black.get(incrementer).getPos()[0] * 100 + 50, 150, true);
+       ditto(black.get(incrementer).getPos()[0] * 100 + 50, 150, black.get(incrementer).side());
      }
      else{
-       piplup(black.get(incrementer).getPos()[0] * 100 + 50, 50, true);
+       piplup(black.get(incrementer).getPos()[0] * 100 + 50, 50, black.get(incrementer).side());
      }
    }
 }

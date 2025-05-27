@@ -41,6 +41,10 @@ public class Rook extends Piece{
       return position;
   }
   
+  public boolean side(){
+      return shinySide;
+  }
+  
   
   public void applyCheck(King other){}
   

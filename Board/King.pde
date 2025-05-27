@@ -63,6 +63,10 @@ public class King extends Piece{
       return position;
   }
   
+  public boolean side(){
+      return shinySide;
+  }
+  
   public boolean castleStatus(){
     return canCastle;
   }

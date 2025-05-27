@@ -52,6 +52,10 @@ public class Queen extends Piece{
       return position;
   }
   
+  public boolean side(){
+      return shinySide;
+  }
+  
   public void applyCheck(King other){}
 
 }
