@@ -6,8 +6,16 @@ public class King extends Piece{
   private boolean shinySide;
   private boolean canCastle;
   
+  public King(int[] position, boolean shinySide){
+    alive = true;
+    this.position = position;
+    type = "KING";
+    inCheck = false;
+    this.shinySide = shinySide;
+    canCastle = true;
+  }
   
-  public void capture(Piece other){}
+  
   
   public boolean reachable(int[] newPos){
     for(int i = -1; i <= 1; i++){
@@ -39,9 +47,7 @@ public class King extends Piece{
     return !pieceOnPos && !willBeCaptured && this.reachable(newPos); 
   }
   
-  public boolean canCapture(int[] newPos){}
-  
-  public boolean canCapture(Piece other){}
+ 
   
   public void applyCheck(King other){}
   
@@ -49,5 +55,7 @@ public class King extends Piece{
   
   public void applyCheck(){}
   
-  public boolean castleStatus(){}
+  public boolean castleStatus(){
+    return canCastle;
+  }
 }

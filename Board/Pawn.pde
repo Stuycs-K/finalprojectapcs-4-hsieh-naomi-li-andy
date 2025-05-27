@@ -5,9 +5,29 @@ public class Pawn extends Piece{
   private boolean inCheck;
   private boolean shinySide;
   
+  public Pawn(int[] position, boolean shinySide){
+    this.alive = true;
+    this.position = position;
+    this.type = "PAWN";
+    this.inCheck = false;
+    this.shinySide = shinySide;
+  }
   
   public void capture(Piece other){}
   
+  public ArrayList<int[]> getLegalMoves(){
+    ArrayList<int[]> toReturn = new ArrayList<int[]>();
+    for (int row = 0; row < 8; row++){
+      for (int col = 0; col < 8; col++){
+         if (reachable(new int[] {row, col})){
+            toReturn.add(new int[] {row, col});
+         }
+      }
+    }
+    return toReturn;
+  }
+  
+
   public boolean reachable(int[] newPos){
     return (newPos[0] == this.position[0] && newPos[1] == this.position[1] + 1);
   }
@@ -24,10 +44,6 @@ public class Pawn extends Piece{
     return !pieceOnPos && this.reachable(newPos) && !inCheck;
   }
   
-  
-  public boolean canCapture(int[] newPos){}
-  
-  public boolean canCapture(Piece other){}
   
   public void applyCheck(King other){}
 
