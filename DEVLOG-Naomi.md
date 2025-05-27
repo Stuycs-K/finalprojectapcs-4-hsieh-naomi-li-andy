@@ -18,3 +18,8 @@ At home: I finished up the outline of the methods, writing down the classes, met
 In class: Andy and I worked on laying out the methods for each class in their respective files and branching as well as thinking out how to approach the methods (~40 minutes).  
 
 At home: I coded the movement methods for the king piece, the knight piece, and the rook piece, as well as updating some of the keywords and inheriting the accessor methods (~60 minutes).
+
+### 2025-05-23 to 2025-05-26 - Designs, Constructors, and Captures
+In class: I wrote constructors for King, Knight, and Rook and wrote the capture method in Piece (~40 minutes).
+
+At home: I wrote getLegalMoves() as suggested by Mr. K (~20 minutes), designed the chessboard (~60 minutes) and created designs for some of our pieces (Ditto, Spheal, Piplup) (~120 minutes).
