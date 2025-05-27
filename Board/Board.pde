@@ -4,8 +4,10 @@ import java.io.*;
 static ArrayList<Piece> pieces = new ArrayList<Piece>(0);
 static ArrayList<Piece> white = new ArrayList<Piece>(0);
 static ArrayList<Piece> black = new ArrayList<Piece>(0);
-
+int turnNumber;
+boolean selectingPiece;
 boolean pawnPromoting;
+Piece selectedPiece;
 
 void gulpin(float x, float y, boolean shiny){
   if(shiny){
@@ -322,7 +324,7 @@ void pokeball(color ballColor, color base, float x, float y) {
 }
 
 void setup() {
-  
+  turnNumber = 1;
   // Adding Pawns to each side with a for loop (0, 0) represents top left hand corner and (7,7) represents bottom right hand corner)
   for (int count = 0; count < 8; count++){
     black.add(new Pawn(new int[] {count, 1}, true));
@@ -400,6 +402,35 @@ void draw(){
    
 }
 
+void mouseClicked(){
+   int xpos = (int)mouseX;
+   int ypos = (int)mouseY;
+   if(selectingPiece){
+     if(turnNumber % 2 != 0){
+       for(int i = 0; i < white.size(); i++){
+         if(white.get(i).getPos()[0] == xpos && white.get(i).getPos()[1] == ypos){
+            selectedPiece = white.get(i);
+            selectingPiece = false;
+          }
+        }
+      }
+     else{
+       for(int i = 0; i < black.size(); i++){
+         if(black.get(i).getPos()[0] == xpos && black.get(i).getPos()[1] == ypos){
+            selectedPiece = black.get(i);
+            selectingPiece = false;
+         }
+       }
+     }
+   }
+   else{
+     if(selectedPiece.move(new int[]{xpos, ypos})){
+       selectingPiece = true;
+       turnNumber++;
+     }
+   }
+   
+}
 
 boolean gameOver() {
   return false;
