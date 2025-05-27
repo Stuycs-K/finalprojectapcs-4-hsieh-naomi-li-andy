@@ -246,7 +246,7 @@ void setup() {
   white.add(new Rook(new int[] {0, 7}, false));
   white.add(new Rook(new int[] {7, 7}, false));
   black.add(new Rook(new int[] {0, 0}, true));
-  black.add(new Rook(new int[] {0, 7}, true));
+  black.add(new Rook(new int[] {7, 0}, true));
   
   white.add(new Knight(new int[] {1, 7}, false));
   white.add(new Knight(new int[] {6, 7}, false));
@@ -273,10 +273,22 @@ void setup() {
     }
     switcher = !switcher;
   }
-   // SETUP OF PIECES
-   for (int incrementer = 0; incrementer < 8; incrementer++){
+   // SETUP OF WHITE PIECES
+   for (int incrementer = 0; incrementer < white.size(); incrementer++){
      if (white.get(incrementer).getType().equals("PAWN")){
        ditto(white.get(incrementer).getPos()[0] * 100 + 50, height - 150, false);
+     }
+     else{
+       piplup(white.get(incrementer).getPos()[0] * 100 + 50, height - 50, false);
+     }
+   }
+   // SETUP OF BLACK PIECES
+   for (int incrementer = 0; incrementer < black.size(); incrementer++){
+     if (black.get(incrementer).getType().equals("PAWN")){
+       ditto(black.get(incrementer).getPos()[0] * 100 + 50, 150, true);
+     }
+     else{
+       piplup(black.get(incrementer).getPos()[0] * 100 + 50, 50, true);
      }
    }
 }

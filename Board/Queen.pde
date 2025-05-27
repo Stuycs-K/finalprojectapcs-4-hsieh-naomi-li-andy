@@ -48,6 +48,10 @@ public class Queen extends Piece{
     return "QUEEN";
   }
   
+  public int[] getPos(){
+      return position;
+  }
+  
   public void applyCheck(King other){}
 
 }
