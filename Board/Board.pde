@@ -4,6 +4,7 @@ import java.io.*;
 static ArrayList<Piece> pieces = new ArrayList<Piece>(0);
 static ArrayList<Piece> white = new ArrayList<Piece>(0);
 static ArrayList<Piece> black = new ArrayList<Piece>(0);
+static int turnNumber = 1;
 boolean pawnPromoting;
 
 /*void mew(float x, float y, boolean shiny){
