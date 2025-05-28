@@ -4,6 +4,7 @@ public class Pawn extends Piece{
   private String type;
   private boolean inCheck;
   private boolean shinySide;
+  private boolean hasMoved;
   
   public Pawn(int[] position, boolean shinySide){
     this.alive = true;
@@ -11,6 +12,7 @@ public class Pawn extends Piece{
     this.type = "PAWN";
     this.inCheck = false;
     this.shinySide = shinySide;
+    this.hasMoved = false;
   }
   
   public void capture(Piece other){}
@@ -57,6 +59,10 @@ public class Pawn extends Piece{
   
   public boolean side(){
       return shinySide;
+  }
+  
+  public boolean getHasMoved(){
+    return this.hasMoved;
   }
 
 }
