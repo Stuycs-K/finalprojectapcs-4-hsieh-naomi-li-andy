@@ -6,8 +6,47 @@ static ArrayList<Piece> white = new ArrayList<Piece>(0);
 static ArrayList<Piece> black = new ArrayList<Piece>(0);
 static ArrayList<int[]> positions = new ArrayList<int[]>(0);
 static int turnNumber = 1;
+int turnNumber;
+boolean selectingPiece;
 boolean pawnPromoting;
+Piece selectedPiece;
 
+void gulpin(float x, float y, boolean shiny){
+  if(shiny){
+    fill(108, 186, 204);
+  }
+  else{
+    fill(132, 194, 40);
+  }
+  circle(x, y, 64);
+  
+   ellipse(x+15, y+4, 20, 10);
+   ellipse(x+15, y+12, 20, 10);
+    if(shiny){
+    stroke(108, 186, 204);
+  }
+  else{
+    stroke(132, 194, 40);
+  }
+  rect(x+3, y-2, 15, 25);
+  stroke(0);
+   strokeWeight(3);
+   line(x+3, y-2, x+9, y-6);
+   line(x+20, y-6, x+26, y-2);
+   strokeWeight(2);
+  if(shiny){
+    fill(255, 192, 103);
+  }
+  else{
+    fill(255, 241, 100);
+  }
+  pushMatrix();
+   translate(x-23, y-17);
+   rotate(-PI/6);
+   ellipse(0, 0, 30, 15);
+   popMatrix();
+   
+}
 /*void mew(float x, float y, boolean shiny){
  if(shiny){
  fill(135, 206, 235);
@@ -305,6 +344,7 @@ void pokeball(color ballColor, color base, float x, float y) {
 }
 
 void setup() {
+  turnNumber = 1;
   // Adding Pawns to each side with a for loop (0, 0) represents top left hand corner and (7,7) represents bottom right hand corner)
   for (int count = 0; count < 8; count++){
     black.add(new Pawn(new int[] {count, 1}, true));
@@ -378,12 +418,43 @@ void setup() {
      positions.add(white.get(count).getPos());
      positions.add(black.get(count).getPos());
    }
+   rowlet(150, 50);
+   gulpin(750, 750, false);
 }
 
 void draw(){
    
 }
 
+void mouseClicked(){
+   int xpos = (int)mouseX;
+   int ypos = (int)mouseY;
+   if(selectingPiece){
+     if(turnNumber % 2 != 0){
+       for(int i = 0; i < white.size(); i++){
+         if(white.get(i).getPos()[0] == xpos && white.get(i).getPos()[1] == ypos){
+            selectedPiece = white.get(i);
+            selectingPiece = false;
+          }
+        }
+      }
+     else{
+       for(int i = 0; i < black.size(); i++){
+         if(black.get(i).getPos()[0] == xpos && black.get(i).getPos()[1] == ypos){
+            selectedPiece = black.get(i);
+            selectingPiece = false;
+         }
+       }
+     }
+   }
+   else{
+     if(selectedPiece.move(new int[]{xpos, ypos})){
+       selectingPiece = true;
+       turnNumber++;
+     }
+   }
+   
+}
 
 boolean gameOver() {
   return false;

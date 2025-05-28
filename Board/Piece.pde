@@ -8,7 +8,7 @@ public abstract class Piece{
   private boolean shinySide;
   
 
-  public void move(int[] newPos){
+  public boolean move(int[] newPos){
     if(canMove(newPos)){
       this.position = newPos;
       for(int i = 0; i < Board.white.size() + Board.black.size(); i++){
@@ -16,7 +16,9 @@ public abstract class Piece{
              capture(pieces.get(i), newPos);
         }
       }
+      return true;
     }
+    return false;
   }
   
   public void capture(Piece other, int[] newPos){
