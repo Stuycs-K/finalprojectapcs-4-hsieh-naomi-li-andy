@@ -22,4 +22,9 @@ At home: I coded the movement methods for the king piece, the knight piece, and 
 ### 2025-05-23 to 2025-05-26 - Designs, Constructors, and Captures
 In class: I wrote constructors for King, Knight, and Rook and wrote the capture method in Piece (~40 minutes).
 
-At home: I wrote getLegalMoves() as suggested by Mr. K (~20 minutes), designed the chessboard (~60 minutes) and created designs for some of our pieces (Ditto, Spheal, Piplup) (~120 minutes).
+At home: I wrote getLegalMoves() as suggested by Mr. K (~20 minutes), designed the chessboard (~60 minutes) and created designs for some of our pieces (Ditto, Spheal, Piplup, Mew) (~100 minutes).
+
+### 2025-05-27 - More Designs, Mouseclicked, and Move Fixes 
+In class: I fixed the Rook's reachable function so it would check if the position it was trying to reach is blocked by another piece and started a new Gulpin design (~40 minutes). 
+
+At home: I finished up the Gulpin design (~15 minutes) and wrote mouseClicked() (~30 minutes). 
