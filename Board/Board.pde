@@ -4,6 +4,8 @@ import java.io.*;
 static ArrayList<Piece> pieces = new ArrayList<Piece>(0);
 static ArrayList<Piece> white = new ArrayList<Piece>(0);
 static ArrayList<Piece> black = new ArrayList<Piece>(0);
+static ArrayList<int[]> positions = new ArrayList<int[]>(0);
+static int turnNumber = 1;
 int turnNumber;
 boolean selectingPiece;
 boolean pawnPromoting;
@@ -412,6 +414,10 @@ void setup() {
      }
    }
    
+   for (int count = 0; count < white.size(); count++){
+     positions.add(white.get(count).getPos());
+     positions.add(black.get(count).getPos());
+   }
    rowlet(150, 50);
    gulpin(750, 750, false);
 }

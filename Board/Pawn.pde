@@ -17,10 +17,10 @@ public class Pawn extends Piece{
   
   public ArrayList<int[]> getLegalMoves(){
     ArrayList<int[]> toReturn = new ArrayList<int[]>();
-    for (int row = 0; row < 8; row++){
-      for (int col = 0; col < 8; col++){
-         if (reachable(new int[] {row, col})){
-            toReturn.add(new int[] {row, col});
+    for (int col = 0; col < 8; row++){
+      for (int row = 0; row < 8; col++){
+         if (reachable(new int[] {col, row})){
+            toReturn.add(new int[] {col, row});
          }
       }
     }
@@ -29,7 +29,7 @@ public class Pawn extends Piece{
   
 
   public boolean reachable(int[] newPos){
-    return (newPos[0] == this.position[0] && newPos[1] == this.position[1] + 1);
+    return (newPos[0] == this.position[0] && newPos[1] == this.position[1] + 1 && this.canMove(newPos));
   }
   
   public boolean canMove(int[] newPos){

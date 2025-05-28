@@ -15,11 +15,58 @@ public class Bishop extends Piece{
   
   public ArrayList<int[]> getLegalMoves(){
     ArrayList<int[]> toReturn = new ArrayList<int[]>();
-    for (int row = 0; row < 8; row++){
-      for (int col = 0; col < 8; col++){
-         if (reachable(new int[] {row, col})){
-            toReturn.add(new int[] {row, col});
-         }
+    int originalPosX = this.getPos()[0];
+    int originalPosY = this.getPos()[1];
+    int currPosX = originalPosX;
+    int currPosY = originalPosY;
+    boolean canContinue = true;
+    while (currPosX <= 7 && currPosY >= 0 && canContinue){
+      currPosX += 1;
+      currPosY -= 1;
+      if (positions.contains(new int[] {currPosX, currPosY})){
+        canContinue = false;
+      }
+      else{
+        toReturn.add(new int[] {currPosX, currPosY});
+      }
+    }
+    canContinue = true;
+    currPosX = originalPosX;
+    currPosY = originalPosY;
+    while (currPosX >= 0 && currPosY >= 0 && canContinue){
+      currPosX -= 1;
+      currPosY -= 1;
+      if (positions.contains(new int[] {currPosX, currPosY})){
+        canContinue = false;
+      }
+      else{
+        toReturn.add(new int[] {currPosX, currPosY});
+      }
+    }
+    canContinue = true;
+    currPosX = originalPosX;
+    currPosY = originalPosY;
+    while (currPosX <= 7 && currPosY <= 7 && canContinue){
+      currPosX += 1;
+      currPosY += 1;
+      if (positions.contains(new int[] {currPosX, currPosY})){
+        canContinue = false;
+      }
+      else{
+        toReturn.add(new int[] {currPosX, currPosY});
+      }
+    }
+    canContinue = true;
+    currPosX = originalPosX;
+    currPosY = originalPosY;
+    while (currPosX >= 0 && currPosY <= 7 && canContinue){
+      currPosX -= 1;
+      currPosY += 1;
+      if (positions.contains(new int[] {currPosX, currPosY})){
+        canContinue = false;
+      }
+      else{
+        toReturn.add(new int[] {currPosX, currPosY});
       }
     }
     return toReturn;
@@ -34,12 +81,22 @@ public class Bishop extends Piece{
   public boolean canMove(int[] newPos){
    boolean pieceOnPos = false;
    int[] temp = new int[2];
-   for(int i = 0; i < Board.white.size() + Board.black.size(); i++){
-     temp = Board.pieces.get(i).getPos();
-     if(temp[0] == newPos[0] && temp[1] == newPos[1] && (Board.pieces.get(i).side() == this.side())){
-       pieceOnPos = true;
-     }
-    }
+   if (Board.turnNumber % 2 == 1){
+     for(int i = 0; i < Board.white.size(); i++){
+       temp = Board.pieces.get(i).getPos();
+       if(temp[0] == newPos[0] && temp[1] == newPos[1] && (Board.pieces.get(i).side() == this.side())){
+         pieceOnPos = true;
+       }
+      }
+   }
+   else{
+     for(int i = 0; i < Board.black.size(); i++){
+       temp = Board.pieces.get(i).getPos();
+       if(temp[0] == newPos[0] && temp[1] == newPos[1] && (Board.pieces.get(i).side() == this.side())){
+         pieceOnPos = true;
+       }
+      }
+   }
     return !pieceOnPos && this.reachable(newPos) && !inCheck;
   }
   
