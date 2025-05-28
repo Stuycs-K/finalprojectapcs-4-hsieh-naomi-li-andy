@@ -6,7 +6,7 @@ static ArrayList<Piece> white = new ArrayList<Piece>(0);
 static ArrayList<Piece> black = new ArrayList<Piece>(0);
 static ArrayList<int[]> positions = new ArrayList<int[]>(0);
 static int turnNumber = 1;
-int turnNumber;
+
 boolean selectingPiece;
 boolean pawnPromoting;
 Piece selectedPiece;
