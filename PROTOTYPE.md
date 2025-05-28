@@ -6,6 +6,7 @@
 	<li> Piece Class (abstract) <ul>
 		<li>Methods<ul>
 			<li>void move(int[] newPos): pieces will call this function to move to the newPos position, set position to newPos, set all pawns enPassant to false.</li>
+			<li>ArrayList<int[]> getLegalMoves: returns an ArrayList of int[] of allowable positions (new)</li> 
 			<li>void capture(Piece other): called in move if canCapture, sets other's alive variable to false</li>
 			<li>boolean canMove(int[] newPos): checks if newPos is an available square (and player is not in check or is in check but piece can do something) OR canCapture </li>
 			<li>boolean canCapture(int[] newPos): checks if there is an opposing piece on newPos (and player is not in check but piece can take the opposing piece giving the check)</li>
@@ -73,6 +74,7 @@
 	<li>Queen, Bishop, Knight classes are all extended from Piece and will have the same methods</li>
 	<li> Main Class <ul>
 		<li>Methods<ul>
+			<li>void keyPressed(): handles all the movement and draw() to update visuals of board (new)</li>
 			<li>void setup(): sets up the board, size is 800, 800 with each square being 100x100</li>
 			<li>void draw(): draws a new board and places pieces in respective positions, updates canCastle for each king, rook. Also checks if any pawns can be promoted. If so, calls pawnPromotion() and sets pawnPromoting to true. (pawnPromotion will have drawn the screen before this) If pawnPromoting is true, remove the pawn from the ArrayList pieces and add a new piece of the type the player selected in the position of the pawn. </li>
 			<li>boolean gameOver(): checks if any opposing side has been checkmated or if it is a stalemate (i.e. if no pieces canMove() && inCheck -> checkmate, else if no pieces canMove() -> stalemate)</li>
