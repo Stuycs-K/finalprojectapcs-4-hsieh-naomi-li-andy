@@ -15,7 +15,17 @@ public class King extends Piece{
     canCastle = true;
   }
   
-  
+  public ArrayList<int[]> getLegalMoves(){
+    ArrayList<int[]> toReturn = new ArrayList<int[]>();
+    for (int col = 0; col < 8; col++){
+      for (int row = 0; row < 8; row++){
+        if (this.reachable(new int[] {col, row}) && this.canMove(new int[] {col, row})){
+          toReturn.add(new int[] {col, row});
+        }
+      }
+    }
+    return toReturn;
+  }
   
   public boolean reachable(int[] newPos){
     for(int i = -1; i <= 1; i++){
