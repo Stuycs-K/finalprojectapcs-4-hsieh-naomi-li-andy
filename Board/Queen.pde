@@ -16,11 +16,106 @@ public class Queen extends Piece{
   
   public ArrayList<int[]> getLegalMoves(){
     ArrayList<int[]> toReturn = new ArrayList<int[]>();
-    for (int row = 0; row < 8; row++){
-      for (int col = 0; col < 8; col++){
-         if (reachable(new int[] {row, col})){
-            toReturn.add(new int[] {row, col});
-         }
+    int originalPosX = this.getPos()[0];
+    int originalPosY = this.getPos()[1];
+    int currPosX = originalPosX;
+    int currPosY = originalPosY;
+    boolean canContinue = true;
+    while (currPosX <= 7 && canContinue){
+      currPosX += 1;
+      if (positions.contains(new int[] {currPosX, currPosY})){
+        canContinue = false;
+      }
+      else{
+        toReturn.add(new int[] {currPosX, currPosY});
+      }
+    }
+    canContinue = true;
+    currPosX = originalPosX;
+    currPosY = originalPosY;
+    while (currPosX >= 0 && canContinue){
+      currPosX -= 1;
+      if (positions.contains(new int[] {currPosX, currPosY})){
+        canContinue = false;
+      }
+      else{
+        toReturn.add(new int[] {currPosX, currPosY});
+      }
+    }
+    canContinue = true;
+    currPosX = originalPosX;
+    currPosY = originalPosY;
+    while (currPosY <= 7 && canContinue){
+      currPosY += 1;
+      if (positions.contains(new int[] {currPosX, currPosY})){
+        canContinue = false;
+      }
+      else{
+        toReturn.add(new int[] {currPosX, currPosY});
+      }
+    }
+    canContinue = true;
+    currPosX = originalPosX;
+    currPosY = originalPosY;
+    while (currPosY >= 7 && canContinue){
+      currPosY -= 1;
+      if (positions.contains(new int[] {currPosX, currPosY})){
+        canContinue = false;
+      }
+      else{
+        toReturn.add(new int[] {currPosX, currPosY});
+      }
+    }
+    canContinue = true;
+    currPosX = originalPosX;
+    currPosY = originalPosY;
+    while (currPosX <= 7 && currPosY >= 0 && canContinue){
+      currPosX += 1;
+      currPosY -= 1;
+      if (positions.contains(new int[] {currPosX, currPosY})){
+        canContinue = false;
+      }
+      else{
+        toReturn.add(new int[] {currPosX, currPosY});
+      }
+    }
+    canContinue = true;
+    currPosX = originalPosX;
+    currPosY = originalPosY;
+    while (currPosX >= 0 && currPosY >= 0 && canContinue){
+      currPosX -= 1;
+      currPosY -= 1;
+      if (positions.contains(new int[] {currPosX, currPosY})){
+        canContinue = false;
+      }
+      else{
+        toReturn.add(new int[] {currPosX, currPosY});
+      }
+    }
+    canContinue = true;
+    currPosX = originalPosX;
+    currPosY = originalPosY;
+    while (currPosX <= 7 && currPosY <= 7 && canContinue){
+      currPosX += 1;
+      currPosY += 1;
+      if (positions.contains(new int[] {currPosX, currPosY})){
+        canContinue = false;
+      }
+      else{
+        toReturn.add(new int[] {currPosX, currPosY});
+      }
+    }
+    canContinue = true;
+    currPosX = originalPosX;
+    currPosY = originalPosY;
+    while (currPosX >= 0 && currPosY <= 7 && canContinue){
+      currPosX -= 1;
+      currPosY += 1;
+      if (positions.contains(new int[] {currPosX, currPosY})){
+        canContinue = false;
+      }
+      else{
+        toReturn.add(new int[] {currPosX, currPosY});
       }
     }
     return toReturn;
