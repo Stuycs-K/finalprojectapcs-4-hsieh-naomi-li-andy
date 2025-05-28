@@ -22,3 +22,9 @@ In class, I worked on polishing my three subclasses, specifically implementing a
 
 ### 2025-05-26 - Setup and Debugging
 At home, I began by testing out a setup after Naomi finished the foundational chessboard. I initialized the white and black side as well as displayed the initial positions of all the pieces. In doing this, I noticed various exceptions being thrown so I fixed all of those by manually testing and subsequently implementing methods in each of the subclasss. I also added my code for a Rowlet piece, which still needs to be cleaned up to fit with the rest of the icons (total: ~75 minutes).
+
+### 2025-05-27 - Reworking Movement and getLegalMoves() Fixing
+In class, I was planning how to make movement more efficient and began the process by using a new positions ArrayList and adding existing positions at setup to that ArrayList. I also began to change getLegalMoves() implementation to use this positions ArrayList of int[] (~35 min).
+
+At home, I finished getLegalMoves() for every subclass, whether it be correcting my previous ones to consider pieces in the way or adding it to Naomi's subclasses (~50 minutes).
+
