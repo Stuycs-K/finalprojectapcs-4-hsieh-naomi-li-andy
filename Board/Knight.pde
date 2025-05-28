@@ -13,6 +13,17 @@ public class Knight extends Piece{
     this.shinySide = shinySide;
   }
   
+  public ArrayList<int[]> getLegalMoves(){
+    ArrayList<int[]> toReturn = new ArrayList<int[]>();
+    for (int col = 0; col < 8; col++){
+      for (int row = 0; row < 8; row++){
+        if (this.reachable(new int[] {col, row}) && this.canMove(new int[] {col, row})){
+          toReturn.add(new int[] {col, row});
+        }
+      }
+    }
+    return toReturn;
+  }
   
   public boolean reachable(int[] newPos){
     return (newPos[0] == this.position[0] + 2 && newPos[1] == this.position[1] + 1)
