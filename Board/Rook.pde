@@ -15,6 +15,60 @@ public class Rook extends Piece{
     canCastle = true;
   }
   
+  public ArrayList<int[]> getLegalMoves(){
+    ArrayList<int[]> toReturn = new ArrayList<int[]>();
+    int originalPosX = this.getPos()[0];
+    int originalPosY = this.getPos()[1];
+    int currPosX = originalPosX;
+    int currPosY = originalPosY;
+    boolean canContinue = true;
+    while (currPosX <= 7 && canContinue){
+      currPosX += 1;
+      if (positions.contains(new int[] {currPosX, currPosY})){
+        canContinue = false;
+      }
+      else{
+        toReturn.add(new int[] {currPosX, currPosY});
+      }
+    }
+    canContinue = true;
+    currPosX = originalPosX;
+    currPosY = originalPosY;
+    while (currPosX >= 0 && canContinue){
+      currPosX -= 1;
+      if (positions.contains(new int[] {currPosX, currPosY})){
+        canContinue = false;
+      }
+      else{
+        toReturn.add(new int[] {currPosX, currPosY});
+      }
+    }
+    canContinue = true;
+    currPosX = originalPosX;
+    currPosY = originalPosY;
+    while (currPosY <= 7 && canContinue){
+      currPosY += 1;
+      if (positions.contains(new int[] {currPosX, currPosY})){
+        canContinue = false;
+      }
+      else{
+        toReturn.add(new int[] {currPosX, currPosY});
+      }
+    }
+    canContinue = true;
+    currPosX = originalPosX;
+    currPosY = originalPosY;
+    while (currPosY >= 7 && canContinue){
+      currPosY -= 1;
+      if (positions.contains(new int[] {currPosX, currPosY})){
+        canContinue = false;
+      }
+      else{
+        toReturn.add(new int[] {currPosX, currPosY});
+      }
+    }
+    return toReturn;
+  }
   
   public boolean reachable(int[] newPos){
     return (newPos[0] == this.position[0] || newPos[1] == this.position[1]) && !(newPos[0] == this.position[0] && newPos[1] == this.position[1]);  
