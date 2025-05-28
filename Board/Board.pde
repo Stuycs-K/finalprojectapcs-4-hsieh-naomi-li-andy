@@ -391,6 +391,7 @@ void setup() {
   
   // SETUP OF WHITE PIECES
   for (int incrementer = 0; incrementer < white.size(); incrementer++) {
+    
     if (white.get(incrementer).getType().equals("PAWN")) {
       ditto(white.get(incrementer).getPos()[0] * 100 + 50, height - 150, white.get(incrementer).side());
     } else {
@@ -410,20 +411,33 @@ void setup() {
     positions.add(white.get(count).getPos());
     positions.add(black.get(count).getPos());
   }
-  rowlet(150, 50);
-  gulpin(750, 750, false);
+//  rowlet(150, 50);
+//  gulpin(750, 750, false);
 }
 
 void draw() {
   
   chessboard();
+  //draws all white pieces
   for(int i = 0; i < white.size(); i++){
+   // text(""+white.get(i).isAlive(), 50, 50);
     if(white.get(i).isAlive()){
       if(white.get(i).getType().equals("PAWN")){
          ditto(white.get(i).getPos()[0] * 100 + 50, white.get(i).getPos()[1] * 100 + 50, white.get(i).side());
       }
       else{
          piplup(white.get(i).getPos()[0] * 100 + 50, white.get(i).getPos()[1] * 100 + 50, white.get(i).side());
+      }
+    }
+  }
+  //draws all black pieces
+  for(int i = 0; i < white.size(); i++){
+    if(black.get(i).isAlive()){
+      if(black.get(i).getType().equals("PAWN")){
+         ditto(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
+      }
+      else{
+         piplup(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
       }
     }
   }

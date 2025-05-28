@@ -1,12 +1,11 @@
 public class Pawn extends Piece{
-  private boolean alive;
   private int[] position;
   private String type;
   private boolean inCheck;
   private boolean shinySide;
   
   public Pawn(int[] position, boolean shinySide){
-    this.alive = true;
+    super.setAlive(true);
     this.position = position;
     this.type = "PAWN";
     this.inCheck = false;

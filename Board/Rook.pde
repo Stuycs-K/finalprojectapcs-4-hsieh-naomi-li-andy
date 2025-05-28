@@ -1,5 +1,4 @@
 public class Rook extends Piece{
-  private boolean alive;
   private int[] position;
   private String type;
   private boolean inCheck;
@@ -7,7 +6,7 @@ public class Rook extends Piece{
   private boolean canCastle;
   
   public Rook(int[] position, boolean shinySide){
-    alive = true;
+    super.setAlive(true);
     this.position = position;
     type = "ROOK";
     inCheck = false;
