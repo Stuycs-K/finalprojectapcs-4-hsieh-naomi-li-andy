@@ -22,7 +22,7 @@ public class Bishop extends Piece{
     boolean canContinue = true;
     while (currPosX <= 7 && currPosY >= 0 && canContinue){
       currPosX += 1;
-      currPosY += 1;
+      currPosY -= 1;
       if (positions.contains(new int[] {currPosX, currPosY})){
         canContinue = false;
       }
@@ -34,7 +34,33 @@ public class Bishop extends Piece{
     currPosX = originalPosX;
     currPosY = originalPosY;
     while (currPosX >= 0 && currPosY >= 0 && canContinue){
+      currPosX -= 1;
+      currPosY -= 1;
+      if (positions.contains(new int[] {currPosX, currPosY})){
+        canContinue = false;
+      }
+      else{
+        toReturn.add(new int[] {currPosX, currPosY});
+      }
+    }
+    canContinue = true;
+    currPosX = originalPosX;
+    currPosY = originalPosY;
+    while (currPosX <= 7 && currPosY <= 7 && canContinue){
       currPosX += 1;
+      currPosY += 1;
+      if (positions.contains(new int[] {currPosX, currPosY})){
+        canContinue = false;
+      }
+      else{
+        toReturn.add(new int[] {currPosX, currPosY});
+      }
+    }
+    canContinue = true;
+    currPosX = originalPosX;
+    currPosY = originalPosY;
+    while (currPosX >= 0 && currPosY <= 7 && canContinue){
+      currPosX -= 1;
       currPosY += 1;
       if (positions.contains(new int[] {currPosX, currPosY})){
         canContinue = false;
