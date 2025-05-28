@@ -17,8 +17,8 @@ public class Pawn extends Piece{
   
   public ArrayList<int[]> getLegalMoves(){
     ArrayList<int[]> toReturn = new ArrayList<int[]>();
-    for (int col = 0; col < 8; row++){
-      for (int row = 0; row < 8; col++){
+    for (int col = 0; col < 8; col++){
+      for (int row = 0; row < 8; row++){
          if (reachable(new int[] {col, row})){
             toReturn.add(new int[] {col, row});
          }
