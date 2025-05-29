@@ -81,4 +81,8 @@ public abstract class Piece{
   public boolean side(){
       return shinySide;
   }
+  
+   public void setSide(boolean side){
+      shinySide = side;
+  }
 }

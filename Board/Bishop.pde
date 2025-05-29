@@ -1,15 +1,13 @@
 public class Bishop extends Piece{
-  private int[] position;
   private String type;
   private boolean inCheck;
-  private boolean shinySide;
   
   public Bishop(int[] position, boolean shinySide){
     super.setAlive(true);
-    this.position = position;
+    super.setPos(position);
     this.type = "BISHOP";
     super.setCheckStatus(false); // maybe change this to king only after everything works for runtime 
-    this.shinySide = shinySide;
+    super.setSide(shinySide);
   }
   
   public ArrayList<int[]> getLegalMoves(){
@@ -73,8 +71,8 @@ public class Bishop extends Piece{
   
   
   public boolean reachable(int[] newPos){
-    return (newPos[1] - this.position[1]) / (newPos[0] - this.position[0]) == 1 ||
-    (newPos[1] - this.position[1]) / (newPos[0] - this.position[0]) == -1;
+    return (newPos[1] - super.getPos()[1]) / (newPos[0] - super.getPos()[0]) == 1 ||
+    (newPos[1] - super.getPos()[1]) / (newPos[0] - super.getPos()[0]) == -1;
   }
   
   public boolean canMove(int[] newPos){
@@ -102,7 +100,7 @@ public class Bishop extends Piece{
   public String getType(){
     return "BISHOP";
   }
-  
+  /*
   public int[] getPos(){
       return position;
   }
@@ -110,7 +108,7 @@ public class Bishop extends Piece{
   public boolean side(){
       return shinySide;
   }
-  
+  */
   public void setCheck(boolean newValue){
     this.inCheck = newValue;
   }
