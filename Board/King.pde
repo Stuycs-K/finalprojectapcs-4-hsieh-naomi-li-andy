@@ -58,11 +58,28 @@ public class King extends Piece{
   
  
   
-  public void applyCheck(King other){}
+  public void applyCheck(King other){
+    //what's the difference between this and the other?
+  }
   
   public void castle(){}
   
-  public void applyCheck(){}
+  public void applyCheck(){
+    if (this.side()){
+      for (int count = 0; count < Board.black.size(); count++){
+        black.get(count).setCheck(true);
+      }
+    }
+    else{
+      for (int count = 0; count < Board.white.size(); count++){
+        white.get(count).setCheck(true);
+      }
+    }
+  }
+  
+   public void setCheck(boolean newValue){
+    this.inCheck = newValue;
+  }
   
   public String getType(){
     return "KING";

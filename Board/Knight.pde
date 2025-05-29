@@ -59,6 +59,10 @@ public class Knight extends Piece{
       return shinySide;
   }
   
+  public void setCheck(boolean newValue){
+    this.inCheck = newValue;
+  }
+  
   public void applyCheck(King other){}
 
 }

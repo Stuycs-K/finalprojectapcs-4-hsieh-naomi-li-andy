@@ -453,7 +453,7 @@ void draw() {
     }
   }
   //draws all black pieces
-  for(int i = 0; i < white.size(); i++){
+  for(int i = 0; i < black.size(); i++){
     if(black.get(i).isAlive()){
       if(black.get(i).getType().equals("PAWN")){
          ditto(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());

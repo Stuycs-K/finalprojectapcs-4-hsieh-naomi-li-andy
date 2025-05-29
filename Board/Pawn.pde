@@ -11,10 +11,25 @@ public class Pawn extends Piece{
     this.type = "PAWN";
     super.setCheckStatus(false);
     this.shinySide = shinySide;
-    firstMove = true;
+    this.firstMove = true;
   }
   
-  public void capture(Piece other){}
+  public void capture(){ // needs to be corrected (edit: seems to work for pawn capturing)
+    if (this.side()){
+      for (int count = 0; count < white.size(); count++){
+        if (white.get(count).getPos()[0] == this.getPos()[0] && white.get(count).getPos()[1] == this.getPos()[1]){
+          white.remove(count);
+        }
+      }
+    }
+    else{
+      for (int count = 0; count < black.size(); count++){
+        if (black.get(count).getPos()[0] == this.getPos()[0] && black.get(count).getPos()[1] == this.getPos()[1]){
+          black.remove(count);
+        }
+      }
+    }
+  }
   
    public boolean move(int[] newPos){
     boolean contains = false;
@@ -27,6 +42,7 @@ public class Pawn extends Piece{
     System.out.println(Arrays.toString(newPos));
     if(contains){
       this.position = newPos;
+      this.capture();
       firstMove = false;
       System.out.println("moving in func");
       for(int i = 0; i < Board.white.size() + Board.black.size(); i++){
@@ -56,15 +72,49 @@ public class Pawn extends Piece{
   //  if(newPos[0] == this.getPos()[0] && newPos[1] == this.getPos()[1] - 1) System.out.println("New x: " + newPos[0] + " New y: " + newPos[1] + " Old x: " + this.getPos()[0] + " Old y: " + this.getPos()[1]);
     boolean legalMove = false;
     if(this.side()){
-      legalMove = newPos[0] == this.getPos()[0] && newPos[1] == this.getPos()[1] + 1;
+      legalMove = (newPos[0] == this.getPos()[0] && newPos[1] == this.getPos()[1] + 1);
+      for (int count = 0; count < white.size(); count++){
+        if (white.get(count).getPos()[0] == newPos[0] && white.get(count).getPos()[1] == newPos[1]){
+          legalMove = false;
+        }
+      }
       if(firstMove){
         legalMove = legalMove || newPos[0] == this.getPos()[0] && newPos[1] == this.getPos()[1] + 2;
+      }
+      for (int count = 0; count < white.size(); count++){
+        if (white.get(count).getPos()[0] == newPos[0] && white.get(count).getPos()[1] == newPos[1]){
+          legalMove = false;
+        }
+      }
+      if (Math.abs(newPos[0] - this.getPos()[0]) == 1 && newPos[1] == this.getPos()[1] + 1){
+        for (int count = 0; count < white.size(); count++){
+          if (white.get(count).getPos()[0] == newPos[0] && white.get(count).getPos()[1] == newPos[1]){
+            legalMove = true;
+          }
+        }
       }
     }
     else{
       legalMove = newPos[0] == this.getPos()[0] && newPos[1] == this.getPos()[1] - 1;
+      for (int count = 0; count < black.size(); count++){
+        if (black.get(count).getPos()[0] == newPos[0] && black.get(count).getPos()[1] == newPos[1]){
+          legalMove = false;
+        }
+      }
       if(firstMove){
         legalMove = legalMove || newPos[0] == this.getPos()[0] && newPos[1] == this.getPos()[1] - 2;
+      }
+      for (int count = 0; count < black.size(); count++){
+        if (black.get(count).getPos()[0] == newPos[0] && black.get(count).getPos()[1] == newPos[1]){
+          legalMove = false;
+        }
+      }
+      if (Math.abs(newPos[0] - this.getPos()[0]) == 1 && newPos[1] == this.getPos()[1] - 1){
+        for (int count = 0; count < black.size(); count++){
+          if (black.get(count).getPos()[0] == newPos[0] && black.get(count).getPos()[1] == newPos[1]){
+            legalMove = true;
+          }
+        }
       }
     }
     return (legalMove && this.canMove(newPos));
@@ -98,6 +148,14 @@ public class Pawn extends Piece{
   
   public boolean side(){
       return shinySide;
+  }
+  
+  public boolean getFirstMove(){
+    return this.firstMove;
+  }
+  
+  public void setCheck(boolean newValue){
+    this.inCheck = newValue;
   }
 
 }
