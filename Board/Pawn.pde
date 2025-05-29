@@ -137,5 +137,9 @@ public class Pawn extends Piece{
   public boolean getFirstMove(){
     return this.firstMove;
   }
+  
+  public void setCheck(boolean newValue){
+    this.inCheck = newValue;
+  }
 
 }

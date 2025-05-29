@@ -1,5 +1,3 @@
-
-
 public abstract class Piece{
   private boolean alive;
   private int[] position;
@@ -41,6 +39,8 @@ public abstract class Piece{
   public boolean canCapture(Piece other){
     return this.getLegalMoves().contains(other.getPos());
   }
+  
+  public abstract void setCheck(boolean newValue);
   
   public abstract void applyCheck(King other);
   

@@ -62,7 +62,17 @@ public class King extends Piece{
   
   public void castle(){}
   
-  public void applyCheck(){}
+  public void applyCheck(){
+    if (this.side()){
+      for (int count = 0; count < Board.black.size(); count++){
+        black.get(count).
+      }
+    }
+  }
+  
+   public void setCheck(boolean newValue){
+    this.inCheck = newValue;
+  }
   
   public String getType(){
     return "KING";
