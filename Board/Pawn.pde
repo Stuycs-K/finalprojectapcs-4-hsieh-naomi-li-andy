@@ -14,7 +14,7 @@ public class Pawn extends Piece{
     this.firstMove = true;
   }
   
-  public void capture(){ // needs to be corrected (edit: seems to work for pawn capturing)
+  public void capture(){ 
     if (this.side()){
       for (int count = 0; count < white.size(); count++){
         if (white.get(count).getPos()[0] == this.getPos()[0] && white.get(count).getPos()[1] == this.getPos()[1]){

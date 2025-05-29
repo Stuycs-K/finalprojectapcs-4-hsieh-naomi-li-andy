@@ -438,7 +438,6 @@ void setup() {
 }
 
 void draw() {
-  
   chessboard();
   //draws all white pieces
   for(int i = 0; i < white.size(); i++){
