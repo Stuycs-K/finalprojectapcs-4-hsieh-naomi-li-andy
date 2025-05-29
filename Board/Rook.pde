@@ -1,13 +1,11 @@
 public class Rook extends Piece{
-  private String type;
-  private boolean inCheck;
   private boolean canCastle;
   
   public Rook(int[] position, boolean shinySide){
     super.setAlive(true);
    super.setPos(position);
-    type = "ROOK";
-    super.setCheckStatus(false);
+    super.setType("ROOK");
+    super.setCheck(false);
     super.setSide(shinySide);
     canCastle = true;
   }
@@ -119,13 +117,13 @@ public class Rook extends Piece{
        pieceOnPos = true;
      }
     }
-    return !pieceOnPos && this.reachable(newPos) && !inCheck;
+    return !pieceOnPos && this.reachable(newPos) && !super.getCheckStatus();
   }
-  
+  /*
   public String getType(){
     return "ROOK";
   }
-  /*
+  
   public int[] getPos(){
       return position;
   }
@@ -134,11 +132,7 @@ public class Rook extends Piece{
       return shinySide;
   }
   */
-  public void setCheck(boolean newValue){
-    this.inCheck = newValue;
-  }
   
-  public void applyCheck(King other){}
   
   public boolean castleStatus(){
     return canCastle;  

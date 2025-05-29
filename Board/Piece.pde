@@ -4,6 +4,7 @@ public abstract class Piece{
   private String type;
   private boolean inCheck;
   private boolean shinySide;
+  private King king;
   
 
   public boolean move(int[] newPos){
@@ -42,9 +43,12 @@ public abstract class Piece{
     return this.reachable(other.getPos());
   }
   
-  public abstract void setCheck(boolean newValue);
   
-  public abstract void applyCheck(King other);
+  public void applyCheck(King other){
+    if(this.canCapture(other)){
+       other.applyCheck();
+    }
+  }
   
   public abstract boolean reachable(int[] newPos);
   
@@ -72,11 +76,15 @@ public abstract class Piece{
       return type;
   }
   
+  public void setType(String type){
+    this.type = type;
+  }
+  
   public boolean getCheckStatus(){
       return inCheck; 
   }
   
-  public void setCheckStatus(boolean status){
+  public void setCheck(boolean status){
       this.inCheck = status;
   }
   
@@ -86,5 +94,13 @@ public abstract class Piece{
   
    public void setSide(boolean side){
       shinySide = side;
+  }
+  
+  public void setKing(King king){
+      this.king = king;
+  }
+  
+  public King getKing(){
+      return king;
   }
 }

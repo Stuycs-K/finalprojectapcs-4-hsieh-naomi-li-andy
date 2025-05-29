@@ -1,13 +1,11 @@
 public class King extends Piece{
-  private String type;
-  private boolean inCheck;
   private boolean canCastle;
   
   public King(int[] position, boolean shinySide){
     super.setAlive(true);
     super.setPos(position);
-    type = "KING";
-    super.setCheckStatus(false);
+    super.setType("KING");
+    super.setCheck(false);
     super.setSide(shinySide);
     canCastle = true;
   }
@@ -57,9 +55,6 @@ public class King extends Piece{
   
  
   
-  public void applyCheck(King other){
-    //what's the difference between this and the other?
-  }
   
   public void castle(){}
   
@@ -67,23 +62,22 @@ public class King extends Piece{
     if (this.side()){
       for (int count = 0; count < Board.black.size(); count++){
         black.get(count).setCheck(true);
+        black.get(count).setKing(this);
       }
     }
     else{
       for (int count = 0; count < Board.white.size(); count++){
         white.get(count).setCheck(true);
+        black.get(count).setKing(this);
       }
     }
   }
   
-   public void setCheck(boolean newValue){
-    this.inCheck = newValue;
-  }
-  
+  /* 
   public String getType(){
     return "KING";
   }
- /* 
+ 
   public int[] getPos(){
       return position;
   }

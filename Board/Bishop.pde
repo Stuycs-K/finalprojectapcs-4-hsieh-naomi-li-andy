@@ -1,12 +1,10 @@
 public class Bishop extends Piece{
-  private String type;
-  private boolean inCheck;
   
   public Bishop(int[] position, boolean shinySide){
     super.setAlive(true);
     super.setPos(position);
-    this.type = "BISHOP";
-    super.setCheckStatus(false); // maybe change this to king only after everything works for runtime 
+    super.setType("BISHOP");
+    super.setCheck(false); // maybe change this to king only after everything works for runtime 
     super.setSide(shinySide);
   }
   
@@ -94,13 +92,13 @@ public class Bishop extends Piece{
        }
       }
    }
-    return !pieceOnPos && this.reachable(newPos) && !inCheck;
+    return !pieceOnPos && this.reachable(newPos) && !super.getCheckStatus();
   }
-  
+  /*
   public String getType(){
     return "BISHOP";
   }
-  /*
+  
   public int[] getPos(){
       return position;
   }
@@ -109,9 +107,6 @@ public class Bishop extends Piece{
       return shinySide;
   }
   */
-  public void setCheck(boolean newValue){
-    this.inCheck = newValue;
-  }
   
   public void applyCheck(King other){}
 

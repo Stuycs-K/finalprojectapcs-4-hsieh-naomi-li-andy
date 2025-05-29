@@ -1,12 +1,10 @@
 public class Knight extends Piece{
-  private String type;
-  private boolean inCheck;
   
   public Knight(int[] position, boolean shinySide){
     super.setAlive(true);
     super.setPos(position);
-    type = "KNIGHT";
-    super.setCheckStatus(false);
+    super.setType("KNIGHT");
+    super.setCheck(false);
     super.setSide(shinySide);
   }
   
@@ -42,13 +40,13 @@ public class Knight extends Piece{
        pieceOnPos = true;
      }
     }
-    return !pieceOnPos && this.reachable(newPos) && !inCheck;
+    return !pieceOnPos && this.reachable(newPos) && !super.getCheckStatus();
   }
-  
+  /*
   public String getType(){
     return "KNIGHT";
   }
-  /*
+  
   public int[] getPos(){
       return position;
   }
@@ -56,11 +54,11 @@ public class Knight extends Piece{
   public boolean side(){
       return shinySide;
   }
-  */
+  
   public void setCheck(boolean newValue){
     this.inCheck = newValue;
   }
-  
-  public void applyCheck(King other){}
+  */
+
 
 }
