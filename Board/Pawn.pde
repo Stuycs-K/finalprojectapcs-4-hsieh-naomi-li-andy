@@ -54,6 +54,7 @@ public class Pawn extends Piece{
   }
   
   public ArrayList<int[]> getLegalMoves(){
+ //   System.out.println("calling getLegalMoves for pawn");
     ArrayList<int[]> toReturn = new ArrayList<int[]>();
     for (int col = 0; col < 8; col++){
       for (int row = 0; row < 8; row++){
@@ -67,6 +68,7 @@ public class Pawn extends Piece{
   
 
   public boolean reachable(int[] newPos){
+  //  System.out.println("calling reachable for pawn");
   //  if(newPos[0] == this.getPos()[0] && newPos[1] == this.getPos()[1] - 1) System.out.println("New x: " + newPos[0] + " New y: " + newPos[1] + " Old x: " + this.getPos()[0] + " Old y: " + this.getPos()[1]);
     boolean legalMove = false;
     if(this.side()){

@@ -42,13 +42,14 @@ public class King extends Piece{
     boolean willBeCaptured = false;
     boolean pieceOnPos = false;
     int[] temp = new int[2];
-    for(int i = 0; i < Board.white.size() + Board.black.size(); i++){
+    for(int i = 0; i < Board.white.size() + Board.black.size() && !willBeCaptured; i++){
       temp = Board.pieces.get(i).getPos();
       if(temp[0] == newPos[0] && temp[1] == newPos[1] && (Board.pieces.get(i).side() == this.side())){
         pieceOnPos = true;
       }
-      if(Board.pieces.get(i).canCapture(this)){
+      if(Board.pieces.get(i).side() != super.side() && Board.pieces.get(i).canCapture(this)){
         willBeCaptured = true;
+        System.out.println("will be captured");
       }
     }
     return !pieceOnPos && !willBeCaptured && this.reachable(newPos); 

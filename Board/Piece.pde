@@ -7,10 +7,10 @@ public abstract class Piece{
   
 
   public boolean move(int[] newPos){
-    System.out.println("trying to move");
+   // System.out.println("trying to move");
     boolean contains = false;
     for(int[] i : this.getLegalMoves()){
-      System.out.println(Arrays.toString(i));
+    //  System.out.println(Arrays.toString(i));
       if(i[0] == newPos[0] && i[1] == newPos[1]){
         contains = true;
       }
@@ -18,7 +18,7 @@ public abstract class Piece{
     System.out.println(Arrays.toString(newPos));
     if(contains){
       this.setPos(newPos);
-      System.out.println("moving in func");
+   //   System.out.println("moving in func");
       for(int i = 0; i < Board.white.size() + Board.black.size(); i++){
         if(pieces.get(i).getPos().equals(newPos)){
              capture(pieces.get(i), newPos);
@@ -38,7 +38,8 @@ public abstract class Piece{
   public abstract boolean canMove(int[] newPos);
   
   public boolean canCapture(Piece other){
-    return this.getLegalMoves().contains(other.getPos());
+    //System.out.println("calling canCapture for " + this.getType());
+    return this.reachable(other.getPos());
   }
   
   public abstract void setCheck(boolean newValue);
