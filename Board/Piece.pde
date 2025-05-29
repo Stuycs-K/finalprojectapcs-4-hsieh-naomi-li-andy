@@ -5,6 +5,7 @@ public abstract class Piece{
   private boolean inCheck;
   private boolean shinySide;
   private King king;
+  private Piece checkingPiece; 
   
 
   public boolean move(int[] newPos){
@@ -47,6 +48,7 @@ public abstract class Piece{
   public void applyCheck(King other){
     if(this.canCapture(other)){
        other.applyCheck();
+       other.setCheckingPiece(this);
     }
   }
   
@@ -103,4 +105,14 @@ public abstract class Piece{
   public King getKing(){
       return king;
   }
+  
+  public void setCheckingPiece(Piece attacker){
+      checkingPiece = attacker;
+  }
+  
+  public Piece getCheckingPiece(){
+      return checkingPiece;
+  }
+  
+  
 }

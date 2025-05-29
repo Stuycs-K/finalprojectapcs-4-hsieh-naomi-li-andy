@@ -21,7 +21,7 @@ public class Knight extends Piece{
   }
   
   public boolean reachable(int[] newPos){
-    return (newPos[0] == super.getPos()[0] + 2 && newPos[1] == super.getPos()[1] + 1)
+    boolean legalMove = (newPos[0] == super.getPos()[0] + 2 && newPos[1] == super.getPos()[1] + 1)
             || (newPos[0] == super.getPos()[0] - 2 && newPos[1] == super.getPos()[1] + 1)
             || (newPos[0] == super.getPos()[0] + 2 && newPos[1] == super.getPos()[1] - 1)
             || (newPos[0] == super.getPos()[0] - 2 && newPos[1] == super.getPos()[1] - 1)
@@ -29,6 +29,16 @@ public class Knight extends Piece{
             || (newPos[1] == super.getPos()[1] - 2 && newPos[0] == super.getPos()[0] + 1)
             || (newPos[1] == super.getPos()[1] + 2 && newPos[0] == super.getPos()[0] - 1)
             || (newPos[1] == super.getPos()[1] - 2 && newPos[0] == super.getPos()[0] - 1); 
+    if(super.getCheckStatus()){
+        int[] opos = super.getPos();
+        this.setPos(newPos);
+        if(!super.getCheckingPiece().canCapture(super.getKing()) && legalMove){
+          this.setPos(opos);
+          return true;
+        }
+        this.setPos(opos);
+    }
+    return legalMove;
   }
   
   public boolean canMove(int[] newPos){

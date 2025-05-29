@@ -61,14 +61,18 @@ public class King extends Piece{
   public void applyCheck(){
     if (this.side()){
       for (int count = 0; count < Board.black.size(); count++){
-        black.get(count).setCheck(true);
-        black.get(count).setKing(this);
+        Piece temp = black.get(count);
+        temp.setCheck(true);
+        temp.setKing(this);
+        temp.setCheckingPiece(super.getCheckingPiece());
       }
     }
     else{
       for (int count = 0; count < Board.white.size(); count++){
-        white.get(count).setCheck(true);
-        black.get(count).setKing(this);
+        Piece temp = white.get(count);
+        temp.setCheck(true);
+        temp.setKing(this);
+        temp.setCheckingPiece(super.getCheckingPiece());
       }
     }
   }
