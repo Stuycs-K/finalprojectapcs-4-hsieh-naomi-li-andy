@@ -1,16 +1,14 @@
 public class King extends Piece{
-  private int[] position;
   private String type;
   private boolean inCheck;
-  private boolean shinySide;
   private boolean canCastle;
   
   public King(int[] position, boolean shinySide){
     super.setAlive(true);
-    this.position = position;
+    super.setPos(position);
     type = "KING";
     super.setCheckStatus(false);
-    this.shinySide = shinySide;
+    super.setSide(shinySide);
     canCastle = true;
   }
   
@@ -29,10 +27,10 @@ public class King extends Piece{
   public boolean reachable(int[] newPos){
     for(int i = -1; i <= 1; i++){
       for(int j = -1; j <= 1; j++){
-        if(!(i == 0 && j == 0) && newPos[0] == this.position[0] + i && newPos[1] == this.position[1] + j){
+        if(!(i == 0 && j == 0) && newPos[0] == super.getPos()[0] + i && newPos[1] == super.getPos()[1] + j){
           return true;
         }
-        if(!(i == 0 && j == 0) && newPos[0] == this.position[0] + j && newPos[1] == this.position[1] + i){
+        if(!(i == 0 && j == 0) && newPos[0] == super.getPos()[0] + j && newPos[1] == super.getPos()[1] + i){
           return true;
         }
       }
@@ -84,7 +82,7 @@ public class King extends Piece{
   public String getType(){
     return "KING";
   }
-  
+ /* 
   public int[] getPos(){
       return position;
   }
@@ -92,7 +90,7 @@ public class King extends Piece{
   public boolean side(){
       return shinySide;
   }
-  
+  */
   public boolean castleStatus(){
     return canCastle;
   }

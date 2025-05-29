@@ -1,16 +1,14 @@
 public class Pawn extends Piece{
-  private int[] position;
   private String type;
   private boolean inCheck;
-  private boolean shinySide;
   private boolean firstMove;
   
   public Pawn(int[] position, boolean shinySide){
     super.setAlive(true);
-    this.position = position;
+    super.setPos(position);
     this.type = "PAWN";
     super.setCheckStatus(false);
-    this.shinySide = shinySide;
+    super.setSide(shinySide);
     this.firstMove = true;
   }
   
@@ -41,7 +39,7 @@ public class Pawn extends Piece{
     }
     System.out.println(Arrays.toString(newPos));
     if(contains){
-      this.position = newPos;
+      super.setPos(newPos);
       this.capture();
       firstMove = false;
       System.out.println("moving in func");
@@ -142,14 +140,14 @@ public class Pawn extends Piece{
     return "PAWN";
   }
   
-  public int[] getPos(){
+/*  public int[] getPos(){
       return position;
   }
   
   public boolean side(){
       return shinySide;
   }
-  
+  */
   public boolean getFirstMove(){
     return this.firstMove;
   }

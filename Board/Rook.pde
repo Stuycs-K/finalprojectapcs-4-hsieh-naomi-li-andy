@@ -1,16 +1,14 @@
 public class Rook extends Piece{
-  private int[] position;
   private String type;
   private boolean inCheck;
-  private boolean shinySide;
   private boolean canCastle;
   
   public Rook(int[] position, boolean shinySide){
     super.setAlive(true);
-    this.position = position;
+   super.setPos(position);
     type = "ROOK";
     super.setCheckStatus(false);
-    this.shinySide = shinySide;
+    super.setSide(shinySide);
     canCastle = true;
   }
   
@@ -70,12 +68,12 @@ public class Rook extends Piece{
   }
   
   public boolean reachable(int[] newPos){
-    if(newPos[0] == this.position[0] && newPos[1] == this.position[1]){
+    if(newPos[0] == super.getPos()[0] && newPos[1] == super.getPos()[1]){
       return false;
     }
-    else if(newPos[0] == this.position[0]){
-      if(newPos[1] < this.position[1]){
-        for(int i = 1; i < this.position[1]; i++){
+    else if(newPos[0] == super.getPos()[0]){
+      if(newPos[1] < super.getPos()[1]){
+        for(int i = 1; i < super.getPos()[1]; i++){
              for(Piece p : white){
                if(p.getPos()[0] == newPos[0] && p.getPos()[1] == newPos[1]+i){
                   return false;
@@ -91,9 +89,9 @@ public class Rook extends Piece{
         return true;
       }
     }
-    else if(newPos[1] == this.position[1]){
-      if(newPos[0] < this.position[0]){
-        for(int i = 1; i < this.position[0]; i++){
+    else if(newPos[1] == super.getPos()[1]){
+      if(newPos[0] < super.getPos()[0]){
+        for(int i = 1; i < super.getPos()[0]; i++){
              for(Piece p : white){
                if(p.getPos()[1] == newPos[1] && p.getPos()[0] == newPos[0]+i){
                   return false;
@@ -127,7 +125,7 @@ public class Rook extends Piece{
   public String getType(){
     return "ROOK";
   }
-  
+  /*
   public int[] getPos(){
       return position;
   }
@@ -135,7 +133,7 @@ public class Rook extends Piece{
   public boolean side(){
       return shinySide;
   }
-  
+  */
   public void setCheck(boolean newValue){
     this.inCheck = newValue;
   }
