@@ -56,15 +56,35 @@ public class Pawn extends Piece{
   //  if(newPos[0] == this.getPos()[0] && newPos[1] == this.getPos()[1] - 1) System.out.println("New x: " + newPos[0] + " New y: " + newPos[1] + " Old x: " + this.getPos()[0] + " Old y: " + this.getPos()[1]);
     boolean legalMove = false;
     if(this.side()){
-      legalMove = newPos[0] == this.getPos()[0] && newPos[1] == this.getPos()[1] + 1;
+      legalMove = (newPos[0] == this.getPos()[0] && newPos[1] == this.getPos()[1] + 1);
+      for (int count = 0; count < white.size(); count++){
+        if (white.get(count).getPos()[0] == newPos[0] && white.get(count).getPos()[1] == newPos[1]){
+          legalMove = false;
+        }
+      }
       if(firstMove){
         legalMove = legalMove || newPos[0] == this.getPos()[0] && newPos[1] == this.getPos()[1] + 2;
+      }
+      for (int count = 0; count < white.size(); count++){
+        if (white.get(count).getPos()[0] == newPos[0] && white.get(count).getPos()[1] == newPos[1]){
+          legalMove = false;
+        }
       }
     }
     else{
       legalMove = newPos[0] == this.getPos()[0] && newPos[1] == this.getPos()[1] - 1;
+      for (int count = 0; count < black.size(); count++){
+        if (black.get(count).getPos()[0] == newPos[0] && black.get(count).getPos()[1] == newPos[1]){
+          legalMove = false;
+        }
+      }
       if(firstMove){
         legalMove = legalMove || newPos[0] == this.getPos()[0] && newPos[1] == this.getPos()[1] - 2;
+      }
+      for (int count = 0; count < black.size(); count++){
+        if (black.get(count).getPos()[0] == newPos[0] && black.get(count).getPos()[1] == newPos[1]){
+          legalMove = false;
+        }
       }
     }
     return (legalMove && this.canMove(newPos));
