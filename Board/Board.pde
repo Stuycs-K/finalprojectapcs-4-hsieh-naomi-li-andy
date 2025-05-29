@@ -359,21 +359,33 @@ void setup() {
   // Adding Pawns to each side with a for loop (0, 0) represents top left hand corner and (7,7) represents bottom right hand corner)
   for (int count = 0; count < 8; count++) {
     black.add(new Pawn(new int[] {count, 1}, true));
+    pieces.add(new Pawn(new int[] {count, 1}, true));
   }
   for (int count = 0; count < 8; count++) {
     white.add(new Pawn(new int[] {count, 6}, false));
+    pieces.add(new Pawn(new int[] {count, 1}, true));
   }
   // Adding Bishops
   white.add(new Bishop(new int[] {2, 7}, false));
   white.add(new Bishop(new int[] {5, 7}, false));
   black.add(new Bishop(new int[] {2, 0}, true));
   black.add(new Bishop(new int[] {5, 0}, true));
+  
+  pieces.add(new Bishop(new int[] {2, 7}, false));
+  pieces.add(new Bishop(new int[] {5, 7}, false));
+  pieces.add(new Bishop(new int[] {2, 0}, true));
+  pieces.add(new Bishop(new int[] {5, 0}, true));
 
   //Adding Kings and Queens
   white.add(new King(new int[] {4, 7}, false));
   black.add(new King(new int[] {4, 0}, true));
   white.add(new Queen(new int[] {3, 7}, false));
   black.add(new Queen(new int[] {3, 0}, true));
+  
+  pieces.add(new King(new int[] {4, 7}, false));
+  pieces.add(new King(new int[] {4, 0}, true));
+  pieces.add(new Queen(new int[] {3, 7}, false));
+  pieces.add(new Queen(new int[] {3, 0}, true));
 
   //Adding Knights and Rooks
   white.add(new Rook(new int[] {0, 7}, false));
@@ -385,12 +397,23 @@ void setup() {
   white.add(new Knight(new int[] {6, 7}, false));
   black.add(new Knight(new int[] {1, 0}, true));
   black.add(new Knight(new int[] {6, 0}, true));
+  
+  pieces.add(new Rook(new int[] {0, 7}, false));
+  pieces.add(new Rook(new int[] {7, 7}, false));
+  pieces.add(new Rook(new int[] {0, 0}, true));
+  pieces.add(new Rook(new int[] {7, 0}, true));
+
+  pieces.add(new Knight(new int[] {1, 7}, false));
+  pieces.add(new Knight(new int[] {6, 7}, false));
+  pieces.add(new Knight(new int[] {1, 0}, true));
+  pieces.add(new Knight(new int[] {6, 0}, true));
 
   size(800, 800);
   chessboard();
   
   // SETUP OF WHITE PIECES
   for (int incrementer = 0; incrementer < white.size(); incrementer++) {
+    
     if (white.get(incrementer).getType().equals("PAWN")) {
       ditto(white.get(incrementer).getPos()[0] * 100 + 50, height - 150, white.get(incrementer).side());
     } else {
@@ -410,14 +433,16 @@ void setup() {
     positions.add(white.get(count).getPos());
     positions.add(black.get(count).getPos());
   }
-  rowlet(150, 50);
-  gulpin(750, 750, false);
+//  rowlet(150, 50);
+//  gulpin(750, 750, false);
 }
 
 void draw() {
   
   chessboard();
+  //draws all white pieces
   for(int i = 0; i < white.size(); i++){
+   // text(""+white.get(i).isAlive(), 50, 50);
     if(white.get(i).isAlive()){
       if(white.get(i).getType().equals("PAWN")){
          ditto(white.get(i).getPos()[0] * 100 + 50, white.get(i).getPos()[1] * 100 + 50, white.get(i).side());
@@ -427,13 +452,25 @@ void draw() {
       }
     }
   }
+  //draws all black pieces
+  for(int i = 0; i < white.size(); i++){
+    if(black.get(i).isAlive()){
+      if(black.get(i).getType().equals("PAWN")){
+         ditto(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
+      }
+      else{
+         piplup(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
+      }
+    }
+  }
   
 }
 
 void mouseClicked() {
-  int xpos = (int)mouseX;
-  int ypos = (int)mouseY;
+  int xpos = (int)mouseX/100;
+  int ypos = (int)mouseY/100;
   if (selectingPiece) {
+    System.out.println("Selecting");
     if (turnNumber % 2 != 0) {
       for (int i = 0; i < white.size(); i++) {
         if (white.get(i).getPos()[0] == xpos && white.get(i).getPos()[1] == ypos) {
@@ -450,9 +487,12 @@ void mouseClicked() {
       }
     }
   } else {
-    if (selectedPiece.move(new int[]{xpos, ypos})) {
-      selectingPiece = true;
+    System.out.println("Moving");
+    selectingPiece = true;
+    if(selectedPiece.move(new int[]{xpos, ypos})) {
       turnNumber++;
+      System.out.println("Successful move!");
+      System.out.println(Arrays.toString(selectedPiece.getPos()));
     }
   }
 }

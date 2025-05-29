@@ -1,15 +1,14 @@
 public class Queen extends Piece{
-   private boolean alive;
   private int[] position;
   private String type;
   private boolean inCheck;
   private boolean shinySide;
   
   public Queen(int[] position, boolean shinySide){
-    this.alive= true;
+    super.setAlive(true);
     this.position = position;
     this.type = "QUEEN";
-    this.inCheck = false;
+    super.setCheckStatus(false);
     this.shinySide = shinySide;
   }
   

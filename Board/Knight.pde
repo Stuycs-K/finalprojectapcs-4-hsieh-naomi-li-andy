@@ -1,15 +1,14 @@
 public class Knight extends Piece{
-  private boolean alive;
   private int[] position;
   private String type;
   private boolean inCheck;
   private boolean shinySide;
   
   public Knight(int[] position, boolean shinySide){
-    alive = true;
+    super.setAlive(true);
     this.position = position;
     type = "KNIGHT";
-    inCheck = false;
+    super.setCheckStatus(false);
     this.shinySide = shinySide;
   }
   
