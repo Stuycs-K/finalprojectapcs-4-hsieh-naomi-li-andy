@@ -28,3 +28,8 @@ In class, I was planning how to make movement more efficient and began the proce
 
 At home, I finished getLegalMoves() for every subclass, whether it be correcting my previous ones to consider pieces in the way or adding it to Naomi's subclasses (~50 minutes).
 
+### 2025-05-28 - Pawn Movement/Capturing and Checks
+In class, I began writing code that considered the pawn's first turn moves with a new instance variable and updates to getLegalMove(). I also updated the prototype and began to modify the UML to include new methods/variables (~25 min).
+
+At home, Naomi finished fixing the pawn first turn issues. I debugged the Pawn subclass because there was an error in which pawns could take other pieces directly in front of it. I fixed this by updating reachable() and also implemented diagonal piece taking for the Pawn subclass. I coded the capture() method, which removes a taken piece from the game in the Pawn subclass. I also coded a preliminary setCheck() for all subclasses. (~70 min).
+
