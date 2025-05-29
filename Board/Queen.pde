@@ -12,22 +12,6 @@ public class Queen extends Piece{
     this.shinySide = shinySide;
   }
   
-  public void capture(){ 
-    if (this.side()){
-      for (int count = 0; count < white.size(); count++){
-        if (white.get(count).getPos()[0] == this.getPos()[0] && white.get(count).getPos()[1] == this.getPos()[1]){
-          white.remove(count);
-        }
-      }
-    }
-    else{
-      for (int count = 0; count < black.size(); count++){
-        if (black.get(count).getPos()[0] == this.getPos()[0] && black.get(count).getPos()[1] == this.getPos()[1]){
-          black.remove(count);
-        }
-      }
-    }
-  }
   
   public ArrayList<int[]> getLegalMoves(){
     ArrayList<int[]> toReturn = new ArrayList<int[]>();
