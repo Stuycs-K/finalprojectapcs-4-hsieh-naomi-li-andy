@@ -1,15 +1,14 @@
 public class Bishop extends Piece{
-  private boolean alive;
   private int[] position;
   private String type;
   private boolean inCheck;
   private boolean shinySide;
   
   public Bishop(int[] position, boolean shinySide){
-    this.alive = true;
+    super.setAlive(true);
     this.position = position;
     this.type = "BISHOP";
-    this.inCheck = false; // maybe change this to king only after everything works for runtime 
+    super.setCheckStatus(false); // maybe change this to king only after everything works for runtime 
     this.shinySide = shinySide;
   }
   

@@ -1,5 +1,4 @@
 public class King extends Piece{
-  private boolean alive;
   private int[] position;
   private String type;
   private boolean inCheck;
@@ -7,10 +6,10 @@ public class King extends Piece{
   private boolean canCastle;
   
   public King(int[] position, boolean shinySide){
-    alive = true;
+    super.setAlive(true);
     this.position = position;
     type = "KING";
-    inCheck = false;
+    super.setCheckStatus(false);
     this.shinySide = shinySide;
     canCastle = true;
   }

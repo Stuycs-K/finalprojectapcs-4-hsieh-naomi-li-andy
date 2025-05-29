@@ -9,8 +9,17 @@ public abstract class Piece{
   
 
   public boolean move(int[] newPos){
-    if(canMove(newPos)){
-      this.position = newPos;
+    boolean contains = false;
+    for(int[] i : this.getLegalMoves()){
+      System.out.println(Arrays.toString(i));
+      if(i[0] == newPos[0] && i[1] == newPos[1]){
+        contains = true;
+      }
+    }
+    System.out.println(Arrays.toString(newPos));
+    if(contains){
+      this.setPos(newPos);
+      System.out.println("moving in func");
       for(int i = 0; i < Board.white.size() + Board.black.size(); i++){
         if(pieces.get(i).getPos().equals(newPos)){
              capture(pieces.get(i), newPos);
@@ -49,6 +58,12 @@ public abstract class Piece{
   
   public int[] getPos(){
       return position;
+  }
+  
+  public void setPos(int[] newPos){
+      position = new int[2];
+      position[0] = newPos[0];
+      position[1] = newPos[1];
   }
   
   public String getType(){
