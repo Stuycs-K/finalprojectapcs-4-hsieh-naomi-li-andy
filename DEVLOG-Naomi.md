@@ -28,3 +28,8 @@ At home: I wrote getLegalMoves() as suggested by Mr. K (~20 minutes), designed t
 In class: I fixed the Rook's reachable function so it would check if the position it was trying to reach is blocked by another piece and started a new Gulpin design (~40 minutes). 
 
 At home: I finished up the Gulpin design (~15 minutes) and wrote mouseClicked() (~30 minutes). 
+
+### 2025-05-28 - Display and Pawn Movement
+In class: I began writing the draw function, which would update the chessboard for its positions (~15 minutes).
+
+At home: I finished up the draw method and debugged the pawn movement, also implementing the legal two squares first move (~40 minutes).
