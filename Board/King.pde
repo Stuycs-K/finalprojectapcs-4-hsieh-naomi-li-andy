@@ -65,7 +65,12 @@ public class King extends Piece{
   public void applyCheck(){
     if (this.side()){
       for (int count = 0; count < Board.black.size(); count++){
-        black.get(count).
+        black.get(count).setCheck(true);
+      }
+    }
+    else{
+      for (int count = 0; count < Board.white.size(); count++){
+        white.get(count).setCheck(true);
       }
     }
   }
