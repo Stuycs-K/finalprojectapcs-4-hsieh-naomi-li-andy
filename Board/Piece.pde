@@ -7,6 +7,7 @@ public abstract class Piece{
   
 
   public boolean move(int[] newPos){
+    System.out.println("trying to move");
     boolean contains = false;
     for(int[] i : this.getLegalMoves()){
       System.out.println(Arrays.toString(i));
