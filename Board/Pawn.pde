@@ -3,6 +3,7 @@ public class Pawn extends Piece{
   private String type;
   private boolean inCheck;
   private boolean shinySide;
+  private boolean firstMove;
   
   public Pawn(int[] position, boolean shinySide){
     super.setAlive(true);
@@ -10,6 +11,7 @@ public class Pawn extends Piece{
     this.type = "PAWN";
     super.setCheckStatus(false);
     this.shinySide = shinySide;
+    firstMove = true;
   }
   
   public void capture(Piece other){}
@@ -25,6 +27,7 @@ public class Pawn extends Piece{
     System.out.println(Arrays.toString(newPos));
     if(contains){
       this.position = newPos;
+      firstMove = false;
       System.out.println("moving in func");
       for(int i = 0; i < Board.white.size() + Board.black.size(); i++){
         if(pieces.get(i).getPos().equals(newPos)){
@@ -54,9 +57,15 @@ public class Pawn extends Piece{
     boolean legalMove = false;
     if(this.side()){
       legalMove = newPos[0] == this.getPos()[0] && newPos[1] == this.getPos()[1] + 1;
+      if(firstMove){
+        legalMove = legalMove || newPos[0] == this.getPos()[0] && newPos[1] == this.getPos()[1] + 2;
+      }
     }
     else{
       legalMove = newPos[0] == this.getPos()[0] && newPos[1] == this.getPos()[1] - 1;
+      if(firstMove){
+        legalMove = legalMove || newPos[0] == this.getPos()[0] && newPos[1] == this.getPos()[1] - 2;
+      }
     }
     return (legalMove && this.canMove(newPos));
   }
