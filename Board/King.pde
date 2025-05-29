@@ -58,7 +58,9 @@ public class King extends Piece{
   
  
   
-  public void applyCheck(King other){}
+  public void applyCheck(King other){
+    //what's the difference between this and the other?
+  }
   
   public void castle(){}
   

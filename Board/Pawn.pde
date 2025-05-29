@@ -14,7 +14,22 @@ public class Pawn extends Piece{
     this.firstMove = true;
   }
   
-  public void capture(Piece other){}
+  public void capture(){ // needs to be corrected (edit: seems to work for pawn capturing)
+    if (this.side()){
+      for (int count = 0; count < white.size(); count++){
+        if (white.get(count).getPos()[0] == this.getPos()[0] && white.get(count).getPos()[1] == this.getPos()[1]){
+          white.remove(count);
+        }
+      }
+    }
+    else{
+      for (int count = 0; count < black.size(); count++){
+        if (black.get(count).getPos()[0] == this.getPos()[0] && black.get(count).getPos()[1] == this.getPos()[1]){
+          black.remove(count);
+        }
+      }
+    }
+  }
   
    public boolean move(int[] newPos){
     boolean contains = false;
@@ -27,6 +42,7 @@ public class Pawn extends Piece{
     System.out.println(Arrays.toString(newPos));
     if(contains){
       this.position = newPos;
+      this.capture();
       firstMove = false;
       System.out.println("moving in func");
       for(int i = 0; i < Board.white.size() + Board.black.size(); i++){
