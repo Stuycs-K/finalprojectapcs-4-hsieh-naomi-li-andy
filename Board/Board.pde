@@ -489,6 +489,7 @@ void mouseClicked() {
   } else {
     System.out.println("Moving");
     selectingPiece = true;
+    System.out.println(selectedPiece.getType());
     if(selectedPiece.move(new int[]{xpos, ypos})) {
       turnNumber++;
       System.out.println("Successful move!");

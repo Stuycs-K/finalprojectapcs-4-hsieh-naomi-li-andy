@@ -1,15 +1,13 @@
 public class Knight extends Piece{
-  private int[] position;
   private String type;
   private boolean inCheck;
-  private boolean shinySide;
   
   public Knight(int[] position, boolean shinySide){
     super.setAlive(true);
-    this.position = position;
+    super.setPos(position);
     type = "KNIGHT";
     super.setCheckStatus(false);
-    this.shinySide = shinySide;
+    super.setSide(shinySide);
   }
   
   public ArrayList<int[]> getLegalMoves(){
@@ -25,14 +23,14 @@ public class Knight extends Piece{
   }
   
   public boolean reachable(int[] newPos){
-    return (newPos[0] == this.position[0] + 2 && newPos[1] == this.position[1] + 1)
-            || (newPos[0] == this.position[0] - 2 && newPos[1] == this.position[1] + 1)
-            || (newPos[0] == this.position[0] + 2 && newPos[1] == this.position[1] - 1)
-            || (newPos[0] == this.position[0] - 2 && newPos[1] == this.position[1] - 1)
-            || (newPos[1] == this.position[1] + 2 && newPos[0] == this.position[0] + 1)
-            || (newPos[1] == this.position[1] - 2 && newPos[0] == this.position[0] + 1)
-            || (newPos[1] == this.position[1] + 2 && newPos[0] == this.position[0] - 1)
-            || (newPos[1] == this.position[1] - 2 && newPos[0] == this.position[0] - 1); 
+    return (newPos[0] == super.getPos()[0] + 2 && newPos[1] == super.getPos()[1] + 1)
+            || (newPos[0] == super.getPos()[0] - 2 && newPos[1] == super.getPos()[1] + 1)
+            || (newPos[0] == super.getPos()[0] + 2 && newPos[1] == super.getPos()[1] - 1)
+            || (newPos[0] == super.getPos()[0] - 2 && newPos[1] == super.getPos()[1] - 1)
+            || (newPos[1] == super.getPos()[1] + 2 && newPos[0] == super.getPos()[0] + 1)
+            || (newPos[1] == super.getPos()[1] - 2 && newPos[0] == super.getPos()[0] + 1)
+            || (newPos[1] == super.getPos()[1] + 2 && newPos[0] == super.getPos()[0] - 1)
+            || (newPos[1] == super.getPos()[1] - 2 && newPos[0] == super.getPos()[0] - 1); 
   }
   
   public boolean canMove(int[] newPos){
@@ -50,7 +48,7 @@ public class Knight extends Piece{
   public String getType(){
     return "KNIGHT";
   }
-  
+  /*
   public int[] getPos(){
       return position;
   }
@@ -58,7 +56,7 @@ public class Knight extends Piece{
   public boolean side(){
       return shinySide;
   }
-  
+  */
   public void setCheck(boolean newValue){
     this.inCheck = newValue;
   }
