@@ -492,6 +492,7 @@ void mouseClicked() {
     if(selectedPiece.move(new int[]{xpos, ypos})) {
       turnNumber++;
       System.out.println("Successful move!");
+      System.out.println(Arrays.toString(selectedPiece.getPos()));
     }
   }
 }

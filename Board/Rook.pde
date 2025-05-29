@@ -9,7 +9,7 @@ public class Rook extends Piece{
     super.setAlive(true);
     this.position = position;
     type = "ROOK";
-    inCheck = false;
+    super.setCheckStatus(false);
     this.shinySide = shinySide;
     canCastle = true;
   }

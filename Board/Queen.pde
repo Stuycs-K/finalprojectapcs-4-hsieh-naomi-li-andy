@@ -8,7 +8,7 @@ public class Queen extends Piece{
     super.setAlive(true);
     this.position = position;
     this.type = "QUEEN";
-    this.inCheck = false;
+    super.setCheckStatus(false);
     this.shinySide = shinySide;
   }
   

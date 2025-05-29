@@ -9,7 +9,7 @@ public class King extends Piece{
     super.setAlive(true);
     this.position = position;
     type = "KING";
-    inCheck = false;
+    super.setCheckStatus(false);
     this.shinySide = shinySide;
     canCastle = true;
   }

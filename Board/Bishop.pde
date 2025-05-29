@@ -8,7 +8,7 @@ public class Bishop extends Piece{
     super.setAlive(true);
     this.position = position;
     this.type = "BISHOP";
-    this.inCheck = false; // maybe change this to king only after everything works for runtime 
+    super.setCheckStatus(false); // maybe change this to king only after everything works for runtime 
     this.shinySide = shinySide;
   }
   

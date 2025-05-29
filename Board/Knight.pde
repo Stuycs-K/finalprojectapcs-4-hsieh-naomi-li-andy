@@ -8,7 +8,7 @@ public class Knight extends Piece{
     super.setAlive(true);
     this.position = position;
     type = "KNIGHT";
-    inCheck = false;
+    super.setCheckStatus(false);
     this.shinySide = shinySide;
   }
   
