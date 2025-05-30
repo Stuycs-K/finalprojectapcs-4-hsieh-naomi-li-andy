@@ -23,6 +23,9 @@ public class Bishop extends Piece{
       for (int count = 0; count < pieces.size(); count++){
         if (pieces.get(count).getPos()[0] == currPosX && pieces.get(count).getPos()[1] == currPosY){
           canContinue = false;
+          if (pieces.get(count).side() != this.side()){
+            toReturn.add(new int[] {currPosX, currPosY});
+          }
         }
       }
       if (canContinue){
@@ -38,6 +41,9 @@ public class Bishop extends Piece{
       for (int count = 0; count < pieces.size(); count++){
         if (pieces.get(count).getPos()[0] == currPosX && pieces.get(count).getPos()[1] == currPosY){
           canContinue = false;
+          if (pieces.get(count).side() != this.side()){
+            toReturn.add(new int[] {currPosX, currPosY});
+          }
         }
       }
       if (canContinue){
@@ -54,6 +60,9 @@ public class Bishop extends Piece{
         if (pieces.get(count).getPos()[0] == currPosX && pieces.get(count).getPos()[1] == currPosY){
           canContinue = false;
         }
+        if (pieces.get(count).side() != this.side()){
+            toReturn.add(new int[] {currPosX, currPosY});
+          }
       }
       if (canContinue){
         toReturn.add(new int[] {currPosX, currPosY});
@@ -69,6 +78,9 @@ public class Bishop extends Piece{
         if (pieces.get(count).getPos()[0] == currPosX && pieces.get(count).getPos()[1] == currPosY){
           canContinue = false;
         }
+        if (pieces.get(count).side() != this.side()){
+            toReturn.add(new int[] {currPosX, currPosY});
+          }
       }
       if (canContinue){
         toReturn.add(new int[] {currPosX, currPosY});
