@@ -12,6 +12,7 @@ public class King extends Piece{
     canCastle = true;
   }
   
+ 
   public ArrayList<int[]> getLegalMoves(){
     ArrayList<int[]> toReturn = new ArrayList<int[]>();
     for (int col = 0; col < 8; col++){
