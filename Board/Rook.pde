@@ -9,6 +9,25 @@ public class Rook extends Piece{
     super.setSide(shinySide);
     canCastle = true;
   }
+  public boolean move(int[] newPos){
+   // System.out.println("trying to move");
+    boolean contains = false;
+    for(int[] i : this.getLegalMoves()){
+    //  System.out.println(Arrays.toString(i));
+      if(i[0] == newPos[0] && i[1] == newPos[1]){
+        contains = true;
+      }
+    }
+    System.out.println(Arrays.toString(newPos));
+    if(contains){
+      this.setPos(newPos);
+      this.capture();
+      System.out.println("moving in func");
+      this.canCastle = false;
+      return true;
+    }
+    return false;
+  }
   
   public ArrayList<int[]> getLegalMoves(){
     ArrayList<int[]> toReturn = new ArrayList<int[]>();
