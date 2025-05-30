@@ -30,13 +30,18 @@ public class Knight extends Piece{
             || (newPos[1] == super.getPos()[1] + 2 && newPos[0] == super.getPos()[0] - 1)
             || (newPos[1] == super.getPos()[1] - 2 && newPos[0] == super.getPos()[0] - 1); 
     if(super.getCheckStatus()){
-        int[] opos = super.getPos();
+        int[] opos = this.getPos();
         this.setPos(newPos);
-        if(!super.getCheckingPiece().canCapture(super.getKing()) && legalMove){
+        if(newPos.equals(super.getCheckingPiece().getPos())){
+           return true;
+        }
+        else if(!super.getCheckingPiece().canCapture(super.getKing()) && legalMove){
           this.setPos(opos);
           return true;
         }
-        this.setPos(opos);
+        else{
+          return false;
+        }
     }
     return legalMove;
   }
@@ -50,7 +55,7 @@ public class Knight extends Piece{
        pieceOnPos = true;
      }
     }
-    return !pieceOnPos && this.reachable(newPos) && !super.getCheckStatus();
+    return !pieceOnPos && this.reachable(newPos);
   }
   /*
   public String getType(){
