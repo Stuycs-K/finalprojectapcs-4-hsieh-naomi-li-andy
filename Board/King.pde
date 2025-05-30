@@ -59,11 +59,11 @@ public class King extends Piece{
   
   public void castle(){}
   
-  public void applyCheck(){
+  public void applyCheck(boolean checkStatus){
     if (this.side()){
       for (int count = 0; count < Board.black.size(); count++){
         Piece temp = black.get(count);
-        temp.setCheck(true);
+        temp.setCheck(checkStatus);
         temp.setKing(this);
         temp.setCheckingPiece(super.getCheckingPiece());
       }
@@ -71,7 +71,7 @@ public class King extends Piece{
     else{
       for (int count = 0; count < Board.white.size(); count++){
         Piece temp = white.get(count);
-        temp.setCheck(true);
+        temp.setCheck(checkStatus);
         temp.setKing(this);
         temp.setCheckingPiece(super.getCheckingPiece());
       }

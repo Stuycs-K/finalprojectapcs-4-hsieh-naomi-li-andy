@@ -356,37 +356,41 @@ void chessboard() {
 
 void setup() {
   turnNumber = 1;
+  King wKing = new King(new int[] {4, 7}, false);
+  King bKing = new King(new int[] {4, 0}, true);
+   //Adding Kings and Queens
+  white.add(wKing);
+  black.add(bKing);
+  white.add(new Queen(new int[] {3, 7}, false, wKing));
+  black.add(new Queen(new int[] {3, 0}, true, bKing));
+  
   // Adding Pawns to each side with a for loop (0, 0) represents top left hand corner and (7,7) represents bottom right hand corner)
   for (int count = 0; count < 8; count++) {
-    black.add(new Pawn(new int[] {count, 1}, true));
+    black.add(new Pawn(new int[] {count, 1}, true, bKing));
   }
   for (int count = 0; count < 8; count++) {
-    white.add(new Pawn(new int[] {count, 6}, false));
+    white.add(new Pawn(new int[] {count, 6}, false, wKing));
   }
   // Adding Bishops
-  white.add(new Bishop(new int[] {2, 7}, false));
-  white.add(new Bishop(new int[] {5, 7}, false));
-  black.add(new Bishop(new int[] {2, 0}, true));
-  black.add(new Bishop(new int[] {5, 0}, true));
+  white.add(new Bishop(new int[] {2, 7}, false, wKing));
+  white.add(new Bishop(new int[] {5, 7}, false, wKing));
+  black.add(new Bishop(new int[] {2, 0}, true, bKing));
+  black.add(new Bishop(new int[] {5, 0}, true, bKing));
 
 
-  //Adding Kings and Queens
-  white.add(new King(new int[] {4, 7}, false));
-  black.add(new King(new int[] {4, 0}, true));
-  white.add(new Queen(new int[] {3, 7}, false));
-  black.add(new Queen(new int[] {3, 0}, true));
+ 
 
 
   //Adding Knights and Rooks
-  white.add(new Rook(new int[] {0, 7}, false));
-  white.add(new Rook(new int[] {7, 7}, false));
-  black.add(new Rook(new int[] {0, 0}, true));
-  black.add(new Rook(new int[] {7, 0}, true));
+  white.add(new Rook(new int[] {0, 7}, false, wKing));
+  white.add(new Rook(new int[] {7, 7}, false, wKing));
+  black.add(new Rook(new int[] {0, 0}, true, bKing));
+  black.add(new Rook(new int[] {7, 0}, true, bKing));
 
-  white.add(new Knight(new int[] {1, 7}, false));
-  white.add(new Knight(new int[] {6, 7}, false));
-  black.add(new Knight(new int[] {1, 0}, true));
-  black.add(new Knight(new int[] {6, 0}, true));
+  white.add(new Knight(new int[] {1, 7}, false, wKing));
+  white.add(new Knight(new int[] {6, 7}, false, wKing));
+  black.add(new Knight(new int[] {1, 0}, true, bKing));
+  black.add(new Knight(new int[] {6, 0}, true, bKing));
 
   size(800, 800);
   chessboard();

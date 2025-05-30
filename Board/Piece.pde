@@ -49,7 +49,14 @@ public abstract class Piece{
     }
     System.out.println(Arrays.toString(newPos));
     if(contains){
+      if(getCheckStatus()){
+        King temp = king;
+        applyCheck(king, false);
+      }
       this.setPos(newPos);
+      if(!this.getType().equals("KING")){
+        
+      }
       this.capture();
       System.out.println("moving in func");
       return true;
@@ -71,9 +78,9 @@ public abstract class Piece{
   }
   
   
-  public void applyCheck(King other){
+  public void applyCheck(King other, boolean checkStatus){
     if(this.canCapture(other)){
-       other.applyCheck();
+       other.applyCheck(checkStatus);
        other.setCheckingPiece(this);
     }
   }
@@ -124,11 +131,11 @@ public abstract class Piece{
       shinySide = side;
   }
   
-  public void setKing(King king){
+  public void setKing(Piece king){
       this.king = king;
   }
   
-  public King getKing(){
+  public Piece getKing(){
       return king;
   }
   
