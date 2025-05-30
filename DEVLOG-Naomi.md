@@ -33,3 +33,8 @@ At home: I finished up the Gulpin design (~15 minutes) and wrote mouseClicked() 
 In class: I began writing the draw function, which would update the chessboard for its positions (~15 minutes).
 
 At home: I finished up the draw method and debugged the pawn movement, also implementing the legal two squares first move (~40 minutes).
+
+### 2025-05-29 - Debugging Movement & Check
+In class: I debugged the movement for all pieces, as they weren't changing their position before. I also updated all the accessor/mutator methods to inherit correctly (~35 minutes).
+
+At home: I finished debugging, updating the methods, and implemented a prototype version of check (~30 minutes).
