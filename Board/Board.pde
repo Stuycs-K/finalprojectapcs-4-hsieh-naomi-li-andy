@@ -430,8 +430,8 @@ void setup() {
   }
 
   for (int count = 0; count < white.size(); count++) {
-    positions.add(white.get(count).getPos());
-    positions.add(black.get(count).getPos());
+    pieces.add(black.get(count));
+    pieces.add(white.get(count));
   }
 //  rowlet(150, 50);
 //  gulpin(750, 750, false);
