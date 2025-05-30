@@ -46,7 +46,7 @@ public class King extends Piece{
       if(temp[0] == newPos[0] && temp[1] == newPos[1] && (Board.pieces.get(i).side() == this.side())){
         pieceOnPos = true;
       }
-      if(Board.pieces.get(i).side() != super.side() && Board.pieces.get(i).canCapture(this)){
+      if(Board.pieces.get(i).side() != super.side() && Board.pieces.get(i).getLegalMoves().contains(newPos)){
         willBeCaptured = true;
         System.out.println("will be captured");
       }

@@ -131,7 +131,7 @@ public abstract class Piece{
       shinySide = side;
   }
   
-  public void setKing(Piece king){
+  public void setKing(King king){
       this.king = king;
   }
   
