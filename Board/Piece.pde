@@ -50,17 +50,8 @@ public abstract class Piece{
     System.out.println(Arrays.toString(newPos));
     if(contains){
       this.setPos(newPos);
-<<<<<<< HEAD
-   //   System.out.println("moving in func");
-      for(int i = 0; i < Board.white.size() + Board.black.size(); i++){
-        if(pieces.get(i).getPos().equals(newPos)){
-             capture(pieces.get(i), newPos);
-        }
-      }
-=======
       this.capture();
       System.out.println("moving in func");
->>>>>>> bbfe24849e51a1201280bf71063d4fbb3f350662
       return true;
     }
     return false;

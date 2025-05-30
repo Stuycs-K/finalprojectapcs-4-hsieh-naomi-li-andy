@@ -37,6 +37,7 @@ public class Knight extends Piece{
         int[] opos = this.getPos();
         this.setPos(newPos);
         if(newPos.equals(super.getCheckingPiece().getPos())){
+           this.setPos(opos);
            return true;
         }
         else if(!super.getCheckingPiece().canCapture(super.getKing()) && legalMove){
