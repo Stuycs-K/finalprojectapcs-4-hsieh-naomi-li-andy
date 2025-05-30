@@ -7,6 +7,36 @@ public abstract class Piece{
   private King king;
   private Piece checkingPiece; 
   
+  public void capture(){ // needs to be corrected (edit: seems to work for pawn capturing)
+    if (this.side()){
+      for (int count = 0; count < white.size(); count++){
+        if (white.get(count).getPos()[0] == this.getPos()[0] && white.get(count).getPos()[1] == this.getPos()[1]){
+          white.remove(count);
+        }
+      }
+      for (int count = 0; count < pieces.size(); count++){
+        if (pieces.get(count).getPos()[0] == this.getPos()[0] && pieces.get(count).getPos()[1] == this.getPos()[1]){
+          if (pieces.get(count).side() == false){
+            pieces.remove(count);
+          }
+        }
+      }
+    }
+    else{
+      for (int count = 0; count < black.size(); count++){
+        if (black.get(count).getPos()[0] == this.getPos()[0] && black.get(count).getPos()[1] == this.getPos()[1]){
+          black.remove(count);
+        }
+      }
+      for (int count = 0; count < pieces.size(); count++){
+        if (pieces.get(count).getPos()[0] == this.getPos()[0] && pieces.get(count).getPos()[1] == this.getPos()[1]){
+          if (pieces.get(count).side() == true){
+            pieces.remove(count);
+          }
+        }
+      }
+    }
+  }
 
   public boolean move(int[] newPos){
    // System.out.println("trying to move");
@@ -20,12 +50,17 @@ public abstract class Piece{
     System.out.println(Arrays.toString(newPos));
     if(contains){
       this.setPos(newPos);
+<<<<<<< HEAD
    //   System.out.println("moving in func");
       for(int i = 0; i < Board.white.size() + Board.black.size(); i++){
         if(pieces.get(i).getPos().equals(newPos)){
              capture(pieces.get(i), newPos);
         }
       }
+=======
+      this.capture();
+      System.out.println("moving in func");
+>>>>>>> bbfe24849e51a1201280bf71063d4fbb3f350662
       return true;
     }
     return false;

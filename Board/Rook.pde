@@ -19,10 +19,15 @@ public class Rook extends Piece{
     boolean canContinue = true;
     while (currPosX <= 7 && canContinue){
       currPosX += 1;
-      if (positions.contains(new int[] {currPosX, currPosY})){
-        canContinue = false;
+      for (int count = 0; count < pieces.size(); count++){
+        if (pieces.get(count).getPos()[0] == currPosX && pieces.get(count).getPos()[1] == currPosY){
+          canContinue = false;
+          if (pieces.get(count).side() != this.side()){
+            toReturn.add(new int[] {currPosX, currPosY});
+          }
+        }
       }
-      else{
+      if (canContinue){
         toReturn.add(new int[] {currPosX, currPosY});
       }
     }
@@ -31,10 +36,15 @@ public class Rook extends Piece{
     currPosY = originalPosY;
     while (currPosX >= 0 && canContinue){
       currPosX -= 1;
-      if (positions.contains(new int[] {currPosX, currPosY})){
-        canContinue = false;
+      for (int count = 0; count < pieces.size(); count++){
+        if (pieces.get(count).getPos()[0] == currPosX && pieces.get(count).getPos()[1] == currPosY){
+          canContinue = false;
+          if (pieces.get(count).side() != this.side()){
+            toReturn.add(new int[] {currPosX, currPosY});
+          }
+        }
       }
-      else{
+      if (canContinue){
         toReturn.add(new int[] {currPosX, currPosY});
       }
     }
@@ -43,22 +53,34 @@ public class Rook extends Piece{
     currPosY = originalPosY;
     while (currPosY <= 7 && canContinue){
       currPosY += 1;
-      if (positions.contains(new int[] {currPosX, currPosY})){
-        canContinue = false;
+      for (int count = 0; count < pieces.size(); count++){
+        if (pieces.get(count).getPos()[0] == currPosX && pieces.get(count).getPos()[1] == currPosY){
+          canContinue = false;
+          if (pieces.get(count).side() != this.side()){
+            toReturn.add(new int[] {currPosX, currPosY});
+          }
+        }
+        
       }
-      else{
+      if (canContinue){
         toReturn.add(new int[] {currPosX, currPosY});
       }
     }
     canContinue = true;
     currPosX = originalPosX;
     currPosY = originalPosY;
-    while (currPosY >= 7 && canContinue){
+    while (currPosY >= 0 && canContinue){
       currPosY -= 1;
-      if (positions.contains(new int[] {currPosX, currPosY})){
-        canContinue = false;
+      for (int count = 0; count < pieces.size(); count++){
+        if (pieces.get(count).getPos()[0] == currPosX && pieces.get(count).getPos()[1] == currPosY){
+          canContinue = false;
+          if (pieces.get(count).side() != this.side()){
+            toReturn.add(new int[] {currPosX, currPosY});
+          }
+        }
+        
       }
-      else{
+      if (canContinue){
         toReturn.add(new int[] {currPosX, currPosY});
       }
     }
@@ -66,45 +88,7 @@ public class Rook extends Piece{
   }
   
   public boolean reachable(int[] newPos){
-    if(newPos[0] == super.getPos()[0] && newPos[1] == super.getPos()[1]){
-      return false;
-    }
-    else if(newPos[0] == super.getPos()[0]){
-      if(newPos[1] < super.getPos()[1]){
-        for(int i = 1; i < super.getPos()[1]; i++){
-             for(Piece p : white){
-               if(p.getPos()[0] == newPos[0] && p.getPos()[1] == newPos[1]+i){
-                  return false;
-               }
-             }
-
-            for(Piece p : black){
-               if(p.getPos()[0] == newPos[0] && p.getPos()[1] == newPos[1]+i){
-                  return false;
-               }
-             }
-        }
-        return true;
-      }
-    }
-    else if(newPos[1] == super.getPos()[1]){
-      if(newPos[0] < super.getPos()[0]){
-        for(int i = 1; i < super.getPos()[0]; i++){
-             for(Piece p : white){
-               if(p.getPos()[1] == newPos[1] && p.getPos()[0] == newPos[0]+i){
-                  return false;
-               }
-             }
-            for(Piece p : black){
-               if(p.getPos()[1] == newPos[1] && p.getPos()[0] == newPos[0]+i){
-                  return false;
-               }
-             }
-        }
-        return true;
-      }
-    }
-    return false;
+    return newPos[0] == this.getPos()[0] || newPos[1] == this.getPos()[1];
   }
   
   

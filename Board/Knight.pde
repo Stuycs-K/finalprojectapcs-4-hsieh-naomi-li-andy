@@ -13,7 +13,11 @@ public class Knight extends Piece{
     for (int col = 0; col < 8; col++){
       for (int row = 0; row < 8; row++){
         if (this.reachable(new int[] {col, row}) && this.canMove(new int[] {col, row})){
-          toReturn.add(new int[] {col, row});
+          for (int count = 0; count < pieces.size(); count++){
+            if (pieces.get(count).side() != this.side()){
+              toReturn.add(new int[] {col, row});
+              }
+          }
         }
       }
     }

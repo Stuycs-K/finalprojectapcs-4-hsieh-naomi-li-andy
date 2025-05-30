@@ -16,61 +16,18 @@ public class Queen extends Piece{
     int currPosX = originalPosX;
     int currPosY = originalPosY;
     boolean canContinue = true;
-    while (currPosX <= 7 && canContinue){
-      currPosX += 1;
-      if (positions.contains(new int[] {currPosX, currPosY})){
-        canContinue = false;
-      }
-      else{
-        toReturn.add(new int[] {currPosX, currPosY});
-      }
-    }
-    canContinue = true;
-    currPosX = originalPosX;
-    currPosY = originalPosY;
-    while (currPosX >= 0 && canContinue){
-      currPosX -= 1;
-      if (positions.contains(new int[] {currPosX, currPosY})){
-        canContinue = false;
-      }
-      else{
-        toReturn.add(new int[] {currPosX, currPosY});
-      }
-    }
-    canContinue = true;
-    currPosX = originalPosX;
-    currPosY = originalPosY;
-    while (currPosY <= 7 && canContinue){
-      currPosY += 1;
-      if (positions.contains(new int[] {currPosX, currPosY})){
-        canContinue = false;
-      }
-      else{
-        toReturn.add(new int[] {currPosX, currPosY});
-      }
-    }
-    canContinue = true;
-    currPosX = originalPosX;
-    currPosY = originalPosY;
-    while (currPosY >= 7 && canContinue){
-      currPosY -= 1;
-      if (positions.contains(new int[] {currPosX, currPosY})){
-        canContinue = false;
-      }
-      else{
-        toReturn.add(new int[] {currPosX, currPosY});
-      }
-    }
-    canContinue = true;
-    currPosX = originalPosX;
-    currPosY = originalPosY;
     while (currPosX <= 7 && currPosY >= 0 && canContinue){
       currPosX += 1;
       currPosY -= 1;
-      if (positions.contains(new int[] {currPosX, currPosY})){
-        canContinue = false;
+      for (int count = 0; count < pieces.size(); count++){
+        if (pieces.get(count).getPos()[0] == currPosX && pieces.get(count).getPos()[1] == currPosY){
+          canContinue = false;
+          if (pieces.get(count).side() != this.side()){
+            toReturn.add(new int[] {currPosX, currPosY});
+          }
+        }
       }
-      else{
+      if (canContinue){
         toReturn.add(new int[] {currPosX, currPosY});
       }
     }
@@ -80,10 +37,15 @@ public class Queen extends Piece{
     while (currPosX >= 0 && currPosY >= 0 && canContinue){
       currPosX -= 1;
       currPosY -= 1;
-      if (positions.contains(new int[] {currPosX, currPosY})){
-        canContinue = false;
+      for (int count = 0; count < pieces.size(); count++){
+        if (pieces.get(count).getPos()[0] == currPosX && pieces.get(count).getPos()[1] == currPosY){
+          canContinue = false;
+          if (pieces.get(count).side() != this.side()){
+            toReturn.add(new int[] {currPosX, currPosY});
+          }
+        }
       }
-      else{
+      if (canContinue){
         toReturn.add(new int[] {currPosX, currPosY});
       }
     }
@@ -93,10 +55,16 @@ public class Queen extends Piece{
     while (currPosX <= 7 && currPosY <= 7 && canContinue){
       currPosX += 1;
       currPosY += 1;
-      if (positions.contains(new int[] {currPosX, currPosY})){
-        canContinue = false;
+      for (int count = 0; count < pieces.size(); count++){
+        if (pieces.get(count).getPos()[0] == currPosX && pieces.get(count).getPos()[1] == currPosY){
+          canContinue = false;
+          if (pieces.get(count).side() != this.side()){
+            toReturn.add(new int[] {currPosX, currPosY});
+          }
+        }
+        
       }
-      else{
+      if (canContinue){
         toReturn.add(new int[] {currPosX, currPosY});
       }
     }
@@ -106,10 +74,86 @@ public class Queen extends Piece{
     while (currPosX >= 0 && currPosY <= 7 && canContinue){
       currPosX -= 1;
       currPosY += 1;
-      if (positions.contains(new int[] {currPosX, currPosY})){
-        canContinue = false;
+      for (int count = 0; count < pieces.size(); count++){
+        if (pieces.get(count).getPos()[0] == currPosX && pieces.get(count).getPos()[1] == currPosY){
+          canContinue = false;
+          if (pieces.get(count).side() != this.side()){
+            toReturn.add(new int[] {currPosX, currPosY});
+          }
+        }
+        
       }
-      else{
+      if (canContinue){
+        toReturn.add(new int[] {currPosX, currPosY});
+      }
+    }
+    canContinue = true;
+    currPosX = originalPosX;
+    currPosY = originalPosY;
+    while (currPosX <= 7 && canContinue){
+      currPosX += 1;
+      for (int count = 0; count < pieces.size(); count++){
+        if (pieces.get(count).getPos()[0] == currPosX && pieces.get(count).getPos()[1] == currPosY){
+          canContinue = false;
+          if (pieces.get(count).side() != this.side()){
+            toReturn.add(new int[] {currPosX, currPosY});
+          }
+        }
+      }
+      if (canContinue){
+        toReturn.add(new int[] {currPosX, currPosY});
+      }
+    }
+    canContinue = true;
+    currPosX = originalPosX;
+    currPosY = originalPosY;
+    while (currPosX >= 0 && canContinue){
+      currPosX -= 1;
+      for (int count = 0; count < pieces.size(); count++){
+        if (pieces.get(count).getPos()[0] == currPosX && pieces.get(count).getPos()[1] == currPosY){
+          canContinue = false;
+          if (pieces.get(count).side() != this.side()){
+            toReturn.add(new int[] {currPosX, currPosY});
+          }
+        }
+      }
+      if (canContinue){
+        toReturn.add(new int[] {currPosX, currPosY});
+      }
+    }
+    canContinue = true;
+    currPosX = originalPosX;
+    currPosY = originalPosY;
+    while (currPosY <= 7 && canContinue){
+      currPosY += 1;
+      for (int count = 0; count < pieces.size(); count++){
+        if (pieces.get(count).getPos()[0] == currPosX && pieces.get(count).getPos()[1] == currPosY){
+          canContinue = false;
+          if (pieces.get(count).side() != this.side()){
+            toReturn.add(new int[] {currPosX, currPosY});
+          }
+        }
+        
+      }
+      if (canContinue){
+        toReturn.add(new int[] {currPosX, currPosY});
+      }
+    }
+    canContinue = true;
+    currPosX = originalPosX;
+    currPosY = originalPosY;
+    while (currPosY >= 0 && canContinue){
+      currPosY -= 1;
+      for (int count = 0; count < pieces.size(); count++){
+        if (pieces.get(count).getPos()[0] == currPosX && pieces.get(count).getPos()[1] == currPosY){
+          canContinue = false;
+          if (pieces.get(count).side() != this.side()){
+            toReturn.add(new int[] {currPosX, currPosY});
+          }
+        }
+        
+      }
+      if (canContinue){
         toReturn.add(new int[] {currPosX, currPosY});
       }
     }
