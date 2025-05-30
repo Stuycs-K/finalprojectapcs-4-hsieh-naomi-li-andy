@@ -1,13 +1,11 @@
 public class King extends Piece{
-  private String type;
-  private boolean inCheck;
   private boolean canCastle;
   
   public King(int[] position, boolean shinySide){
     super.setAlive(true);
     super.setPos(position);
-    type = "KING";
-    super.setCheckStatus(false);
+    super.setType("KING");
+    super.setCheck(false);
     super.setSide(shinySide);
     canCastle = true;
   }
@@ -43,13 +41,14 @@ public class King extends Piece{
     boolean willBeCaptured = false;
     boolean pieceOnPos = false;
     int[] temp = new int[2];
-    for(int i = 0; i < Board.white.size() + Board.black.size(); i++){
+    for(int i = 0; i < Board.white.size() + Board.black.size() && !willBeCaptured; i++){
       temp = Board.pieces.get(i).getPos();
       if(temp[0] == newPos[0] && temp[1] == newPos[1] && (Board.pieces.get(i).side() == this.side())){
         pieceOnPos = true;
       }
-      if(Board.pieces.get(i).canCapture(this)){
+      if(Board.pieces.get(i).side() != super.side() && Board.pieces.get(i).canCapture(this)){
         willBeCaptured = true;
+        System.out.println("will be captured");
       }
     }
     return !pieceOnPos && !willBeCaptured && this.reachable(newPos); 
@@ -57,33 +56,33 @@ public class King extends Piece{
   
  
   
-  public void applyCheck(King other){
-    //what's the difference between this and the other?
-  }
   
   public void castle(){}
   
   public void applyCheck(){
     if (this.side()){
       for (int count = 0; count < Board.black.size(); count++){
-        black.get(count).setCheck(true);
+        Piece temp = black.get(count);
+        temp.setCheck(true);
+        temp.setKing(this);
+        temp.setCheckingPiece(super.getCheckingPiece());
       }
     }
     else{
       for (int count = 0; count < Board.white.size(); count++){
-        white.get(count).setCheck(true);
+        Piece temp = white.get(count);
+        temp.setCheck(true);
+        temp.setKing(this);
+        temp.setCheckingPiece(super.getCheckingPiece());
       }
     }
   }
   
-   public void setCheck(boolean newValue){
-    this.inCheck = newValue;
-  }
-  
+  /* 
   public String getType(){
     return "KING";
   }
- /* 
+ 
   public int[] getPos(){
       return position;
   }

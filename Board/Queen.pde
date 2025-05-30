@@ -1,13 +1,10 @@
 public class Queen extends Piece{
-  private String type;
-  private boolean inCheck;
-  private boolean shinySide;
   
   public Queen(int[] position, boolean shinySide){
     super.setAlive(true);
     super.setPos(position);
-    this.type = "QUEEN";
-    super.setCheckStatus(false);
+    super.setType("QUEEN");
+    super.setCheck(false);
     super.setSide(shinySide);
   }
   
@@ -178,13 +175,13 @@ public class Queen extends Piece{
        pieceOnPos = true;
      }
     }
-    return !pieceOnPos && this.reachable(newPos) && !inCheck;
+    return !pieceOnPos && this.reachable(newPos) && !super.getCheckStatus();
   }
-  
+  /*
   public String getType(){
     return "QUEEN";
   }
-  /*
+  
   public int[] getPos(){
       return position;
   }
@@ -193,10 +190,7 @@ public class Queen extends Piece{
       return shinySide;
   }
   */
-  public void setCheck(boolean newValue){
-    this.inCheck = newValue;
-  }
   
-  public void applyCheck(King other){}
+
 
 }

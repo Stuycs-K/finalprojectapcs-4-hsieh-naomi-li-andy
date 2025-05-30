@@ -1,12 +1,10 @@
 public class Knight extends Piece{
-  private String type;
-  private boolean inCheck;
   
   public Knight(int[] position, boolean shinySide){
     super.setAlive(true);
     super.setPos(position);
-    type = "KNIGHT";
-    super.setCheckStatus(false);
+    super.setType("KNIGHT");
+    super.setCheck(false);
     super.setSide(shinySide);
   }
   
@@ -27,7 +25,7 @@ public class Knight extends Piece{
   }
   
   public boolean reachable(int[] newPos){
-    return (newPos[0] == super.getPos()[0] + 2 && newPos[1] == super.getPos()[1] + 1)
+    boolean legalMove = (newPos[0] == super.getPos()[0] + 2 && newPos[1] == super.getPos()[1] + 1)
             || (newPos[0] == super.getPos()[0] - 2 && newPos[1] == super.getPos()[1] + 1)
             || (newPos[0] == super.getPos()[0] + 2 && newPos[1] == super.getPos()[1] - 1)
             || (newPos[0] == super.getPos()[0] - 2 && newPos[1] == super.getPos()[1] - 1)
@@ -35,6 +33,21 @@ public class Knight extends Piece{
             || (newPos[1] == super.getPos()[1] - 2 && newPos[0] == super.getPos()[0] + 1)
             || (newPos[1] == super.getPos()[1] + 2 && newPos[0] == super.getPos()[0] - 1)
             || (newPos[1] == super.getPos()[1] - 2 && newPos[0] == super.getPos()[0] - 1); 
+    if(super.getCheckStatus()){
+        int[] opos = this.getPos();
+        this.setPos(newPos);
+        if(newPos.equals(super.getCheckingPiece().getPos())){
+           return true;
+        }
+        else if(!super.getCheckingPiece().canCapture(super.getKing()) && legalMove){
+          this.setPos(opos);
+          return true;
+        }
+        else{
+          return false;
+        }
+    }
+    return legalMove;
   }
   
   public boolean canMove(int[] newPos){
@@ -46,13 +59,13 @@ public class Knight extends Piece{
        pieceOnPos = true;
      }
     }
-    return !pieceOnPos && this.reachable(newPos) && !inCheck;
+    return !pieceOnPos && this.reachable(newPos);
   }
-  
+  /*
   public String getType(){
     return "KNIGHT";
   }
-  /*
+  
   public int[] getPos(){
       return position;
   }
@@ -60,11 +73,11 @@ public class Knight extends Piece{
   public boolean side(){
       return shinySide;
   }
-  */
+  
   public void setCheck(boolean newValue){
     this.inCheck = newValue;
   }
-  
-  public void applyCheck(King other){}
+  */
+
 
 }
