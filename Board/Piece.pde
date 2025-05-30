@@ -140,5 +140,23 @@ public abstract class Piece{
       return checkingPiece;
   }
   
+  public boolean checkChecker(int[] newPos){
+     if(this.getCheckStatus()){
+        int[] opos = this.getPos();
+        this.setPos(newPos);
+        if(newPos.equals(this.getCheckingPiece().getPos())){
+           this.setPos(opos);
+           return true;
+        }
+        else if(!this.getCheckingPiece().canCapture(this.getKing())){
+          this.setPos(opos);
+          return true;
+        }
+        else{
+          return false;
+        }
+    }
+    return true;
+  }
   
 }

@@ -33,21 +33,7 @@ public class Knight extends Piece{
             || (newPos[1] == super.getPos()[1] - 2 && newPos[0] == super.getPos()[0] + 1)
             || (newPos[1] == super.getPos()[1] + 2 && newPos[0] == super.getPos()[0] - 1)
             || (newPos[1] == super.getPos()[1] - 2 && newPos[0] == super.getPos()[0] - 1); 
-    if(super.getCheckStatus()){
-        int[] opos = this.getPos();
-        this.setPos(newPos);
-        if(newPos.equals(super.getCheckingPiece().getPos())){
-           this.setPos(opos);
-           return true;
-        }
-        else if(!super.getCheckingPiece().canCapture(super.getKing()) && legalMove){
-          this.setPos(opos);
-          return true;
-        }
-        else{
-          return false;
-        }
-    }
+    legalMove = legalMove && super.checkChecker();
     return legalMove;
   }
   
