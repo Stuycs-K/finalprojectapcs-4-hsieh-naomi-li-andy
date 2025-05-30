@@ -33,3 +33,8 @@ In class, I began writing code that considered the pawn's first turn moves with 
 
 At home, Naomi finished fixing the pawn first turn issues. I debugged the Pawn subclass because there was an error in which pawns could take other pieces directly in front of it. I fixed this by updating reachable() and also implemented diagonal piece taking for the Pawn subclass. I coded the capture() method, which removes a taken piece from the game in the Pawn subclass. I also coded a preliminary setCheck() for all subclasses. (~70 min).
 
+### 2025-05-29 - Capturing and getLegalMoves Rewriting
+In class, I contemplated how capture() should be implemented and what to do with the old capture(Piece old, Piece new) method before deciding to implement this as an inherited method. I also worked with Naomi to debug a null error in getPos(), which was resolved by deleting new declarations of the abstract class's instance variables (~25 min).
+
+At home, I discovered that pieces could still jump over each other because I used a faulty implementation of for looping through white/black ArrayLists. I resolved this for each of the subclasses (besides King, which Naomi is currently working on) by creating a combined pieces ArrayList and looping through that object instead. I tested my new implementation and pieces seem to be moving and capturing according to the laws of chess. I also adjusted the pieces ArrayList when a piece was taken accordingly in the capture() method (~100 min).
+
