@@ -1,11 +1,12 @@
 public class Bishop extends Piece{
   
-  public Bishop(int[] position, boolean shinySide){
+  public Bishop(int[] position, boolean shinySide, King king){
     super.setAlive(true);
     super.setPos(position);
     super.setType("BISHOP");
     super.setCheck(false); // maybe change this to king only after everything works for runtime 
     super.setSide(shinySide);
+    super.setKing(king);
   }
   
   public ArrayList<int[]> getLegalMoves(){
@@ -114,7 +115,7 @@ public class Bishop extends Piece{
        }
       }
    }
-    return !pieceOnPos && this.reachable(newPos) && !super.getCheckStatus();
+    return !pieceOnPos && this.reachable(newPos) && super.checkChecker(newPos);
   }
   /*
   public String getType(){

@@ -1,12 +1,13 @@
 public class Pawn extends Piece {
   private boolean firstMove;
 
-  public Pawn(int[] position, boolean shinySide) {
+  public Pawn(int[] position, boolean shinySide, King king) {
     super.setAlive(true);
     super.setPos(position);
     super.setType("PAWN");
     super.setCheck(false);
     super.setSide(shinySide);
+    super.setKing(king);
     this.firstMove = true;
   }
 
@@ -113,7 +114,7 @@ public class Pawn extends Piece {
         }
       }
     }
-    return (legalMove && this.canMove(newPos));
+    return (legalMove && this.canMove(newPos) && super.checkChecker(newPos));
   }
 
   public boolean canMove(int[] newPos) {
@@ -128,7 +129,7 @@ public class Pawn extends Piece {
         pieceOnPos = true;
       }
     }
-    return !pieceOnPos && !super.getCheckStatus();
+    return !pieceOnPos;
   }
 
 
