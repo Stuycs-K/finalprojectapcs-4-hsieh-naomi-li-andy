@@ -47,20 +47,18 @@ void gulpin(float x, float y, boolean shiny) {
   popMatrix();
 }
 
-void electrode(float x, float y, boolean shiny){
+void electrode(float x, float y, boolean shiny) {
   stroke(0);
   if (shiny) {
     fill(50, 130, 200);
-  }
-  else {
+  } else {
     fill(255, 0, 0);
   }
   circle(x, y, 64);
   if (shiny) {
     fill(255, 240, 255);
     stroke(255, 240, 255);
-  }
-  else {
+  } else {
     fill(240, 240, 240);
     stroke(255, 240, 255);
   }
@@ -70,8 +68,7 @@ void electrode(float x, float y, boolean shiny){
   if (shiny) {
     stroke(50, 130, 200);
     fill(50, 130, 200);
-  }
-  else {
+  } else {
     stroke(255, 0, 0);
     fill(255, 0, 0);
   }
@@ -79,8 +76,7 @@ void electrode(float x, float y, boolean shiny){
   if (shiny) {
     fill(255, 240, 255);
     stroke(255, 240, 255);
-  }
-  else {
+  } else {
     fill(240, 240, 240);
     stroke(255, 240, 255);
   }
@@ -104,16 +100,14 @@ void solosis(float x, float y, boolean shiny) {
   stroke(0);
   if (shiny) {
     fill(110, 170, 190);
-  }
-  else {
+  } else {
     fill(170, 230, 183);
   }
   circle(x, y, 64);
   if (shiny) {
     fill(155, 210, 170);
     stroke(155, 210, 170);
-  }
-  else {
+  } else {
     fill(200, 255, 220);
     stroke(200, 255, 220);
   }
@@ -121,8 +115,7 @@ void solosis(float x, float y, boolean shiny) {
   ellipse(x+10, y, 30, 35);
   if (shiny) {
     stroke(110, 170, 190);
-  }
-  else {
+  } else {
     stroke(170, 230, 183);
   }
   line(x, y-13, x, y-20);
@@ -130,8 +123,7 @@ void solosis(float x, float y, boolean shiny) {
   if (shiny) {
     fill(255, 204, 153);
     stroke(155, 104, 53);
-  }
-  else {
+  } else {
     fill(255, 255, 153);
     stroke(155, 155, 53);
   }
@@ -145,15 +137,14 @@ void solosis(float x, float y, boolean shiny) {
   fill(0);
   ellipse(x-13, y, 7, 10);
   ellipse(x+13, y, 7, 10);
-  if(shiny){
+  if (shiny) {
     stroke(220, 173, 170);
     fill(220, 173, 170);
-  }
-  else{
+  } else {
     stroke(255, 153, 170);
     fill(255, 153, 170);
   }
-  
+
   quad(x, y-7, x+4, y, x, y+7, x-4, y);
 }
 /*void mew(float x, float y, boolean shiny){
@@ -239,14 +230,22 @@ void spheal(float x, float y, boolean shiny) {
   popMatrix();
   circle(x, y, 64);
   if (shiny) {
+    stroke(248, 224, 217);
     fill(248, 224, 217);
   } else {
+    stroke(242, 228, 200);
     fill(242, 228, 200);
   }
-  ellipse(x, y+12, 56, 40);
+  ellipse(x, y+12, 54, 38);
+  stroke(255);
+  fill(255);
+  triangle(x-14, y+5, x-10, y+5, x-12, y+10);
+  triangle(x+14, y+5, x+10, y+5, x+12, y+10);
   if (shiny) {
+    stroke(203, 155, 211);
     fill(203, 155, 211);
   } else {
+    stroke(156, 182, 240);
     fill(156, 182, 240);
   }
   ellipse(x-9, y-5, 25, 20);
@@ -258,16 +257,16 @@ void spheal(float x, float y, boolean shiny) {
   }
   rect(x-22, y-17, 45, 13, 28);
   rect(x-5, y-5, 5, 4, 28);
-  stroke(255);
-  fill(255);
-  triangle(x-16, y+5, x-10, y+5, x-13, y+10);
-  triangle(x+16, y+5, x+10, y+5, x+13, y+10);
+  
   fill(0);
+  stroke(0);
   circle(x-12, y-10, 10);
   circle(x+12, y-10, 10);
   fill(255);
   circle(x-10, y-12, 6);
   circle(x+14, y-12, 6);
+  noFill();
+  circle(x, y, 64);
 }
 
 void piplup(float x, float y, boolean shiny) {
@@ -514,20 +513,15 @@ void setup() {
 
     if (white.get(incrementer).getType().equals("PAWN")) {
       ditto(white.get(incrementer).getPos()[0] * 100 + 50, height - 150, white.get(incrementer).side());
-    }
-    else if(white.get(incrementer).getType().equals("BISHOP")){
+    } else if (white.get(incrementer).getType().equals("BISHOP")) {
       piplup(white.get(incrementer).getPos()[0] * 100 + 50, height - 50, white.get(incrementer).side());
-    }
-    else if(white.get(incrementer).getType().equals("KNIGHT")){
+    } else if (white.get(incrementer).getType().equals("KNIGHT")) {
       solosis(white.get(incrementer).getPos()[0] * 100 + 50, height - 50, white.get(incrementer).side());
-    }
-    else if(white.get(incrementer).getType().equals("ROOK")){
+    } else if (white.get(incrementer).getType().equals("ROOK")) {
       electrode(white.get(incrementer).getPos()[0] * 100 + 50, height - 50, white.get(incrementer).side());
-    }
-    else if(white.get(incrementer).getType().equals("QUEEN")){
+    } else if (white.get(incrementer).getType().equals("QUEEN")) {
       gulpin(white.get(incrementer).getPos()[0] * 100 + 50, height - 50, white.get(incrementer).side());
-    }
-    else{
+    } else {
       spheal(white.get(incrementer).getPos()[0] * 100 + 50, height - 50, white.get(incrementer).side());
     }
   }
@@ -535,12 +529,16 @@ void setup() {
   for (int incrementer = 0; incrementer < black.size(); incrementer++) {
     if (black.get(incrementer).getType().equals("PAWN")) {
       ditto(black.get(incrementer).getPos()[0] * 100 + 50, 150, black.get(incrementer).side());
-    }
-    else if (black.get(incrementer).getType().equals("BISHOP")){
+    } else if (black.get(incrementer).getType().equals("BISHOP")) {
       piplup(black.get(incrementer).getPos()[0] * 100 + 50, 50, black.get(incrementer).side());
-    }
-    else if(black.get(incrementer).getType().equals("KNIGHT")){
-      solosis
+    } else if (black.get(incrementer).getType().equals("KNIGHT")) {
+      solosis(black.get(incrementer).getPos()[0] * 100 + 50, 50, black.get(incrementer).side());
+    } else if (black.get(incrementer).getType().equals("ROOK")) {
+      electrode(black.get(incrementer).getPos()[0] * 100 + 50, 50, black.get(incrementer).side());
+    } else if (black.get(incrementer).getType().equals("QUEEN")) {
+      gulpin(black.get(incrementer).getPos()[0] * 100 + 50, 50, black.get(incrementer).side());
+    } else {
+      spheal(black.get(incrementer).getPos()[0] * 100 + 50, 50, black.get(incrementer).side());
     }
   }
 
@@ -550,9 +548,9 @@ void setup() {
   }
   //  rowlet(150, 50);
   /* gulpin(750, 750, false);
-  gulpin(650, 750, true);
-  solosis(650, 650, true);
-  solosis(750, 650, false);*/
+   gulpin(650, 750, true);
+   solosis(650, 650, true);
+   solosis(750, 650, false);*/
 }
 
 void draw() {
@@ -564,8 +562,16 @@ void draw() {
     if (white.get(i).isAlive()) {
       if (white.get(i).getType().equals("PAWN")) {
         ditto(white.get(i).getPos()[0] * 100 + 50, white.get(i).getPos()[1] * 100 + 50, white.get(i).side());
-      } else {
+      } else if (white.get(i).getType().equals("BISHOP")) {
         piplup(white.get(i).getPos()[0] * 100 + 50, white.get(i).getPos()[1] * 100 + 50, white.get(i).side());
+      } else if (white.get(i).getType().equals("KNIGHT")) {
+        solosis(white.get(i).getPos()[0] * 100 + 50, white.get(i).getPos()[1] * 100 + 50, white.get(i).side());
+      } else if (white.get(i).getType().equals("ROOK")) {
+        electrode(white.get(i).getPos()[0] * 100 + 50, white.get(i).getPos()[1] * 100 + 50, white.get(i).side());
+      } else if (white.get(i).getType().equals("QUEEN")) {
+        gulpin(white.get(i).getPos()[0] * 100 + 50, white.get(i).getPos()[1] * 100 + 50, white.get(i).side());
+      } else {
+        spheal(white.get(i).getPos()[0] * 100 + 50, white.get(i).getPos()[1] * 100 + 50, white.get(i).side());
       }
     }
   }
@@ -574,17 +580,26 @@ void draw() {
     if (black.get(i).isAlive()) {
       if (black.get(i).getType().equals("PAWN")) {
         ditto(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
-      } else {
+      } else if(black.get(i).getType().equals("BISHOP")){
         piplup(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
+      } else if(black.get(i).getType().equals("KNIGHT")){
+        solosis(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
+      } else if(black.get(i).getType().equals("ROOK")){
+        electrode(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
+      } else if(black.get(i).getType().equals("QUEEN")){
+        gulpin(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
+      } else{
+        spheal(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
       }
+      
     }
   }
-/*  gulpin(750, 750, false);
-  gulpin(650, 750, true);
-  solosis(650, 650, true);
-  solosis(750, 650, false);
-  electrode(650, 550, true);
-  electrode(750, 550, false);*/
+  /*  gulpin(750, 750, false);
+   gulpin(650, 750, true);
+   solosis(650, 650, true);
+   solosis(750, 650, false);
+   electrode(650, 550, true);
+   electrode(750, 550, false);*/
 }
 
 void mouseClicked() {
