@@ -14,6 +14,7 @@ boolean pawnPromoting;
 Piece selectedPiece;
 
 void gulpin(float x, float y, boolean shiny) {
+  stroke(0);
   if (shiny) {
     fill(108, 186, 204);
   } else {
@@ -44,6 +45,63 @@ void gulpin(float x, float y, boolean shiny) {
   rotate(-PI/6);
   ellipse(0, 0, 30, 15);
   popMatrix();
+}
+
+void solosis(float x, float y, boolean shiny) {
+  stroke(0);
+  if (shiny) {
+    fill(110, 170, 190);
+  }
+  else {
+    fill(170, 230, 183);
+  }
+  circle(x, y, 64);
+  if (shiny) {
+    fill(155, 210, 170);
+    stroke(155, 210, 170);
+  }
+  else {
+    fill(200, 255, 220);
+    stroke(200, 255, 220);
+  }
+  ellipse(x-10, y, 30, 35);
+  ellipse(x+10, y, 30, 35);
+  if (shiny) {
+    stroke(110, 170, 190);
+  }
+  else {
+    stroke(170, 230, 183);
+  }
+  line(x, y-13, x, y-20);
+  line(x, y+13, x, y+20);
+  if (shiny) {
+    fill(255, 204, 153);
+    stroke(155, 104, 53);
+  }
+  else {
+    fill(255, 255, 153);
+    stroke(155, 155, 53);
+  }
+  pushMatrix();
+  translate(x+20, y-15);
+  rotate(PI/12);
+  ellipse(-3, 0, 10, 5);
+  ellipse(-5, 5, 15, 7);
+  popMatrix();
+  stroke(0);
+  fill(0);
+  ellipse(x-13, y, 7, 10);
+  ellipse(x+13, y, 7, 10);
+  if(shiny){
+    stroke(220, 173, 170);
+    fill(220, 173, 170);
+  }
+  else{
+    stroke(255, 153, 170);
+    fill(255, 153, 170);
+  }
+  
+  quad(x, y-7, x+4, y, x, y+7, x-4, y);
 }
 /*void mew(float x, float y, boolean shiny){
  if(shiny){
@@ -108,6 +166,7 @@ void gulpin(float x, float y, boolean shiny) {
  }*/
 
 void spheal(float x, float y, boolean shiny) {
+  stroke(0);
   if (shiny) {
     fill(203, 155, 211);
   } else {
@@ -360,12 +419,12 @@ void setup() {
   turnNumber = 1;
   King wKing = new King(new int[] {4, 7}, false);
   King bKing = new King(new int[] {4, 0}, true);
-   //Adding Kings and Queens
+  //Adding Kings and Queens
   white.add(wKing);
   black.add(bKing);
   white.add(new Queen(new int[] {3, 7}, false, wKing));
   black.add(new Queen(new int[] {3, 0}, true, bKing));
-  
+
   // Adding Pawns to each side with a for loop (0, 0) represents top left hand corner and (7,7) represents bottom right hand corner)
   for (int count = 0; count < 8; count++) {
     black.add(new Pawn(new int[] {count, 1}, true, bKing));
@@ -380,7 +439,7 @@ void setup() {
   black.add(new Bishop(new int[] {5, 0}, true, bKing));
 
 
- 
+
 
 
   //Adding Knights and Rooks
@@ -396,10 +455,10 @@ void setup() {
 
   size(800, 800);
   chessboard();
-  
+
   // SETUP OF WHITE PIECES
   for (int incrementer = 0; incrementer < white.size(); incrementer++) {
-    
+
     if (white.get(incrementer).getType().equals("PAWN")) {
       ditto(white.get(incrementer).getPos()[0] * 100 + 50, height - 150, white.get(incrementer).side());
     } else {
@@ -419,37 +478,41 @@ void setup() {
     pieces.add(black.get(count));
     pieces.add(white.get(count));
   }
-//  rowlet(150, 50);
-//  gulpin(750, 750, false);
+  //  rowlet(150, 50);
+  gulpin(750, 750, false);
+  gulpin(650, 750, true);
+  solosis(650, 650, true);
+  solosis(750, 650, false);
 }
 
 void draw() {
-  
+
   chessboard();
   //draws all white pieces
-  for(int i = 0; i < white.size(); i++){
-   // text(""+white.get(i).isAlive(), 50, 50);
-    if(white.get(i).isAlive()){
-      if(white.get(i).getType().equals("PAWN")){
-         ditto(white.get(i).getPos()[0] * 100 + 50, white.get(i).getPos()[1] * 100 + 50, white.get(i).side());
-      }
-      else{
-         piplup(white.get(i).getPos()[0] * 100 + 50, white.get(i).getPos()[1] * 100 + 50, white.get(i).side());
+  for (int i = 0; i < white.size(); i++) {
+    // text(""+white.get(i).isAlive(), 50, 50);
+    if (white.get(i).isAlive()) {
+      if (white.get(i).getType().equals("PAWN")) {
+        ditto(white.get(i).getPos()[0] * 100 + 50, white.get(i).getPos()[1] * 100 + 50, white.get(i).side());
+      } else {
+        piplup(white.get(i).getPos()[0] * 100 + 50, white.get(i).getPos()[1] * 100 + 50, white.get(i).side());
       }
     }
   }
   //draws all black pieces
-  for(int i = 0; i < black.size(); i++){
-    if(black.get(i).isAlive()){
-      if(black.get(i).getType().equals("PAWN")){
-         ditto(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
-      }
-      else{
-         piplup(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
+  for (int i = 0; i < black.size(); i++) {
+    if (black.get(i).isAlive()) {
+      if (black.get(i).getType().equals("PAWN")) {
+        ditto(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
+      } else {
+        piplup(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
       }
     }
   }
-  
+  gulpin(750, 750, false);
+  gulpin(650, 750, true);
+  solosis(650, 650, true);
+  solosis(750, 650, false);
 }
 
 void mouseClicked() {
@@ -476,7 +539,7 @@ void mouseClicked() {
     System.out.println("Moving");
     selectingPiece = true;
     System.out.println(selectedPiece.getType());
-    if(selectedPiece.move(new int[]{xpos, ypos})) {
+    if (selectedPiece.move(new int[]{xpos, ypos})) {
       turnNumber++;
       System.out.println("Successful move!");
       System.out.println(Arrays.toString(selectedPiece.getPos()));
