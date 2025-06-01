@@ -13,7 +13,6 @@ public class Bishop extends Piece{
     if(!super.isAlive()){
       return false;
     }
-    System.out.println("running inherited");
     int originalPosX = this.getPos()[0];
     int originalPosY = this.getPos()[1];
     int currPosX = originalPosX;

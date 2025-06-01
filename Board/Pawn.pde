@@ -32,6 +32,8 @@ public class Pawn extends Piece {
   }
 
   public boolean move(int[] newPos) {
+   System.out.println("white:"+Board.whiteInCheck);
+   System.out.println("black:"+Board.blackInCheck);
     boolean contains = false;
     for (int[] i : this.getLegalMoves()) {
    //   System.out.println(Arrays.toString(i));
@@ -41,13 +43,70 @@ public class Pawn extends Piece {
     }
    // System.out.println(Arrays.toString(newPos));
     if (contains) {
-      super.setPos(newPos);
+      int[] originalPos = this.getPos();
+      this.setPos(newPos);
+      if (this.side()){
+        if (!Board.blackInCheck){
+          int[] kingPos = new int[] {9, 9};
+          try{
+            kingPos = black.get(1).getKing().getPos();
+          }catch (NullPointerException e){
+          }
+          for (int i = 0; i < white.size(); i++){
+            if (white.get(i).canCapture(kingPos)){
+              System.out.println("illegal");
+              this.setPos(originalPos);
+              return false;
+            }
+          }
+        }
+      }
+      else{
+        if (!Board.whiteInCheck){
+          int[] kingPos = new int[] {9, 9};
+          try{
+            kingPos = white.get(1).getKing().getPos();
+          }catch (NullPointerException e){
+          }
+          for (int i = 0; i < black.size(); i++){
+            if (black.get(i).canCapture(kingPos)){
+                            System.out.println("illegal");
+
+              this.setPos(originalPos);
+              return false;
+            }
+          }
+        }
+      }
       this.capture();
+      
       firstMove = false;
   //    System.out.println("moving in func");
-      for (int i = 0; i < Board.white.size() + Board.black.size(); i++) {
-        if (pieces.get(i).getPos().equals(newPos)) {
-          capture(pieces.get(i), newPos);
+            int[] kingPos = new int[] {9, 9};
+      
+      if (this.side()){
+        try{
+          kingPos = white.get(1).getKing().getPos();
+        }catch (NullPointerException e){
+          
+        }
+        for (int i = 0; i < black.size(); i++){
+          if (black.get(i).canCapture(kingPos)){
+            System.out.println("check");
+            Board.whiteInCheck = true;
+          }
+        }
+      }
+      else{
+        try{
+          kingPos = black.get(1).getKing().getPos();
+        }catch (NullPointerException e){
+        }
+        for (int i = 0; i < white.size(); i++){
+          if (white.get(i).canCapture(kingPos)){
+            System.out.println("check");
+            Board.blackInCheck = true;
+          }
         }
       }
       return true;
@@ -56,7 +115,6 @@ public class Pawn extends Piece {
   }
   
   public boolean legalMovesContains(int[] newPos){
-    System.out.println("running inherited for pawn");
     if(super.side()){
       if(this.getPos()[0]-1 == newPos[0] && this.getPos()[1]+1 == newPos[1] || this.getPos()[0]+1 == newPos[0] && this.getPos()[1]+1 == newPos[1]){
          return true && super.isAlive();
