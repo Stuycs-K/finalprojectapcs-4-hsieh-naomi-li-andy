@@ -40,35 +40,46 @@ public abstract class Piece{
 
   public boolean move(int[] newPos){
    // System.out.println("trying to move");
-   if (this.side()){
-      boolean contains = false;
-      for(int[] i : this.getLegalMoves()){
-      //  System.out.println(Arrays.toString(i));
-        if(i[0] == newPos[0] && i[1] == newPos[1]){
-          contains = true;
-        }
+    boolean contains = false;
+    for(int[] i : this.getLegalMoves()){
+    //  System.out.println(Arrays.toString(i));
+      if(i[0] == newPos[0] && i[1] == newPos[1]){
+        contains = true;
       }
-      System.out.println(Arrays.toString(newPos));
-      if(contains){
-        this.setPos(newPos);
-        this.capture();
-        System.out.println("moving in func");
-        int[] kingPos = new int[2];
+    }
+    System.out.println(Arrays.toString(newPos));
+    if(contains){
+      this.setPos(newPos);
+      this.capture();
+      System.out.println("moving in func");
+ int[] kingPos = new int[2];
+      if (this.side()){
         for (int i = 0; i < white.size(); i++){
           if (white.get(i).getType().equals("KING")){
             kingPos = white.get(i).getPos();
           }
         }
         for (int i = 0; i < black.size(); i++){
-         // if (blac
+          if (black.get(i).canCapture(kingPos)){
+            System.out.println("check");
+          }
         }
-        return true;
       }
-      return false;
-   }
-   else{
-     return true;
-   }
+      else{
+        for (int i = 0; i < black.size(); i++){
+          if (black.get(i).getType().equals("KING")){
+            kingPos = black.get(i).getPos();
+          }
+        }
+        for (int i = 0; i < white.size(); i++){
+          if (white.get(i).canCapture(kingPos)){
+            System.out.println("check");
+          }
+        }
+      }
+      return true;
+    }
+    return false;
   }
   
   public void capture(Piece other, int[] newPos){
@@ -79,16 +90,24 @@ public abstract class Piece{
   
   public abstract boolean canMove(int[] newPos);
   
-  public boolean canCapture(int[] pos){
+  public boolean canCapture(int[] otherPos){
     //System.out.println("calling canCapture for " + this.getType());
     ArrayList<int[]> legalMoves = this.getLegalMoves();
-    return legalMoves.contains(pos);
+    for (int i = 0; i < legalMoves.size(); i++){
+      if (legalMoves.get(i)[0] == otherPos[0] && legalMoves.get(i)[1] == otherPos[1]){
+        return true;
+      }
+    }
+    return false;
   }
   
-  
+ /* 
   public void applyCheck(King other){
-
-  }
+    if(this.canCapture(other)){
+       other.applyCheck();
+       other.setCheckingPiece(this);
+    }
+  }*/
   
   public abstract boolean reachable(int[] newPos);
   

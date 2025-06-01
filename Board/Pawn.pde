@@ -45,6 +45,31 @@ public class Pawn extends Piece {
           capture(pieces.get(i), newPos);
         }
       }
+       int[] kingPos = new int[2];
+      if (this.side()){
+        for (int i = 0; i < white.size(); i++){
+          if (white.get(i).getType().equals("KING")){
+            kingPos = white.get(i).getPos();
+          }
+        }
+        for (int i = 0; i < black.size(); i++){
+          if (black.get(i).canCapture(kingPos)){
+            System.out.println("check");
+          }
+        }
+      }
+      else{
+        for (int i = 0; i < black.size(); i++){
+          if (black.get(i).getType().equals("KING")){
+            kingPos = black.get(i).getPos();
+          }
+        }
+        for (int i = 0; i < white.size(); i++){
+          if (white.get(i).canCapture(kingPos)){
+            System.out.println("check");
+          }
+        }
+      }
       return true;
     }
     return false;
