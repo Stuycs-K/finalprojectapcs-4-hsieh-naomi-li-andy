@@ -12,6 +12,10 @@ static int turnNumber = 1;
 boolean selectingPiece = true;
 boolean pawnPromoting;
 Piece selectedPiece;
+Piece pawnBeingPromoted;
+
+King wKing;
+King bKing;
 
 void gulpin(float x, float y, boolean shiny) {
   stroke(0);
@@ -468,9 +472,10 @@ void chessboard() {
 }
 
 void setup() {
+  pawnPromoting = false;
   turnNumber = 1;
-  King wKing = new King(new int[] {4, 7}, false);
-  King bKing = new King(new int[] {4, 0}, true);
+  wKing = new King(new int[] {4, 7}, false);
+  bKing = new King(new int[] {4, 0}, true);
   //Adding Kings and Queens
   white.add(wKing);
   black.add(bKing);
@@ -606,54 +611,110 @@ void mouseClicked() {
   System.out.println("TURN: " + turnNumber);
   int xpos = (int)mouseX/100;
   int ypos = (int)mouseY/100;
-  if (selectingPiece) {
-    System.out.println("Selecting");
-    if (turnNumber % 2 != 0) {
-      for (int i = 0; i < white.size(); i++) {
-        if (white.get(i).getPos()[0] == xpos && white.get(i).getPos()[1] == ypos) {
-          selectedPiece = white.get(i);
-          selectingPiece = false;
+  if(!pawnPromoting){
+    if (selectingPiece) {
+      System.out.println("Selecting");
+      if (turnNumber % 2 != 0) {
+        for (int i = 0; i < white.size(); i++) {
+          if (white.get(i).getPos()[0] == xpos && white.get(i).getPos()[1] == ypos) {
+            selectedPiece = white.get(i);
+            selectingPiece = false;
+          }
+        }
+      } else {
+        for (int i = 0; i < black.size(); i++) {
+          if (black.get(i).getPos()[0] == xpos && black.get(i).getPos()[1] == ypos) {
+            selectedPiece = black.get(i);
+            selectingPiece = false;
+          }
         }
       }
     } else {
-      for (int i = 0; i < black.size(); i++) {
-        if (black.get(i).getPos()[0] == xpos && black.get(i).getPos()[1] == ypos) {
-          selectedPiece = black.get(i);
-          selectingPiece = false;
+      System.out.println("Moving");
+      selectingPiece = true;
+      System.out.println(selectedPiece.getType());
+      if (selectedPiece.move(new int[]{xpos, ypos})) {
+        turnNumber++;
+        System.out.println("Successful move!");
+        System.out.println(Arrays.toString(selectedPiece.getPos()));
+      }
+      if(turnNumber % 2 == 0){
+        for(Piece p : black){
+          if(p.getType().equals("PAWN")){
+        //    if(p.getCanBeEnPassanted()) {System.out.println("pawn can be enpassanted");}
+            p.setCanBeEnPassanted(false);
+          }
         }
       }
-    }
-  } else {
-    System.out.println("Moving");
-    selectingPiece = true;
-    System.out.println(selectedPiece.getType());
-    if (selectedPiece.move(new int[]{xpos, ypos})) {
-      turnNumber++;
-      System.out.println("Successful move!");
-      System.out.println(Arrays.toString(selectedPiece.getPos()));
-    }
-    if(turnNumber % 2 == 0){
-      for(Piece p : black){
-        if(p.getType().equals("PAWN")){
-      //    if(p.getCanBeEnPassanted()) {System.out.println("pawn can be enpassanted");}
-          p.setCanBeEnPassanted(false);
+      else{
+        for(Piece p : white){
+          if(p.getType().equals("PAWN")){
+        //    if(p.getCanBeEnPassanted()) {System.out.println("pawn can be enpassanted");}
+            p.setCanBeEnPassanted(false);
+          }
         }
       }
-    }
-    else{
-      for(Piece p : white){
-        if(p.getType().equals("PAWN")){
-      //    if(p.getCanBeEnPassanted()) {System.out.println("pawn can be enpassanted");}
-          p.setCanBeEnPassanted(false);
-        }
-      }
+      pawnPromotionChecker();
     }
   }
+  
+  
 }
 
 boolean gameOver() {
   return false;
 }
 
-void pawnPromotion() {
+void keyPressed(){
+  if(pawnPromoting){
+    if(key == 'q' || key == 'k' || key == 'r' || key == 'b'){
+      if(pawnBeingPromoted.side()){
+        black.remove(pawnBeingPromoted);
+        if(key == 'q'){
+          black.add(new Queen(pawnBeingPromoted.getPos(), true, bKing));
+        }
+        else if(key == 'k'){
+          black.add(new Knight(pawnBeingPromoted.getPos(), true, bKing));
+        }
+        else if(key == 'r'){
+          black.add(new Rook(pawnBeingPromoted.getPos(), true, bKing));
+        }
+        else{
+          black.add(new Bishop(pawnBeingPromoted.getPos(), true, bKing));
+        }
+      }
+      else{
+         white.remove(pawnBeingPromoted);
+        if(key == 'q'){
+          white.add(new Queen(pawnBeingPromoted.getPos(), false, bKing));
+        }
+        else if(key == 'k'){
+          white.add(new Knight(pawnBeingPromoted.getPos(), false, bKing));
+        }
+        else if(key == 'r'){
+          white.add(new Rook(pawnBeingPromoted.getPos(), false, bKing));
+        }
+        else{
+          white.add(new Bishop(pawnBeingPromoted.getPos(), false, bKing));
+        }
+      }
+      pawnPromoting = false;
+    }
+  }
+  
+}
+
+void pawnPromotionChecker() {
+  for(Piece p: white){
+    if(p.getType().equals("PAWN") && p.getPos()[1] == 0){
+       pawnPromoting = true;
+       pawnBeingPromoted = p;
+    }
+  }
+  for(Piece p: black){
+    if(p.getType().equals("PAWN") && p.getPos()[1] == 7){
+       pawnPromoting = true;
+       pawnBeingPromoted = p;
+    }
+  }
 }
