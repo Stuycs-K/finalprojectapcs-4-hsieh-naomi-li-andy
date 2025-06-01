@@ -1,11 +1,112 @@
 public class Bishop extends Piece{
   
-  public Bishop(int[] position, boolean shinySide){
+  public Bishop(int[] position, boolean shinySide, King king){
     super.setAlive(true);
     super.setPos(position);
     super.setType("BISHOP");
     super.setCheck(false); // maybe change this to king only after everything works for runtime 
     super.setSide(shinySide);
+    super.setKing(king);
+  }
+  
+  public boolean legalMovesContains(int[] newPos){
+    if(!super.isAlive()){
+      return false;
+    }
+    System.out.println("running inherited");
+    int originalPosX = this.getPos()[0];
+    int originalPosY = this.getPos()[1];
+    int currPosX = originalPosX;
+    int currPosY = originalPosY;
+    boolean canContinue = true;
+    while (currPosX <= 7 && currPosY >= 0 && canContinue){
+      currPosX += 1;
+      currPosY -= 1;
+      for (int count = 0; count < pieces.size(); count++){
+        if (pieces.get(count).getPos()[0] == currPosX && pieces.get(count).getPos()[1] == currPosY){
+          canContinue = false;
+          if (pieces.get(count).side() != this.side()){
+            if(newPos[0] == currPosX && newPos[1] == currPosY){
+              return true;
+            }
+          }
+        }
+      }
+      if (canContinue){
+        if(newPos[0] == currPosX && newPos[1] == currPosY){
+              return true;
+            }
+      }
+    }
+    canContinue = true;
+    currPosX = originalPosX;
+    currPosY = originalPosY;
+    while (currPosX >= 0 && currPosY >= 0 && canContinue){
+      currPosX -= 1;
+      currPosY -= 1;
+      for (int count = 0; count < pieces.size(); count++){
+        if (pieces.get(count).getPos()[0] == currPosX && pieces.get(count).getPos()[1] == currPosY){
+          canContinue = false;
+          if (pieces.get(count).side() != this.side()){
+           if(newPos[0] == currPosX && newPos[1] == currPosY){
+              return true;
+            }
+          }
+        }
+      }
+      if (canContinue){
+        if(newPos[0] == currPosX && newPos[1] == currPosY){
+                return true;
+          }
+      }
+    }
+    canContinue = true;
+    currPosX = originalPosX;
+    currPosY = originalPosY;
+    while (currPosX <= 7 && currPosY <= 7 && canContinue){
+      currPosX += 1;
+      currPosY += 1;
+      for (int count = 0; count < pieces.size(); count++){
+        if (pieces.get(count).getPos()[0] == currPosX && pieces.get(count).getPos()[1] == currPosY){
+          canContinue = false;
+          if (pieces.get(count).side() != this.side()){
+            if(newPos[0] == currPosX && newPos[1] == currPosY){
+              return true;
+            }
+          }
+        }
+        
+      }
+      if (canContinue){
+        if(newPos[0] == currPosX && newPos[1] == currPosY){
+              return true;
+         }
+      }
+    }
+    canContinue = true;
+    currPosX = originalPosX;
+    currPosY = originalPosY;
+    while (currPosX >= 0 && currPosY <= 7 && canContinue){
+      currPosX -= 1;
+      currPosY += 1;
+      for (int count = 0; count < pieces.size(); count++){
+        if (pieces.get(count).getPos()[0] == currPosX && pieces.get(count).getPos()[1] == currPosY){
+          canContinue = false;
+          if (pieces.get(count).side() != this.side()){
+            if(newPos[0] == currPosX && newPos[1] == currPosY){
+              return true;
+            }
+          }
+        }
+        
+      }
+      if (canContinue){
+        if(newPos[0] == currPosX && newPos[1] == currPosY){
+              return true;
+        }
+      }
+    }
+    return false;
   }
   
   public ArrayList<int[]> getLegalMoves(){
@@ -114,7 +215,7 @@ public class Bishop extends Piece{
        }
       }
    }
-    return !pieceOnPos && this.reachable(newPos) && !super.getCheckStatus();
+    return !pieceOnPos && this.reachable(newPos) && super.checkChecker(newPos);
   }
   /*
   public String getType(){

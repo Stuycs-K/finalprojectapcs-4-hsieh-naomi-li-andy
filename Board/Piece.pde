@@ -41,18 +41,24 @@ public abstract class Piece{
   public boolean move(int[] newPos){
    // System.out.println("trying to move");
     boolean contains = false;
-    for(int[] i : this.getLegalMoves()){
+    if(getType().equals("KING")){
+      contains = this.canMove(newPos);
+    }
+    else{
+      for(int[] i : this.getLegalMoves()){
     //  System.out.println(Arrays.toString(i));
       if(i[0] == newPos[0] && i[1] == newPos[1]){
         contains = true;
       }
     }
+    }
+    
     System.out.println(Arrays.toString(newPos));
     if(contains){
       this.setPos(newPos);
       this.capture();
       System.out.println("moving in func");
- int[] kingPos = new int[2];
+     int[] kingPos = new int[2];
       if (this.side()){
         for (int i = 0; i < white.size(); i++){
           if (white.get(i).getType().equals("KING")){
@@ -86,6 +92,9 @@ public abstract class Piece{
     if(canMove(newPos) && other.getPos().equals(newPos) && other.side() != this.side()){
         other.setAlive(false);
     } 
+  }
+  public boolean legalMovesContains(int[] newPos){
+    return false;
   }
   
   public abstract boolean canMove(int[] newPos);
@@ -169,6 +178,29 @@ public abstract class Piece{
   
   public Piece getCheckingPiece(){
       return checkingPiece;
+  }
+  
+    public boolean canCaptureB(Piece other){
+    //System.out.println("calling canCapture for " + this.getType());
+    return this.reachable(other.getPos());
+    }
+    public boolean checkChecker(int[] newPos){
+     if(this.getCheckStatus()){
+        int[] opos = this.getPos();
+        this.setPos(newPos);
+        if(newPos.equals(this.getCheckingPiece().getPos())){
+           this.setPos(opos);
+           return true;
+        }
+        else if(!this.getCheckingPiece().canCaptureB(this.getKing())){
+          this.setPos(opos);
+          return true;
+        }
+        else{
+          return false;
+        }
+    }
+    return true;
   }
   
   

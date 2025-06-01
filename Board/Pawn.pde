@@ -1,26 +1,32 @@
 public class Pawn extends Piece {
   private boolean firstMove;
 
-  public Pawn(int[] position, boolean shinySide) {
+ public Pawn(int[] position, boolean shinySide, King king) {
     super.setAlive(true);
     super.setPos(position);
     super.setType("PAWN");
     super.setCheck(false);
     super.setSide(shinySide);
+    super.setKing(king);
     this.firstMove = true;
   }
+
 
   public void capture() { // needs to be corrected (edit: seems to work for pawn capturing)
     if (this.side()) {
       for (int count = 0; count < white.size(); count++) {
         if (white.get(count).getPos()[0] == this.getPos()[0] && white.get(count).getPos()[1] == this.getPos()[1]) {
+          Piece temp = white.get(count);
           white.remove(count);
+          pieces.remove(temp);
         }
       }
     } else {
       for (int count = 0; count < black.size(); count++) {
         if (black.get(count).getPos()[0] == this.getPos()[0] && black.get(count).getPos()[1] == this.getPos()[1]) {
+          Piece temp = black.get(count);
           black.remove(count);
+          pieces.remove(temp);
         }
       }
     }
@@ -71,6 +77,21 @@ public class Pawn extends Piece {
         }
       }
       return true;
+    }
+    return false;
+  }
+  
+  public boolean legalMovesContains(int[] newPos){
+    System.out.println("running inherited for pawn");
+    if(super.side()){
+      if(this.getPos()[0]-1 == newPos[0] && this.getPos()[1]+1 == newPos[1] || this.getPos()[0]+1 == newPos[0] && this.getPos()[1]+1 == newPos[1]){
+         return true && super.isAlive();
+      }
+    }
+    else{
+      if(this.getPos()[0]-1 == newPos[0] && this.getPos()[1]-1 == newPos[1] || this.getPos()[0]+1 == newPos[0] && this.getPos()[1]-1 == newPos[1]){
+         return true && super.isAlive();
+      }
     }
     return false;
   }
@@ -155,6 +176,8 @@ public class Pawn extends Piece {
     }
     return !pieceOnPos && !super.getCheckStatus();
   }
+  
+  
 
 
 /*
