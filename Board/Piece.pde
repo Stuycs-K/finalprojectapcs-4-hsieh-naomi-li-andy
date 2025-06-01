@@ -7,7 +7,7 @@ public abstract class Piece{
   private King king;
   private Piece checkingPiece; 
   
-  public void capture(){ // needs to be corrected (edit: seems to work for pawn capturing)
+  public Piece capture(){ // needs to be corrected (edit: seems to work for pawn capturing)
     if (this.side()){
       for (int count = 0; count < white.size(); count++){
         if (white.get(count).getPos()[0] == this.getPos()[0] && white.get(count).getPos()[1] == this.getPos()[1]){
@@ -17,7 +17,7 @@ public abstract class Piece{
       for (int count = 0; count < pieces.size(); count++){
         if (pieces.get(count).getPos()[0] == this.getPos()[0] && pieces.get(count).getPos()[1] == this.getPos()[1]){
           if (pieces.get(count).side() == false){
-            pieces.remove(count);
+            return pieces.remove(count);
           }
         }
       }
@@ -31,11 +31,12 @@ public abstract class Piece{
       for (int count = 0; count < pieces.size(); count++){
         if (pieces.get(count).getPos()[0] == this.getPos()[0] && pieces.get(count).getPos()[1] == this.getPos()[1]){
           if (pieces.get(count).side() == true){
-            pieces.remove(count);
+            return pieces.remove(count);
           }
         }
       }
     }
+    return null;
   }
 
   public boolean move(int[] newPos){
@@ -64,8 +65,10 @@ public abstract class Piece{
       }
       int[] originalPos = this.getPos();
       this.setPos(newPos);
+      Piece original = this.capture();
+      
       if (this.side()){
-        if (!Board.blackInCheck){
+        if (true){
           int[] kingPos = new int[] {9, 9};
           try{
             kingPos = black.get(1).getKing().getPos();
@@ -74,14 +77,18 @@ public abstract class Piece{
           for (int i = 0; i < white.size(); i++){
             if (white.get(i).canCapture(kingPos)){
               System.out.println("illegal");
+              if (original != null){
+                white.add(original);
+              }
               this.setPos(originalPos);
               return false;
             }
           }
         }
       }
+      
       else{
-        if (!Board.whiteInCheck){
+        if (true){
           int[] kingPos = new int[] {9, 9};
           try{
             kingPos = white.get(1).getKing().getPos();
@@ -89,8 +96,10 @@ public abstract class Piece{
           }
           for (int i = 0; i < black.size(); i++){
             if (black.get(i).canCapture(kingPos)){
-                            System.out.println("illegal");
-
+              System.out.println("illegal");
+              if (original != null){
+                black.add(original);
+              }
               this.setPos(originalPos);
               return false;
             }
@@ -100,7 +109,7 @@ public abstract class Piece{
       
       if(!this.getType().equals("KING")){
       }
-      this.capture();
+//      this.capture();
       System.out.println("moving in func");
       int[] kingPos = new int[] {9, 9};
       

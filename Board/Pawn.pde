@@ -10,26 +10,27 @@ public class Pawn extends Piece {
     super.setKing(king);
     this.firstMove = true;
   }
-
-  public void capture() { // needs to be corrected (edit: seems to work for pawn capturing)
+/*
+  public Piece capture() { // needs to be corrected (edit: seems to work for pawn capturing)
     if (this.side()) {
       for (int count = 0; count < white.size(); count++) {
         if (white.get(count).getPos()[0] == this.getPos()[0] && white.get(count).getPos()[1] == this.getPos()[1]) {
           Piece temp = white.get(count);
-          white.remove(count);
           pieces.remove(temp);
+          return white.remove(count);
         }
       }
     } else {
       for (int count = 0; count < black.size(); count++) {
         if (black.get(count).getPos()[0] == this.getPos()[0] && black.get(count).getPos()[1] == this.getPos()[1]) {
           Piece temp = black.get(count);
-          black.remove(count);
           pieces.remove(temp);
+          return black.remove(count);
         }
       }
     }
-  }
+    return null;
+  }*/
 
   public boolean move(int[] newPos) {
    System.out.println("white:"+Board.whiteInCheck);
@@ -45,8 +46,9 @@ public class Pawn extends Piece {
     if (contains) {
       int[] originalPos = this.getPos();
       this.setPos(newPos);
+      Piece original = this.capture();
       if (this.side()){
-        if (!Board.blackInCheck){
+        if (true){
           int[] kingPos = new int[] {9, 9};
           try{
             kingPos = black.get(1).getKing().getPos();
@@ -55,14 +57,18 @@ public class Pawn extends Piece {
           for (int i = 0; i < white.size(); i++){
             if (white.get(i).canCapture(kingPos)){
               System.out.println("illegal");
+              if (original != null){
+                white.add(original);
+              }
               this.setPos(originalPos);
               return false;
             }
           }
         }
       }
+      
       else{
-        if (!Board.whiteInCheck){
+        if (true){
           int[] kingPos = new int[] {9, 9};
           try{
             kingPos = white.get(1).getKing().getPos();
@@ -70,15 +76,16 @@ public class Pawn extends Piece {
           }
           for (int i = 0; i < black.size(); i++){
             if (black.get(i).canCapture(kingPos)){
-                            System.out.println("illegal");
-
+              System.out.println("illegal");
+              if (original != null){
+                black.add(original);
+              }
               this.setPos(originalPos);
               return false;
             }
           }
         }
       }
-      this.capture();
       
       firstMove = false;
   //    System.out.println("moving in func");
