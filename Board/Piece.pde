@@ -40,6 +40,8 @@ public abstract class Piece{
 
   public boolean move(int[] newPos){
    // System.out.println("trying to move");
+   System.out.println("white:"+Board.whiteInCheck);
+   System.out.println("black:"+Board.blackInCheck);
     boolean contains = false;
     if(getType().equals("KING")){
       contains = this.canMove(newPos);
@@ -54,40 +56,76 @@ public abstract class Piece{
     }
     
     System.out.println(Arrays.toString(newPos));
+    
     if(contains){
       if(getCheckStatus()){
         King temp = king;
         applyCheck(king, false);
       }
+      int[] originalPos = this.getPos();
       this.setPos(newPos);
+      if (this.side()){
+        if (!Board.blackInCheck){
+          int[] kingPos = new int[] {9, 9};
+          try{
+            kingPos = black.get(1).getKing().getPos();
+          }catch (NullPointerException e){
+          }
+          for (int i = 0; i < white.size(); i++){
+            if (white.get(i).canCapture(kingPos)){
+              System.out.println("illegal");
+              this.setPos(originalPos);
+              return false;
+            }
+          }
+        }
+      }
+      else{
+        if (!Board.whiteInCheck){
+          int[] kingPos = new int[] {9, 9};
+          try{
+            kingPos = white.get(1).getKing().getPos();
+          }catch (NullPointerException e){
+          }
+          for (int i = 0; i < black.size(); i++){
+            if (black.get(i).canCapture(kingPos)){
+                            System.out.println("illegal");
+
+              this.setPos(originalPos);
+              return false;
+            }
+          }
+        }
+      }
+      
       if(!this.getType().equals("KING")){
-        
       }
       this.capture();
       System.out.println("moving in func");
-      int[] kingPos = new int[2];
+      int[] kingPos = new int[] {9, 9};
       
       if (this.side()){
         try{
-          kingPos = white.get(0).getKing().getPos();
-        }catch (NullPointerException e){
           kingPos = white.get(1).getKing().getPos();
+        }catch (NullPointerException e){
+          
         }
         for (int i = 0; i < black.size(); i++){
           if (black.get(i).canCapture(kingPos)){
             System.out.println("check");
+            Board.whiteInCheck = true;
           }
         }
       }
       else{
         try{
-          kingPos = black.get(0).getKing().getPos();
-        }catch (NullPointerException e){
           kingPos = black.get(1).getKing().getPos();
+        }catch (NullPointerException e){
         }
         for (int i = 0; i < white.size(); i++){
           if (white.get(i).canCapture(kingPos)){
             System.out.println("check");
+            Board.blackInCheck = true;
           }
         }
       }
