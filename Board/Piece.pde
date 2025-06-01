@@ -40,21 +40,35 @@ public abstract class Piece{
 
   public boolean move(int[] newPos){
    // System.out.println("trying to move");
-    boolean contains = false;
-    for(int[] i : this.getLegalMoves()){
-    //  System.out.println(Arrays.toString(i));
-      if(i[0] == newPos[0] && i[1] == newPos[1]){
-        contains = true;
+   if (this.side()){
+      boolean contains = false;
+      for(int[] i : this.getLegalMoves()){
+      //  System.out.println(Arrays.toString(i));
+        if(i[0] == newPos[0] && i[1] == newPos[1]){
+          contains = true;
+        }
       }
-    }
-    System.out.println(Arrays.toString(newPos));
-    if(contains){
-      this.setPos(newPos);
-      this.capture();
-      System.out.println("moving in func");
-      return true;
-    }
-    return false;
+      System.out.println(Arrays.toString(newPos));
+      if(contains){
+        this.setPos(newPos);
+        this.capture();
+        System.out.println("moving in func");
+        int[] kingPos = new int[2];
+        for (int i = 0; i < white.size(); i++){
+          if (white.get(i).getType().equals("KING")){
+            kingPos = white.get(i).getPos();
+          }
+        }
+        for (int i = 0; i < black.size(); i++){
+         // if (blac
+        }
+        return true;
+      }
+      return false;
+   }
+   else{
+     return true;
+   }
   }
   
   public void capture(Piece other, int[] newPos){
@@ -65,17 +79,15 @@ public abstract class Piece{
   
   public abstract boolean canMove(int[] newPos);
   
-  public boolean canCapture(Piece other){
+  public boolean canCapture(int[] pos){
     //System.out.println("calling canCapture for " + this.getType());
-    return this.reachable(other.getPos());
+    ArrayList<int[]> legalMoves = this.getLegalMoves();
+    return legalMoves.contains(pos);
   }
   
   
   public void applyCheck(King other){
-    if(this.canCapture(other)){
-       other.applyCheck();
-       other.setCheckingPiece(this);
-    }
+
   }
   
   public abstract boolean reachable(int[] newPos);

@@ -1,10 +1,12 @@
 public class King extends Piece{
+  private String type;
+  private boolean inCheck;
   private boolean canCastle;
   
   public King(int[] position, boolean shinySide){
     super.setAlive(true);
     super.setPos(position);
-    super.setType("KING");
+    type = "KING";
     super.setCheck(false);
     super.setSide(shinySide);
     canCastle = true;
@@ -38,51 +40,38 @@ public class King extends Piece{
   }
   
   public boolean canMove(int[] newPos){
-    boolean willBeCaptured = false;
-    boolean pieceOnPos = false;
-    int[] temp = new int[2];
-    for(int i = 0; i < Board.white.size() + Board.black.size() && !willBeCaptured; i++){
-      temp = Board.pieces.get(i).getPos();
-      if(temp[0] == newPos[0] && temp[1] == newPos[1] && (Board.pieces.get(i).side() == this.side())){
-        pieceOnPos = true;
-      }
-      if(Board.pieces.get(i).side() != super.side() && Board.pieces.get(i).canCapture(this)){
-        willBeCaptured = true;
-        System.out.println("will be captured");
-      }
-    }
-    return !pieceOnPos && !willBeCaptured && this.reachable(newPos); 
+    return true;
   }
   
  
   
+  public void applyCheck(King other){
+    //what's the difference between this and the other?
+  }
   
   public void castle(){}
   
   public void applyCheck(){
     if (this.side()){
       for (int count = 0; count < Board.black.size(); count++){
-        Piece temp = black.get(count);
-        temp.setCheck(true);
-        temp.setKing(this);
-        temp.setCheckingPiece(super.getCheckingPiece());
+        black.get(count).setCheck(true);
       }
     }
     else{
       for (int count = 0; count < Board.white.size(); count++){
-        Piece temp = white.get(count);
-        temp.setCheck(true);
-        temp.setKing(this);
-        temp.setCheckingPiece(super.getCheckingPiece());
+        white.get(count).setCheck(true);
       }
     }
   }
   
-  /* 
+   public void setCheck(boolean newValue){
+    this.inCheck = newValue;
+  }
+  
   public String getType(){
     return "KING";
   }
- 
+ /* 
   public int[] getPos(){
       return position;
   }
