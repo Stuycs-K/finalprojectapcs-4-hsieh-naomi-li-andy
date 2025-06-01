@@ -55,15 +55,23 @@ public abstract class Piece{
     
     System.out.println(Arrays.toString(newPos));
     if(contains){
+      if(getCheckStatus()){
+        King temp = king;
+        applyCheck(king, false);
+      }
       this.setPos(newPos);
+      if(!this.getType().equals("KING")){
+        
+      }
       this.capture();
       System.out.println("moving in func");
-     int[] kingPos = new int[2];
+      int[] kingPos = new int[2];
+      
       if (this.side()){
-        for (int i = 0; i < white.size(); i++){
-          if (white.get(i).getType().equals("KING")){
-            kingPos = white.get(i).getPos();
-          }
+        try{
+          kingPos = white.get(0).getKing().getPos();
+        }catch (NullPointerException e){
+          kingPos = white.get(1).getKing().getPos();
         }
         for (int i = 0; i < black.size(); i++){
           if (black.get(i).canCapture(kingPos)){
@@ -72,10 +80,10 @@ public abstract class Piece{
         }
       }
       else{
-        for (int i = 0; i < black.size(); i++){
-          if (black.get(i).getType().equals("KING")){
-            kingPos = black.get(i).getPos();
-          }
+        try{
+          kingPos = black.get(0).getKing().getPos();
+        }catch (NullPointerException e){
+          kingPos = black.get(1).getKing().getPos();
         }
         for (int i = 0; i < white.size(); i++){
           if (white.get(i).canCapture(kingPos)){
@@ -83,6 +91,7 @@ public abstract class Piece{
           }
         }
       }
+      
       return true;
     }
     return false;
@@ -110,13 +119,18 @@ public abstract class Piece{
     return false;
   }
   
- /* 
-  public void applyCheck(King other){
+  public boolean canCapture(Piece other){
+    //System.out.println("calling canCapture for " + this.getType());
+    return this.reachable(other.getPos());
+  }
+  
+  
+  public void applyCheck(King other, boolean checkStatus){
     if(this.canCapture(other)){
-       other.applyCheck();
+       other.applyCheck(checkStatus);
        other.setCheckingPiece(this);
     }
-  }*/
+  }
   
   public abstract boolean reachable(int[] newPos);
   
@@ -168,7 +182,7 @@ public abstract class Piece{
       this.king = king;
   }
   
-  public King getKing(){
+  public Piece getKing(){
       return king;
   }
   
@@ -180,11 +194,7 @@ public abstract class Piece{
       return checkingPiece;
   }
   
-    public boolean canCaptureB(Piece other){
-    //System.out.println("calling canCapture for " + this.getType());
-    return this.reachable(other.getPos());
-    }
-    public boolean checkChecker(int[] newPos){
+  public boolean checkChecker(int[] newPos){
      if(this.getCheckStatus()){
         int[] opos = this.getPos();
         this.setPos(newPos);
@@ -192,7 +202,7 @@ public abstract class Piece{
            this.setPos(opos);
            return true;
         }
-        else if(!this.getCheckingPiece().canCaptureB(this.getKing())){
+        else if(!this.getCheckingPiece().canCapture(this.getKing())){
           this.setPos(opos);
           return true;
         }
@@ -202,6 +212,5 @@ public abstract class Piece{
     }
     return true;
   }
-  
   
 }

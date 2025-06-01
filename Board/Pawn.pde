@@ -1,7 +1,7 @@
 public class Pawn extends Piece {
   private boolean firstMove;
 
- public Pawn(int[] position, boolean shinySide, King king) {
+  public Pawn(int[] position, boolean shinySide, King king) {
     super.setAlive(true);
     super.setPos(position);
     super.setType("PAWN");
@@ -10,7 +10,6 @@ public class Pawn extends Piece {
     super.setKing(king);
     this.firstMove = true;
   }
-
 
   public void capture() { // needs to be corrected (edit: seems to work for pawn capturing)
     if (this.side()) {
@@ -49,31 +48,6 @@ public class Pawn extends Piece {
       for (int i = 0; i < Board.white.size() + Board.black.size(); i++) {
         if (pieces.get(i).getPos().equals(newPos)) {
           capture(pieces.get(i), newPos);
-        }
-      }
-       int[] kingPos = new int[2];
-      if (this.side()){
-        for (int i = 0; i < white.size(); i++){
-          if (white.get(i).getType().equals("KING")){
-            kingPos = white.get(i).getPos();
-          }
-        }
-        for (int i = 0; i < black.size(); i++){
-          if (black.get(i).canCapture(kingPos)){
-            System.out.println("check");
-          }
-        }
-      }
-      else{
-        for (int i = 0; i < black.size(); i++){
-          if (black.get(i).getType().equals("KING")){
-            kingPos = black.get(i).getPos();
-          }
-        }
-        for (int i = 0; i < white.size(); i++){
-          if (white.get(i).canCapture(kingPos)){
-            System.out.println("check");
-          }
         }
       }
       return true;
@@ -159,7 +133,7 @@ public class Pawn extends Piece {
         }
       }
     }
-    return (legalMove && this.canMove(newPos));
+    return (legalMove && this.canMove(newPos) && super.checkChecker(newPos));
   }
 
   public boolean canMove(int[] newPos) {
@@ -174,7 +148,7 @@ public class Pawn extends Piece {
         pieceOnPos = true;
       }
     }
-    return !pieceOnPos && !super.getCheckStatus();
+    return !pieceOnPos;
   }
   
   
