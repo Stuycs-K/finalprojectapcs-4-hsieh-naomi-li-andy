@@ -7,6 +7,7 @@ static ArrayList<Piece> black = new ArrayList<Piece>(0);
 static ArrayList<int[]> positions = new ArrayList<int[]>(0);
 static boolean blackInCheck = false;
 static boolean whiteInCheck = false;
+static boolean checkmated = false;
 static int turnNumber = 1;
 
 boolean selectingPiece = true;
@@ -453,6 +454,7 @@ void draw() {
 }
 
 void mouseClicked() {
+  if (!checkmated){
   int xpos = (int)mouseX/100;
   int ypos = (int)mouseY/100;
   if (selectingPiece) {
@@ -478,14 +480,12 @@ void mouseClicked() {
     System.out.println(selectedPiece.getType());
     if(selectedPiece.move(new int[]{xpos, ypos})) {
       turnNumber++;
-      System.out.println("Successful move!");
-      System.out.println(Arrays.toString(selectedPiece.getPos()));
     }
   }
-}
+}}
 
 boolean gameOver() {
-  return false;
+  return checkmated;
 }
 
 void pawnPromotion() {
