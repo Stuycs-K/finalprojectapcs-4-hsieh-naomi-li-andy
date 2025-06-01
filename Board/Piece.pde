@@ -41,12 +41,18 @@ public abstract class Piece{
   public boolean move(int[] newPos){
    // System.out.println("trying to move");
     boolean contains = false;
-    for(int[] i : this.getLegalMoves()){
+    if(getType().equals("KING")){
+      contains = this.canMove(newPos);
+    }
+    else{
+      for(int[] i : this.getLegalMoves()){
     //  System.out.println(Arrays.toString(i));
       if(i[0] == newPos[0] && i[1] == newPos[1]){
         contains = true;
       }
     }
+    }
+    
     System.out.println(Arrays.toString(newPos));
     if(contains){
       if(getCheckStatus()){
@@ -68,6 +74,9 @@ public abstract class Piece{
     if(canMove(newPos) && other.getPos().equals(newPos) && other.side() != this.side()){
         other.setAlive(false);
     } 
+  }
+  public boolean legalMovesContains(int[] newPos){
+    return false;
   }
   
   public abstract boolean canMove(int[] newPos);

@@ -24,6 +24,9 @@ public class King extends Piece{
   }
   
   public boolean reachable(int[] newPos){
+    if(!super.isAlive()){
+      return false;
+    }
     for(int i = -1; i <= 1; i++){
       for(int j = -1; j <= 1; j++){
         if(!(i == 0 && j == 0) && newPos[0] == super.getPos()[0] + i && newPos[1] == super.getPos()[1] + j){
@@ -38,20 +41,30 @@ public class King extends Piece{
   }
   
   public boolean canMove(int[] newPos){
-    boolean willBeCaptured = false;
-    boolean pieceOnPos = false;
-    int[] temp = new int[2];
-    for(int i = 0; i < Board.white.size() + Board.black.size() && !willBeCaptured; i++){
-      temp = Board.pieces.get(i).getPos();
-      if(temp[0] == newPos[0] && temp[1] == newPos[1] && (Board.pieces.get(i).side() == this.side())){
-        pieceOnPos = true;
+    Piece temp;
+    for(int i = 0; i < Board.white.size() + Board.black.size(); i++){
+      temp = Board.pieces.get(i);
+      if(temp.isAlive() && temp.getPos()[0] == newPos[0] && temp.getPos()[1] == newPos[1] && (Board.pieces.get(i).side() == this.side())){
+        return false;
       }
-      if(Board.pieces.get(i).side() != super.side() && Board.pieces.get(i).getLegalMoves().contains(newPos)){
-        willBeCaptured = true;
-        System.out.println("will be captured");
+      if(temp.side() != super.side() && temp.isAlive()){
+        if(temp.getType().equals("KING") || temp.getType().equals("KNIGHT")){
+            if(temp.reachable(newPos)){
+              System.out.println("will be captured by " + temp.getType());
+              return false;
+              
+            }
+         }
+        else{
+            if(temp.legalMovesContains(newPos)){
+              System.out.println("will be captured by " + temp.getType());
+              return false;
+            }
+        }
+        
       }
     }
-    return !pieceOnPos && !willBeCaptured && this.reachable(newPos); 
+    return this.reachable(newPos); 
   }
   
  

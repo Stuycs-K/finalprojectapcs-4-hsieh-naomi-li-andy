@@ -35,7 +35,7 @@ public class Knight extends Piece{
             || (newPos[1] == super.getPos()[1] + 2 && newPos[0] == super.getPos()[0] - 1)
             || (newPos[1] == super.getPos()[1] - 2 && newPos[0] == super.getPos()[0] - 1); 
     legalMove = legalMove && super.checkChecker(newPos);
-    return legalMove;
+    return legalMove && super.isAlive();
   }
   
   public boolean canMove(int[] newPos){
