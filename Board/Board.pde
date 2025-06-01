@@ -47,6 +47,59 @@ void gulpin(float x, float y, boolean shiny) {
   popMatrix();
 }
 
+void electrode(float x, float y, boolean shiny){
+  stroke(0);
+  if (shiny) {
+    fill(50, 130, 200);
+  }
+  else {
+    fill(255, 0, 0);
+  }
+  circle(x, y, 64);
+  if (shiny) {
+    fill(255, 240, 255);
+    stroke(255, 240, 255);
+  }
+  else {
+    fill(240, 240, 240);
+    stroke(255, 240, 255);
+  }
+  arc(x, y, 59, 59, PI, 2*PI);
+  ellipse(x, y, 59, 13);
+  arc(x+2, y+10, 30, 23, 0, PI);
+  if (shiny) {
+    stroke(50, 130, 200);
+    fill(50, 130, 200);
+  }
+  else {
+    stroke(255, 0, 0);
+    fill(255, 0, 0);
+  }
+  ellipse(x+2, y+10, 30, 5);
+  if (shiny) {
+    fill(255, 240, 255);
+    stroke(255, 240, 255);
+  }
+  else {
+    fill(240, 240, 240);
+    stroke(255, 240, 255);
+  }
+  ellipse(x, y, 59, 13);
+  stroke(0);
+  strokeWeight(0.5);
+  line(x, y+21.5, x+1, y+19);
+  line(x+7, y+21.5, x+9, y+17);
+  strokeWeight(1);
+  fill(0);
+  ellipse(x-7, y-3, 2, 6);
+  ellipse(x+13, y-3, 2, 6);
+  line(x-13, y-10, x-5, y-5);
+  line(x+19, y-10, x+11, y-5);
+  noFill();
+  strokeWeight(2);
+  circle(x, y, 64);
+}
+
 void solosis(float x, float y, boolean shiny) {
   stroke(0);
   if (shiny) {
@@ -205,7 +258,7 @@ void spheal(float x, float y, boolean shiny) {
   }
   rect(x-22, y-17, 45, 13, 28);
   rect(x-5, y-5, 5, 4, 28);
-  stroke(0);
+  stroke(255);
   fill(255);
   triangle(x-16, y+5, x-10, y+5, x-13, y+10);
   triangle(x+16, y+5, x+10, y+5, x+13, y+10);
@@ -461,16 +514,33 @@ void setup() {
 
     if (white.get(incrementer).getType().equals("PAWN")) {
       ditto(white.get(incrementer).getPos()[0] * 100 + 50, height - 150, white.get(incrementer).side());
-    } else {
+    }
+    else if(white.get(incrementer).getType().equals("BISHOP")){
       piplup(white.get(incrementer).getPos()[0] * 100 + 50, height - 50, white.get(incrementer).side());
+    }
+    else if(white.get(incrementer).getType().equals("KNIGHT")){
+      solosis(white.get(incrementer).getPos()[0] * 100 + 50, height - 50, white.get(incrementer).side());
+    }
+    else if(white.get(incrementer).getType().equals("ROOK")){
+      electrode(white.get(incrementer).getPos()[0] * 100 + 50, height - 50, white.get(incrementer).side());
+    }
+    else if(white.get(incrementer).getType().equals("QUEEN")){
+      gulpin(white.get(incrementer).getPos()[0] * 100 + 50, height - 50, white.get(incrementer).side());
+    }
+    else{
+      spheal(white.get(incrementer).getPos()[0] * 100 + 50, height - 50, white.get(incrementer).side());
     }
   }
   // SETUP OF BLACK PIECES
   for (int incrementer = 0; incrementer < black.size(); incrementer++) {
     if (black.get(incrementer).getType().equals("PAWN")) {
       ditto(black.get(incrementer).getPos()[0] * 100 + 50, 150, black.get(incrementer).side());
-    } else {
+    }
+    else if (black.get(incrementer).getType().equals("BISHOP")){
       piplup(black.get(incrementer).getPos()[0] * 100 + 50, 50, black.get(incrementer).side());
+    }
+    else if(black.get(incrementer).getType().equals("KNIGHT")){
+      solosis
     }
   }
 
@@ -479,10 +549,10 @@ void setup() {
     pieces.add(white.get(count));
   }
   //  rowlet(150, 50);
-  gulpin(750, 750, false);
+  /* gulpin(750, 750, false);
   gulpin(650, 750, true);
   solosis(650, 650, true);
-  solosis(750, 650, false);
+  solosis(750, 650, false);*/
 }
 
 void draw() {
@@ -509,10 +579,12 @@ void draw() {
       }
     }
   }
-  gulpin(750, 750, false);
+/*  gulpin(750, 750, false);
   gulpin(650, 750, true);
   solosis(650, 650, true);
   solosis(750, 650, false);
+  electrode(650, 550, true);
+  electrode(750, 550, false);*/
 }
 
 void mouseClicked() {
