@@ -603,6 +603,7 @@ void draw() {
 }
 
 void mouseClicked() {
+  System.out.println("TURN: " + turnNumber);
   int xpos = (int)mouseX/100;
   int ypos = (int)mouseY/100;
   if (selectingPiece) {
@@ -630,6 +631,22 @@ void mouseClicked() {
       turnNumber++;
       System.out.println("Successful move!");
       System.out.println(Arrays.toString(selectedPiece.getPos()));
+    }
+    if(turnNumber % 2 == 0){
+      for(Piece p : black){
+        if(p.getType().equals("PAWN")){
+      //    if(p.getCanBeEnPassanted()) {System.out.println("pawn can be enpassanted");}
+          p.setCanBeEnPassanted(false);
+        }
+      }
+    }
+    else{
+      for(Piece p : white){
+        if(p.getType().equals("PAWN")){
+      //    if(p.getCanBeEnPassanted()) {System.out.println("pawn can be enpassanted");}
+          p.setCanBeEnPassanted(false);
+        }
+      }
     }
   }
 }
