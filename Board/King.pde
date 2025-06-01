@@ -46,7 +46,7 @@ public class King extends Piece{
       if(temp[0] == newPos[0] && temp[1] == newPos[1] && (Board.pieces.get(i).side() == this.side())){
         pieceOnPos = true;
       }
-      if(Board.pieces.get(i).side() != super.side() && Board.pieces.get(i).getLegalMoves().contains(newPos)){
+      if(Board.pieces.get(i).side() != super.side() && Board.pieces.get(i).canCapture(this)){
         willBeCaptured = true;
         System.out.println("will be captured");
       }
@@ -59,11 +59,11 @@ public class King extends Piece{
   
   public void castle(){}
   
-  public void applyCheck(boolean checkStatus){
+  public void applyCheck(){
     if (this.side()){
       for (int count = 0; count < Board.black.size(); count++){
         Piece temp = black.get(count);
-        temp.setCheck(checkStatus);
+        temp.setCheck(true);
         temp.setKing(this);
         temp.setCheckingPiece(super.getCheckingPiece());
       }
@@ -71,7 +71,7 @@ public class King extends Piece{
     else{
       for (int count = 0; count < Board.white.size(); count++){
         Piece temp = white.get(count);
-        temp.setCheck(checkStatus);
+        temp.setCheck(true);
         temp.setKing(this);
         temp.setCheckingPiece(super.getCheckingPiece());
       }

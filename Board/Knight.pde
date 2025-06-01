@@ -1,12 +1,11 @@
 public class Knight extends Piece{
   
-  public Knight(int[] position, boolean shinySide, King king){
+  public Knight(int[] position, boolean shinySide){
     super.setAlive(true);
     super.setPos(position);
     super.setType("KNIGHT");
     super.setCheck(false);
     super.setSide(shinySide);
-    super.setKing(king);
   }
   
   public ArrayList<int[]> getLegalMoves(){
@@ -34,7 +33,21 @@ public class Knight extends Piece{
             || (newPos[1] == super.getPos()[1] - 2 && newPos[0] == super.getPos()[0] + 1)
             || (newPos[1] == super.getPos()[1] + 2 && newPos[0] == super.getPos()[0] - 1)
             || (newPos[1] == super.getPos()[1] - 2 && newPos[0] == super.getPos()[0] - 1); 
-    legalMove = legalMove && super.checkChecker(newPos);
+    if(super.getCheckStatus()){
+        int[] opos = this.getPos();
+        this.setPos(newPos);
+        if(newPos.equals(super.getCheckingPiece().getPos())){
+           this.setPos(opos);
+           return true;
+        }
+        else if(!super.getCheckingPiece().canCapture(super.getKing()) && legalMove){
+          this.setPos(opos);
+          return true;
+        }
+        else{
+          return false;
+        }
+    }
     return legalMove;
   }
   

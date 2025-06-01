@@ -1,12 +1,11 @@
 public class Queen extends Piece{
   
-  public Queen(int[] position, boolean shinySide, King king){
+  public Queen(int[] position, boolean shinySide){
     super.setAlive(true);
     super.setPos(position);
     super.setType("QUEEN");
     super.setCheck(false);
     super.setSide(shinySide);
-    super.setKing(king);
   }
   
   
@@ -176,7 +175,7 @@ public class Queen extends Piece{
        pieceOnPos = true;
      }
     }
-    return !pieceOnPos && this.reachable(newPos) && super.checkChecker(newPos);
+    return !pieceOnPos && this.reachable(newPos) && !super.getCheckStatus();
   }
   /*
   public String getType(){

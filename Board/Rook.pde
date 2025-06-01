@@ -1,33 +1,13 @@
 public class Rook extends Piece{
   private boolean canCastle;
   
-  public Rook(int[] position, boolean shinySide, King king){
+  public Rook(int[] position, boolean shinySide){
     super.setAlive(true);
-    super.setPos(position);
+   super.setPos(position);
     super.setType("ROOK");
     super.setCheck(false);
     super.setSide(shinySide);
-    super.setKing(king);
     canCastle = true;
-  }
-  public boolean move(int[] newPos){
-   // System.out.println("trying to move");
-    boolean contains = false;
-    for(int[] i : this.getLegalMoves()){
-    //  System.out.println(Arrays.toString(i));
-      if(i[0] == newPos[0] && i[1] == newPos[1]){
-        contains = true;
-      }
-    }
-    System.out.println(Arrays.toString(newPos));
-    if(contains){
-      this.setPos(newPos);
-      this.capture();
-      System.out.println("moving in func");
-      this.canCastle = false;
-      return true;
-    }
-    return false;
   }
   
   public ArrayList<int[]> getLegalMoves(){
@@ -121,7 +101,7 @@ public class Rook extends Piece{
        pieceOnPos = true;
      }
     }
-    return !pieceOnPos && this.reachable(newPos) && super.checkChecker(newPos);
+    return !pieceOnPos && this.reachable(newPos) && !super.getCheckStatus();
   }
   /*
   public String getType(){
