@@ -122,6 +122,7 @@ public class Pawn extends Piece {
   //    System.out.println("moving in func");
 
       
+         System.out.println(this.namingConvention() + files[this.getPos()[0]] + this.getPos()[1]);
 
         try{
           kingPos = white.get(1).getKing().getPos();
@@ -191,6 +192,8 @@ public class Pawn extends Piece {
             Board.blackInCheck = true;
             }
          }
+                  System.out.println(this.namingConvention() + files[this.getPos()[0]] + this.getPos()[1]);
+
         int incrementer = 0;
         boolean isItOver = true;
         while (isItOver && incrementer < black.size()){ // isItOver checks if opposing side can make a move next turn (true means no); loops through all of opposing pieces
