@@ -670,32 +670,50 @@ void keyPressed(){
     if(key == 'q' || key == 'k' || key == 'r' || key == 'b'){
       if(pawnBeingPromoted.side()){
         black.remove(pawnBeingPromoted);
+        pieces.remove(pawnBeingPromoted);
         if(key == 'q'){
-          black.add(new Queen(pawnBeingPromoted.getPos(), true, bKing));
+          Piece p = new Queen(pawnBeingPromoted.getPos(), true, bKing);
+          black.add(p);
+          pieces.add(p);
         }
         else if(key == 'k'){
-          black.add(new Knight(pawnBeingPromoted.getPos(), true, bKing));
+          Piece p = new Knight(pawnBeingPromoted.getPos(), true, bKing);
+          black.add(p);
+          pieces.add(p);
         }
         else if(key == 'r'){
-          black.add(new Rook(pawnBeingPromoted.getPos(), true, bKing));
+          Piece p = new Rook(pawnBeingPromoted.getPos(), true, bKing);
+          black.add(p);
+          pieces.add(p);
         }
         else{
-          black.add(new Bishop(pawnBeingPromoted.getPos(), true, bKing));
+          Piece p = new Bishop(pawnBeingPromoted.getPos(), true, bKing);
+          black.add(p);
+          pieces.add(p);
         }
       }
       else{
          white.remove(pawnBeingPromoted);
+         pieces.remove(pawnBeingPromoted);
         if(key == 'q'){
-          white.add(new Queen(pawnBeingPromoted.getPos(), false, bKing));
+          Piece p = new Queen(pawnBeingPromoted.getPos(), false, wKing);
+          white.add(p);
+          pieces.add(p);
         }
         else if(key == 'k'){
-          white.add(new Knight(pawnBeingPromoted.getPos(), false, bKing));
+          Piece p = new Knight(pawnBeingPromoted.getPos(), false, wKing);
+          white.add(p);
+          pieces.add(p);
         }
         else if(key == 'r'){
-          white.add(new Rook(pawnBeingPromoted.getPos(), false, bKing));
+          Piece p = new Rook(pawnBeingPromoted.getPos(), false, wKing);
+          white.add(p);
+          pieces.add(p);
         }
         else{
-          white.add(new Bishop(pawnBeingPromoted.getPos(), false, bKing));
+          Piece p = new Bishop(pawnBeingPromoted.getPos(), false, wKing);
+          white.add(p);
+          pieces.add(p);
         }
       }
       pawnPromoting = false;
