@@ -217,4 +217,8 @@ public class Rook extends Piece{
   public boolean castleStatus(){
     return canCastle;  
   }
+  
+  public void setCastleStatus(boolean status){
+    canCastle = status;
+  }
 }

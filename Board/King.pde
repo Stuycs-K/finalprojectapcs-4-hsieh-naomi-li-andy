@@ -7,7 +7,10 @@ public class King extends Piece{
     super.setType("KING");
     super.setCheck(false);
     super.setSide(shinySide);
-    canCastle = true;
+    canCastle = false;
+  //  super.setHasMoved(false);
+  //  super.setIsCastlingLeft(false);
+  //  super.setIsCastlingRight(false);
   }
   
  
@@ -20,6 +23,10 @@ public class King extends Piece{
         }
       }
     }
+   // int[] castling = castle();
+  //  if(!castling.equals(new int[0])){
+   //   toReturn.add(castling);
+   // }
     return toReturn;
   }
   
@@ -65,10 +72,10 @@ public class King extends Piece{
     return this.reachable(newPos); 
   }
   
+  
+  
+  
  
-  
-  
-  public void castle(){}
   
   public void applyCheck(boolean checkStatus){
     if (this.side()){
@@ -104,5 +111,9 @@ public class King extends Piece{
   */
   public boolean castleStatus(){
     return canCastle;
+  }
+  
+  public void setCanCastle(boolean castle){
+    canCastle = castle;
   }
 }
