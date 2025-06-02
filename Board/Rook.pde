@@ -197,7 +197,7 @@ public class Rook extends Piece{
        pieceOnPos = true;
      }
     }
-    return !pieceOnPos && this.reachable(newPos) && super.checkChecker(newPos);
+    return !pieceOnPos && this.reachable(newPos) ;//&& super.checkChecker(newPos);
   }
   /*
   public String getType(){

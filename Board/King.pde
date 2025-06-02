@@ -50,14 +50,12 @@ public class King extends Piece{
       if(temp.side() != super.side() && temp.isAlive()){
         if(temp.getType().equals("KING") || temp.getType().equals("KNIGHT")){
             if(temp.reachable(newPos)){
-              System.out.println("will be captured by " + temp.getType());
               return false;
               
             }
          }
         else{
             if(temp.legalMovesContains(newPos)){
-              System.out.println("will be captured by " + temp.getType());
               return false;
             }
         }

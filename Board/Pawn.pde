@@ -35,8 +35,6 @@ public class Pawn extends Piece {
   }*/
 
   public boolean move(int[] newPos) {
-   System.out.println("white:"+Board.whiteInCheck);
-   System.out.println("black:"+Board.blackInCheck);
     boolean contains = false;
     for (int[] i : this.getLegalMoves()) {
    //   System.out.println(Arrays.toString(i));
@@ -67,8 +65,8 @@ public class Pawn extends Piece {
       int[] originalPos = this.getPos();
       this.setPos(newPos);
       Piece original = this.capture();
+
       if (this.side()){
-        System.out.println(Arrays.toString(originalPos) + " " + Arrays.toString(getPos()));
         if(originalPos[0] == this.getPos()[0] && originalPos[1] == this.getPos()[1] - 2){
           this.setCanBeEnPassanted(true);
         }
@@ -83,6 +81,7 @@ public class Pawn extends Piece {
               System.out.println("illegal");
               if (original != null){
                 white.add(original);
+                pieces.add(original);
               }
               this.setPos(originalPos);
               return false;
@@ -92,7 +91,6 @@ public class Pawn extends Piece {
       }
       
       else{
-        System.out.println(Arrays.toString(originalPos) + " " + Arrays.toString(getPos()));
         if(originalPos[0] == this.getPos()[0] && originalPos[1] == this.getPos()[1] + 2){
           this.setCanBeEnPassanted(true);
         }
@@ -107,6 +105,7 @@ public class Pawn extends Piece {
               System.out.println("illegal");
               if (original != null){
                 black.add(original);
+                pieces.add(original);
               }
               this.setPos(originalPos);
               return false;
@@ -114,15 +113,16 @@ public class Pawn extends Piece {
           }
         }
       }
-      System.out.println(getFirstMove() + " " + getCanBeEnPassanted());
+         int[] kingPos = new int[] {9, 9};
+     if (this.side()){
       if(!this.getFirstMove()){
         this.setCanBeEnPassanted(false);
       }
       firstMove = false;
   //    System.out.println("moving in func");
-            int[] kingPos = new int[] {9, 9};
+
       
-      if (this.side()){
+
         try{
           kingPos = white.get(1).getKing().getPos();
         }catch (NullPointerException e){
@@ -132,21 +132,110 @@ public class Pawn extends Piece {
           if (black.get(i).canCapture(kingPos)){
             System.out.println("check");
             Board.whiteInCheck = true;
+            }
+         }
+        int incrementer = 0;
+        boolean isItOver = true;
+        while (isItOver && incrementer < white.size()){ // isItOver checks if opposing side can make a move next turn (true means no); loops through all of opposing pieces
+          Piece savior = white.get(incrementer); 
+          incrementer++;
+          int secondIncrement = 0;
+          ArrayList<int[]> legalMoves = savior.getLegalMoves();
+          boolean isItOverII = true;
+          while (isItOverII && secondIncrement < legalMoves.size()){ //isItOverII checks each legalMove of an opposing piece; returns true if none work
+            int[] origPos = savior.getPos();
+            savior.setPos(legalMoves.get(secondIncrement));
+            secondIncrement++;
+            Piece taken = savior.capture();
+            boolean isItOverIII = false;        
+            int thirdIncrement = 0;
+            while (!isItOverIII && thirdIncrement < black.size()){ //isItOverIII checks if this side can capture the king next turn; returns false if ever a legal move
+                try{
+               kingPos = white.get(1).getKing().getPos();}
+               catch (Exception e){}
+              if (black.get(thirdIncrement).canCapture(kingPos)){
+                isItOverIII = true;
+              }
+              thirdIncrement++;
+            }
+            if (isItOverIII == false){
+              isItOverII = false;
+              isItOver = false;
+            }
+            if (taken != null){
+              black.add(taken);
+              pieces.add(taken);
+            }
+            savior.setPos(origPos);
           }
         }
+               if (isItOver){
+           if (blackInCheck || whiteInCheck){
+          System.out.println("checkmate: black wins");}
+          else{
+            System.out.println("Stalemate");
+          }
+         checkmated = true;
+        }
       }
-      else{
+      
+    else if (!this.side()){
         try{
           kingPos = black.get(1).getKing().getPos();
         }catch (NullPointerException e){
+          
         }
         for (int i = 0; i < white.size(); i++){
           if (white.get(i).canCapture(kingPos)){
             System.out.println("check");
             Board.blackInCheck = true;
+            }
+         }
+        int incrementer = 0;
+        boolean isItOver = true;
+        while (isItOver && incrementer < black.size()){ // isItOver checks if opposing side can make a move next turn (true means no); loops through all of opposing pieces
+          Piece savior = black.get(incrementer); 
+          incrementer++;
+          int secondIncrement = 0;
+          ArrayList<int[]> legalMoves = savior.getLegalMoves();
+          boolean isItOverII = true;
+          while (isItOverII && secondIncrement < legalMoves.size()){ //isItOverII checks each legalMove of an opposing piece; returns true if none work
+            int[] origPos = savior.getPos();
+            savior.setPos(legalMoves.get(secondIncrement));
+            secondIncrement++;
+            Piece taken = savior.capture();
+            boolean isItOverIII = false;        
+            int thirdIncrement = 0;
+            while (!isItOverIII && thirdIncrement < white.size()){ //isItOverIII checks if this side can capture the king next turn; returns false if ever a legal move
+               try{
+               kingPos = black.get(1).getKing().getPos();}
+               catch (Exception e){}
+              if (white.get(thirdIncrement).canCapture(kingPos)){
+                isItOverIII = true;
+              }
+              thirdIncrement++;
+            }
+            if (isItOverIII == false){
+              isItOverII = false;
+              isItOver = false;
+            }
+            if (taken != null){
+              white.add(taken);
+              pieces.add(taken);
+            }
+            savior.setPos(origPos);
           }
         }
-      }
+            if (isItOver){
+           if (blackInCheck || whiteInCheck){
+          System.out.println("checkmate: white wins");}
+          else{
+            System.out.println("Stalemate");
+          }
+         checkmated = true;
+        }
+
+    }
       return true;
     }
     return false;
@@ -230,7 +319,7 @@ public class Pawn extends Piece {
         }
       }
     }
-    return (legalMove && this.canMove(newPos) && super.checkChecker(newPos));
+    return (legalMove && this.canMove(newPos) );//&& super.checkChecker(newPos));
   }
 
   public boolean canMove(int[] newPos) {
@@ -239,9 +328,6 @@ public class Pawn extends Piece {
     for (int i = 0; i < Board.white.size() + Board.black.size() && !pieceOnPos; i++) {
       temp = Board.pieces.get(i).getPos();
       if (temp[0] == newPos[0] && temp[1] == newPos[1] && (Board.pieces.get(i).side() == this.side())) {
-        System.out.println("oh no a piece");
-        System.out.println(Board.pieces.get(i).getType());
-        System.out.println(Arrays.toString(temp) + " " + Arrays.toString(newPos));
         pieceOnPos = true;
       }
     }

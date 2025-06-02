@@ -7,6 +7,7 @@ static ArrayList<Piece> black = new ArrayList<Piece>(0);
 static ArrayList<int[]> positions = new ArrayList<int[]>(0);
 static boolean blackInCheck = false;
 static boolean whiteInCheck = false;
+static boolean checkmated = false;
 static int turnNumber = 1;
 
 boolean selectingPiece = true;
@@ -608,12 +609,11 @@ void draw() {
 }
 
 void mouseClicked() {
-  System.out.println("TURN: " + turnNumber);
+  if (!checkmated){
   int xpos = (int)mouseX/100;
   int ypos = (int)mouseY/100;
   if(!pawnPromoting){
     if (selectingPiece) {
-      System.out.println("Selecting");
       if (turnNumber % 2 != 0) {
         for (int i = 0; i < white.size(); i++) {
           if (white.get(i).getPos()[0] == xpos && white.get(i).getPos()[1] == ypos) {
@@ -630,13 +630,17 @@ void mouseClicked() {
         }
       }
     } else {
-      System.out.println("Moving");
+            System.out.print("TURN: " + turnNumber);
+            if (turnNumber % 2 == 0){
+              System.out.println("");
+            }
+            else{
+              System.out.println("");
+            }
+
       selectingPiece = true;
-      System.out.println(selectedPiece.getType());
       if (selectedPiece.move(new int[]{xpos, ypos})) {
         turnNumber++;
-        System.out.println("Successful move!");
-        System.out.println(Arrays.toString(selectedPiece.getPos()));
       }
       if(turnNumber % 2 == 0){
         for(Piece p : black){
@@ -659,10 +663,10 @@ void mouseClicked() {
   }
   
   
-}
+}}
 
 boolean gameOver() {
-  return false;
+  return !checkmated;
 }
 
 void keyPressed(){
