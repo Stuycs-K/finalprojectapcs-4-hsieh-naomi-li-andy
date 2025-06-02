@@ -7,30 +7,34 @@
 		<li>Methods<ul>
 			<li>void move(int[] newPos): pieces will call this function to move to the newPos position, set position to newPos, set all pawns enPassant to false.</li>
 			<li>ArrayList<int[]> getLegalMoves: returns an ArrayList of int[] of allowable positions (new)</li> 
-			<li>void capture(Piece other): called in move if canCapture, sets other's alive variable to false</li>
+			<li><s>void capture(Piece other): called in move if canCapture, sets other's alive variable to false</s> (replaced with below method)</li>
+			<li>Piece capture(): called in move; has new piece remove the old piece on current square if any (new)</li>
 			<li>boolean canMove(int[] newPos): checks if newPos is an available square (and player is not in check or is in check but piece can do something) OR canCapture </li>
 			<li>boolean canCapture(int[] newPos): checks if there is an opposing piece on newPos (and player is not in check but piece can take the opposing piece giving the check)</li>
 			<li>boolean canCapture(Piece other): checks if other's position is reachable by piece in one move</li>
-			<li>void applyCheck(King other): checks if piece canCapture other; if so, set inCheck to true for other.</li>
+			<li><s>void applyCheck(King other): checks if piece canCapture other; if so, set inCheck to true for other.</s> (replaced with global check variables)</li>
 			<li>boolean isAlive(): return alive</li>
 			<li>void setAlive(boolean life): sets the alive status of the piece to life (new)</li> 
 			<li>int[] getPos(): returns the current position of the piece</li>
 			<li>void[] setPos(int[] newPos): sets the position of the piece to newPos (new) </li>
 			<li>String getType(): returns the type of the piece</li>
 			<li>void[] setType(String type): sets the type of the piece to newPos (new)</li>
-			<li>boolean getCheckStatus(): returns if the piece's king is currently in check.</li>
-			<li>void setCheckStatus(boolean status): sets inCheck to status (new)</li>
+			<li><s>boolean getCheckStatus(): returns if the piece's king is currently in check. </s> (replaced with global check variables)</li>
+			<li><s>void setCheckStatus(boolean status): sets inCheck to status </s> (replaced with global check variables)</li>
 			<li>boolean side(): returns which side the piece is on (i.e. if it's on the shiny side, it will return true, else false)</li>
 			<li>void setSide(boolean side): sets the side the piece is on (new)</li>
+			<li>void setKing(King king): assigns a King to a piece (new)</li>
+			<li>Piece getKing(): returns the king linked to a piece (new)</li>
 			<li>boolean getCanBeEnPassanted(): returns false (this is so the pawn method becomes inherited and so Piece x = new Pawn() can use the method) (new)</li>
 			<li>void setCanBeEnPassanted(boolean canBe): (this is so the pawn method becomes inherited and so Piece x = new Pawn() can use the method) (new)</li>
 		</ul></li>
-  		<li>Instance Variables<ul>
+  		<li>Instance Variables (copies of these variables will be strikethroughed in below classes because they would be null if not inherited)<ul> 
 			<li>boolean alive</li>
 			<li>int[] position (note: coordinates stored here will be one-digit, behaving as if it is 8x8 not 800x800)</li>
 			<li>String type</li>
 			<li>boolean inCheck</li>
 			<li>boolean shinySide</li>
+			<li>King king (new)</li>
 		</ul></li>
 	</ul></li>
 	<li> King Class (extended from piece) <ul>
@@ -109,6 +113,9 @@
 			<li>boolean pawnPromoting</li>
 			<li>Piece selectedPiece (new)</li>
 			<li>Piece pawnBeingPromoted (new)</li>
+			<li>boolean blackInCheck (new)</li>
+			<li>boolean whiteInCheck (new)</li>
+			<li>boolean checkmated (new)</li>
 			<li>int turnNumber (new)</li>
 		</ul></li>
   	</ul></li>
@@ -176,11 +183,12 @@ Our created project will be Pokemon Chess. The final product will act exactly li
 		<li>Sound<ul><li>The game would play an ambient Pokemon theme in the background, perhaps switch to a more exciting one when the king is in check, and a victory theme for checkmate. </li></ul></li> 
 		</ul>
   <br>
-UML Diagrams and descriptions of key algorithms, classes, and how things fit together.
+UML Diagram Version 1:
 
 ![Image of UML](Chess.png?raw=true "Chess UML" )
 
-
+UML Diagram Version 2 (Final Version of MVP):
+![Image of UML Version 2](Chessv2.png?raw=true "Chess UML Version 2" )
     
 # Intended Pacing:
 
