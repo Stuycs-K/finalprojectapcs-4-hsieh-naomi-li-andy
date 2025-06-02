@@ -42,4 +42,4 @@ At home: I finished debugging, updating the methods, and implemented a prototype
 ### 2025-05-30 to 2025-06-01 - Debugging, King Movement, En Passant, Pawn Promotion, Castling, and Designs
 In class: I worked on check and tried to debug king movement (~35 minutes).
 
-At home: I finished debugging king movement (~40 minutes), created two new designs (~60 minutes), set up the designs (~20 minutes), implemented en passant (~60 minutes), implemented pawn promotion (~35 minutes), and implemented castling (~80 minutes) (these times include debugging). 
+At home: I finished debugging king movement (~40 minutes), created two new designs (~75 minutes), set up the designs (~20 minutes), implemented en passant (~75 minutes), implemented pawn promotion (~40 minutes), and implemented castling (~120 minutes) (these times include debugging). 
