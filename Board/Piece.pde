@@ -341,4 +341,10 @@ public abstract class Piece{
     return true;
   }
   
+  public boolean getCanBeEnPassanted(){
+    return false;
+  }
+  
+  public void setCanBeEnPassanted(boolean canBe){}
+  
 }

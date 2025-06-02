@@ -1,5 +1,6 @@
 public class Pawn extends Piece {
   private boolean firstMove;
+  private boolean canBeEnPassanted;
 
   public Pawn(int[] position, boolean shinySide, King king) {
     super.setAlive(true);
@@ -8,7 +9,8 @@ public class Pawn extends Piece {
     super.setCheck(false);
     super.setSide(shinySide);
     super.setKing(king);
-    this.firstMove = true;
+    this.setFirstMove(true);
+    this.setCanBeEnPassanted(false);
   }
 /*
   public Piece capture() { // needs to be corrected (edit: seems to work for pawn capturing)
@@ -42,12 +44,35 @@ public class Pawn extends Piece {
         contains = true;
       }
     }
+    //En Passant Code
+    if(this.side()){
+      for(int i = 0; i < Board.white.size(); i++){
+         if(Board.white.get(i).getType().equals("PAWN") && Board.white.get(i).getPos()[0] == newPos[0] && Board.white.get(i).getPos()[0] != this.getPos()[0] && Board.white.get(i).getPos()[1] == newPos[1] - 1 && Board.white.get(i).getCanBeEnPassanted()){
+           contains = true;
+           Board.white.remove(i);
+         }
+      }
+    }
+    else{
+      for(int i = 0; i < Board.black.size(); i++){
+      //  if(Board.black.get(i).getType().equals("PAWN") && Board.black.get(i).getPos()[0] == newPos[0] && Board.black.get(i).getPos()[0] != this.getPos()[0] && Board.black.get(i).getPos()[1] == newPos[1] + 1){System.out.println("pawnchecker");}
+         if(Board.black.get(i).getType().equals("PAWN") && Board.black.get(i).getPos()[0] == newPos[0] && Board.black.get(i).getPos()[0] != this.getPos()[0] && Board.black.get(i).getPos()[1] == newPos[1] + 1 && Board.black.get(i).getCanBeEnPassanted()){
+           contains = true;
+           Board.black.remove(i);
+         }
+      }
+    }
    // System.out.println(Arrays.toString(newPos));
     if (contains) {
       int[] originalPos = this.getPos();
       this.setPos(newPos);
       Piece original = this.capture();
-           if (this.side()){
+
+      if (this.side()){
+        System.out.println(Arrays.toString(originalPos) + " " + Arrays.toString(getPos()));
+        if(originalPos[0] == this.getPos()[0] && originalPos[1] == this.getPos()[1] - 2){
+          this.setCanBeEnPassanted(true);
+        }
         if (true){
           int[] kingPos = new int[] {9, 9};
           try{
@@ -69,6 +94,10 @@ public class Pawn extends Piece {
       }
       
       else{
+        System.out.println(Arrays.toString(originalPos) + " " + Arrays.toString(getPos()));
+        if(originalPos[0] == this.getPos()[0] && originalPos[1] == this.getPos()[1] + 2){
+          this.setCanBeEnPassanted(true);
+        }
         if (true){
           int[] kingPos = new int[] {9, 9};
           try{
@@ -90,6 +119,15 @@ public class Pawn extends Piece {
       }
          int[] kingPos = new int[] {9, 9};
      if (this.side()){
+      System.out.println(getFirstMove() + " " + getCanBeEnPassanted());
+      if(!this.getFirstMove()){
+        this.setCanBeEnPassanted(false);
+      }
+      firstMove = false;
+  //    System.out.println("moving in func");
+
+      
+
         try{
           kingPos = white.get(1).getKing().getPos();
         }catch (NullPointerException e){
@@ -262,6 +300,7 @@ public class Pawn extends Piece {
       }
       if (firstMove) {
         legalMove = legalMove || newPos[0] == this.getPos()[0] && newPos[1] == this.getPos()[1] - 2;
+        
       }
       for (int count = 0; count < black.size(); count++) {
         if (black.get(count).getPos()[0] == newPos[0] && black.get(count).getPos()[1] == newPos[1]) {
@@ -312,6 +351,18 @@ public class Pawn extends Piece {
    */
   public boolean getFirstMove() {
     return this.firstMove;
+  }
+  
+  public void setFirstMove(boolean first){
+    this.firstMove = first;
+  }
+  
+  public boolean getCanBeEnPassanted(){
+    return this.canBeEnPassanted;
+  }
+  
+  public void setCanBeEnPassanted(boolean canBe){
+    this.canBeEnPassanted = canBe;
   }
 
 }

@@ -13,11 +13,17 @@
 			<li>boolean canCapture(Piece other): checks if other's position is reachable by piece in one move</li>
 			<li>void applyCheck(King other): checks if piece canCapture other; if so, set inCheck to true for other.</li>
 			<li>boolean isAlive(): return alive</li>
+			<li>void setAlive(boolean life): sets the alive status of the piece to life (new)</li> 
 			<li>int[] getPos(): returns the current position of the piece</li>
+			<li>void[] setPos(int[] newPos): sets the position of the piece to newPos (new) </li>
 			<li>String getType(): returns the type of the piece</li>
+			<li>void[] setType(String type): sets the type of the piece to newPos (new)</li>
 			<li>boolean getCheckStatus(): returns if the piece's king is currently in check.</li>
-			<li>void setCheckStatus(boolean status): sets inCheck to status</li>
+			<li>void setCheckStatus(boolean status): sets inCheck to status (new)</li>
 			<li>boolean side(): returns which side the piece is on (i.e. if it's on the shiny side, it will return true, else false)</li>
+			<li>void setSide(boolean side): sets the side the piece is on (new)</li>
+			<li>boolean getCanBeEnPassanted(): returns false (this is so the pawn method becomes inherited and so Piece x = new Pawn() can use the method) (new)</li>
+			<li>void setCanBeEnPassanted(boolean canBe): (this is so the pawn method becomes inherited and so Piece x = new Pawn() can use the method) (new)</li>
 		</ul></li>
   		<li>Instance Variables<ul>
 			<li>boolean alive</li>
@@ -34,11 +40,11 @@
 			<li>boolean castleStatus(): return canCastle</li>
 		</ul></li>
   		<li>Instance Variables<ul>
-			<li>boolean alive</li>
+			<s><li>boolean alive</li>
 			<li>int[] position (note: coordinates stored here will be one-digit, behaving as if it is 8x8 not 800x800)</li>
 			<li>String type</li>
 			<li>boolean inCheck</li>
-			<li>boolean shinySide</li>
+			<li>boolean shinySide</li></s>
 			<li>boolean canCastle</li>
 		</ul></li>
 	</ul></li>
@@ -48,41 +54,62 @@
 			<li>boolean castleStatus(): return canCastle</li>
 		</ul></li>
   		<li>Instance Variables<ul>
-			<li>boolean alive</li>
+			<s><li>boolean alive</li>
 			<li>int[] position (note: coordinates stored here will be one-digit, behaving as if it is 8x8 not 800x800)</li>
 			<li>String type</li>
 			<li>boolean inCheck</li>
-			<li>boolean shinySide</li>
+			<li>boolean shinySide</li></s>
 			<li>boolean canCastle</li>
 		</ul></li>
 	</ul></li>
 	<li> Pawn Class (extended from piece) <ul>
 		<li>Child-Specific/Overridden Methods<ul>
-			<li>void setEnPassantStatus(int[] newPos): if newPos is two steps from its original position, then set enPassant and timeFrame to true</li>
+			<s><li>void setEnPassantStatus(int[] newPos): if newPos is two steps from its original position, then set enPassant and timeFrame to true</li>
 			<li>boolean canCapture(int[] newPos): if there is a pawn under the newPos that has enPassant as true and newPos is available, return true</li>
-			<li>boolean canBeEnPassanted(): return enPassant (if the piece can be enPassanted)</li>
+			<li>boolean canBeEnPassanted(): return enPassant (if the piece can be enPassanted)</li></s>
+			<li>boolean getCanBeEnPassanted(): returns canBeEnPassanted (new)</li>
+			<li>void setCanBeEnPassanted(boolean canBe): sets canBeEnPassanted to canBe (new)</li>
+			<li>boolean getFirstMove(): returns firstMove (new)</li>
+			<li>void setFirstMove(boolean first): sets firstMove to first (new)</li> 
 		</ul></li>
   		<li>Instance Variables<ul>
-			<li>boolean alive</li>
+			<s><li>boolean alive</li>
 			<li>int[] position (note: coordinates stored here will be one-digit, behaving as if it is 8x8 not 800x800)</li>
 			<li>String type</li>
 			<li>boolean inCheck</li>
 			<li>boolean shinySide</li>
-			<li>boolean enPassant</li>
+			<li>boolean enPassant</li></s>
+			<li>boolean canBeEnPassanted (new)</li>
 		</ul></li>
 	</ul></li>
 	<li>Queen, Bishop, Knight classes are all extended from Piece and will have the same methods</li>
 	<li> Main Class <ul>
 		<li>Methods<ul>
-			<li>void keyPressed(): handles all the movement and draw() to update visuals of board (new)</li>
-			<li>void setup(): sets up the board, size is 800, 800 with each square being 100x100</li>
+			<s><li>void keyPressed(): handles all the movement and draw() to update visuals of board (new)</li></s>
+			<li>void setup(): sets up the board, size is 800, 800 with each square being 100x100 [and draws the pieces on the board] (new)</li>
 			<li>void draw(): draws a new board and places pieces in respective positions, updates canCastle for each king, rook. Also checks if any pawns can be promoted. If so, calls pawnPromotion() and sets pawnPromoting to true. (pawnPromotion will have drawn the screen before this) If pawnPromoting is true, remove the pawn from the ArrayList pieces and add a new piece of the type the player selected in the position of the pawn. </li>
 			<li>boolean gameOver(): checks if any opposing side has been checkmated or if it is a stalemate (i.e. if no pieces canMove() && inCheck -> checkmate, else if no pieces canMove() -> stalemate)</li>
-			<li>void pawnPromotion(): draws a selection screen for which piece to promote the pawn to</li>
+			<s><li>void pawnPromotion(): draws a selection screen for which piece to promote the pawn to</li></s>
+			<li>void pawnPromotionChecker(): checks if a pawn needs to be promoted and updates pawnPromoting and pawnBeingPromoted as such. (new)</li>
+			<li>void mouseClicked(): checks if a piece is being selected/runs move on selectedPiece (new)</li>
+			<li>void keyPressed(): checks if pawnPromoting, if so, checks the key being pressed and updates white/black & pieces as such. (new)</li>
+			<li>void pokeball(): draws a pokeball (for the chessboard) (new)</li>
+			<li>void chessboard(): draws the board (new)</li>
+			<li>void ditto(float x, float y, boolean shiny): draws a ditto icon at (x, y) colored depending on shiny(representing a pawn) (new)</li>
+			<li>void piplup(float x, float y, boolean shiny): draws a piplup icon at (x, y) colored depending on shiny(representing a bishop) (new)</li>
+			<li>void solosis(float x, float y, boolean shiny): draws a solosis icon at (x, y) colored depending on shiny(representing a knight) (new)</li>
+			<li>void electrode(float x, float y, boolean shiny): draws an electrode icon at (x, y) colored depending on shiny(representing a rook) (new)</li>
+			<li>void gulpin(float x, float y, boolean shiny): draws a gulpin icon at (x, y) colored depending on shiny(representing a queen) (new)</li>
+			<li>void spheal(float x, float y, boolean shiny): draws a spheal icon at (x, y) colored depending on shiny(representing a king) (new)</li>
 		</ul></li>
   		<li>Instance Variables<ul>
 			<li>ArrayList<Piece> pieces</li>
+			<li>ArrayList<Piece> white (new)</li>
+			<li>ArrayList<Piece> black (new)</li>
 			<li>boolean pawnPromoting</li>
+			<li>Piece selectedPiece (new)</li>
+			<li>Piece pawnBeingPromoted (new)</li>
+			<li>int turnNumber (new)</li>
 		</ul></li>
   	</ul></li>
 	
