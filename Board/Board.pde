@@ -262,7 +262,7 @@ void spheal(float x, float y, boolean shiny) {
   }
   rect(x-22, y-17, 45, 13, 28);
   rect(x-5, y-5, 5, 4, 28);
-  
+
   fill(0);
   stroke(0);
   circle(x-12, y-10, 10);
@@ -450,6 +450,33 @@ void pokeball(color ballColor, color base, float x, float y) {
   circle(x, y, 64);
 }
 
+void pokeballLight(color ballColor, color base, float x, float y) {
+  // tint(255, 127);
+  strokeWeight(2);
+  fill(base);
+  stroke(ballColor);
+  circle(x, y, 64);
+  // stroke(base);
+  fill(ballColor);
+  arc(x, y+2, 64, 64, PI, 2*PI);
+  stroke(base);
+  line(x-32, y-2, x+32, y-2);
+  stroke(ballColor);
+  strokeWeight(3);
+  line(x-32, y+2, x+32, y+2);
+  stroke(base);
+  line(x-32, y+4, x+32, y+4);
+  stroke(base);
+  fill(ballColor);
+  strokeWeight(2);
+  circle(x, y, 16);
+  fill(255, 0, 0);
+  circle(x, y, 8);
+  noFill();
+  stroke(ballColor);
+  circle(x, y, 64);
+}
+
 void chessboard() {
   boolean switcher = true;
   for (int i = 0; i < 8; i++) {
@@ -586,20 +613,31 @@ void draw() {
     if (black.get(i).isAlive()) {
       if (black.get(i).getType().equals("PAWN")) {
         ditto(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
-      } else if(black.get(i).getType().equals("BISHOP")){
+      } else if (black.get(i).getType().equals("BISHOP")) {
         piplup(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
-      } else if(black.get(i).getType().equals("KNIGHT")){
+      } else if (black.get(i).getType().equals("KNIGHT")) {
         solosis(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
-      } else if(black.get(i).getType().equals("ROOK")){
+      } else if (black.get(i).getType().equals("ROOK")) {
         electrode(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
-      } else if(black.get(i).getType().equals("QUEEN")){
+      } else if (black.get(i).getType().equals("QUEEN")) {
         gulpin(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
-      } else{
+      } else {
         spheal(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
       }
-      
     }
   }
+  if(selectedPiece != null && !selectingPiece){
+    ArrayList<int[]> legalMoves = selectedPiece.getLegalMoves();
+    for (int i = 0; i < legalMoves.size(); i++) {
+      strokeWeight(1);
+      if ((legalMoves.get(i)[0] + legalMoves.get(i)[1]) % 2 == 0) {
+        pokeballLight(255, 0, legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50);
+      } else {
+        pokeballLight(0, 255, legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50);
+      }
+    }
+  }
+  
   /*  gulpin(750, 750, false);
    gulpin(650, 750, true);
    solosis(650, 650, true);
@@ -609,112 +647,113 @@ void draw() {
 }
 
 void mouseClicked() {
-  if (!checkmated){
-  int xpos = (int)mouseX/100;
-  int ypos = (int)mouseY/100;
-  if(!pawnPromoting){
-    if (selectingPiece) {
-      if (turnNumber % 2 != 0) {
-        for (int i = 0; i < white.size(); i++) {
-          if (white.get(i).getPos()[0] == xpos && white.get(i).getPos()[1] == ypos) {
-            selectedPiece = white.get(i);
-            selectingPiece = false;
+  if (!checkmated) {
+    int xpos = (int)mouseX/100;
+    int ypos = (int)mouseY/100;
+    if (!pawnPromoting) {
+      if (selectingPiece) {
+        if (turnNumber % 2 != 0) {
+          for (int i = 0; i < white.size(); i++) {
+            if (white.get(i).getPos()[0] == xpos && white.get(i).getPos()[1] == ypos) {
+              selectedPiece = white.get(i);
+              selectingPiece = false;
+            }
+          }
+        } else {
+          for (int i = 0; i < black.size(); i++) {
+            if (black.get(i).getPos()[0] == xpos && black.get(i).getPos()[1] == ypos) {
+              selectedPiece = black.get(i);
+              selectingPiece = false;
+            }
+          }
+        }
+
+        //highlighting moves
+        ArrayList<int[]> legalMoves = selectedPiece.getLegalMoves();
+        for (int i = 0; i < legalMoves.size(); i++) {
+          strokeWeight(1);
+          if ((legalMoves.get(i)[0] + legalMoves.get(i)[1]) % 2 == 0) {
+            pokeballLight(255, 0, legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50);
+          } else {
+            pokeballLight(0, 255, legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50);
           }
         }
       } else {
-        for (int i = 0; i < black.size(); i++) {
-          if (black.get(i).getPos()[0] == xpos && black.get(i).getPos()[1] == ypos) {
-            selectedPiece = black.get(i);
-            selectingPiece = false;
-          }
+        System.out.print("TURN: " + turnNumber);
+        if (turnNumber % 2 == 0) {
+          System.out.println("");
+        } else {
+          System.out.println("");
         }
-      }
-    } else {
-            System.out.print("TURN: " + turnNumber);
-            if (turnNumber % 2 == 0){
-              System.out.println("");
-            }
-            else{
-              System.out.println("");
-            }
 
-      selectingPiece = true;
-      if (selectedPiece.move(new int[]{xpos, ypos})) {
-        turnNumber++;
-      }
-      if(turnNumber % 2 == 0){
-        for(Piece p : black){
-          if(p.getType().equals("PAWN")){
-        //    if(p.getCanBeEnPassanted()) {System.out.println("pawn can be enpassanted");}
-            p.setCanBeEnPassanted(false);
+        selectingPiece = true;
+        if (selectedPiece.move(new int[]{xpos, ypos})) {
+          turnNumber++;
+        }
+        if (turnNumber % 2 == 0) {
+          for (Piece p : black) {
+            if (p.getType().equals("PAWN")) {
+              //    if(p.getCanBeEnPassanted()) {System.out.println("pawn can be enpassanted");}
+              p.setCanBeEnPassanted(false);
+            }
+          }
+        } else {
+          for (Piece p : white) {
+            if (p.getType().equals("PAWN")) {
+              //    if(p.getCanBeEnPassanted()) {System.out.println("pawn can be enpassanted");}
+              p.setCanBeEnPassanted(false);
+            }
           }
         }
+        pawnPromotionChecker();
       }
-      else{
-        for(Piece p : white){
-          if(p.getType().equals("PAWN")){
-        //    if(p.getCanBeEnPassanted()) {System.out.println("pawn can be enpassanted");}
-            p.setCanBeEnPassanted(false);
-          }
-        }
-      }
-      pawnPromotionChecker();
     }
   }
-  
-  
-}}
+}
 
 boolean gameOver() {
   return !checkmated;
 }
 
-void keyPressed(){
-  if(pawnPromoting){
-    if(key == 'q' || key == 'k' || key == 'r' || key == 'b'){
-      if(pawnBeingPromoted.side()){
+void keyPressed() {
+  if (pawnPromoting) {
+    if (key == 'q' || key == 'k' || key == 'r' || key == 'b') {
+      if (pawnBeingPromoted.side()) {
         black.remove(pawnBeingPromoted);
         pieces.remove(pawnBeingPromoted);
-        if(key == 'q'){
+        if (key == 'q') {
           Piece p = new Queen(pawnBeingPromoted.getPos(), true, bKing);
           black.add(p);
           pieces.add(p);
-        }
-        else if(key == 'k'){
+        } else if (key == 'k') {
           Piece p = new Knight(pawnBeingPromoted.getPos(), true, bKing);
           black.add(p);
           pieces.add(p);
-        }
-        else if(key == 'r'){
+        } else if (key == 'r') {
           Piece p = new Rook(pawnBeingPromoted.getPos(), true, bKing);
           black.add(p);
           pieces.add(p);
-        }
-        else{
+        } else {
           Piece p = new Bishop(pawnBeingPromoted.getPos(), true, bKing);
           black.add(p);
           pieces.add(p);
         }
-      }
-      else{
-         white.remove(pawnBeingPromoted);
-         pieces.remove(pawnBeingPromoted);
-        if(key == 'q'){
+      } else {
+        white.remove(pawnBeingPromoted);
+        pieces.remove(pawnBeingPromoted);
+        if (key == 'q') {
           Piece p = new Queen(pawnBeingPromoted.getPos(), false, wKing);
           white.add(p);
           pieces.add(p);
-        }
-        else if(key == 'k'){
+        } else if (key == 'k') {
           Piece p = new Knight(pawnBeingPromoted.getPos(), false, wKing);
           white.add(p);
           pieces.add(p);
-        }
-        else if(key == 'r'){
+        } else if (key == 'r') {
           Piece p = new Rook(pawnBeingPromoted.getPos(), false, wKing);
           white.add(p);
           pieces.add(p);
-        }
-        else{
+        } else {
           Piece p = new Bishop(pawnBeingPromoted.getPos(), false, wKing);
           white.add(p);
           pieces.add(p);
@@ -723,20 +762,19 @@ void keyPressed(){
       pawnPromoting = false;
     }
   }
-  
 }
 
 void pawnPromotionChecker() {
-  for(Piece p: white){
-    if(p.getType().equals("PAWN") && p.getPos()[1] == 0){
-       pawnPromoting = true;
-       pawnBeingPromoted = p;
+  for (Piece p : white) {
+    if (p.getType().equals("PAWN") && p.getPos()[1] == 0) {
+      pawnPromoting = true;
+      pawnBeingPromoted = p;
     }
   }
-  for(Piece p: black){
-    if(p.getType().equals("PAWN") && p.getPos()[1] == 7){
-       pawnPromoting = true;
-       pawnBeingPromoted = p;
+  for (Piece p : black) {
+    if (p.getType().equals("PAWN") && p.getPos()[1] == 7) {
+      pawnPromoting = true;
+      pawnBeingPromoted = p;
     }
   }
 }
