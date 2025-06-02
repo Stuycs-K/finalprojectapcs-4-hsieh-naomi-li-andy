@@ -67,7 +67,6 @@ public class Pawn extends Piece {
       Piece original = this.capture();
 
       if (this.side()){
-        System.out.println(Arrays.toString(originalPos) + " " + Arrays.toString(getPos()));
         if(originalPos[0] == this.getPos()[0] && originalPos[1] == this.getPos()[1] - 2){
           this.setCanBeEnPassanted(true);
         }
@@ -92,7 +91,6 @@ public class Pawn extends Piece {
       }
       
       else{
-        System.out.println(Arrays.toString(originalPos) + " " + Arrays.toString(getPos()));
         if(originalPos[0] == this.getPos()[0] && originalPos[1] == this.getPos()[1] + 2){
           this.setCanBeEnPassanted(true);
         }
@@ -117,7 +115,6 @@ public class Pawn extends Piece {
       }
          int[] kingPos = new int[] {9, 9};
      if (this.side()){
-      System.out.println(getFirstMove() + " " + getCanBeEnPassanted());
       if(!this.getFirstMove()){
         this.setCanBeEnPassanted(false);
       }
@@ -133,6 +130,7 @@ public class Pawn extends Piece {
         }
         for (int i = 0; i < black.size(); i++){
           if (black.get(i).canCapture(kingPos)){
+            System.out.println("check");
             Board.whiteInCheck = true;
             }
          }
@@ -171,12 +169,13 @@ public class Pawn extends Piece {
             savior.setPos(origPos);
           }
         }
-         if (isItOver){
-          System.out.println("checkmate: black wins");
+               if (isItOver){
+           if (blackInCheck || whiteInCheck){
+          System.out.println("checkmate: black wins");}
+          else{
+            System.out.println("Stalemate");
+          }
          checkmated = true;
-        }
-        else{
-          System.out.println("not over yet");
         }
       }
       
@@ -188,6 +187,7 @@ public class Pawn extends Piece {
         }
         for (int i = 0; i < white.size(); i++){
           if (white.get(i).canCapture(kingPos)){
+            System.out.println("check");
             Board.blackInCheck = true;
             }
          }
@@ -226,13 +226,15 @@ public class Pawn extends Piece {
             savior.setPos(origPos);
           }
         }
-         if (isItOver){
-          System.out.println("checkmate: white wins");
+            if (isItOver){
+           if (blackInCheck || whiteInCheck){
+          System.out.println("checkmate: white wins");}
+          else{
+            System.out.println("Stalemate");
+          }
          checkmated = true;
         }
-        else{
-          System.out.println("not over yet");
-        }
+
     }
       return true;
     }

@@ -610,7 +610,6 @@ void draw() {
 
 void mouseClicked() {
   if (!checkmated){
-  System.out.println("TURN: " + turnNumber);
   int xpos = (int)mouseX/100;
   int ypos = (int)mouseY/100;
   if(!pawnPromoting){
@@ -631,6 +630,14 @@ void mouseClicked() {
         }
       }
     } else {
+            System.out.print("TURN: " + turnNumber);
+            if (turnNumber % 2 == 0){
+              System.out.println("");
+            }
+            else{
+              System.out.println("");
+            }
+
       selectingPiece = true;
       if (selectedPiece.move(new int[]{xpos, ypos})) {
         turnNumber++;

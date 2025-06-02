@@ -41,8 +41,7 @@ public abstract class Piece{
 
   public boolean move(int[] newPos){
    // System.out.println("trying to move");
-   System.out.println("white:"+Board.whiteInCheck);
-   System.out.println("black:"+Board.blackInCheck);
+
     boolean contains = false;
     if(getType().equals("KING")){
       contains = this.canMove(newPos);
@@ -107,6 +106,8 @@ public abstract class Piece{
           }
         }
       }
+      blackInCheck = false;
+      whiteInCheck = false;
       
 
       int[] kingPos = new int[] {9, 9};
@@ -158,12 +159,14 @@ public abstract class Piece{
           }
         }
          if (isItOver){
-          System.out.println("checkmate: black wins");
+           if (blackInCheck || whiteInCheck){
+          System.out.println("checkmate: black wins");}
+          else{
+            System.out.println("Stalemate");
+          }
          checkmated = true;
         }
-        else{
-          System.out.println("not over yet");
-        }
+
       }
       
     else if (!this.side()){
@@ -202,8 +205,6 @@ public abstract class Piece{
               thirdIncrement++;
             }
             if (isItOverIII == false){
-              System.out.println(thirdIncrement);
-              System.out.println(secondIncrement);
               isItOverII = false;
               isItOver = false;
             }
@@ -214,12 +215,13 @@ public abstract class Piece{
             savior.setPos(origPos);
           }
         }
-         if (isItOver){
-          System.out.println("checkmate: white wins");
+                  if (isItOver){
+           if (blackInCheck || whiteInCheck){
+          System.out.println("checkmate: white wins");}
+          else{
+            System.out.println("Stalemate");
+          }
          checkmated = true;
-        }
-        else{
-          System.out.println("not over yet");
         }
       
       }
