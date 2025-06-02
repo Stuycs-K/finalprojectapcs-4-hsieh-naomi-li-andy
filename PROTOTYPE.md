@@ -183,11 +183,12 @@ Our created project will be Pokemon Chess. The final product will act exactly li
 		<li>Sound<ul><li>The game would play an ambient Pokemon theme in the background, perhaps switch to a more exciting one when the king is in check, and a victory theme for checkmate. </li></ul></li> 
 		</ul>
   <br>
-UML Diagrams and descriptions of key algorithms, classes, and how things fit together.
+UML Diagram Version 1:
 
 ![Image of UML](Chess.png?raw=true "Chess UML" )
 
-
+UML Diagram Version 2 (Final Version of MVP):
+![Image of UML Version 2](Chessv2.png?raw=true "Chess UML Version 2" )
     
 # Intended Pacing:
 
