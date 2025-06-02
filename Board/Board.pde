@@ -5,6 +5,7 @@ static ArrayList<Piece> pieces = new ArrayList<Piece>(0);
 static ArrayList<Piece> white = new ArrayList<Piece>(0);
 static ArrayList<Piece> black = new ArrayList<Piece>(0);
 static ArrayList<int[]> positions = new ArrayList<int[]>(0);
+static String[] files = new String[] {"a", "b", "c", "d", "e", "f", "g", "h"};
 static boolean blackInCheck = false;
 static boolean whiteInCheck = false;
 static boolean checkmated = false;

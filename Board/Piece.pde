@@ -7,6 +7,24 @@ public abstract class Piece{
   private King king;
   private Piece checkingPiece; 
   
+  public String namingConvention(){
+    if (this.getType().equals("KING")){
+      return "K";
+    }
+    if (this.getType().equals("KNIGHT")){
+      return "N";
+    }
+    if (this.getType().equals("ROOK")){
+      return "R";
+    }
+    if (this.getType().equals("BISHOP")){
+      return "B";
+    }
+    else{
+      return "";
+    }
+  }
+  
   public Piece capture(){ // needs to be corrected (edit: seems to work for pawn capturing)
     if (this.side()){
       for (int count = 0; count < white.size(); count++){
@@ -231,7 +249,7 @@ public abstract class Piece{
       }
       blackInCheck = false;
       whiteInCheck = false;
-      
+      System.out.println(this.Pos
 
       int[] kingPos = new int[] {9, 9};
       
