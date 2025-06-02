@@ -47,7 +47,7 @@ public class Pawn extends Piece {
       int[] originalPos = this.getPos();
       this.setPos(newPos);
       Piece original = this.capture();
-      if (this.side()){
+           if (this.side()){
         if (true){
           int[] kingPos = new int[] {9, 9};
           try{
@@ -59,6 +59,7 @@ public class Pawn extends Piece {
               System.out.println("illegal");
               if (original != null){
                 white.add(original);
+                pieces.add(original);
               }
               this.setPos(originalPos);
               return false;
@@ -79,6 +80,7 @@ public class Pawn extends Piece {
               System.out.println("illegal");
               if (original != null){
                 black.add(original);
+                pieces.add(original);
               }
               this.setPos(originalPos);
               return false;
@@ -86,12 +88,8 @@ public class Pawn extends Piece {
           }
         }
       }
-      
-      firstMove = false;
-  //    System.out.println("moving in func");
-            int[] kingPos = new int[] {9, 9};
-      
-      if (this.side()){
+         int[] kingPos = new int[] {9, 9};
+     if (this.side()){
         try{
           kingPos = white.get(1).getKing().getPos();
         }catch (NullPointerException e){
@@ -101,21 +99,101 @@ public class Pawn extends Piece {
           if (black.get(i).canCapture(kingPos)){
             System.out.println("check");
             Board.whiteInCheck = true;
+            }
+         }
+        int incrementer = 0;
+        boolean isItOver = true;
+        while (isItOver && incrementer < white.size()){ // isItOver checks if opposing side can make a move next turn (true means no); loops through all of opposing pieces
+          Piece savior = white.get(incrementer); 
+          incrementer++;
+          int secondIncrement = 0;
+          ArrayList<int[]> legalMoves = savior.getLegalMoves();
+          boolean isItOverII = true;
+          while (isItOverII && secondIncrement < legalMoves.size()){ //isItOverII checks each legalMove of an opposing piece; returns true if none work
+            int[] origPos = savior.getPos();
+            savior.setPos(legalMoves.get(secondIncrement));
+            secondIncrement++;
+            Piece taken = savior.capture();
+            boolean isItOverIII = false;        
+            int thirdIncrement = 0;
+            while (!isItOverIII && thirdIncrement < black.size()){ //isItOverIII checks if this side can capture the king next turn; returns false if ever a legal move
+              if (black.get(thirdIncrement).canCapture(kingPos)){
+                isItOverIII = true;
+              }
+              thirdIncrement++;
+            }
+            if (isItOverIII == false){
+              isItOverII = false;
+              isItOver = false;
+            }
+            if (taken != null){
+              black.add(taken);
+              pieces.add(taken);
+            }
+            savior.setPos(origPos);
           }
         }
+         if (isItOver){
+          System.out.println("checkmate: black wins");
+         checkmated = true;
+        }
+        else{
+          System.out.println("not over yet");
+        }
       }
-      else{
+      
+    else if (!this.side()){
         try{
           kingPos = black.get(1).getKing().getPos();
         }catch (NullPointerException e){
+          
         }
         for (int i = 0; i < white.size(); i++){
           if (white.get(i).canCapture(kingPos)){
             System.out.println("check");
             Board.blackInCheck = true;
+            }
+         }
+        int incrementer = 0;
+        boolean isItOver = true;
+        while (isItOver && incrementer < black.size()){ // isItOver checks if opposing side can make a move next turn (true means no); loops through all of opposing pieces
+          Piece savior = black.get(incrementer); 
+          incrementer++;
+          int secondIncrement = 0;
+          ArrayList<int[]> legalMoves = savior.getLegalMoves();
+          boolean isItOverII = true;
+          while (isItOverII && secondIncrement < legalMoves.size()){ //isItOverII checks each legalMove of an opposing piece; returns true if none work
+            int[] origPos = savior.getPos();
+            savior.setPos(legalMoves.get(secondIncrement));
+            secondIncrement++;
+            Piece taken = savior.capture();
+            boolean isItOverIII = false;        
+            int thirdIncrement = 0;
+            while (!isItOverIII && thirdIncrement < white.size()){ //isItOverIII checks if this side can capture the king next turn; returns false if ever a legal move
+              if (white.get(thirdIncrement).canCapture(kingPos)){
+                isItOverIII = true;
+              }
+              thirdIncrement++;
+            }
+            if (isItOverIII == false){
+              isItOverII = false;
+              isItOver = false;
+            }
+            if (taken != null){
+              white.add(taken);
+              pieces.add(taken);
+            }
+            savior.setPos(origPos);
           }
         }
-      }
+         if (isItOver){
+          System.out.println("checkmate: white wins");
+         checkmated = true;
+        }
+        else{
+          System.out.println("not over yet");
+        }
+    }
       return true;
     }
     return false;
