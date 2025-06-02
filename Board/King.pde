@@ -8,7 +8,7 @@ public class King extends Piece{
     super.setCheck(false);
     super.setSide(shinySide);
     canCastle = false;
-    super.setHasMoved(false);
+  //  super.setHasMoved(false);
   //  super.setIsCastlingLeft(false);
   //  super.setIsCastlingRight(false);
   }
@@ -23,10 +23,10 @@ public class King extends Piece{
         }
       }
     }
-    int[] castling = castle();
-    if(!castling.equals(new int[0])){
-      toReturn.add(castling);
-    }
+   // int[] castling = castle();
+  //  if(!castling.equals(new int[0])){
+   //   toReturn.add(castling);
+   // }
     return toReturn;
   }
   
@@ -75,90 +75,7 @@ public class King extends Piece{
   
   
   
-  public int[] castle(){
-    Piece leftRook= null;
-    Piece rightRook = null;
-    boolean rightSide = true;
-    boolean leftSide = true;
-    if(!this.side()){
-      for(int i = 0; i < white.size(); i++){ //gets rooks for the white side & checks if respective positions are empty
-        if(white.get(i).getType().equals("ROOK") && white.get(i).getPos().equals(new int[]{0, 7})){
-          leftRook = white.get(i);
-        }
-        else if(white.get(i).getType().equals("ROOK") && white.get(i).getPos().equals(new int[]{7, 7})){
-          rightRook = white.get(i);
-        }
-        
-        if(white.get(i).getPos().equals(new int[]{5,7}) || white.get(i).getPos().equals(new int[]{6,7})){
-          rightSide = false;
-        }
-        if(white.get(i).getPos().equals(new int[]{3,7}) || white.get(i).getPos().equals(new int[]{2,7}) || white.get(i).getPos().equals(new int[]{1,7})){
-          leftSide = false;
-        }
-      }
-      for(int i = 0; i < black.size(); i++){ // checks if any of the places in between are being attacked & checks if respective positions are empty
-        if(black.get(i).canCapture(new int[]{5, 7}) || black.get(i).canCapture(new int[]{6, 7})){
-          rightSide = false;
-        }
-        if(black.get(i).canCapture(new int[]{3, 7}) || black.get(i).canCapture(new int[]{2, 7}) || black.get(i).canCapture(new int[]{1, 7})){
-          leftSide = false;
-        }
-        
-        if(black.get(i).getPos().equals(new int[]{5, 7}) || black.get(i).getPos().equals(new int[]{6, 7})){
-          rightSide = false;
-        }
-        if(black.get(i).getPos().equals(new int[]{3, 7}) || black.get(i).getPos().equals(new int[]{2, 7}) || black.get(i).getPos().equals(new int[]{1, 7})){
-          leftSide = false;
-        }
-      }
-      if(leftSide && leftRook != null && !super.getCheckStatus() && leftRook.castleStatus()){
-          return new int[]{2, 7};
-      }
-      if(rightSide && rightRook != null && !super.getCheckStatus() && rightRook.castleStatus()){
-          return new int[]{6, 7};
-      }
-      
-    }
-    else{
-       for(int i = 0; i < black.size(); i++){ //gets rooks for the black side & checks if respective positions are empty
-        if(black.get(i).getType().equals("ROOK") && black.get(i).getPos().equals(new int[]{0, 0})){
-          leftRook = black.get(i);
-        }
-        else if(black.get(i).getType().equals("ROOK") && black.get(i).getPos().equals(new int[]{7, 0})){
-          rightRook = black.get(i);
-        }
-        
-        if(black.get(i).getPos().equals(new int[]{5, 0}) || black.get(i).getPos().equals(new int[]{6, 0})){
-          rightSide = false;
-        }
-        if(black.get(i).getPos().equals(new int[]{3, 0}) || black.get(i).getPos().equals(new int[]{2, 0}) || black.get(i).getPos().equals(new int[]{1, 0})){
-          leftSide = false;
-        }
-      }
-      for(int i = 0; i < white.size(); i++){ // checks if any of the places in between are being attacked & checks if respective positions are empty
-        if(white.get(i).canCapture(new int[]{5, 0}) || white.get(i).canCapture(new int[]{6, 0})){
-          rightSide = false;
-        }
-        if(white.get(i).canCapture(new int[]{3, 0}) || white.get(i).canCapture(new int[]{2, 0}) || white.get(i).canCapture(new int[]{1, 0})){
-          leftSide = false;
-        }
-        
-        if(white.get(i).getPos().equals(new int[]{5, 0}) || white.get(i).getPos().equals(new int[]{6, 0})){
-          rightSide = false;
-        }
-        if(white.get(i).getPos().equals(new int[]{3, 0}) || white.get(i).getPos().equals(new int[]{2, 0}) || white.get(i).getPos().equals(new int[]{1, 0})){
-          leftSide = false;
-        }
-      }
-      if(leftSide && leftRook != null && !super.getCheckStatus() && leftRook.castleStatus()){
-          return new int[]{2, 0};
-      }
-      if(rightSide && rightRook != null && !super.getCheckStatus() && rightRook.castleStatus()){
-          return new int[]{6, 0};
-      } 
-    }
-    return new int[0];
-  }
+ 
   
   public void applyCheck(boolean checkStatus){
     if (this.side()){
