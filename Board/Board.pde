@@ -422,6 +422,23 @@ void ditto(float x, float y, boolean shiny) {
   noFill();
   arc(x, y+2, 85, 20, PI/3, 2*PI/3);
 }
+void dittoLight(float x, float y, boolean shiny) {
+  if (shiny) {
+    fill(102, 204, 234);
+  } else {
+    fill(204, 102, 204);
+  }
+  strokeWeight(2);
+  stroke(0);
+  circle(x, y, 64);
+  fill(0);
+  circle(x-15, y-3, 2);
+  circle(x+15, y-3, 2);
+  noFill();
+  arc(x, y+2, 85, 20, PI/3, 2*PI/3);
+  stroke(255, 0, 0);
+  circle(x, y, 64);
+}
 
 void pokeball(color ballColor, color base, float x, float y) {
   // tint(255, 127);
@@ -635,6 +652,17 @@ void draw() {
       } else {
         pokeballLight(0, 255, legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50);
       }
+      
+      if(!selectedPiece.side()){//capture
+        if(selectedPiece.canCapture(legalMoves.get(i))){
+          for(int j = 0; j < black.size(); j++){
+            if(black.get(j).getPos()[0] == legalMoves.get(i)[0] && black.get(j).getPos()[1] == legalMoves.get(i)[1]){
+              dittoLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
+            }
+          }
+        }
+      }
+      
     }
   }
   
@@ -677,6 +705,16 @@ void mouseClicked() {
           } else {
             pokeballLight(0, 255, legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50);
           }
+          
+          if(!selectedPiece.side()){//capture
+          if(selectedPiece.canCapture(legalMoves.get(i))){
+            for(int j = 0; j < black.size(); j++){
+              if(black.get(j).getPos()[0] == legalMoves.get(i)[0] && black.get(j).getPos()[1] == legalMoves.get(i)[1]){
+                dittoLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
+              }
+            }
+          }
+        }
         }
       } else {
         System.out.print("TURN: " + turnNumber);
