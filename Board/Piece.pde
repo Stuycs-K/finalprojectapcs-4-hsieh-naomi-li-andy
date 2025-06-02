@@ -45,18 +45,18 @@ public abstract class Piece{
     boolean contains = false;
     if(getType().equals("KING")){
       contains = this.canMove(newPos);
-      System.out.println("running castle check");
+   //   System.out.println("running castle check");
       Piece leftRook= null;
       Piece rightRook = null;
       boolean rightSide = true;
       boolean leftSide = true;
 
        if (!this.side()) {
-         System.out.println("white");
+      //   System.out.println("white");
       for (int i = 0; i < white.size(); i++) { //gets rooks for the white side & checks if respective positions are empty
   //    System.out.println("looping");
-      System.out.println(leftSide + " " + rightSide);
-      System.out.println(Arrays.toString(white.get(i).getPos()));
+     // System.out.println(leftSide + " " + rightSide);
+    //  System.out.println(Arrays.toString(white.get(i).getPos()));
         if (white.get(i).getType().equals("ROOK") && white.get(i).getPos()[0] == 0 && white.get(i).getPos()[1] == 7) {
           leftRook = white.get(i);
         } else if (white.get(i).getType().equals("ROOK") && white.get(i).getPos()[0] == 7 && white.get(i).getPos()[1] == 7) {
@@ -95,7 +95,7 @@ public abstract class Piece{
       }
       if (leftSide && leftRook != null && !whiteInCheck && leftRook.castleStatus()) {
         if(newPos[0] == 2 && newPos[1] == 7){
-          System.out.println("castling to the left");
+        //  System.out.println("castling to the left");
           contains = true;
           leftRook.setPos(new int[]{3, 7});
         }
@@ -103,13 +103,13 @@ public abstract class Piece{
       if (rightSide && rightRook != null && !whiteInCheck && rightRook.castleStatus()) {
         if(newPos[0] == 6 && newPos[1] == 7){
           
-          System.out.println("castling to the right");
+         // System.out.println("castling to the right");
           contains = true;
           rightRook.setPos(new int[]{5, 7});
         }
       }
     } else {
-      System.out.println("black");
+   //   System.out.println("black");
       for (int i = 0; i < black.size(); i++) { //gets rooks for the black side & checks if respective positions are empty
         if (black.get(i).getType().equals("ROOK") && black.get(i).getPos()[0] == 0 && black.get(i).getPos()[1] == 0) {
           leftRook = black.get(i);
@@ -119,31 +119,31 @@ public abstract class Piece{
 
         if (black.get(i).getPos()[0] == 5 && black.get(i).getPos()[1] == 0 || black.get(i).getPos()[0] == 6 && black.get(i).getPos()[1] == 0) {
           rightSide = false;
-          System.out.println("can't castle to the right");
+        //  System.out.println("can't castle to the right");
         }
         if (black.get(i).getPos()[0] == 3 && black.get(i).getPos()[1] == 0 || black.get(i).getPos()[0] == 2 && black.get(i).getPos()[1] == 0 || black.get(i).getPos()[0] == 1 && black.get(i).getPos()[1] == 0) {
           leftSide = false;
-          System.out.println("can't castle to the left");
+        //  System.out.println("can't castle to the left");
         }
       }
       for (int i = 0; i < white.size(); i++) { // checks if any of the places in between are being attacked & checks if respective positions are empty
         if (!(white.get(i).getType().equals("PAWN") || white.get(i).getType().equals("KING"))) {
           if (white.get(i).canCapture(new int[]{5, 0}) || white.get(i).canCapture(new int[]{6, 0})) {
             rightSide = false;
-            System.out.println("can't castle to the right");
+          //  System.out.println("can't castle to the right");
           }
           if (white.get(i).canCapture(new int[]{3, 0}) || white.get(i).canCapture(new int[]{2, 0})) {
             leftSide = false;
-            System.out.println("can't castle to the left");
+          //  System.out.println("can't castle to the left");
           }
 
           if (white.get(i).getPos()[0] == 5 && white.get(i).getPos()[1] == 0 || white.get(i).getPos()[0] == 6 && white.get(i).getPos()[1] == 0) {
             rightSide = false;
-            System.out.println("can't castle to the right");
+           // System.out.println("can't castle to the right");
           }
           if (white.get(i).getPos()[0] == 3 && white.get(i).getPos()[1] == 0 || white.get(i).getPos()[0] == 2 && white.get(i).getPos()[1] == 0 || white.get(i).getPos()[0] == 1 && white.get(i).getPos()[1] == 0) {
             leftSide = false;
-            System.out.println("can't castle to the left");
+           // System.out.println("can't castle to the left");
           }
         }
       }
@@ -160,7 +160,7 @@ public abstract class Piece{
         }
       }
     }
-    System.out.println("Castle check finished. Left side check: " + leftSide + " Rook null? " + (leftRook == null) + " Right side check: " + rightSide  + " Rook null? " + (rightRook == null));
+   // System.out.println("Castle check finished. Left side check: " + leftSide + " Rook null? " + (leftRook == null) + " Right side check: " + rightSide  + " Rook null? " + (rightRook == null));
     
     }
     
