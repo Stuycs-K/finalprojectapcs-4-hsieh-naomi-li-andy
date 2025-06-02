@@ -38,3 +38,8 @@ At home: I finished up the draw method and debugged the pawn movement, also impl
 In class: I debugged the movement for all pieces, as they weren't changing their position before. I also updated all the accessor/mutator methods to inherit correctly (~35 minutes).
 
 At home: I finished debugging, updating the methods, and implemented a prototype version of check (~30 minutes).
+
+### 2025-05-30 to 2025-06-01 - Debugging, King Movement, En Passant, Pawn Promotion, Castling, and Designs
+In class: I worked on check and tried to debug king movement (~35 minutes).
+
+At home: I finished debugging king movement (~40 minutes), created two new designs (~60 minutes), set up the designs (~20 minutes), implemented en passant (~60 minutes), implemented pawn promotion (~35 minutes), and implemented castling (~80 minutes) (these times include debugging). 
