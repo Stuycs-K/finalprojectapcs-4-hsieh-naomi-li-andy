@@ -615,7 +615,6 @@ void mouseClicked() {
   int ypos = (int)mouseY/100;
   if(!pawnPromoting){
     if (selectingPiece) {
-      System.out.println("Selecting");
       if (turnNumber % 2 != 0) {
         for (int i = 0; i < white.size(); i++) {
           if (white.get(i).getPos()[0] == xpos && white.get(i).getPos()[1] == ypos) {
@@ -632,13 +631,9 @@ void mouseClicked() {
         }
       }
     } else {
-      System.out.println("Moving");
       selectingPiece = true;
-      System.out.println(selectedPiece.getType());
       if (selectedPiece.move(new int[]{xpos, ypos})) {
         turnNumber++;
-        System.out.println("Successful move!");
-        System.out.println(Arrays.toString(selectedPiece.getPos()));
       }
       if(turnNumber % 2 == 0){
         for(Piece p : black){

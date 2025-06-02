@@ -214,7 +214,7 @@ public class Bishop extends Piece{
        }
       }
    }
-    return !pieceOnPos && this.reachable(newPos) && super.checkChecker(newPos);
+    return !pieceOnPos && this.reachable(newPos) ;//&& super.checkChecker(newPos);
   }
   /*
   public String getType(){

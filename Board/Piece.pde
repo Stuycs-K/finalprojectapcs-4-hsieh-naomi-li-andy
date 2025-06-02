@@ -56,12 +56,11 @@ public abstract class Piece{
     }
     }
     
-    System.out.println(Arrays.toString(newPos));
     
     if(contains){
       if(getCheckStatus()){
         King temp = king;
-        applyCheck(king, false);
+       // applyCheck(king, false);
       }
       int[] originalPos = this.getPos();
       this.setPos(newPos);
@@ -110,7 +109,6 @@ public abstract class Piece{
       }
       
 
-      System.out.println("moving in func");
       int[] kingPos = new int[] {9, 9};
       
       if (this.side()){
@@ -121,7 +119,6 @@ public abstract class Piece{
         }
         for (int i = 0; i < black.size(); i++){
           if (black.get(i).canCapture(kingPos)){
-            System.out.println("check");
             Board.whiteInCheck = true;
             }
          }
@@ -141,20 +138,23 @@ public abstract class Piece{
             boolean isItOverIII = false;        
             int thirdIncrement = 0;
             while (!isItOverIII && thirdIncrement < black.size()){ //isItOverIII checks if this side can capture the king next turn; returns false if ever a legal move
+                             try{
+               kingPos = white.get(1).getKing().getPos();}
+               catch (Exception e){}
               if (black.get(thirdIncrement).canCapture(kingPos)){
                 isItOverIII = true;
               }
               thirdIncrement++;
-            }
-            if (isItOverIII == false){
-              isItOverII = false;
-              isItOver = false;
             }
             if (taken != null){
               black.add(taken);
               pieces.add(taken);
             }
             savior.setPos(origPos);
+            if (isItOverIII == false){
+              isItOverII = false;
+              isItOver = false;
+            }
           }
         }
          if (isItOver){
@@ -174,7 +174,6 @@ public abstract class Piece{
         }
         for (int i = 0; i < white.size(); i++){
           if (white.get(i).canCapture(kingPos)){
-            System.out.println("check");
             Board.blackInCheck = true;
             }
          }
@@ -194,12 +193,17 @@ public abstract class Piece{
             boolean isItOverIII = false;        
             int thirdIncrement = 0;
             while (!isItOverIII && thirdIncrement < white.size()){ //isItOverIII checks if this side can capture the king next turn; returns false if ever a legal move
+                             try{
+               kingPos = black.get(1).getKing().getPos();}
+               catch (Exception e){}
               if (white.get(thirdIncrement).canCapture(kingPos)){
                 isItOverIII = true;
               }
               thirdIncrement++;
             }
             if (isItOverIII == false){
+              System.out.println(thirdIncrement);
+              System.out.println(secondIncrement);
               isItOverII = false;
               isItOver = false;
             }
@@ -247,18 +251,15 @@ public abstract class Piece{
     return false;
   }
   
-  public boolean canCapture(Piece other){
-    //System.out.println("calling canCapture for " + this.getType());
-    return this.reachable(other.getPos());
-  }
+
   
-  
+  /*
   public void applyCheck(King other, boolean checkStatus){
     if(this.canCapture(other)){
        other.applyCheck(checkStatus);
        other.setCheckingPiece(this);
     }
-  }
+  }*/
   
   public abstract boolean reachable(int[] newPos);
   
@@ -321,7 +322,7 @@ public abstract class Piece{
   public Piece getCheckingPiece(){
       return checkingPiece;
   }
-  
+  /*
   public boolean checkChecker(int[] newPos){
      if(this.getCheckStatus()){
         int[] opos = this.getPos();
@@ -340,6 +341,7 @@ public abstract class Piece{
     }
     return true;
   }
+  */
   
   public boolean getCanBeEnPassanted(){
     return false;

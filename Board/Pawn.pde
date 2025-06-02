@@ -35,8 +35,6 @@ public class Pawn extends Piece {
   }*/
 
   public boolean move(int[] newPos) {
-   System.out.println("white:"+Board.whiteInCheck);
-   System.out.println("black:"+Board.blackInCheck);
     boolean contains = false;
     for (int[] i : this.getLegalMoves()) {
    //   System.out.println(Arrays.toString(i));
@@ -135,7 +133,6 @@ public class Pawn extends Piece {
         }
         for (int i = 0; i < black.size(); i++){
           if (black.get(i).canCapture(kingPos)){
-            System.out.println("check");
             Board.whiteInCheck = true;
             }
          }
@@ -155,6 +152,9 @@ public class Pawn extends Piece {
             boolean isItOverIII = false;        
             int thirdIncrement = 0;
             while (!isItOverIII && thirdIncrement < black.size()){ //isItOverIII checks if this side can capture the king next turn; returns false if ever a legal move
+                try{
+               kingPos = white.get(1).getKing().getPos();}
+               catch (Exception e){}
               if (black.get(thirdIncrement).canCapture(kingPos)){
                 isItOverIII = true;
               }
@@ -188,7 +188,6 @@ public class Pawn extends Piece {
         }
         for (int i = 0; i < white.size(); i++){
           if (white.get(i).canCapture(kingPos)){
-            System.out.println("check");
             Board.blackInCheck = true;
             }
          }
@@ -208,6 +207,9 @@ public class Pawn extends Piece {
             boolean isItOverIII = false;        
             int thirdIncrement = 0;
             while (!isItOverIII && thirdIncrement < white.size()){ //isItOverIII checks if this side can capture the king next turn; returns false if ever a legal move
+               try{
+               kingPos = black.get(1).getKing().getPos();}
+               catch (Exception e){}
               if (white.get(thirdIncrement).canCapture(kingPos)){
                 isItOverIII = true;
               }
@@ -315,7 +317,7 @@ public class Pawn extends Piece {
         }
       }
     }
-    return (legalMove && this.canMove(newPos) && super.checkChecker(newPos));
+    return (legalMove && this.canMove(newPos) );//&& super.checkChecker(newPos));
   }
 
   public boolean canMove(int[] newPos) {
@@ -324,9 +326,6 @@ public class Pawn extends Piece {
     for (int i = 0; i < Board.white.size() + Board.black.size() && !pieceOnPos; i++) {
       temp = Board.pieces.get(i).getPos();
       if (temp[0] == newPos[0] && temp[1] == newPos[1] && (Board.pieces.get(i).side() == this.side())) {
-        System.out.println("oh no a piece");
-        System.out.println(Board.pieces.get(i).getType());
-        System.out.println(Arrays.toString(temp) + " " + Arrays.toString(newPos));
         pieceOnPos = true;
       }
     }

@@ -361,7 +361,7 @@ public boolean legalMovesContains(int[] newPos){
        pieceOnPos = true;
      }
     }
-    return !pieceOnPos && this.reachable(newPos) && super.checkChecker(newPos);
+    return !pieceOnPos && this.reachable(newPos) ;//&& super.checkChecker(newPos);
   }
   /*
   public String getType(){
