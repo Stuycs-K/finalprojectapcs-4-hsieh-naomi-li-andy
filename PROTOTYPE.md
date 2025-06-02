@@ -28,12 +28,13 @@
 			<li>boolean getCanBeEnPassanted(): returns false (this is so the pawn method becomes inherited and so Piece x = new Pawn() can use the method) (new)</li>
 			<li>void setCanBeEnPassanted(boolean canBe): (this is so the pawn method becomes inherited and so Piece x = new Pawn() can use the method) (new)</li>
 		</ul></li>
-  		<li>Instance Variables<ul>
+  		<li>Instance Variables (copies of these variables will be strikethroughed in below classes because they would be null if not inherited)<ul> 
 			<li>boolean alive</li>
 			<li>int[] position (note: coordinates stored here will be one-digit, behaving as if it is 8x8 not 800x800)</li>
 			<li>String type</li>
 			<li>boolean inCheck</li>
 			<li>boolean shinySide</li>
+			<li>King king (new)</li>
 		</ul></li>
 	</ul></li>
 	<li> King Class (extended from piece) <ul>
@@ -112,6 +113,9 @@
 			<li>boolean pawnPromoting</li>
 			<li>Piece selectedPiece (new)</li>
 			<li>Piece pawnBeingPromoted (new)</li>
+			<li>boolean blackInCheck (new)</li>
+			<li>boolean whiteInCheck (new)</li>
+			<li>boolean checkmated (new)</li>
 			<li>int turnNumber (new)</li>
 		</ul></li>
   	</ul></li>
