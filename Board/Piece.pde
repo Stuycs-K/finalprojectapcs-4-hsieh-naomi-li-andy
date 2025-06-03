@@ -623,7 +623,7 @@ public abstract class Piece{
     if(this.side()){
         for(int i = 0; i < Board.white.size(); i++){
            if(Board.white.get(i).getType().equals("PAWN") && (Board.white.get(i).getPos()[0] == this.getPos()[0] + 1 || Board.white.get(i).getPos()[0] == this.getPos()[0] - 1) && Board.white.get(i).getPos()[1] == this.getPos()[1] && Board.white.get(i).getCanBeEnPassanted()){
-             legalMoves.add(new int[]{Board.white.get(i).getPos()[0] + Board.white.get(i).getPos()[1] - 1}); 
+             legalMoves.add(new int[]{Board.white.get(i).getPos()[0], Board.white.get(i).getPos()[1] + 1}); 
            }
         }
       }
@@ -631,7 +631,7 @@ public abstract class Piece{
         for(int i = 0; i < Board.black.size(); i++){
         //  if(Board.black.get(i).getType().equals("PAWN") && Board.black.get(i).getPos()[0] == newPos[0] && Board.black.get(i).getPos()[0] != this.getPos()[0] && Board.black.get(i).getPos()[1] == newPos[1] + 1){System.out.println("pawnchecker");}
            if(Board.black.get(i).getType().equals("PAWN") && (Board.black.get(i).getPos()[0] == this.getPos()[0] + 1 || Board.black.get(i).getPos()[0] == this.getPos()[0] - 1) && Board.black.get(i).getPos()[1] == this.getPos()[1] && Board.black.get(i).getCanBeEnPassanted()){
-              legalMoves.add(new int[]{Board.black.get(i).getPos()[0] + Board.black.get(i).getPos()[1] - 1}); 
+              legalMoves.add(new int[]{Board.black.get(i).getPos()[0], Board.black.get(i).getPos()[1] - 1}); 
            }
         }
       }
