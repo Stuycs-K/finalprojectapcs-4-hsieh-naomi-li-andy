@@ -251,9 +251,13 @@ public abstract class Piece{
       whiteInCheck = false;
       
       int[] kingPos = new int[] {9, 9};
-      
+        String takingPiece = this.namingConvention();
+        if (original != null){
+          takingPiece += "x";
+        }
+        System.out.println(takingPiece + files[this.getPos()[0]] + (8 - this.getPos()[1]));
+
       if (this.side()){
-         System.out.println(this.namingConvention() + files[this.getPos()[0]] + (8- this.getPos()[1]));
         try{
           kingPos = white.get(1).getKing().getPos();
         }catch (NullPointerException e){
@@ -311,7 +315,6 @@ public abstract class Piece{
       }
       
     else if (!this.side()){
-               System.out.println(this.namingConvention() + files[this.getPos()[0]] + (8 - this.getPos()[1]));
 
         try{
           kingPos = black.get(1).getKing().getPos();
