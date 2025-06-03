@@ -113,12 +113,7 @@ public class Pawn extends Piece {
           }
         }
       }
-         String takingPiece = this.namingConvention();
-        if (original != null){
-          takingPiece += files[originalPos[0]];
-          takingPiece += "x";
-        }
-        System.out.println(takingPiece + files[this.getPos()[0]] + (8 - this.getPos()[1]));
+     
          int[] kingPos = new int[] {9, 9};
      if (this.side()){
       if(!this.getFirstMove()){
@@ -241,8 +236,22 @@ public class Pawn extends Piece {
           }
          checkmated = true;
         }
-
     }
+            String takingPiece = this.namingConvention();
+        if (original != null){
+          takingPiece += files[originalPos[0]];
+          takingPiece += "x";
+        }
+        String newPiece = files[this.getPos()[0]] + (8 - this.getPos()[1]);
+        if (checkmated){
+          newPiece += "#";
+        }
+        else if (whiteInCheck || blackInCheck){
+          newPiece += "+";
+        }
+        System.out.println(takingPiece + newPiece);
+
+    
       return true;
     }
     return false;

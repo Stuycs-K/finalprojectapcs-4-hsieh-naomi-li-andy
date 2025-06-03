@@ -20,6 +20,9 @@ public abstract class Piece{
     if (this.getType().equals("BISHOP")){
       return "B";
     }
+    if (this.getType().equals("QUEEN")){
+      return "Q";
+    }
     else{
       return "";
     }
@@ -251,11 +254,7 @@ public abstract class Piece{
       whiteInCheck = false;
       
       int[] kingPos = new int[] {9, 9};
-        String takingPiece = this.namingConvention();
-        if (original != null){
-          takingPiece += "x";
-        }
-        System.out.println(takingPiece + files[this.getPos()[0]] + (8 - this.getPos()[1]));
+    
 
       if (this.side()){
         try{
@@ -361,7 +360,7 @@ public abstract class Piece{
             savior.setPos(origPos);
           }
         }
-                  if (isItOver){
+       if (isItOver){
            if (blackInCheck || whiteInCheck){
           System.out.println("checkmate: white wins");}
           else{
@@ -371,6 +370,18 @@ public abstract class Piece{
         }
       
       }
+         String takingPiece = this.namingConvention();
+        if (original != null){
+          takingPiece += "x";
+        }
+        String newPiece = files[this.getPos()[0]] + (8 - this.getPos()[1]);
+            if (checkmated){
+          newPiece += "#";
+        }
+        else if (whiteInCheck || blackInCheck){
+          newPiece += "+";
+        }
+        System.out.println(takingPiece + newPiece);
       
       return true;
     }
