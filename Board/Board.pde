@@ -322,6 +322,78 @@ void spheal(float x, float y, boolean shiny) {
   circle(x+14, y-12, 6);
   noFill();
   circle(x, y, 64);
+  if (shiny) {
+    stroke(203, 155, 211);
+    fill(203, 155, 211);
+  } else {
+    stroke(156, 182, 240);
+    fill(156, 182, 240);
+  }
+  circle(x-23, y-23, 15);
+  circle(x+23, y-23, 15); 
+}
+
+void sphealLight(float x, float y, boolean shiny) {
+  stroke(0);
+  if (shiny) {
+    fill(203, 155, 211);
+  } else {
+    fill(156, 182, 240);
+  }
+  strokeWeight(2);
+  stroke(255, 0, 0);
+  circle(x-25, y-25, 20);
+  circle(x+25, y-25, 20);
+  stroke(0);
+  circle(x, y, 64);
+  if (shiny) {
+    stroke(248, 224, 217);
+    fill(248, 224, 217);
+  } else {
+    stroke(242, 228, 200);
+    fill(242, 228, 200);
+  }
+  ellipse(x, y+12, 54, 38);
+  stroke(255);
+  fill(255);
+  triangle(x-14, y+5, x-10, y+5, x-12, y+10);
+  triangle(x+14, y+5, x+10, y+5, x+12, y+10);
+  if (shiny) {
+    stroke(203, 155, 211);
+    fill(203, 155, 211);
+  } else {
+    stroke(156, 182, 240);
+    fill(156, 182, 240);
+  }
+  ellipse(x-9, y-5, 25, 20);
+  ellipse(x+9, y-5, 25, 20);
+  if (shiny) {
+    stroke(203, 155, 211);
+  } else {
+    stroke(156, 182, 240);
+  }
+  rect(x-22, y-17, 45, 13, 28);
+  rect(x-5, y-5, 5, 4, 28);
+
+  fill(0);
+  stroke(0);
+  circle(x-12, y-10, 10);
+  circle(x+12, y-10, 10);
+  fill(255);
+  circle(x-10, y-12, 6);
+  circle(x+14, y-12, 6);
+  noFill();
+  stroke(255, 0, 0);
+  circle(x, y, 64);
+ if (shiny) {
+    stroke(203, 155, 211);
+    fill(203, 155, 211);
+  } else {
+    stroke(156, 182, 240);
+    fill(156, 182, 240);
+  }
+  circle(x-23, y-23, 15);
+  circle(x+23, y-23, 15); 
 }
 
 void piplup(float x, float y, boolean shiny) {
@@ -734,6 +806,7 @@ void draw() {
    electrode(750, 550, false);*/
    
    gulpinLight(50, 50, false);
+   sphealLight(50, 150, false);
 }
 
 void mouseClicked() {
