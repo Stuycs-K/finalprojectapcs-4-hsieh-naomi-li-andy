@@ -50,6 +50,56 @@ void gulpin(float x, float y, boolean shiny) {
   translate(x-23, y-17);
   rotate(-PI/6);
   ellipse(0, 0, 30, 15);
+  if (shiny) {
+    stroke(255, 192, 103);
+  } else {
+    stroke(255, 241, 100);
+  }
+  ellipse(3, 4, 30, 15);
+  popMatrix();
+}
+
+void gulpinLight(float x, float y, boolean shiny) {
+  stroke(0);
+  if (shiny) {
+    fill(108, 186, 204);
+  } else {
+    fill(132, 194, 40);
+  }
+  circle(x, y, 64);
+
+  ellipse(x+15, y+4, 20, 10);
+  ellipse(x+15, y+12, 20, 10);
+  if (shiny) {
+    stroke(108, 186, 204);
+  } else {
+    stroke(132, 194, 40);
+  }
+  rect(x+3, y-2, 15, 25);
+  stroke(0);
+  strokeWeight(3);
+  line(x+3, y-2, x+9, y-6);
+  line(x+20, y-6, x+26, y-2);
+  strokeWeight(2);
+  stroke(255, 0, 0);
+  noFill();
+  circle(x, y, 64);
+  if (shiny) {
+    fill(255, 192, 103);
+  } else {
+    fill(255, 241, 100);
+  }
+  pushMatrix();
+  translate(x-23, y-17);
+  rotate(-PI/6);
+  stroke(255, 0, 0);
+  ellipse(0, 0, 30, 15);
+  if (shiny) {
+    stroke(255, 192, 103);
+  } else {
+    stroke(255, 241, 100);
+  }
+  ellipse(3, 4, 30, 15);
   popMatrix();
 }
 
@@ -102,6 +152,57 @@ void electrode(float x, float y, boolean shiny) {
   circle(x, y, 64);
 }
 
+void electrodeLight(float x, float y, boolean shiny) {
+  stroke(0);
+  if (shiny) {
+    fill(50, 130, 200);
+  } else {
+    fill(255, 0, 0);
+  }
+  circle(x, y, 64);
+  if (shiny) {
+    fill(255, 240, 255);
+    stroke(255, 240, 255);
+  } else {
+    fill(240, 240, 240);
+    stroke(255, 240, 255);
+  }
+  arc(x, y, 59, 59, PI, 2*PI);
+  ellipse(x, y, 59, 13);
+  arc(x+2, y+10, 30, 23, 0, PI);
+  if (shiny) {
+    stroke(50, 130, 200);
+    fill(50, 130, 200);
+  } else {
+    stroke(255, 0, 0);
+    fill(255, 0, 0);
+  }
+  ellipse(x+2, y+10, 30, 5);
+  if (shiny) {
+    fill(255, 240, 255);
+    stroke(255, 240, 255);
+  } else {
+    fill(240, 240, 240);
+    stroke(255, 240, 255);
+  }
+  ellipse(x, y, 59, 13);
+  stroke(0);
+  strokeWeight(0.5);
+  line(x, y+21.5, x+1, y+19);
+  line(x+7, y+21.5, x+9, y+17);
+  strokeWeight(1);
+  fill(0);
+  ellipse(x-7, y-3, 2, 6);
+  ellipse(x+13, y-3, 2, 6);
+  line(x-13, y-10, x-5, y-5);
+  line(x+19, y-10, x+11, y-5);
+  noFill();
+  strokeWeight(2);
+  stroke(255, 0, 0);
+  circle(x, y, 64);
+  
+}
+
 void solosis(float x, float y, boolean shiny) {
   stroke(0);
   if (shiny) {
@@ -152,6 +253,61 @@ void solosis(float x, float y, boolean shiny) {
   }
 
   quad(x, y-7, x+4, y, x, y+7, x-4, y);
+}
+
+void solosisLight(float x, float y, boolean shiny) {
+  stroke(0);
+  if (shiny) {
+    fill(110, 170, 190);
+  } else {
+    fill(170, 230, 183);
+  }
+  circle(x, y, 64);
+  if (shiny) {
+    fill(155, 210, 170);
+    stroke(155, 210, 170);
+  } else {
+    fill(200, 255, 220);
+    stroke(200, 255, 220);
+  }
+  ellipse(x-10, y, 30, 35);
+  ellipse(x+10, y, 30, 35);
+  if (shiny) {
+    stroke(110, 170, 190);
+  } else {
+    stroke(170, 230, 183);
+  }
+  line(x, y-13, x, y-20);
+  line(x, y+13, x, y+20);
+  if (shiny) {
+    fill(255, 204, 153);
+    stroke(155, 104, 53);
+  } else {
+    fill(255, 255, 153);
+    stroke(155, 155, 53);
+  }
+  pushMatrix();
+  translate(x+20, y-15);
+  rotate(PI/12);
+  ellipse(-3, 0, 10, 5);
+  ellipse(-5, 5, 15, 7);
+  popMatrix();
+  stroke(0);
+  fill(0);
+  ellipse(x-13, y, 7, 10);
+  ellipse(x+13, y, 7, 10);
+  if (shiny) {
+    stroke(220, 173, 170);
+    fill(220, 173, 170);
+  } else {
+    stroke(255, 153, 170);
+    fill(255, 153, 170);
+  }
+
+  quad(x, y-7, x+4, y, x, y+7, x-4, y);
+  noFill();
+  stroke(255, 0, 0);
+  circle(x, y, 64);
 }
 /*void mew(float x, float y, boolean shiny){
  if(shiny){
@@ -263,7 +419,7 @@ void spheal(float x, float y, boolean shiny) {
   }
   rect(x-22, y-17, 45, 13, 28);
   rect(x-5, y-5, 5, 4, 28);
-  
+
   fill(0);
   stroke(0);
   circle(x-12, y-10, 10);
@@ -273,6 +429,78 @@ void spheal(float x, float y, boolean shiny) {
   circle(x+14, y-12, 6);
   noFill();
   circle(x, y, 64);
+  if (shiny) {
+    stroke(203, 155, 211);
+    fill(203, 155, 211);
+  } else {
+    stroke(156, 182, 240);
+    fill(156, 182, 240);
+  }
+  circle(x-23, y-23, 15);
+  circle(x+23, y-23, 15); 
+}
+
+void sphealLight(float x, float y, boolean shiny) {
+  stroke(0);
+  if (shiny) {
+    fill(203, 155, 211);
+  } else {
+    fill(156, 182, 240);
+  }
+  strokeWeight(2);
+  stroke(255, 0, 0);
+  circle(x-25, y-25, 20);
+  circle(x+25, y-25, 20);
+  stroke(0);
+  circle(x, y, 64);
+  if (shiny) {
+    stroke(248, 224, 217);
+    fill(248, 224, 217);
+  } else {
+    stroke(242, 228, 200);
+    fill(242, 228, 200);
+  }
+  ellipse(x, y+12, 54, 38);
+  stroke(255);
+  fill(255);
+  triangle(x-14, y+5, x-10, y+5, x-12, y+10);
+  triangle(x+14, y+5, x+10, y+5, x+12, y+10);
+  if (shiny) {
+    stroke(203, 155, 211);
+    fill(203, 155, 211);
+  } else {
+    stroke(156, 182, 240);
+    fill(156, 182, 240);
+  }
+  ellipse(x-9, y-5, 25, 20);
+  ellipse(x+9, y-5, 25, 20);
+  if (shiny) {
+    stroke(203, 155, 211);
+  } else {
+    stroke(156, 182, 240);
+  }
+  rect(x-22, y-17, 45, 13, 28);
+  rect(x-5, y-5, 5, 4, 28);
+
+  fill(0);
+  stroke(0);
+  circle(x-12, y-10, 10);
+  circle(x+12, y-10, 10);
+  fill(255);
+  circle(x-10, y-12, 6);
+  circle(x+14, y-12, 6);
+  noFill();
+  stroke(255, 0, 0);
+  circle(x, y, 64);
+ if (shiny) {
+    stroke(203, 155, 211);
+    fill(203, 155, 211);
+  } else {
+    stroke(156, 182, 240);
+    fill(156, 182, 240);
+  }
+  circle(x-23, y-23, 15);
+  circle(x+23, y-23, 15); 
 }
 
 void piplup(float x, float y, boolean shiny) {
@@ -326,6 +554,62 @@ void piplup(float x, float y, boolean shiny) {
   fill(255);
   ellipse(x-17, y-5, 3, 5);
   ellipse(x+17, y-5, 3, 5);
+}
+
+void piplupLight(float x, float y, boolean shiny) {
+  stroke(0);
+  if (shiny) {
+    fill(10, 166, 178);
+  } else {
+    fill(68, 132, 190);
+  }
+  circle(x, y, 64);
+  if (shiny) {
+    fill(106, 234, 230);
+    stroke(106, 234, 230);
+  } else {
+    fill(178, 209, 212);
+    stroke(178, 209, 212);
+  }
+  rect(x-9, y-5, 18, 15);
+  triangle(x-3, y-6, x+3, y-6, x, y-11);
+  pushMatrix();
+  translate(x-9, y-3);
+  rotate(-PI/6);
+  triangle(0, 0, 6, 0, 3, -5);
+  popMatrix();
+  pushMatrix();
+  translate(x+4, y-6);
+  rotate(PI/4);
+  triangle(0, 0, 6, 0, 3, -5);
+  popMatrix();
+  fill(255);
+  stroke(255);
+  ellipse(x-17, y+3, 20, 35);
+  ellipse(x+17, y+3, 20, 35);
+  ellipse(x, y+17, 42, 25);
+  if (shiny) {
+    fill(232, 226, 139);
+    stroke(232, 226, 139);
+  } else {
+    fill(242, 236, 139);
+    stroke(242, 236, 139);
+  }
+  ellipse(x, y+7, 20, 17);
+  stroke(186, 142, 35);
+  noFill();
+  arc(x+1, y+3, 30, 15, PI/3, 2*PI/3);
+  stroke(0);
+  fill(0);
+  ellipse(x-17, y-2, 9, 15);
+  ellipse(x+17, y-2, 9, 15);
+  stroke(255);
+  fill(255);
+  ellipse(x-17, y-5, 3, 5);
+  ellipse(x+17, y-5, 3, 5);
+  noFill();
+  stroke(255, 0, 0);
+  circle(x, y, 64);
 }
 
 void rowlet(int x, int y) {
@@ -423,6 +707,23 @@ void ditto(float x, float y, boolean shiny) {
   noFill();
   arc(x, y+2, 85, 20, PI/3, 2*PI/3);
 }
+void dittoLight(float x, float y, boolean shiny) {
+  if (shiny) {
+    fill(102, 204, 234);
+  } else {
+    fill(204, 102, 204);
+  }
+  strokeWeight(2);
+  stroke(0);
+  circle(x, y, 64);
+  fill(0);
+  circle(x-15, y-3, 2);
+  circle(x+15, y-3, 2);
+  noFill();
+  arc(x, y+2, 85, 20, PI/3, 2*PI/3);
+  stroke(255, 0, 0);
+  circle(x, y, 64);
+}
 
 void pokeball(color ballColor, color base, float x, float y) {
   // tint(255, 127);
@@ -451,7 +752,36 @@ void pokeball(color ballColor, color base, float x, float y) {
   circle(x, y, 64);
 }
 
+void pokeballLight(color ballColor, color base, float x, float y) {
+  // tint(255, 127);
+  strokeWeight(2);
+  fill(base);
+  stroke(ballColor);
+  circle(x, y, 64);
+  // stroke(base);
+  fill(ballColor);
+  arc(x, y+2, 64, 64, PI, 2*PI);
+  stroke(base);
+  line(x-32, y-2, x+32, y-2);
+  stroke(ballColor);
+  strokeWeight(3);
+  line(x-32, y+2, x+32, y+2);
+  stroke(base);
+  line(x-32, y+4, x+32, y+4);
+  stroke(base);
+  fill(ballColor);
+  strokeWeight(2);
+  circle(x, y, 16);
+  fill(255, 0, 0);
+  stroke(255, 0, 0);
+  circle(x, y, 8);
+  noFill();
+  stroke(ballColor);
+  circle(x, y, 64);
+}
+
 void chessboard() {
+  stroke(0);
   boolean switcher = true;
   for (int i = 0; i < 8; i++) {
     for (int j = 0; j < 8; j++) {
@@ -587,135 +917,281 @@ void draw() {
     if (black.get(i).isAlive()) {
       if (black.get(i).getType().equals("PAWN")) {
         ditto(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
-      } else if(black.get(i).getType().equals("BISHOP")){
+      } else if (black.get(i).getType().equals("BISHOP")) {
         piplup(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
-      } else if(black.get(i).getType().equals("KNIGHT")){
+      } else if (black.get(i).getType().equals("KNIGHT")) {
         solosis(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
-      } else if(black.get(i).getType().equals("ROOK")){
+      } else if (black.get(i).getType().equals("ROOK")) {
         electrode(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
-      } else if(black.get(i).getType().equals("QUEEN")){
+      } else if (black.get(i).getType().equals("QUEEN")) {
         gulpin(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
-      } else{
+      } else {
         spheal(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
+      }
+    }
+  }
+  if(selectedPiece != null && !selectingPiece){
+    ArrayList<int[]> legalMoves = selectedPiece.getLegalMoves();
+    for (int i = 0; i < legalMoves.size(); i++) {
+      strokeWeight(1);
+      if ((legalMoves.get(i)[0] + legalMoves.get(i)[1]) % 2 == 0) {
+        pokeballLight(255, 0, legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50);
+      } else {
+        pokeballLight(0, 255, legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50);
+      }
+      
+      if(!selectedPiece.side()){//capture
+        if(selectedPiece.canCapture(legalMoves.get(i))){
+          for(int j = 0; j < black.size(); j++){
+            if(black.get(j).getPos()[0] == legalMoves.get(i)[0] && black.get(j).getPos()[1] == legalMoves.get(i)[1]){
+              if(black.get(j).getType().equals("PAWN")){
+                dittoLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
+              }
+              else if(black.get(j).getType().equals("BISHOP")){
+                piplupLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
+              }
+              else if(black.get(j).getType().equals("KNIGHT")){
+                solosisLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
+              }
+              else if(black.get(j).getType().equals("ROOK")){
+                electrodeLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
+              }
+              else if(black.get(j).getType().equals("QUEEN")){
+                gulpinLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
+              }
+              else{
+                sphealLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
+              }
+              
+              
+            }
+          }
+        }
+      }
+      else{
+        if(selectedPiece.canCapture(legalMoves.get(i))){
+          for(int j = 0; j < white.size(); j++){
+            if(white.get(j).getPos()[0] == legalMoves.get(i)[0] && white.get(j).getPos()[1] == legalMoves.get(i)[1]){
+              if(white.get(j).getType().equals("PAWN")){
+                dittoLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
+              }
+              else if(white.get(j).getType().equals("BISHOP")){
+                piplupLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
+              }
+              else if(white.get(j).getType().equals("KNIGHT")){
+                solosisLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
+              }
+              else if(white.get(j).getType().equals("ROOK")){
+                electrodeLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
+              }
+              else if(white.get(j).getType().equals("QUEEN")){
+                gulpinLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
+              }
+              else{
+                sphealLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
+              }
+            }
+          }
+        }
       }
       
     }
   }
+  
+  if(whiteInCheck){
+    if(white.get(0).getType().equals("KING")){
+      sphealLight(white.get(0).getPos()[0]*100+50, white.get(0).getPos()[1]*100+50, false);
+    }
+    else{
+      sphealLight(white.get(0).getKing().getPos()[0]*100+50, white.get(0).getKing().getPos()[1]*100+50, false);
+    }
+  }
+  
+  if(blackInCheck){
+    if(black.get(0).getType().equals("KING")){
+      sphealLight(black.get(0).getPos()[0]*100+50, black.get(0).getPos()[1]*100+50, true);
+    }
+    else{
+      sphealLight(black.get(0).getKing().getPos()[0]*100+50, black.get(0).getKing().getPos()[1]*100+50, true);
+    }
+  }
+  
+  
   /*  gulpin(750, 750, false);
    gulpin(650, 750, true);
    solosis(650, 650, true);
    solosis(750, 650, false);
    electrode(650, 550, true);
    electrode(750, 550, false);*/
+   
+  // gulpinLight(50, 50, false);
+  // sphealLight(50, 150, false);
 }
 
 void mouseClicked() {
-  if (!checkmated){
-  int xpos = (int)mouseX/100;
-  int ypos = (int)mouseY/100;
-  if(!pawnPromoting){
-    if (selectingPiece) {
-      if (turnNumber % 2 != 0) {
-        for (int i = 0; i < white.size(); i++) {
-          if (white.get(i).getPos()[0] == xpos && white.get(i).getPos()[1] == ypos) {
-            selectedPiece = white.get(i);
-            selectingPiece = false;
+  if (!checkmated) {
+    int xpos = (int)mouseX/100;
+    int ypos = (int)mouseY/100;
+    if (!pawnPromoting) {
+      if (selectingPiece) {
+        if (turnNumber % 2 != 0) {
+          for (int i = 0; i < white.size(); i++) {
+            if (white.get(i).getPos()[0] == xpos && white.get(i).getPos()[1] == ypos) {
+              selectedPiece = white.get(i);
+              selectingPiece = false;
+            }
+          }
+        } else {
+          for (int i = 0; i < black.size(); i++) {
+            if (black.get(i).getPos()[0] == xpos && black.get(i).getPos()[1] == ypos) {
+              selectedPiece = black.get(i);
+              selectingPiece = false;
+            }
           }
         }
-      } else {
-        for (int i = 0; i < black.size(); i++) {
-          if (black.get(i).getPos()[0] == xpos && black.get(i).getPos()[1] == ypos) {
-            selectedPiece = black.get(i);
-            selectingPiece = false;
-          }
-        }
-      }
-    } else {
-            System.out.print("TURN: " + turnNumber);
-            if (turnNumber % 2 == 0){
-              System.out.println("");
-            }
-            else{
-              System.out.println("");
-            }
 
-      selectingPiece = true;
-      if (selectedPiece.move(new int[]{xpos, ypos})) {
-        turnNumber++;
+        //highlighting moves
+        ArrayList<int[]> legalMoves = selectedPiece.getLegalMoves();
+    for (int i = 0; i < legalMoves.size(); i++) {
+      strokeWeight(1);
+      if ((legalMoves.get(i)[0] + legalMoves.get(i)[1]) % 2 == 0) {
+        pokeballLight(255, 0, legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50);
+      } else {
+        pokeballLight(0, 255, legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50);
       }
-      if(turnNumber % 2 == 0){
-        for(Piece p : black){
-          if(p.getType().equals("PAWN")){
-        //    if(p.getCanBeEnPassanted()) {System.out.println("pawn can be enpassanted");}
-            p.setCanBeEnPassanted(false);
+      
+      if(!selectedPiece.side()){//capture
+        if(selectedPiece.canCapture(legalMoves.get(i))){
+          for(int j = 0; j < black.size(); j++){
+            if(black.get(j).getPos()[0] == legalMoves.get(i)[0] && black.get(j).getPos()[1] == legalMoves.get(i)[1]){
+              if(black.get(j).getType().equals("PAWN")){
+                dittoLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
+              }
+              else if(black.get(j).getType().equals("BISHOP")){
+                piplupLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
+              }
+              else if(black.get(j).getType().equals("KNIGHT")){
+                solosisLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
+              }
+              else if(black.get(j).getType().equals("ROOK")){
+                electrodeLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
+              }
+              else if(black.get(j).getType().equals("QUEEN")){
+                gulpinLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
+              }
+              else{
+                sphealLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
+              }
+              
+              
+            }
           }
         }
       }
       else{
-        for(Piece p : white){
-          if(p.getType().equals("PAWN")){
-        //    if(p.getCanBeEnPassanted()) {System.out.println("pawn can be enpassanted");}
-            p.setCanBeEnPassanted(false);
+        if(selectedPiece.canCapture(legalMoves.get(i))){
+          for(int j = 0; j < white.size(); j++){
+            if(white.get(j).getPos()[0] == legalMoves.get(i)[0] && white.get(j).getPos()[1] == legalMoves.get(i)[1]){
+              if(white.get(j).getType().equals("PAWN")){
+                dittoLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
+              }
+              else if(white.get(j).getType().equals("BISHOP")){
+                piplupLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
+              }
+              else if(white.get(j).getType().equals("KNIGHT")){
+                solosisLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
+              }
+              else if(white.get(j).getType().equals("ROOK")){
+                electrodeLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
+              }
+              else if(white.get(j).getType().equals("QUEEN")){
+                gulpinLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
+              }
+              else{
+                sphealLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
+              }
+            }
           }
         }
       }
-      pawnPromotionChecker();
+      
+    }
+      } else {
+        System.out.print("TURN: " + turnNumber);
+        if (turnNumber % 2 == 0) {
+          System.out.println("");
+        } else {
+          System.out.println("");
+        }
+
+        selectingPiece = true;
+        if (selectedPiece.move(new int[]{xpos, ypos})) {
+          turnNumber++;
+        }
+        if (turnNumber % 2 == 0) {
+          for (Piece p : black) {
+            if (p.getType().equals("PAWN")) {
+              //    if(p.getCanBeEnPassanted()) {System.out.println("pawn can be enpassanted");}
+              p.setCanBeEnPassanted(false);
+            }
+          }
+        } else {
+          for (Piece p : white) {
+            if (p.getType().equals("PAWN")) {
+              //    if(p.getCanBeEnPassanted()) {System.out.println("pawn can be enpassanted");}
+              p.setCanBeEnPassanted(false);
+            }
+          }
+        }
+        pawnPromotionChecker();
+      }
     }
   }
-  
-  
-}}
+}
 
 boolean gameOver() {
   return !checkmated;
 }
 
-void keyPressed(){
-  if(pawnPromoting){
-    if(key == 'q' || key == 'k' || key == 'r' || key == 'b'){
-      if(pawnBeingPromoted.side()){
+void keyPressed() {
+  if (pawnPromoting) {
+    if (key == 'q' || key == 'k' || key == 'r' || key == 'b') {
+      if (pawnBeingPromoted.side()) {
         black.remove(pawnBeingPromoted);
         pieces.remove(pawnBeingPromoted);
-        if(key == 'q'){
+        if (key == 'q') {
           Piece p = new Queen(pawnBeingPromoted.getPos(), true, bKing);
           black.add(p);
           pieces.add(p);
-        }
-        else if(key == 'k'){
+        } else if (key == 'k') {
           Piece p = new Knight(pawnBeingPromoted.getPos(), true, bKing);
           black.add(p);
           pieces.add(p);
-        }
-        else if(key == 'r'){
+        } else if (key == 'r') {
           Piece p = new Rook(pawnBeingPromoted.getPos(), true, bKing);
           black.add(p);
           pieces.add(p);
-        }
-        else{
+        } else {
           Piece p = new Bishop(pawnBeingPromoted.getPos(), true, bKing);
           black.add(p);
           pieces.add(p);
         }
-      }
-      else{
-         white.remove(pawnBeingPromoted);
-         pieces.remove(pawnBeingPromoted);
-        if(key == 'q'){
+      } else {
+        white.remove(pawnBeingPromoted);
+        pieces.remove(pawnBeingPromoted);
+        if (key == 'q') {
           Piece p = new Queen(pawnBeingPromoted.getPos(), false, wKing);
           white.add(p);
           pieces.add(p);
-        }
-        else if(key == 'k'){
+        } else if (key == 'k') {
           Piece p = new Knight(pawnBeingPromoted.getPos(), false, wKing);
           white.add(p);
           pieces.add(p);
-        }
-        else if(key == 'r'){
+        } else if (key == 'r') {
           Piece p = new Rook(pawnBeingPromoted.getPos(), false, wKing);
           white.add(p);
           pieces.add(p);
-        }
-        else{
+        } else {
           Piece p = new Bishop(pawnBeingPromoted.getPos(), false, wKing);
           white.add(p);
           pieces.add(p);
@@ -724,20 +1200,19 @@ void keyPressed(){
       pawnPromoting = false;
     }
   }
-  
 }
 
 void pawnPromotionChecker() {
-  for(Piece p: white){
-    if(p.getType().equals("PAWN") && p.getPos()[1] == 0){
-       pawnPromoting = true;
-       pawnBeingPromoted = p;
+  for (Piece p : white) {
+    if (p.getType().equals("PAWN") && p.getPos()[1] == 0) {
+      pawnPromoting = true;
+      pawnBeingPromoted = p;
     }
   }
-  for(Piece p: black){
-    if(p.getType().equals("PAWN") && p.getPos()[1] == 7){
-       pawnPromoting = true;
-       pawnBeingPromoted = p;
+  for (Piece p : black) {
+    if (p.getType().equals("PAWN") && p.getPos()[1] == 7) {
+      pawnPromoting = true;
+      pawnBeingPromoted = p;
     }
   }
 }

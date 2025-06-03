@@ -35,6 +35,7 @@ public class Pawn extends Piece {
   }*/
 
   public boolean move(int[] newPos) {
+    System.out.println(firstMove);
     boolean contains = false;
     for (int[] i : this.getLegalMoves()) {
    //   System.out.println(Arrays.toString(i));
@@ -65,7 +66,10 @@ public class Pawn extends Piece {
       int[] originalPos = this.getPos();
       this.setPos(newPos);
       Piece original = this.capture();
-
+      if(!this.getFirstMove()){
+        this.setCanBeEnPassanted(false);
+      }
+      this.setFirstMove(false);
       if (this.side()){
         if(originalPos[0] == this.getPos()[0] && originalPos[1] == this.getPos()[1] - 2){
           this.setCanBeEnPassanted(true);
@@ -116,10 +120,6 @@ public class Pawn extends Piece {
      
          int[] kingPos = new int[] {9, 9};
      if (this.side()){
-      if(!this.getFirstMove()){
-        this.setCanBeEnPassanted(false);
-      }
-      firstMove = false;
   //    System.out.println("moving in func");
 
       
