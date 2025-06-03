@@ -7,6 +7,27 @@ public abstract class Piece{
   private King king;
   private Piece checkingPiece; 
   
+  public String namingConvention(){
+    if (this.getType().equals("KING")){
+      return "K";
+    }
+    if (this.getType().equals("KNIGHT")){
+      return "N";
+    }
+    if (this.getType().equals("ROOK")){
+      return "R";
+    }
+    if (this.getType().equals("BISHOP")){
+      return "B";
+    }
+    if (this.getType().equals("QUEEN")){
+      return "Q";
+    }
+    else{
+      return "";
+    }
+  }
+  
   public Piece capture(){ // needs to be corrected (edit: seems to work for pawn capturing)
     if (this.side()){
       for (int count = 0; count < white.size(); count++){
@@ -232,9 +253,9 @@ public abstract class Piece{
       blackInCheck = false;
       whiteInCheck = false;
       
-
       int[] kingPos = new int[] {9, 9};
-      
+    
+
       if (this.side()){
         try{
           kingPos = white.get(1).getKing().getPos();
@@ -293,6 +314,7 @@ public abstract class Piece{
       }
       
     else if (!this.side()){
+
         try{
           kingPos = black.get(1).getKing().getPos();
         }catch (NullPointerException e){
@@ -338,7 +360,7 @@ public abstract class Piece{
             savior.setPos(origPos);
           }
         }
-                  if (isItOver){
+       if (isItOver){
            if (blackInCheck || whiteInCheck){
           System.out.println("checkmate: white wins");}
           else{
@@ -348,6 +370,18 @@ public abstract class Piece{
         }
       
       }
+         String takingPiece = this.namingConvention();
+        if (original != null){
+          takingPiece += "x";
+        }
+        String newPiece = files[this.getPos()[0]] + (8 - this.getPos()[1]);
+            if (checkmated){
+          newPiece += "#";
+        }
+        else if (whiteInCheck || blackInCheck){
+          newPiece += "+";
+        }
+        System.out.println(takingPiece + newPiece);
       
       return true;
     }

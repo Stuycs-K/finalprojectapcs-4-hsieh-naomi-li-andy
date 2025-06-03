@@ -117,6 +117,7 @@ public class Pawn extends Piece {
           }
         }
       }
+     
          int[] kingPos = new int[] {9, 9};
      if (this.side()){
   //    System.out.println("moving in func");
@@ -191,6 +192,7 @@ public class Pawn extends Piece {
             Board.blackInCheck = true;
             }
          }
+
         int incrementer = 0;
         boolean isItOver = true;
         while (isItOver && incrementer < black.size()){ // isItOver checks if opposing side can make a move next turn (true means no); loops through all of opposing pieces
@@ -234,8 +236,22 @@ public class Pawn extends Piece {
           }
          checkmated = true;
         }
-
     }
+            String takingPiece = this.namingConvention();
+        if (original != null){
+          takingPiece += files[originalPos[0]];
+          takingPiece += "x";
+        }
+        String newPiece = files[this.getPos()[0]] + (8 - this.getPos()[1]);
+        if (checkmated){
+          newPiece += "#";
+        }
+        else if (whiteInCheck || blackInCheck){
+          newPiece += "+";
+        }
+        System.out.println(takingPiece + newPiece);
+
+    
       return true;
     }
     return false;
