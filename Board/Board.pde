@@ -997,6 +997,25 @@ void draw() {
     }
   }
   
+  if(whiteInCheck){
+    if(white.get(0).getType().equals("KING")){
+      sphealLight(white.get(0).getPos()[0]*100+50, white.get(0).getPos()[1]*100+50, false);
+    }
+    else{
+      sphealLight(white.get(0).getKing().getPos()[0]*100+50, white.get(0).getKing().getPos()[1]*100+50, false);
+    }
+  }
+  
+  if(blackInCheck){
+    if(black.get(0).getType().equals("KING")){
+      sphealLight(black.get(0).getPos()[0]*100+50, black.get(0).getPos()[1]*100+50, true);
+    }
+    else{
+      sphealLight(black.get(0).getKing().getPos()[0]*100+50, black.get(0).getKing().getPos()[1]*100+50, true);
+    }
+  }
+  
+  
   /*  gulpin(750, 750, false);
    gulpin(650, 750, true);
    solosis(650, 650, true);
@@ -1032,33 +1051,70 @@ void mouseClicked() {
 
         //highlighting moves
         ArrayList<int[]> legalMoves = selectedPiece.getLegalMoves();
-        for (int i = 0; i < legalMoves.size(); i++) {
-          strokeWeight(1);
-          if ((legalMoves.get(i)[0] + legalMoves.get(i)[1]) % 2 == 0) {
-            pokeballLight(255, 0, legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50);
-          } else {
-            pokeballLight(0, 255, legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50);
+    for (int i = 0; i < legalMoves.size(); i++) {
+      strokeWeight(1);
+      if ((legalMoves.get(i)[0] + legalMoves.get(i)[1]) % 2 == 0) {
+        pokeballLight(255, 0, legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50);
+      } else {
+        pokeballLight(0, 255, legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50);
+      }
+      
+      if(!selectedPiece.side()){//capture
+        if(selectedPiece.canCapture(legalMoves.get(i))){
+          for(int j = 0; j < black.size(); j++){
+            if(black.get(j).getPos()[0] == legalMoves.get(i)[0] && black.get(j).getPos()[1] == legalMoves.get(i)[1]){
+              if(black.get(j).getType().equals("PAWN")){
+                dittoLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
+              }
+              else if(black.get(j).getType().equals("BISHOP")){
+                piplupLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
+              }
+              else if(black.get(j).getType().equals("KNIGHT")){
+                solosisLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
+              }
+              else if(black.get(j).getType().equals("ROOK")){
+                electrodeLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
+              }
+              else if(black.get(j).getType().equals("QUEEN")){
+                gulpinLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
+              }
+              else{
+                sphealLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
+              }
+              
+              
+            }
           }
-          
-          if(!selectedPiece.side()){//capture
-            if(selectedPiece.canCapture(legalMoves.get(i))){
-              for(int j = 0; j < black.size(); j++){
-                if(black.get(j).getPos()[0] == legalMoves.get(i)[0] && black.get(j).getPos()[1] == legalMoves.get(i)[1]){
-                  dittoLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
-                }
+        }
+      }
+      else{
+        if(selectedPiece.canCapture(legalMoves.get(i))){
+          for(int j = 0; j < white.size(); j++){
+            if(white.get(j).getPos()[0] == legalMoves.get(i)[0] && white.get(j).getPos()[1] == legalMoves.get(i)[1]){
+              if(white.get(j).getType().equals("PAWN")){
+                dittoLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
+              }
+              else if(white.get(j).getType().equals("BISHOP")){
+                piplupLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
+              }
+              else if(white.get(j).getType().equals("KNIGHT")){
+                solosisLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
+              }
+              else if(white.get(j).getType().equals("ROOK")){
+                electrodeLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
+              }
+              else if(white.get(j).getType().equals("QUEEN")){
+                gulpinLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
+              }
+              else{
+                sphealLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
               }
             }
-        }
-          else{
-            if(selectedPiece.canCapture(legalMoves.get(i))){
-              for(int j = 0; j < white.size(); j++){
-                if(white.get(j).getPos()[0] == legalMoves.get(i)[0] && white.get(j).getPos()[1] == legalMoves.get(i)[1]){
-                  dittoLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
-                }
-              }
-            }
           }
         }
+      }
+      
+    }
       } else {
         System.out.print("TURN: " + turnNumber);
         if (turnNumber % 2 == 0) {
