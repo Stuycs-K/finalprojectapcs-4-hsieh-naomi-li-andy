@@ -931,6 +931,9 @@ void draw() {
   }
   if(selectedPiece != null && !selectingPiece){
     ArrayList<int[]> legalMoves = selectedPiece.getLegalMoves();
+    if(selectedPiece.getType().equals("KING")){
+          selectedPiece.editForCastle(legalMoves);
+        }
     for (int i = 0; i < legalMoves.size(); i++) {
       strokeWeight(1);
       if ((legalMoves.get(i)[0] + legalMoves.get(i)[1]) % 2 == 0) {
@@ -1051,6 +1054,9 @@ void mouseClicked() {
 
         //highlighting moves
         ArrayList<int[]> legalMoves = selectedPiece.getLegalMoves();
+        if(selectedPiece.getType().equals("KING")){
+          selectedPiece.editForCastle(legalMoves);
+        }
     for (int i = 0; i < legalMoves.size(); i++) {
       strokeWeight(1);
       if ((legalMoves.get(i)[0] + legalMoves.get(i)[1]) % 2 == 0) {
