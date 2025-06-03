@@ -122,7 +122,7 @@ public class Pawn extends Piece {
   //    System.out.println("moving in func");
 
       
-         System.out.println(this.namingConvention() + files[this.getPos()[0]] + this.getPos()[1]);
+         System.out.println(this.namingConvention() + files[this.getPos()[0]] + (8 -this.getPos()[1]));
 
         try{
           kingPos = white.get(1).getKing().getPos();
@@ -192,7 +192,7 @@ public class Pawn extends Piece {
             Board.blackInCheck = true;
             }
          }
-                  System.out.println(this.namingConvention() + files[this.getPos()[0]] + this.getPos()[1]);
+        System.out.println(this.namingConvention() + files[this.getPos()[0]] + (8 - this.getPos()[1]));
 
         int incrementer = 0;
         boolean isItOver = true;

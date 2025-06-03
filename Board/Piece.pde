@@ -253,7 +253,7 @@ public abstract class Piece{
       int[] kingPos = new int[] {9, 9};
       
       if (this.side()){
-         System.out.println(this.namingConvention() + files[this.getPos()[0]] + this.getPos()[1]);
+         System.out.println(this.namingConvention() + files[this.getPos()[0]] + (8- this.getPos()[1]));
         try{
           kingPos = white.get(1).getKing().getPos();
         }catch (NullPointerException e){
@@ -311,7 +311,7 @@ public abstract class Piece{
       }
       
     else if (!this.side()){
-               System.out.println(this.namingConvention() + files[this.getPos()[0]] + this.getPos()[1]);
+               System.out.println(this.namingConvention() + files[this.getPos()[0]] + (8 - this.getPos()[1]));
 
         try{
           kingPos = black.get(1).getKing().getPos();
