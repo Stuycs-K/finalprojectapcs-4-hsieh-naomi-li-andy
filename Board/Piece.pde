@@ -120,6 +120,8 @@ public abstract class Piece{
         //  System.out.println("castling to the left");
           contains = true;
           leftRook.setPos(new int[]{3, 7});
+          System.out.println("O-O-O");
+          castled = true;
         }
       }
       if (rightSide && rightRook != null && !whiteInCheck && rightRook.castleStatus()) {
@@ -128,6 +130,8 @@ public abstract class Piece{
          // System.out.println("castling to the right");
           contains = true;
           rightRook.setPos(new int[]{5, 7});
+          System.out.println("O-O");
+          castled = true;
         }
       }
     } else {
@@ -256,9 +260,7 @@ public abstract class Piece{
         }
       }
       blackInCheck = false;
-      whiteInCheck = false;
-      castled = false;
-      
+      whiteInCheck = false;      
       int[] kingPos = new int[] {9, 9};
     
 
@@ -376,6 +378,7 @@ public abstract class Piece{
         }
       
       }
+      if (!castled){
          String takingPiece = this.namingConvention();
         if (original != null){
           takingPiece += "x";
@@ -388,7 +391,8 @@ public abstract class Piece{
           newPiece += "+";
         }
         System.out.println(takingPiece + newPiece);
-      
+      }
+      castled = false;
       return true;
     }
     return false;

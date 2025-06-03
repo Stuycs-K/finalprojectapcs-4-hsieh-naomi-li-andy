@@ -35,7 +35,7 @@ public class Pawn extends Piece {
   }*/
 
   public boolean move(int[] newPos) {
-    System.out.println(firstMove);
+   // System.out.println(firstMove);
     boolean contains = false;
     for (int[] i : this.getLegalMoves()) {
    //   System.out.println(Arrays.toString(i));
