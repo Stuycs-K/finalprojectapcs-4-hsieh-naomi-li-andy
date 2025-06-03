@@ -662,6 +662,15 @@ void draw() {
           }
         }
       }
+      else{
+        if(selectedPiece.canCapture(legalMoves.get(i))){
+          for(int j = 0; j < white.size(); j++){
+            if(white.get(j).getPos()[0] == legalMoves.get(i)[0] && white.get(j).getPos()[1] == legalMoves.get(i)[1]){
+              dittoLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
+            }
+          }
+        }
+      }
       
     }
   }
@@ -707,14 +716,23 @@ void mouseClicked() {
           }
           
           if(!selectedPiece.side()){//capture
-          if(selectedPiece.canCapture(legalMoves.get(i))){
-            for(int j = 0; j < black.size(); j++){
-              if(black.get(j).getPos()[0] == legalMoves.get(i)[0] && black.get(j).getPos()[1] == legalMoves.get(i)[1]){
-                dittoLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
+            if(selectedPiece.canCapture(legalMoves.get(i))){
+              for(int j = 0; j < black.size(); j++){
+                if(black.get(j).getPos()[0] == legalMoves.get(i)[0] && black.get(j).getPos()[1] == legalMoves.get(i)[1]){
+                  dittoLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
+                }
+              }
+            }
+        }
+          else{
+            if(selectedPiece.canCapture(legalMoves.get(i))){
+              for(int j = 0; j < white.size(); j++){
+                if(white.get(j).getPos()[0] == legalMoves.get(i)[0] && white.get(j).getPos()[1] == legalMoves.get(i)[1]){
+                  dittoLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
+                }
               }
             }
           }
-        }
         }
       } else {
         System.out.print("TURN: " + turnNumber);
