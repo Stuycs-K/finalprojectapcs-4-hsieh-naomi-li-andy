@@ -6,6 +6,7 @@ public abstract class Piece{
   private boolean shinySide;
   private King king;
   private Piece checkingPiece; 
+  private boolean castled = false;
   
   public String namingConvention(){
     if (this.getType().equals("KING")){
@@ -172,12 +173,16 @@ public abstract class Piece{
         if(newPos[0] == 2 && newPos[1] == 0){
           contains = true;
           leftRook.setPos(new int[]{3, 0});
+          System.out.println("O-O-O");
+          castled = true;
         }
       }
       if (rightSide && rightRook != null && !blackInCheck && rightRook.castleStatus()) {
         if(newPos[0] == 6 && newPos[1] == 0){
           contains = true;
           rightRook.setPos(new int[]{5, 0});
+          System.out.println("O-O");
+          castled = true;
         }
       }
     }
@@ -252,6 +257,7 @@ public abstract class Piece{
       }
       blackInCheck = false;
       whiteInCheck = false;
+      castled = false;
       
       int[] kingPos = new int[] {9, 9};
     
