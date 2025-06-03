@@ -934,6 +934,10 @@ void draw() {
     if(selectedPiece.getType().equals("KING")){
           selectedPiece.editForCastle(legalMoves);
         }
+    else if(selectedPiece.getType().equals("PAWN")){
+        selectedPiece.editForEnPassant(legalMoves);
+    }
+    System.out.println(legalMoves.toString());
     for (int i = 0; i < legalMoves.size(); i++) {
       strokeWeight(1);
       if ((legalMoves.get(i)[0] + legalMoves.get(i)[1]) % 2 == 0) {
