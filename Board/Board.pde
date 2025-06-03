@@ -49,6 +49,56 @@ void gulpin(float x, float y, boolean shiny) {
   translate(x-23, y-17);
   rotate(-PI/6);
   ellipse(0, 0, 30, 15);
+  if (shiny) {
+    stroke(255, 192, 103);
+  } else {
+    stroke(255, 241, 100);
+  }
+  ellipse(3, 4, 30, 15);
+  popMatrix();
+}
+
+void gulpinLight(float x, float y, boolean shiny) {
+  stroke(0);
+  if (shiny) {
+    fill(108, 186, 204);
+  } else {
+    fill(132, 194, 40);
+  }
+  circle(x, y, 64);
+
+  ellipse(x+15, y+4, 20, 10);
+  ellipse(x+15, y+12, 20, 10);
+  if (shiny) {
+    stroke(108, 186, 204);
+  } else {
+    stroke(132, 194, 40);
+  }
+  rect(x+3, y-2, 15, 25);
+  stroke(0);
+  strokeWeight(3);
+  line(x+3, y-2, x+9, y-6);
+  line(x+20, y-6, x+26, y-2);
+  strokeWeight(2);
+  stroke(255, 0, 0);
+  noFill();
+  circle(x, y, 64);
+  if (shiny) {
+    fill(255, 192, 103);
+  } else {
+    fill(255, 241, 100);
+  }
+  pushMatrix();
+  translate(x-23, y-17);
+  rotate(-PI/6);
+  stroke(255, 0, 0);
+  ellipse(0, 0, 30, 15);
+  if (shiny) {
+    stroke(255, 192, 103);
+  } else {
+    stroke(255, 241, 100);
+  }
+  ellipse(3, 4, 30, 15);
   popMatrix();
 }
 
@@ -488,6 +538,7 @@ void pokeballLight(color ballColor, color base, float x, float y) {
   strokeWeight(2);
   circle(x, y, 16);
   fill(255, 0, 0);
+  stroke(255, 0, 0);
   circle(x, y, 8);
   noFill();
   stroke(ballColor);
@@ -681,6 +732,8 @@ void draw() {
    solosis(750, 650, false);
    electrode(650, 550, true);
    electrode(750, 550, false);*/
+   
+   gulpinLight(50, 50, false);
 }
 
 void mouseClicked() {
