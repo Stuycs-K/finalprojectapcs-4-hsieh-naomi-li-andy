@@ -43,3 +43,8 @@ At home: I finished debugging, updating the methods, and implemented a prototype
 In class: I worked on check and tried to debug king movement (~35 minutes).
 
 At home: I finished debugging king movement (~40 minutes), created two new designs (~75 minutes), set up the designs (~20 minutes), implemented en passant (~75 minutes), implemented pawn promotion (~40 minutes), and implemented castling (~120 minutes) (these times include debugging). 
+
+### 2025-06-02 - Legal Movement Marker
+In class: I began a basic implementation of the legal movement marker, writing a dittoLight function to test captures as well (~35 minutes).
+
+At home: I finished the legal movement marker, wrote alternate designs for all the pieces for when they can be captured, implemented the legal movement marker for captures, and made it so the king would light up when in check (~60 minutes).
