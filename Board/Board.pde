@@ -789,6 +789,12 @@ void pokeballLight(color ballColor, color base, float x, float y) {
   circle(x, y, 64);
 }
 
+void crown(float x, float y){
+  fill(187, 165, 61);
+  stroke(187, 165, 61);
+  rect(x+5, y+13, 40, 7.5);
+  ellipse(x+25, y+23, 37, 7.5);
+}
 void chessboard() {
   stroke(0);
   boolean switcher = true;
@@ -897,6 +903,7 @@ void setup() {
    gulpin(650, 750, true);
    solosis(650, 650, true);
    solosis(750, 650, false);*/
+   checkmated = true; whiteInCheck = true;
 }
 
 void draw() {
@@ -906,6 +913,7 @@ void draw() {
       fill(0);
       square(0, 0, 800);
       spheal(400, 400, true);
+      crown(375, 350);
     } 
     else if(blackInCheck){ //white victory screen
       stroke(255);
