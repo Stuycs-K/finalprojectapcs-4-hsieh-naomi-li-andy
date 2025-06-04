@@ -312,9 +312,9 @@ public abstract class Piece{
         }
          if (isItOver){
            if (blackInCheck || whiteInCheck){
-          System.out.println("checkmate: black wins");}
+          System.out.println("0-1");}
           else{
-            System.out.println("Stalemate");
+            System.out.println("1/2-1/2");
           }
          checkmated = true;
         }
@@ -370,9 +370,9 @@ public abstract class Piece{
         }
        if (isItOver){
            if (blackInCheck || whiteInCheck){
-          System.out.println("checkmate: white wins");}
+          System.out.println("1-0");}
           else{
-            System.out.println("Stalemate");
+            System.out.println("1/2-1/2");
           }
          checkmated = true;
         }
