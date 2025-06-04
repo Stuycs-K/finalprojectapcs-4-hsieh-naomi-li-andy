@@ -623,7 +623,7 @@ public abstract class Piece{
     if(this.side()){
         for(int i = 0; i < Board.white.size(); i++){
            if(Board.white.get(i).getType().equals("PAWN") && (Board.white.get(i).getPos()[0] == this.getPos()[0] + 1 || Board.white.get(i).getPos()[0] == this.getPos()[0] - 1) && Board.white.get(i).getPos()[1] == this.getPos()[1] && Board.white.get(i).getCanBeEnPassanted()){
-             legalMoves.add(new int[]{Board.white.get(i).getPos()[0] + Board.white.get(i).getPos()[1] - 1}); 
+             legalMoves.add(new int[]{Board.white.get(i).getPos()[0], Board.white.get(i).getPos()[1] + 1}); 
            }
         }
       }
@@ -631,10 +631,70 @@ public abstract class Piece{
         for(int i = 0; i < Board.black.size(); i++){
         //  if(Board.black.get(i).getType().equals("PAWN") && Board.black.get(i).getPos()[0] == newPos[0] && Board.black.get(i).getPos()[0] != this.getPos()[0] && Board.black.get(i).getPos()[1] == newPos[1] + 1){System.out.println("pawnchecker");}
            if(Board.black.get(i).getType().equals("PAWN") && (Board.black.get(i).getPos()[0] == this.getPos()[0] + 1 || Board.black.get(i).getPos()[0] == this.getPos()[0] - 1) && Board.black.get(i).getPos()[1] == this.getPos()[1] && Board.black.get(i).getCanBeEnPassanted()){
-              legalMoves.add(new int[]{Board.black.get(i).getPos()[0] + Board.black.get(i).getPos()[1] - 1}); 
+              legalMoves.add(new int[]{Board.black.get(i).getPos()[0], Board.black.get(i).getPos()[1] - 1}); 
            }
         }
       }
   }
   
+  public void editForIllegalMoves(ArrayList<int[]> legalMoves){
+    int[] originalPos = this.getPos();
+   /* for(int i = 0; i < legalMoves.size(); i++){
+     System.out.println(Arrays.toString(legalMoves.get(i)));
+     }*/
+    for(int x = 0; x < legalMoves.size(); x++){
+      int[] newPos = legalMoves.get(x);
+    //  System.out.println(Arrays.toString(newPos));
+      
+      this.setPos(newPos);
+      Piece original = this.capture();
+      
+      if (this.side()){
+        if (true){
+          int[] kingPos = new int[] {9, 9};
+          try{
+            kingPos = black.get(1).getKing().getPos();
+          }catch (NullPointerException e){
+          }
+          for (int i = 0; i < white.size(); i++){
+            if (white.get(i).canCapture(kingPos)){
+            //  System.out.println("illegal");
+              legalMoves.remove(newPos);
+              x--;
+            }
+          }
+          if (original != null){
+                white.add(original);
+                pieces.add(original);
+          }
+        }
+      }
+      
+      else{
+        if (true){
+          int[] kingPos = new int[] {9, 9};
+          try{
+            kingPos = white.get(1).getKing().getPos();
+          }catch (NullPointerException e){
+          }
+          for (int i = 0; i < black.size(); i++){
+            if (black.get(i).canCapture(kingPos)){
+             // System.out.println("illegal");
+              legalMoves.remove(newPos);
+              x--;
+            }
+          }
+          if (original != null){
+                black.add(original);
+                pieces.add(original);
+           }
+        }
+      }
+      this.setPos(originalPos);
+    }
+     /*for(int i = 0; i < legalMoves.size(); i++){
+     System.out.println(Arrays.toString(legalMoves.get(i)));
+     }
+  System.out.println();*/
+  }
 }
