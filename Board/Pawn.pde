@@ -1,6 +1,8 @@
 public class Pawn extends Piece {
   private boolean firstMove;
   private boolean canBeEnPassanted;
+  private boolean enPassanted = false;
+  private boolean promoted = false;
 
   public Pawn(int[] position, boolean shinySide, King king) {
     super.setAlive(true);
@@ -49,6 +51,7 @@ public class Pawn extends Piece {
          if(Board.white.get(i).getType().equals("PAWN") && Board.white.get(i).getPos()[0] == newPos[0] && Board.white.get(i).getPos()[0] != this.getPos()[0] && Board.white.get(i).getPos()[1] == newPos[1] - 1 && Board.white.get(i).getCanBeEnPassanted()){
            contains = true;
            Board.white.remove(i);
+           enPassanted = true;
          }
       }
     }
@@ -58,6 +61,7 @@ public class Pawn extends Piece {
          if(Board.black.get(i).getType().equals("PAWN") && Board.black.get(i).getPos()[0] == newPos[0] && Board.black.get(i).getPos()[0] != this.getPos()[0] && Board.black.get(i).getPos()[1] == newPos[1] + 1 && Board.black.get(i).getCanBeEnPassanted()){
            contains = true;
            Board.black.remove(i);
+           enPassanted = true;
          }
       }
     }
@@ -249,8 +253,11 @@ public class Pawn extends Piece {
         else if (whiteInCheck || blackInCheck){
           newPiece += "+";
         }
+        if (enPassanted){
+          newPiece += " e.p.";
+        }
         System.out.println(takingPiece + newPiece);
-
+      enPassanted = false;
     
       return true;
     }
