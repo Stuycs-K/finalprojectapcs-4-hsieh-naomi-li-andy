@@ -240,7 +240,8 @@ public class Pawn extends Piece {
          checkmated = true;
         }
     }
-            String takingPiece = this.namingConvention();
+    if (this.getPos()[1] != 0 && this.getPos()[1] != 7){
+         String takingPiece = this.namingConvention();
         if (original != null){
           takingPiece += files[originalPos[0]];
           takingPiece += "x";
@@ -257,7 +258,8 @@ public class Pawn extends Piece {
         }
         System.out.println(takingPiece + newPiece);
       enPassanted = false;
-    
+    }
+
       return true;
     }
     return false;
