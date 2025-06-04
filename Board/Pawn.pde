@@ -2,7 +2,6 @@ public class Pawn extends Piece {
   private boolean firstMove;
   private boolean canBeEnPassanted;
   private boolean enPassanted = false;
-  private boolean promoted = false;
 
   public Pawn(int[] position, boolean shinySide, King king) {
     super.setAlive(true);

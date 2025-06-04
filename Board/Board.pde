@@ -9,6 +9,8 @@ static String[] files = new String[] {"a", "b", "c", "d", "e", "f", "g", "h"};
 static boolean blackInCheck = false;
 static boolean whiteInCheck = false;
 static boolean checkmated = false;
+private boolean promoted = false;
+private String newType = "";
 static int turnNumber = 1;
 
 boolean selectingPiece = true;
@@ -1162,6 +1164,8 @@ boolean gameOver() {
 
 void keyPressed() {
   if (pawnPromoting) {
+    promoted = true;
+    
     if (key == 'q' || key == 'k' || key == 'r' || key == 'b') {
       if (pawnBeingPromoted.side()) {
         black.remove(pawnBeingPromoted);
@@ -1170,18 +1174,22 @@ void keyPressed() {
           Piece p = new Queen(pawnBeingPromoted.getPos(), true, bKing);
           black.add(p);
           pieces.add(p);
+          newType = "Q";
         } else if (key == 'k') {
           Piece p = new Knight(pawnBeingPromoted.getPos(), true, bKing);
           black.add(p);
           pieces.add(p);
+          newType = "K";
         } else if (key == 'r') {
           Piece p = new Rook(pawnBeingPromoted.getPos(), true, bKing);
           black.add(p);
           pieces.add(p);
+          newType = "R";
         } else {
           Piece p = new Bishop(pawnBeingPromoted.getPos(), true, bKing);
           black.add(p);
           pieces.add(p);
+          newType = "B";
         }
       } else {
         white.remove(pawnBeingPromoted);
@@ -1190,18 +1198,22 @@ void keyPressed() {
           Piece p = new Queen(pawnBeingPromoted.getPos(), false, wKing);
           white.add(p);
           pieces.add(p);
+          newType = "Q";
         } else if (key == 'k') {
           Piece p = new Knight(pawnBeingPromoted.getPos(), false, wKing);
           white.add(p);
           pieces.add(p);
+          newType = "K";
         } else if (key == 'r') {
           Piece p = new Rook(pawnBeingPromoted.getPos(), false, wKing);
           white.add(p);
           pieces.add(p);
+          newType = "R";
         } else {
           Piece p = new Bishop(pawnBeingPromoted.getPos(), false, wKing);
           white.add(p);
           pieces.add(p);
+          newType = "B";
         }
       }
       pawnPromoting = false;
