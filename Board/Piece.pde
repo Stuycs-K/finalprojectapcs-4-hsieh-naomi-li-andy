@@ -6,6 +6,7 @@ public abstract class Piece{
   private boolean shinySide;
   private King king;
   private Piece checkingPiece; 
+  private boolean castled = false;
   
   public String namingConvention(){
     if (this.getType().equals("KING")){
@@ -119,6 +120,8 @@ public abstract class Piece{
         //  System.out.println("castling to the left");
           contains = true;
           leftRook.setPos(new int[]{3, 7});
+          System.out.println("0-0-0");
+          castled = true;
         }
       }
       if (rightSide && rightRook != null && !whiteInCheck && rightRook.castleStatus()) {
@@ -127,6 +130,8 @@ public abstract class Piece{
          // System.out.println("castling to the right");
           contains = true;
           rightRook.setPos(new int[]{5, 7});
+          System.out.println("0-0");
+          castled = true;
         }
       }
     } else {
@@ -172,12 +177,16 @@ public abstract class Piece{
         if(newPos[0] == 2 && newPos[1] == 0){
           contains = true;
           leftRook.setPos(new int[]{3, 0});
+          System.out.println("0-0-0");
+          castled = true;
         }
       }
       if (rightSide && rightRook != null && !blackInCheck && rightRook.castleStatus()) {
         if(newPos[0] == 6 && newPos[1] == 0){
           contains = true;
           rightRook.setPos(new int[]{5, 0});
+          System.out.println("0-0");
+          castled = true;
         }
       }
     }
@@ -251,8 +260,7 @@ public abstract class Piece{
         }
       }
       blackInCheck = false;
-      whiteInCheck = false;
-      
+      whiteInCheck = false;      
       int[] kingPos = new int[] {9, 9};
     
 
@@ -304,9 +312,9 @@ public abstract class Piece{
         }
          if (isItOver){
            if (blackInCheck || whiteInCheck){
-          System.out.println("checkmate: black wins");}
+          System.out.println("0-1");}
           else{
-            System.out.println("Stalemate");
+            System.out.println("1/2-1/2");
           }
          checkmated = true;
         }
@@ -362,14 +370,15 @@ public abstract class Piece{
         }
        if (isItOver){
            if (blackInCheck || whiteInCheck){
-          System.out.println("checkmate: white wins");}
+          System.out.println("1-0");}
           else{
-            System.out.println("Stalemate");
+            System.out.println("1/2-1/2");
           }
          checkmated = true;
         }
       
       }
+      if (!castled){
          String takingPiece = this.namingConvention();
         if (original != null){
           takingPiece += "x";
@@ -382,7 +391,8 @@ public abstract class Piece{
           newPiece += "+";
         }
         System.out.println(takingPiece + newPiece);
-      
+      }
+      castled = false;
       return true;
     }
     return false;

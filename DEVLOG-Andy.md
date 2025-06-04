@@ -42,3 +42,13 @@ At home, I discovered that pieces could still jump over each other because I use
 In class on Friday, I started castling code (~15 minute), but then I spent the rest of the period trying to debug the infinite recursion still in the King class.
 
 Over the weekend, I used Naomi's code, which was now fixed for King's infinite recursion, and implemented check. I then used this check code to make sure that a player couldn't play an illegal move that would leave their king threatened. Afterwards, I designed checkmate code to lock the screen after the game ended and spent a long time trying to figure out how to implement checkmate/stalemate. I eventually accomplished this while noticeably reducing the runtime by using while loops and local conditions rather than for loops (would be around n^4 to n^5 behavior). Throughout all of this, I extensively debugged (print messages, fixing merge conflicts, fixing differences in implementation between my and Naomi's methods, etc.) I spent a total of about eight hours (~480 min) on the aforementioned tasks.
+
+### 2025-06-02 - Beginning Steps to Algebraic Notation
+In class, I started creating instance variables and coding the algebraic notation for the movement of pieces (~20 min).
+
+At home, I implemented algebraic notation for capturing, check, and checkmate (~25 min).
+
+### 2025-06-03 - More Algebraic Notation!
+In class, I worked on fixing checkmate algebraic notation and worked on castling algebraic notation (~20 min).
+
+At home, I worked on en passant algebraic notation, checkmate/stalemate messages to the terminal, and fixed castling algebraic notation format (~20 min).
