@@ -900,140 +900,145 @@ void setup() {
 }
 
 void draw() {
-
-  chessboard();
-  //draws all white pieces
-  for (int i = 0; i < white.size(); i++) {
-    // text(""+white.get(i).isAlive(), 50, 50);
-    if (white.get(i).isAlive()) {
-      if (white.get(i).getType().equals("PAWN")) {
-        ditto(white.get(i).getPos()[0] * 100 + 50, white.get(i).getPos()[1] * 100 + 50, white.get(i).side());
-      } else if (white.get(i).getType().equals("BISHOP")) {
-        piplup(white.get(i).getPos()[0] * 100 + 50, white.get(i).getPos()[1] * 100 + 50, white.get(i).side());
-      } else if (white.get(i).getType().equals("KNIGHT")) {
-        solosis(white.get(i).getPos()[0] * 100 + 50, white.get(i).getPos()[1] * 100 + 50, white.get(i).side());
-      } else if (white.get(i).getType().equals("ROOK")) {
-        electrode(white.get(i).getPos()[0] * 100 + 50, white.get(i).getPos()[1] * 100 + 50, white.get(i).side());
-      } else if (white.get(i).getType().equals("QUEEN")) {
-        gulpin(white.get(i).getPos()[0] * 100 + 50, white.get(i).getPos()[1] * 100 + 50, white.get(i).side());
-      } else {
-        spheal(white.get(i).getPos()[0] * 100 + 50, white.get(i).getPos()[1] * 100 + 50, white.get(i).side());
-      }
-    }
-  }
-  //draws all black pieces
-  for (int i = 0; i < black.size(); i++) {
-    if (black.get(i).isAlive()) {
-      if (black.get(i).getType().equals("PAWN")) {
-        ditto(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
-      } else if (black.get(i).getType().equals("BISHOP")) {
-        piplup(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
-      } else if (black.get(i).getType().equals("KNIGHT")) {
-        solosis(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
-      } else if (black.get(i).getType().equals("ROOK")) {
-        electrode(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
-      } else if (black.get(i).getType().equals("QUEEN")) {
-        gulpin(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
-      } else {
-        spheal(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
-      }
-    }
-  }
-  if (selectedPiece != null && !selectingPiece) {
-    boolean isEnPassanting = false;
-    ArrayList<int[]> legalMoves = selectedPiece.getLegalMoves();
-    if (selectedPiece.getType().equals("KING")) {
-      selectedPiece.editForCastle(legalMoves);
-    } else if (selectedPiece.getType().equals("PAWN")) {
-      int size = legalMoves.size();
-      selectedPiece.editForEnPassant(legalMoves);
-      isEnPassanting = legalMoves.size() > size;
-    }
-    selectedPiece.editForIllegalMoves(legalMoves);
-    /*  for(int i = 0; i < legalMoves.size(); i++){
-     System.out.println(Arrays.toString(legalMoves.get(i)));
-     }*/
-    for (int i = 0; i < legalMoves.size(); i++) {
-      strokeWeight(1);
-      if ((legalMoves.get(i)[0] + legalMoves.get(i)[1]) % 2 == 0) {
-        pokeballLight(255, 0, legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50);
-      } else {
-        pokeballLight(0, 255, legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50);
-      }
-      if (!selectedPiece.side()) {//capture
-        if (selectedPiece.canCapture(legalMoves.get(i))) {
-          for (int j = 0; j < black.size(); j++) {
-            if (black.get(j).getPos()[0] == legalMoves.get(i)[0] && black.get(j).getPos()[1] == legalMoves.get(i)[1]) {
-              if (black.get(j).getType().equals("PAWN")) {
-                dittoLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
-              } else if (black.get(j).getType().equals("BISHOP")) {
-                piplupLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
-              } else if (black.get(j).getType().equals("KNIGHT")) {
-                solosisLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
-              } else if (black.get(j).getType().equals("ROOK")) {
-                electrodeLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
-              } else if (black.get(j).getType().equals("QUEEN")) {
-                gulpinLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
-              } else {
-                sphealLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
-              }
-            }
-          }
-        } else if (isEnPassanting) {
-          dittoLight(legalMoves.get(legalMoves.size()-1)[0]*100+50, (legalMoves.get(legalMoves.size()-1)[1]+1)*100+50, true);
-        }
-      } else {
-        if (selectedPiece.canCapture(legalMoves.get(i))) {
-          for (int j = 0; j < white.size(); j++) {
-            if (white.get(j).getPos()[0] == legalMoves.get(i)[0] && white.get(j).getPos()[1] == legalMoves.get(i)[1]) {
-              if (white.get(j).getType().equals("PAWN")) {
-                dittoLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
-              } else if (white.get(j).getType().equals("BISHOP")) {
-                piplupLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
-              } else if (white.get(j).getType().equals("KNIGHT")) {
-                solosisLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
-              } else if (white.get(j).getType().equals("ROOK")) {
-                electrodeLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
-              } else if (white.get(j).getType().equals("QUEEN")) {
-                gulpinLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
-              } else {
-                sphealLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
-              }
-            }
-          }
-        } else if (isEnPassanting) {
-          dittoLight(legalMoves.get(legalMoves.size()-1)[0]*100+50, (legalMoves.get(legalMoves.size()-1)[1]-1)*100+50, false);
+  if (checkmated) {
+    if(blackInCheck){} //black victory screen
+    else if(whiteInCheck){} //white victory screen
+    else{} //stalemate
+  } else {
+    chessboard();
+    //draws all white pieces
+    for (int i = 0; i < white.size(); i++) {
+      // text(""+white.get(i).isAlive(), 50, 50);
+      if (white.get(i).isAlive()) {
+        if (white.get(i).getType().equals("PAWN")) {
+          ditto(white.get(i).getPos()[0] * 100 + 50, white.get(i).getPos()[1] * 100 + 50, white.get(i).side());
+        } else if (white.get(i).getType().equals("BISHOP")) {
+          piplup(white.get(i).getPos()[0] * 100 + 50, white.get(i).getPos()[1] * 100 + 50, white.get(i).side());
+        } else if (white.get(i).getType().equals("KNIGHT")) {
+          solosis(white.get(i).getPos()[0] * 100 + 50, white.get(i).getPos()[1] * 100 + 50, white.get(i).side());
+        } else if (white.get(i).getType().equals("ROOK")) {
+          electrode(white.get(i).getPos()[0] * 100 + 50, white.get(i).getPos()[1] * 100 + 50, white.get(i).side());
+        } else if (white.get(i).getType().equals("QUEEN")) {
+          gulpin(white.get(i).getPos()[0] * 100 + 50, white.get(i).getPos()[1] * 100 + 50, white.get(i).side());
+        } else {
+          spheal(white.get(i).getPos()[0] * 100 + 50, white.get(i).getPos()[1] * 100 + 50, white.get(i).side());
         }
       }
     }
-  }
-
-  if (whiteInCheck) {
-    if (white.get(0).getType().equals("KING")) {
-      sphealLight(white.get(0).getPos()[0]*100+50, white.get(0).getPos()[1]*100+50, false);
-    } else {
-      sphealLight(white.get(0).getKing().getPos()[0]*100+50, white.get(0).getKing().getPos()[1]*100+50, false);
+    //draws all black pieces
+    for (int i = 0; i < black.size(); i++) {
+      if (black.get(i).isAlive()) {
+        if (black.get(i).getType().equals("PAWN")) {
+          ditto(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
+        } else if (black.get(i).getType().equals("BISHOP")) {
+          piplup(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
+        } else if (black.get(i).getType().equals("KNIGHT")) {
+          solosis(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
+        } else if (black.get(i).getType().equals("ROOK")) {
+          electrode(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
+        } else if (black.get(i).getType().equals("QUEEN")) {
+          gulpin(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
+        } else {
+          spheal(black.get(i).getPos()[0] * 100 + 50, black.get(i).getPos()[1] * 100 + 50, black.get(i).side());
+        }
+      }
     }
-  }
-
-  if (blackInCheck) {
-    if (black.get(0).getType().equals("KING")) {
-      sphealLight(black.get(0).getPos()[0]*100+50, black.get(0).getPos()[1]*100+50, true);
-    } else {
-      sphealLight(black.get(0).getKing().getPos()[0]*100+50, black.get(0).getKing().getPos()[1]*100+50, true);
+    if (selectedPiece != null && !selectingPiece) {
+      boolean isEnPassanting = false;
+      ArrayList<int[]> legalMoves = selectedPiece.getLegalMoves();
+      if (selectedPiece.getType().equals("KING")) {
+        selectedPiece.editForCastle(legalMoves);
+      } else if (selectedPiece.getType().equals("PAWN")) {
+        int size = legalMoves.size();
+        selectedPiece.editForEnPassant(legalMoves);
+        isEnPassanting = legalMoves.size() > size;
+      }
+      selectedPiece.editForIllegalMoves(legalMoves);
+      /*  for(int i = 0; i < legalMoves.size(); i++){
+       System.out.println(Arrays.toString(legalMoves.get(i)));
+       }*/
+      for (int i = 0; i < legalMoves.size(); i++) {
+        strokeWeight(1);
+        if ((legalMoves.get(i)[0] + legalMoves.get(i)[1]) % 2 == 0) {
+          pokeballLight(255, 0, legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50);
+        } else {
+          pokeballLight(0, 255, legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50);
+        }
+        if (!selectedPiece.side()) {//capture
+          if (selectedPiece.canCapture(legalMoves.get(i))) {
+            for (int j = 0; j < black.size(); j++) {
+              if (black.get(j).getPos()[0] == legalMoves.get(i)[0] && black.get(j).getPos()[1] == legalMoves.get(i)[1]) {
+                if (black.get(j).getType().equals("PAWN")) {
+                  dittoLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
+                } else if (black.get(j).getType().equals("BISHOP")) {
+                  piplupLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
+                } else if (black.get(j).getType().equals("KNIGHT")) {
+                  solosisLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
+                } else if (black.get(j).getType().equals("ROOK")) {
+                  electrodeLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
+                } else if (black.get(j).getType().equals("QUEEN")) {
+                  gulpinLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
+                } else {
+                  sphealLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, true);
+                }
+              }
+            }
+          } else if (isEnPassanting) {
+            dittoLight(legalMoves.get(legalMoves.size()-1)[0]*100+50, (legalMoves.get(legalMoves.size()-1)[1]+1)*100+50, true);
+          }
+        } else {
+          if (selectedPiece.canCapture(legalMoves.get(i))) {
+            for (int j = 0; j < white.size(); j++) {
+              if (white.get(j).getPos()[0] == legalMoves.get(i)[0] && white.get(j).getPos()[1] == legalMoves.get(i)[1]) {
+                if (white.get(j).getType().equals("PAWN")) {
+                  dittoLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
+                } else if (white.get(j).getType().equals("BISHOP")) {
+                  piplupLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
+                } else if (white.get(j).getType().equals("KNIGHT")) {
+                  solosisLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
+                } else if (white.get(j).getType().equals("ROOK")) {
+                  electrodeLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
+                } else if (white.get(j).getType().equals("QUEEN")) {
+                  gulpinLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
+                } else {
+                  sphealLight(legalMoves.get(i)[0]*100+50, legalMoves.get(i)[1]*100+50, false);
+                }
+              }
+            }
+          } else if (isEnPassanting) {
+            dittoLight(legalMoves.get(legalMoves.size()-1)[0]*100+50, (legalMoves.get(legalMoves.size()-1)[1]-1)*100+50, false);
+          }
+        }
+      }
     }
+
+    if (whiteInCheck) {
+      if (white.get(0).getType().equals("KING")) {
+        sphealLight(white.get(0).getPos()[0]*100+50, white.get(0).getPos()[1]*100+50, false);
+      } else {
+        sphealLight(white.get(0).getKing().getPos()[0]*100+50, white.get(0).getKing().getPos()[1]*100+50, false);
+      }
+    }
+
+    if (blackInCheck) {
+      if (black.get(0).getType().equals("KING")) {
+        sphealLight(black.get(0).getPos()[0]*100+50, black.get(0).getPos()[1]*100+50, true);
+      } else {
+        sphealLight(black.get(0).getKing().getPos()[0]*100+50, black.get(0).getKing().getPos()[1]*100+50, true);
+      }
+    }
+
+
+    /*  gulpin(750, 750, false);
+     gulpin(650, 750, true);
+     solosis(650, 650, true);
+     solosis(750, 650, false);
+     electrode(650, 550, true);
+     electrode(750, 550, false);*/
+
+    // gulpinLight(50, 50, false);
+    // sphealLight(50, 150, false);
   }
-
-
-  /*  gulpin(750, 750, false);
-   gulpin(650, 750, true);
-   solosis(650, 650, true);
-   solosis(750, 650, false);
-   electrode(650, 550, true);
-   electrode(750, 550, false);*/
-
-  // gulpinLight(50, 50, false);
-  // sphealLight(50, 150, false);
 }
 
 void mouseClicked() {
