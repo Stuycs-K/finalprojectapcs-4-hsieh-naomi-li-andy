@@ -120,7 +120,7 @@ public abstract class Piece{
         //  System.out.println("castling to the left");
           contains = true;
           leftRook.setPos(new int[]{3, 7});
-          System.out.println("O-O-O");
+          System.out.println("0-0-0");
           castled = true;
         }
       }
@@ -130,7 +130,7 @@ public abstract class Piece{
          // System.out.println("castling to the right");
           contains = true;
           rightRook.setPos(new int[]{5, 7});
-          System.out.println("O-O");
+          System.out.println("0-0");
           castled = true;
         }
       }
@@ -177,7 +177,7 @@ public abstract class Piece{
         if(newPos[0] == 2 && newPos[1] == 0){
           contains = true;
           leftRook.setPos(new int[]{3, 0});
-          System.out.println("O-O-O");
+          System.out.println("0-0-0");
           castled = true;
         }
       }
@@ -185,7 +185,7 @@ public abstract class Piece{
         if(newPos[0] == 6 && newPos[1] == 0){
           contains = true;
           rightRook.setPos(new int[]{5, 0});
-          System.out.println("O-O");
+          System.out.println("0-0");
           castled = true;
         }
       }
