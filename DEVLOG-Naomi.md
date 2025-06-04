@@ -48,3 +48,8 @@ At home: I finished debugging king movement (~40 minutes), created two new desig
 In class: I began a basic implementation of the legal movement marker, writing a dittoLight function to test captures as well (~35 minutes).
 
 At home: I finished the legal movement marker, wrote alternate designs for all the pieces for when they can be captured, implemented the legal movement marker for captures, and made it so the king would light up when in check (~60 minutes).
+
+### 2025-06-02 - Legal Movement Marker (More!)
+In class: I implemented the legal movement marker for castling and started the en passant one (~40 minutes).
+
+At home: I finished the legal movement marker for en passant and wrote the legal movement marker to fix the illegal moves (that allow your king to be captured) (~60 minutes).
