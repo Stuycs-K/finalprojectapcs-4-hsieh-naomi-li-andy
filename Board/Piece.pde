@@ -659,14 +659,13 @@ public abstract class Piece{
           for (int i = 0; i < white.size(); i++){
             if (white.get(i).canCapture(kingPos)){
             //  System.out.println("illegal");
-              if (original != null){
-                white.add(original);
-                pieces.add(original);
-              }
-              
               legalMoves.remove(newPos);
               x--;
             }
+          }
+          if (original != null){
+                white.add(original);
+                pieces.add(original);
           }
         }
       }
@@ -681,14 +680,14 @@ public abstract class Piece{
           for (int i = 0; i < black.size(); i++){
             if (black.get(i).canCapture(kingPos)){
              // System.out.println("illegal");
-              if (original != null){
-                black.add(original);
-                pieces.add(original);
-              }
               legalMoves.remove(newPos);
               x--;
             }
           }
+          if (original != null){
+                black.add(original);
+                pieces.add(original);
+           }
         }
       }
       this.setPos(originalPos);
