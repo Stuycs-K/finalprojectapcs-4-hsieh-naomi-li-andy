@@ -901,8 +901,18 @@ void setup() {
 
 void draw() {
   if (checkmated) {
-    if(blackInCheck){} //black victory screen
-    else if(whiteInCheck){} //white victory screen
+    if(whiteInCheck){ //black victory screen
+      stroke(0);
+      fill(0);
+      square(0, 0, 800);
+      spheal(400, 400, true);
+    } 
+    else if(blackInCheck){ //white victory screen
+      stroke(255);
+      fill(255);
+      square(0, 0, 800);
+      spheal(400, 400, false);
+    } 
     else{} //stalemate
   } else {
     chessboard();
