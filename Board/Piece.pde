@@ -637,4 +637,65 @@ public abstract class Piece{
       }
   }
   
+  public void editForIllegalMoves(ArrayList<int[]> legalMoves){
+    int[] originalPos = this.getPos();
+   /* for(int i = 0; i < legalMoves.size(); i++){
+     System.out.println(Arrays.toString(legalMoves.get(i)));
+     }*/
+    for(int x = 0; x < legalMoves.size(); x++){
+      int[] newPos = legalMoves.get(x);
+    //  System.out.println(Arrays.toString(newPos));
+      
+      this.setPos(newPos);
+      Piece original = this.capture();
+      
+      if (this.side()){
+        if (true){
+          int[] kingPos = new int[] {9, 9};
+          try{
+            kingPos = black.get(1).getKing().getPos();
+          }catch (NullPointerException e){
+          }
+          for (int i = 0; i < white.size(); i++){
+            if (white.get(i).canCapture(kingPos)){
+            //  System.out.println("illegal");
+              if (original != null){
+                white.add(original);
+                pieces.add(original);
+              }
+              
+              legalMoves.remove(newPos);
+              x--;
+            }
+          }
+        }
+      }
+      
+      else{
+        if (true){
+          int[] kingPos = new int[] {9, 9};
+          try{
+            kingPos = white.get(1).getKing().getPos();
+          }catch (NullPointerException e){
+          }
+          for (int i = 0; i < black.size(); i++){
+            if (black.get(i).canCapture(kingPos)){
+             // System.out.println("illegal");
+              if (original != null){
+                black.add(original);
+                pieces.add(original);
+              }
+              legalMoves.remove(newPos);
+              x--;
+            }
+          }
+        }
+      }
+      this.setPos(originalPos);
+    }
+     /*for(int i = 0; i < legalMoves.size(); i++){
+     System.out.println(Arrays.toString(legalMoves.get(i)));
+     }
+  System.out.println();*/
+  }
 }

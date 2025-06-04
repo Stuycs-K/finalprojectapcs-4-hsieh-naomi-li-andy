@@ -949,6 +949,7 @@ void draw() {
       selectedPiece.editForEnPassant(legalMoves);
       isEnPassanting = legalMoves.size() > size;
     }
+    selectedPiece.editForIllegalMoves(legalMoves);
     /*  for(int i = 0; i < legalMoves.size(); i++){
      System.out.println(Arrays.toString(legalMoves.get(i)));
      }*/
@@ -1067,6 +1068,7 @@ void mouseClicked() {
           selectedPiece.editForEnPassant(legalMoves);
           isEnPassanting = legalMoves.size() > size;
         }
+        selectedPiece.editForIllegalMoves(legalMoves);
         for (int i = 0; i < legalMoves.size(); i++) {
           strokeWeight(1);
           if ((legalMoves.get(i)[0] + legalMoves.get(i)[1]) % 2 == 0) {
