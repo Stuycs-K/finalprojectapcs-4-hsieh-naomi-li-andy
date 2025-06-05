@@ -794,6 +794,17 @@ void crown(float x, float y){
   stroke(187, 165, 61);
   rect(x+5, y+13, 40, 7.5);
   ellipse(x+25, y+23, 37, 7.5);
+  triangle(x+35, y+13, x+15, y+13, x+25, y-5);
+  pushMatrix();
+  translate(x+5, y+20);
+  rotate(-PI/6);
+  triangle(0, 0, 10, 0, 5, -16);
+  popMatrix();
+  pushMatrix();
+  translate(x+35, y+15);
+  rotate(PI/6);
+  triangle(0, 0, 10, 0, 5, -16);
+  popMatrix();
 }
 void chessboard() {
   stroke(0);
@@ -903,7 +914,7 @@ void setup() {
    gulpin(650, 750, true);
    solosis(650, 650, true);
    solosis(750, 650, false);*/
-   checkmated = true; whiteInCheck = true;
+ //  checkmated = true; blackInCheck = true;
 }
 
 void draw() {
@@ -914,12 +925,14 @@ void draw() {
       square(0, 0, 800);
       spheal(400, 400, true);
       crown(375, 350);
+     //will make an image with the font for black victory screen
     } 
     else if(blackInCheck){ //white victory screen
       stroke(255);
       fill(255);
       square(0, 0, 800);
       spheal(400, 400, false);
+      crown(375, 350);
     } 
     else{} //stalemate
   } else {
