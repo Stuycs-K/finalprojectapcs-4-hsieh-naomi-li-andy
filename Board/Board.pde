@@ -16,6 +16,8 @@ boolean pawnPromoting;
 Piece selectedPiece;
 Piece pawnBeingPromoted;
 
+boolean inGuide;
+
 King wKing;
 King bKing;
 
@@ -832,6 +834,7 @@ void chessboard() {
 void setup() {
   pawnPromoting = false;
   turnNumber = 1;
+  inGuide = false;
   wKing = new King(new int[] {4, 7}, false);
   bKing = new King(new int[] {4, 0}, true);
   //Adding Kings and Queens
@@ -935,7 +938,14 @@ void draw() {
       crown(375, 350);
     } 
     else{} //stalemate
-  } else {
+  } 
+  else if(inGuide){
+     stroke(0);
+      fill(0);
+      square(0, 0, 800); 
+      //load in PImage of guide?
+  }
+  else {
     chessboard();
     //draws all white pieces
     for (int i = 0; i < white.size(); i++) {
@@ -1243,6 +1253,11 @@ void keyPressed() {
       pawnPromoting = false;
     }
   }
+  
+  if(key == 'g'){
+    inGuide = !inGuide;
+  }
+  
 }
 
 void pawnPromotionChecker() {
