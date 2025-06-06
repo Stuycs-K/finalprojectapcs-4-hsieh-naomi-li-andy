@@ -52,3 +52,6 @@ At home, I implemented algebraic notation for capturing, check, and checkmate (~
 In class, I worked on fixing checkmate algebraic notation and worked on castling algebraic notation (~20 min).
 
 At home, I worked on en passant algebraic notation, checkmate/stalemate messages to the terminal, and fixed castling algebraic notation format (~20 min).
+
+### 2025-06-04 to 2025-06-05 - More Algebraic Notation Pt. 2!
+Over Wednesday in-class and the break, I finished pawn promotion and started working on the exception code, which needs to be fixed, as the correct notation is not being outputted. Only committed the pawn promotion code for now (total ~30 min).
