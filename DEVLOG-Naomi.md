@@ -53,3 +53,8 @@ At home: I finished the legal movement marker, wrote alternate designs for all t
 In class: I implemented the legal movement marker for castling and started the en passant one (~40 minutes).
 
 At home: I finished the legal movement marker for en passant and wrote the legal movement marker to fix the illegal moves (that allow your king to be captured) (~60 minutes).
+
+### 2025-06-04 to 2025-06-05 - Win Screen/Guide setup
+In class: I implemented the code to generate a win screen and began to write a crown function for the winscreen (~30 minutes).
+
+At home: I finished the crown function and began a setup for the guide, which I will use PImage for (~30 minutes).
