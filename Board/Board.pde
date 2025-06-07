@@ -11,6 +11,8 @@ static boolean whiteInCheck = false;
 static boolean checkmated = false;
 static int turnNumber = 1;
 
+PImage guide;
+
 boolean selectingPiece = true;
 boolean pawnPromoting;
 Piece selectedPiece;
@@ -918,6 +920,9 @@ void setup() {
    solosis(650, 650, true);
    solosis(750, 650, false);*/
  //  checkmated = true; blackInCheck = true;
+ 
+ guide = loadImage("guide.png");
+ guide.resize(width, height);
 }
 
 void draw() {
@@ -942,7 +947,7 @@ void draw() {
   else if(inGuide){
      stroke(0);
       fill(0);
-      square(0, 0, 800); 
+      image(guide, 0, 0);
       //load in PImage of guide?
   }
   else {
@@ -1103,7 +1108,7 @@ void mouseClicked() {
             }
           }
         }
-
+        if(selectedPiece != null){
         //highlighting moves
         boolean isEnPassanting = false;
         ArrayList<int[]> legalMoves = selectedPiece.getLegalMoves();
@@ -1168,6 +1173,7 @@ void mouseClicked() {
               dittoLight(legalMoves.get(legalMoves.size()-1)[0]*100+50, (legalMoves.get(legalMoves.size()-1)[1]-1)*100+50, false);
             }
           }
+        }
         }
       } else {
         System.out.print("TURN: " + turnNumber);
