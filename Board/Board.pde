@@ -12,6 +12,8 @@ static boolean checkmated = false;
 static int turnNumber = 1;
 
 PImage guide;
+PImage checkmate;
+PImage stalemate;
 
 boolean selectingPiece = true;
 boolean pawnPromoting;
@@ -922,7 +924,11 @@ void setup() {
  //  checkmated = true; blackInCheck = true;
  
  guide = loadImage("guide.png");
+ checkmate = loadImage("checkmate.png");
+ stalemate = loadImage("stalemate.png");
  guide.resize(width, height);
+ checkmate.resize(width, height);
+ stalemate.resize(width, height);
 }
 
 void draw() {
@@ -930,19 +936,22 @@ void draw() {
     if(whiteInCheck){ //black victory screen
       stroke(0);
       fill(0);
-      square(0, 0, 800);
-      spheal(400, 400, true);
-      crown(375, 350);
+      image(checkmate, 0, 0);
+      spheal(400, 600, true);
+      crown(375, 550);
+      
      //will make an image with the font for black victory screen
     } 
     else if(blackInCheck){ //white victory screen
       stroke(255);
       fill(255);
-      square(0, 0, 800);
-      spheal(400, 400, false);
-      crown(375, 350);
+      image(checkmate, 0, 0);
+      spheal(400, 600, false);
+      crown(375, 550);
     } 
-    else{} //stalemate
+    else{
+      image(stalemate, 0, 0);
+    } //stalemate
   } 
   else if(inGuide){
      stroke(0);
