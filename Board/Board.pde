@@ -21,6 +21,8 @@ Piece selectedPiece;
 Piece pawnBeingPromoted;
 
 boolean inGuide;
+boolean inEndScreen;
+boolean showEndScreen;
 
 King wKing;
 King bKing;
@@ -929,17 +931,19 @@ void setup() {
  guide.resize(width, height);
  checkmate.resize(width, height);
  stalemate.resize(width, height);
+ 
+ inEndScreen = false;
+ showEndScreen = true;
 }
 
 void draw() {
-  if (checkmated) {
+  if (checkmated && showEndScreen) {
     if(whiteInCheck){ //black victory screen
       stroke(0);
       fill(0);
       image(checkmate, 0, 0);
       spheal(400, 600, true);
       crown(375, 550);
-      
      //will make an image with the font for black victory screen
     } 
     else if(blackInCheck){ //white victory screen
@@ -950,8 +954,9 @@ void draw() {
       crown(375, 550);
     } 
     else{
-      image(stalemate, 0, 0);
+        image(stalemate, 0, 0);
     } //stalemate
+    inEndScreen = true;
   } 
   else if(inGuide){
      stroke(0);
@@ -1271,6 +1276,10 @@ void keyPressed() {
   
   if(key == 'g'){
     inGuide = !inGuide;
+  }
+  
+  if(inEndScreen && key == 'c'){
+    showEndScreen = !showEndScreen;
   }
   
 }
