@@ -13,12 +13,18 @@ static String newType = "";
 static int[] promotedPos = new int[2];
 static int turnNumber = 1;
 
+PImage guide;
+PImage checkmate;
+PImage stalemate;
+
 boolean selectingPiece = true;
 boolean pawnPromoting;
 Piece selectedPiece;
 Piece pawnBeingPromoted;
 
 boolean inGuide;
+boolean inEndScreen;
+boolean showEndScreen;
 
 King wKing;
 King bKing;
@@ -920,31 +926,44 @@ void setup() {
    solosis(650, 650, true);
    solosis(750, 650, false);*/
  //  checkmated = true; blackInCheck = true;
+ 
+ guide = loadImage("guide.png");
+ checkmate = loadImage("checkmate.png");
+ stalemate = loadImage("stalemate.png");
+ guide.resize(width, height);
+ checkmate.resize(width, height);
+ stalemate.resize(width, height);
+ 
+ inEndScreen = false;
+ showEndScreen = true;
 }
 
 void draw() {
-  if (checkmated) {
+  if (checkmated && showEndScreen) {
     if(whiteInCheck){ //black victory screen
       stroke(0);
       fill(0);
-      square(0, 0, 800);
-      spheal(400, 400, true);
-      crown(375, 350);
+      image(checkmate, 0, 0);
+      spheal(400, 600, true);
+      crown(375, 550);
      //will make an image with the font for black victory screen
     } 
     else if(blackInCheck){ //white victory screen
       stroke(255);
       fill(255);
-      square(0, 0, 800);
-      spheal(400, 400, false);
-      crown(375, 350);
+      image(checkmate, 0, 0);
+      spheal(400, 600, false);
+      crown(375, 550);
     } 
-    else{} //stalemate
+    else{
+        image(stalemate, 0, 0);
+    } //stalemate
+    inEndScreen = true;
   } 
   else if(inGuide){
      stroke(0);
       fill(0);
-      square(0, 0, 800); 
+      image(guide, 0, 0);
       //load in PImage of guide?
   }
   else {
@@ -1105,7 +1124,7 @@ void mouseClicked() {
             }
           }
         }
-
+        if(selectedPiece != null){
         //highlighting moves
         boolean isEnPassanting = false;
         ArrayList<int[]> legalMoves = selectedPiece.getLegalMoves();
@@ -1170,6 +1189,7 @@ void mouseClicked() {
               dittoLight(legalMoves.get(legalMoves.size()-1)[0]*100+50, (legalMoves.get(legalMoves.size()-1)[1]-1)*100+50, false);
             }
           }
+        }
         }
       } else {
         System.out.print("TURN: " + turnNumber);
@@ -1275,6 +1295,10 @@ void keyPressed() {
   
   if(key == 'g'){
     inGuide = !inGuide;
+  }
+  
+  if(inEndScreen && key == 'c'){
+    showEndScreen = !showEndScreen;
   }
   
 }
