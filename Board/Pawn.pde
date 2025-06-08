@@ -66,6 +66,40 @@ public class Pawn extends Piece {
     }
    // System.out.println(Arrays.toString(newPos));
     if (contains) {
+            Piece otherTaker = null;
+          ArrayList<int[]> multiple = new ArrayList<int[]>(0);
+            if (this.side()){
+          for (int i = 0; i < black.size(); i++){
+            if (black.get(i).getType().equals(this.getType()) && !Arrays.toString(black.get(i).getPos()).equals(Arrays.toString(this.getPos())) ){
+              otherTaker = black.get(i);
+              ArrayList<int[]> listOne = black.get(i).getLegalMoves();
+              ArrayList<int[]> listTwo = this.getLegalMoves();
+              for (int j = 0 ; j < listOne.size(); j++){
+                for (int k = 0; k < listTwo.size(); k++){
+                  if (Arrays.toString(listOne.get(j)).equals(Arrays.toString(listTwo.get(k)))){
+                    multiple.add(listOne.get(j));
+                  }
+                }
+              }
+            }
+          }
+        }
+        else{
+        for (int i = 0; i < white.size(); i++){
+            if (white.get(i).getType().equals(this.getType()) && !Arrays.toString(white.get(i).getPos()).equals(Arrays.toString(this.getPos())) ){
+              otherTaker = white.get(i);
+              ArrayList<int[]> listOne = white.get(i).getLegalMoves();
+              ArrayList<int[]> listTwo = this.getLegalMoves();
+              for (int j = 0 ; j < listOne.size(); j++){
+                for (int k = 0; k < listTwo.size(); k++){
+                  if (Arrays.toString(listOne.get(j)).equals(Arrays.toString(listTwo.get(k)))){
+                    multiple.add(listOne.get(j));
+                  }
+                }
+              }
+            }
+          }
+        }
       int[] originalPos = this.getPos();
       this.setPos(newPos);
       Piece original = this.capture();
@@ -90,6 +124,8 @@ public class Pawn extends Piece {
                 white.add(original);
                 pieces.add(original);
               }
+              multiple = new ArrayList<int[]>(0);
+              otherTaker = null;
               this.setPos(originalPos);
               return false;
             }
@@ -114,6 +150,8 @@ public class Pawn extends Piece {
                 black.add(original);
                 pieces.add(original);
               }
+              multiple = new ArrayList<int[]>(0);
+              otherTaker = null;
               this.setPos(originalPos);
               return false;
             }
@@ -122,6 +160,8 @@ public class Pawn extends Piece {
       }
      
          int[] kingPos = new int[] {9, 9};
+         Board.blackInCheck =false;
+         Board.whiteInCheck = false;
      if (this.side()){
   //    System.out.println("moving in func");
 
@@ -240,8 +280,23 @@ public class Pawn extends Piece {
          checkmated = true;
         }
     }
-    if (this.getPos()[1] != 0 && this.getPos()[1] != 7){
-         String takingPiece = this.namingConvention();
+    if (this.getPos()[1] != 0 && this.getPos()[1] != 7){ //anti pawn-promotion checker
+            boolean sameMove = false;
+                    String takingPiece = this.namingConvention();
+        for (int counter = 0; counter < multiple.size(); counter++){
+          if (Arrays.toString(multiple.get(counter)).equals(Arrays.toString(this.getPos()))){
+            sameMove = true;
+          }
+        }
+        if (sameMove){
+          if (otherTaker.getPos()[0] == originalPos[0]){
+            takingPiece += "" + (8 - originalPos[1]);
+          }
+        }
+        
+        sameMove = false;
+      
+ 
         if (original != null){
           takingPiece += files[originalPos[0]];
           takingPiece += "x";
