@@ -260,7 +260,7 @@ public class Pawn extends Piece {
          checkmated = true;
         }
     }
-    if (this.getPos()[1] != 0 && this.getPos()[1] != 7){ //anti pawn-promotion checker
+     //anti pawn-promotion checker
             boolean sameMove = false;
                     String takingPiece = this.namingConvention();
         for (int counter = 0; counter < multiple.size(); counter++){
@@ -291,8 +291,10 @@ public class Pawn extends Piece {
         if (enPassanted){
           newPiece += " e.p.";
         }
-        System.out.println(takingPiece + newPiece);
+        System.out.print(takingPiece + newPiece);
       enPassanted = false;
+      if (this.getPos()[1] != 0 && this.getPos()[1] != 7){
+        System.out.println("");
     }
 
       return true;

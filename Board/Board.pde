@@ -1192,11 +1192,11 @@ void mouseClicked() {
         }
         }
       } else {
-        System.out.print("TURN: " + turnNumber);
+        //System.out.print("TURN: " + turnNumber);
         if (turnNumber % 2 == 0) {
-          System.out.println("");
+          //System.out.println("");
         } else {
-          System.out.println("");
+          //System.out.println("");
         }
 
         selectingPiece = true;
@@ -1288,7 +1288,7 @@ void keyPressed() {
           newType = "B";
         }
       }
-      System.out.println(files[promotedPos[0]] + (8 - promotedPos[1]) + "=" + newType);
+      System.out.println("=" + newType);
       pawnPromoting = false;
     }
   }
