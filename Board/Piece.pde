@@ -108,7 +108,7 @@ public abstract class Piece{
         if(newPos[0] == 2 && newPos[1] == 7){
           contains = true;
           leftRook.setPos(new int[]{3, 7});
-          System.out.println("TURN " + (turnNumber / 2 + 1) +": "+"0-0-0");
+          System.out.println("TURN " + ((turnNumber -1)/ 2 + 1) +": "+"0-0-0");
           castled = true;
         }
       }
@@ -117,7 +117,7 @@ public abstract class Piece{
           
           contains = true;
           rightRook.setPos(new int[]{5, 7});
-          System.out.println("TURN " + (turnNumber / 2 + 1) +": "+"0-0");
+          System.out.println("TURN " + ((turnNumber -1)/ 2 + 1) +": "+"0-0");
           castled = true;
         }
       }
@@ -157,7 +157,7 @@ public abstract class Piece{
         if(newPos[0] == 2 && newPos[1] == 0){
           contains = true;
           leftRook.setPos(new int[]{3, 0});
-          System.out.println("TURN " + (turnNumber / 2 + 1) +": "+"0-0-0");
+          System.out.println("TURN " + ((turnNumber -1)/ 2 + 1) +": "+"0-0-0");
           castled = true;
         }
       }
@@ -165,7 +165,7 @@ public abstract class Piece{
         if(newPos[0] == 6 && newPos[1] == 0){
           contains = true;
           rightRook.setPos(new int[]{5, 0});
-          System.out.println("TURN " + (turnNumber / 2 + 1) +": "+"0-0");
+          System.out.println("TURN " + ((turnNumber -1)/ 2 + 1) +": "+"0-0");
           castled = true;
         }
       }
@@ -352,7 +352,7 @@ public abstract class Piece{
         else if (whiteInCheck || blackInCheck){
           newPiece += "+";
         }
-        System.out.println("TURN " + (turnNumber / 2 + 1) +": "+takingPiece + newPiece);
+        System.out.println("TURN " + ((turnNumber -1)/ 2 + 1) +": "+takingPiece + newPiece);
       }
       castled = false;
          if (isItOver){
@@ -442,7 +442,7 @@ public abstract class Piece{
         else if (whiteInCheck || blackInCheck){
           newPiece += "+";
         }
-        System.out.println("TURN " + (turnNumber / 2 + 1) +": "+takingPiece + newPiece);
+        System.out.println("TURN " + ((turnNumber - 1)/ 2 + 1) +": "+takingPiece + newPiece);
       }
       castled = false;
        if (isItOver){
