@@ -214,6 +214,40 @@ public abstract class Piece{
         King temp = king;
        // applyCheck(king, false);
       }
+      Piece otherTaker = null;
+          ArrayList<int[]> multiple = new ArrayList<int[]>(0);
+            if (this.side()){
+          for (int i = 0; i < black.size(); i++){
+            if (black.get(i).getType().equals(this.getType()) && !Arrays.toString(black.get(i).getPos()).equals(Arrays.toString(this.getPos())) ){
+              otherTaker = black.get(i);
+              ArrayList<int[]> listOne = black.get(i).getLegalMoves();
+              ArrayList<int[]> listTwo = this.getLegalMoves();
+              for (int j = 0 ; j < listOne.size(); j++){
+                for (int k = 0; k < listTwo.size(); k++){
+                  if (Arrays.toString(listOne.get(j)).equals(Arrays.toString(listTwo.get(k)))){
+                    multiple.add(listOne.get(j));
+                  }
+                }
+              }
+            }
+          }
+        }
+        else{
+        for (int i = 0; i < white.size(); i++){
+            if (white.get(i).getType().equals(this.getType()) && !Arrays.toString(white.get(i).getPos()).equals(Arrays.toString(this.getPos())) ){
+              otherTaker = white.get(i);
+              ArrayList<int[]> listOne = white.get(i).getLegalMoves();
+              ArrayList<int[]> listTwo = this.getLegalMoves();
+              for (int j = 0 ; j < listOne.size(); j++){
+                for (int k = 0; k < listTwo.size(); k++){
+                  if (Arrays.toString(listOne.get(j)).equals(Arrays.toString(listTwo.get(k)))){
+                    multiple.add(listOne.get(j));
+                  }
+                }
+              }
+            }
+          }
+        }
       int[] originalPos = this.getPos();
       this.setPos(newPos);
       Piece original = this.capture();
@@ -233,6 +267,8 @@ public abstract class Piece{
                 pieces.add(original);
               }
               this.setPos(originalPos);
+              multiple = new ArrayList<int[]>(0);
+              otherTaker = null;
               return false;
             }
           }
@@ -254,6 +290,8 @@ public abstract class Piece{
                 pieces.add(original);
               }
               this.setPos(originalPos);
+              multiple = new ArrayList<int[]>(0);
+              otherTaker = null;
               return false;
             }
           }
@@ -262,7 +300,6 @@ public abstract class Piece{
       blackInCheck = false;
       whiteInCheck = false;      
       int[] kingPos = new int[] {9, 9};
-    
 
       if (this.side()){
         try{
@@ -379,7 +416,24 @@ public abstract class Piece{
       
       }
       if (!castled){
-         String takingPiece = this.namingConvention();
+        boolean sameMove = false;
+        String takingPiece = this.namingConvention();
+        for (int counter = 0; counter < multiple.size(); counter++){
+          if (Arrays.toString(multiple.get(counter)).equals(Arrays.toString(this.getPos()))){
+            sameMove = true;
+          }
+        }
+        if (sameMove){
+          if (otherTaker.getPos()[0] == originalPos[0]){
+            takingPiece += "" + (8 - originalPos[1]);
+          }
+          else{
+            takingPiece += files[originalPos[0]];
+          }
+        }
+        
+        sameMove = false;
+        multiple = new ArrayList<int[]>(0);
         if (original != null){
           takingPiece += "x";
         }
