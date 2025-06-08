@@ -1017,7 +1017,6 @@ void draw() {
       }
       selectedPiece.editForIllegalMoves(legalMoves);
       /*  for(int i = 0; i < legalMoves.size(); i++){
-       System.out.println(Arrays.toString(legalMoves.get(i)));
        }*/
       for (int i = 0; i < legalMoves.size(); i++) {
         strokeWeight(1);
@@ -1192,11 +1191,8 @@ void mouseClicked() {
         }
         }
       } else {
-        //System.out.print("TURN: " + turnNumber);
         if (turnNumber % 2 == 0) {
-          //System.out.println("");
         } else {
-          //System.out.println("");
         }
 
         selectingPiece = true;
@@ -1206,14 +1202,12 @@ void mouseClicked() {
         if (turnNumber % 2 == 0) {
           for (Piece p : black) {
             if (p.getType().equals("PAWN")) {
-              //    if(p.getCanBeEnPassanted()) {System.out.println("pawn can be enpassanted");}
               p.setCanBeEnPassanted(false);
             }
           }
         } else {
           for (Piece p : white) {
             if (p.getType().equals("PAWN")) {
-              //    if(p.getCanBeEnPassanted()) {System.out.println("pawn can be enpassanted");}
               p.setCanBeEnPassanted(false);
             }
           }

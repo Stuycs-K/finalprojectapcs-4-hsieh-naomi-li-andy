@@ -16,10 +16,8 @@ public class Pawn extends Piece {
 
 
   public boolean move(int[] newPos) {
-   // System.out.println(firstMove);
     boolean contains = false;
     for (int[] i : this.getLegalMoves()) {
-   //   System.out.println(Arrays.toString(i));
       if (i[0] == newPos[0] && i[1] == newPos[1]) {
         contains = true;
       }
@@ -36,7 +34,6 @@ public class Pawn extends Piece {
     }
     else{
       for(int i = 0; i < Board.black.size(); i++){
-      //  if(Board.black.get(i).getType().equals("PAWN") && Board.black.get(i).getPos()[0] == newPos[0] && Board.black.get(i).getPos()[0] != this.getPos()[0] && Board.black.get(i).getPos()[1] == newPos[1] + 1){System.out.println("pawnchecker");}
          if(Board.black.get(i).getType().equals("PAWN") && Board.black.get(i).getPos()[0] == newPos[0] && Board.black.get(i).getPos()[0] != this.getPos()[0] && Board.black.get(i).getPos()[1] == newPos[1] + 1 && Board.black.get(i).getCanBeEnPassanted()){
            contains = true;
            Board.black.remove(i);
@@ -44,7 +41,6 @@ public class Pawn extends Piece {
          }
       }
     }
-   // System.out.println(Arrays.toString(newPos));
     if (contains) {
             Piece otherTaker = pieces.get(0);
           ArrayList<int[]> multiple = new ArrayList<int[]>(0);
@@ -99,7 +95,6 @@ public class Pawn extends Piece {
           }
           for (int i = 0; i < white.size(); i++){
             if (white.get(i).canCapture(kingPos)){
-              System.out.println("illegal");
               if (original != null){
                 white.add(original);
                 pieces.add(original);
@@ -125,7 +120,6 @@ public class Pawn extends Piece {
           }
           for (int i = 0; i < black.size(); i++){
             if (black.get(i).canCapture(kingPos)){
-              System.out.println("illegal");
               if (original != null){
                 black.add(original);
                 pieces.add(original);
@@ -143,7 +137,6 @@ public class Pawn extends Piece {
          Board.blackInCheck =false;
          Board.whiteInCheck = false;
      if (this.side()){
-  //    System.out.println("moving in func");
 
       
 
@@ -154,7 +147,6 @@ public class Pawn extends Piece {
         }
         for (int i = 0; i < black.size(); i++){
           if (black.get(i).canCapture(kingPos)){
-            System.out.println("check");
             Board.whiteInCheck = true;
             }
          }
@@ -246,7 +238,6 @@ public class Pawn extends Piece {
         }
         for (int i = 0; i < white.size(); i++){
           if (white.get(i).canCapture(kingPos)){
-            System.out.println("check");
             Board.blackInCheck = true;
             }
          }
@@ -352,7 +343,6 @@ public class Pawn extends Piece {
   }
 
   public ArrayList<int[]> getLegalMoves() {
-    //   System.out.println("calling getLegalMoves for pawn");
     ArrayList<int[]> toReturn = new ArrayList<int[]>();
     for (int col = 0; col < 8; col++) {
       for (int row = 0; row < 8; row++) {
