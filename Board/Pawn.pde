@@ -90,7 +90,7 @@ public class Pawn extends Piece {
         if (true){
           int[] kingPos = new int[] {9, 9};
           try{
-            kingPos = black.get(1).getKing().getPos();
+            kingPos = black.get(0).getKing().getPos();
           }catch (NullPointerException e){
           }
           for (int i = 0; i < white.size(); i++){
@@ -115,7 +115,7 @@ public class Pawn extends Piece {
         if (true){
           int[] kingPos = new int[] {9, 9};
           try{
-            kingPos = white.get(1).getKing().getPos();
+            kingPos = white.get(0).getKing().getPos();
           }catch (NullPointerException e){
           }
           for (int i = 0; i < black.size(); i++){
@@ -141,7 +141,7 @@ public class Pawn extends Piece {
       
 
         try{
-          kingPos = white.get(1).getKing().getPos();
+          kingPos = white.get(0).getKing().getPos();
         }catch (NullPointerException e){
           
         }
@@ -167,7 +167,7 @@ public class Pawn extends Piece {
             int thirdIncrement = 0;
             while (!isItOverIII && thirdIncrement < black.size()){ //isItOverIII checks if this side can capture the king next turn; returns false if ever a legal move
                 try{
-               kingPos = white.get(1).getKing().getPos();}
+               kingPos = white.get(0).getKing().getPos();}
                catch (Exception e){}
               if (black.get(thirdIncrement).canCapture(kingPos)){
                 isItOverIII = true;
@@ -232,7 +232,7 @@ public class Pawn extends Piece {
       
     else if (!this.side()){
         try{
-          kingPos = black.get(1).getKing().getPos();
+          kingPos = black.get(0).getKing().getPos();
         }catch (NullPointerException e){
           
         }
@@ -259,7 +259,7 @@ public class Pawn extends Piece {
             int thirdIncrement = 0;
             while (!isItOverIII && thirdIncrement < white.size()){ //isItOverIII checks if this side can capture the king next turn; returns false if ever a legal move
                try{
-               kingPos = black.get(1).getKing().getPos();}
+               kingPos = black.get(0).getKing().getPos();}
                catch (Exception e){}
               if (white.get(thirdIncrement).canCapture(kingPos)){
                 isItOverIII = true;

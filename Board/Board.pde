@@ -25,6 +25,7 @@ Piece pawnBeingPromoted;
 boolean inGuide;
 boolean inEndScreen;
 boolean showEndScreen;
+boolean stalemateSetup;
 
 King wKing;
 King bKing;
@@ -936,6 +937,7 @@ void setup() {
  
  inEndScreen = false;
  showEndScreen = true;
+ stalemateSetup = false;
 }
 
 void draw() {
@@ -1228,7 +1230,7 @@ void keyPressed() {
     if (key == 'q' || key == 'k' || key == 'r' || key == 'b') {
       if (pawnBeingPromoted.side()) {
       try{
-          kingPos = white.get(1).getKing().getPos();
+          kingPos = white.get(0).getKing().getPos();
         }catch (NullPointerException e){
           
         }
@@ -1261,7 +1263,7 @@ void keyPressed() {
         }
       } else {
                 try{
-          kingPos = black.get(1).getKing().getPos();
+          kingPos = black.get(0).getKing().getPos();
         }catch (NullPointerException e){
           
         }
@@ -1321,7 +1323,7 @@ void keyPressed() {
             int thirdIncrement = 0;
             while (!isItOverIII && thirdIncrement < black.size()){ //isItOverIII checks if this side can capture the king next turn; returns false if ever a legal move
                              try{
-               kingPos = white.get(1).getKing().getPos();}
+               kingPos = white.get(0).getKing().getPos();}
                catch (Exception e){}
               if (black.get(thirdIncrement).canCapture(kingPos)){
                 isItOverIII = true;
@@ -1356,7 +1358,7 @@ void keyPressed() {
             int thirdIncrement = 0;
             while (!isItOverIII && thirdIncrement < white.size()){ //isItOverIII checks if this side can capture the king next turn; returns false if ever a legal move
                try{
-               kingPos = black.get(1).getKing().getPos();}
+               kingPos = black.get(0).getKing().getPos();}
                catch (Exception e){}
               if (white.get(thirdIncrement).canCapture(kingPos)){
                 isItOverIII = true;
@@ -1407,6 +1409,26 @@ void keyPressed() {
     showEndScreen = !showEndScreen;
   }
   
+  if(key == '1'){
+    stalemateSetup = true;
+    turnNumber = 1; 
+    white = new ArrayList<Piece>(0);
+    pieces = new ArrayList<Piece>(0);
+    wKing = new King(new int[]{7, 7}, false);
+    white.add(wKing);
+    pieces.add(wKing);
+    Piece knight = new Knight(new int[] {2, 2}, false, wKing);
+    white.add(knight);
+    pieces.add(knight);
+    Piece rook = new Rook(new int[] {1, 1}, false, wKing);
+    white.add(rook);
+    pieces.add(rook);
+    
+    black = new ArrayList<Piece>(0);
+    bKing = new King(new int[]{0, 0}, true);
+    black.add(bKing);
+    pieces.add(bKing);
+  }
 }
 
 void pawnPromotionChecker() {

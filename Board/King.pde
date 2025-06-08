@@ -8,6 +8,7 @@ public class King extends Piece{
     super.setCheck(false);
     super.setSide(shinySide);
     canCastle = false;
+    super.setKing(this);
   //  super.setHasMoved(false);
   //  super.setIsCastlingLeft(false);
   //  super.setIsCastlingRight(false);
