@@ -9,6 +9,8 @@ static String[] files = new String[] {"a", "b", "c", "d", "e", "f", "g", "h"};
 static boolean blackInCheck = false;
 static boolean whiteInCheck = false;
 static boolean checkmated = false;
+static String newType = "";
+static int[] promotedPos = new int[2];
 static int turnNumber = 1;
 
 PImage guide;
@@ -1015,7 +1017,6 @@ void draw() {
       }
       selectedPiece.editForIllegalMoves(legalMoves);
       /*  for(int i = 0; i < legalMoves.size(); i++){
-       System.out.println(Arrays.toString(legalMoves.get(i)));
        }*/
       for (int i = 0; i < legalMoves.size(); i++) {
         strokeWeight(1);
@@ -1190,11 +1191,8 @@ void mouseClicked() {
         }
         }
       } else {
-        System.out.print("TURN: " + turnNumber);
         if (turnNumber % 2 == 0) {
-          System.out.println("");
         } else {
-          System.out.println("");
         }
 
         selectingPiece = true;
@@ -1204,14 +1202,12 @@ void mouseClicked() {
         if (turnNumber % 2 == 0) {
           for (Piece p : black) {
             if (p.getType().equals("PAWN")) {
-              //    if(p.getCanBeEnPassanted()) {System.out.println("pawn can be enpassanted");}
               p.setCanBeEnPassanted(false);
             }
           }
         } else {
           for (Piece p : white) {
             if (p.getType().equals("PAWN")) {
-              //    if(p.getCanBeEnPassanted()) {System.out.println("pawn can be enpassanted");}
               p.setCanBeEnPassanted(false);
             }
           }
@@ -1236,18 +1232,26 @@ void keyPressed() {
           Piece p = new Queen(pawnBeingPromoted.getPos(), true, bKing);
           black.add(p);
           pieces.add(p);
+          promotedPos = p.getPos();
+          newType = "Q";
         } else if (key == 'k') {
           Piece p = new Knight(pawnBeingPromoted.getPos(), true, bKing);
           black.add(p);
           pieces.add(p);
+          promotedPos = p.getPos();
+          newType = "K";
         } else if (key == 'r') {
           Piece p = new Rook(pawnBeingPromoted.getPos(), true, bKing);
           black.add(p);
+          promotedPos = p.getPos();
           pieces.add(p);
+          newType = "R";
         } else {
           Piece p = new Bishop(pawnBeingPromoted.getPos(), true, bKing);
           black.add(p);
           pieces.add(p);
+          promotedPos = p.getPos();
+          newType = "B";
         }
       } else {
         white.remove(pawnBeingPromoted);
@@ -1255,21 +1259,30 @@ void keyPressed() {
         if (key == 'q') {
           Piece p = new Queen(pawnBeingPromoted.getPos(), false, wKing);
           white.add(p);
+          promotedPos = p.getPos();
           pieces.add(p);
+          newType = "Q";
         } else if (key == 'k') {
           Piece p = new Knight(pawnBeingPromoted.getPos(), false, wKing);
+          promotedPos = p.getPos();
           white.add(p);
           pieces.add(p);
+          newType = "K";
         } else if (key == 'r') {
           Piece p = new Rook(pawnBeingPromoted.getPos(), false, wKing);
           white.add(p);
           pieces.add(p);
+          promotedPos = p.getPos();
+          newType = "R";
         } else {
           Piece p = new Bishop(pawnBeingPromoted.getPos(), false, wKing);
+          promotedPos = p.getPos();
           white.add(p);
           pieces.add(p);
+          newType = "B";
         }
       }
+      System.out.println("=" + newType);
       pawnPromoting = false;
     }
   }
