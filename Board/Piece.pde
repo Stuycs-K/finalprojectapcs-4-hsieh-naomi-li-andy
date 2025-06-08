@@ -214,7 +214,7 @@ public abstract class Piece{
         King temp = king;
        // applyCheck(king, false);
       }
-      Piece otherTaker = null;
+      Piece otherTaker = pieces.get(0);
           ArrayList<int[]> multiple = new ArrayList<int[]>(0);
             if (this.side()){
           for (int i = 0; i < black.size(); i++){
@@ -268,7 +268,7 @@ public abstract class Piece{
               }
               this.setPos(originalPos);
               multiple = new ArrayList<int[]>(0);
-              otherTaker = null;
+              otherTaker = pieces.get(0);
               return false;
             }
           }
@@ -291,7 +291,7 @@ public abstract class Piece{
               }
               this.setPos(originalPos);
               multiple = new ArrayList<int[]>(0);
-              otherTaker = null;
+              otherTaker = pieces.get(0);
               return false;
             }
           }
@@ -347,6 +347,38 @@ public abstract class Piece{
             }
           }
         }
+              if (!castled){
+        boolean sameMove = false;
+        String takingPiece = this.namingConvention();
+        for (int counter = 0; counter < multiple.size(); counter++){
+          if (Arrays.toString(multiple.get(counter)).equals(Arrays.toString(this.getPos()))){
+            sameMove = true;
+          }
+        }
+        if (sameMove){
+          if (otherTaker.getPos()[0] == originalPos[0]){
+            takingPiece += "" + (8 - originalPos[1]);
+          }
+          else{
+            takingPiece += files[originalPos[0]];
+          }
+        }
+        
+        sameMove = false;
+        multiple = new ArrayList<int[]>(0);
+        if (original != null){
+          takingPiece += "x";
+        }
+        String newPiece = files[this.getPos()[0]] + (8 - this.getPos()[1]);
+            if (checkmated){
+          newPiece += "#";
+        }
+        else if (whiteInCheck || blackInCheck){
+          newPiece += "+";
+        }
+        System.out.println(takingPiece + newPiece);
+      }
+      castled = false;
          if (isItOver){
            if (blackInCheck || whiteInCheck){
           System.out.println("0-1");}
@@ -405,17 +437,7 @@ public abstract class Piece{
             savior.setPos(origPos);
           }
         }
-       if (isItOver){
-           if (blackInCheck || whiteInCheck){
-          System.out.println("1-0");}
-          else{
-            System.out.println("1/2-1/2");
-          }
-         checkmated = true;
-        }
-      
-      }
-      if (!castled){
+              if (!castled){
         boolean sameMove = false;
         String takingPiece = this.namingConvention();
         for (int counter = 0; counter < multiple.size(); counter++){
@@ -447,6 +469,17 @@ public abstract class Piece{
         System.out.println(takingPiece + newPiece);
       }
       castled = false;
+       if (isItOver){
+           if (blackInCheck || whiteInCheck){
+          System.out.println("1-0");}
+          else{
+            System.out.println("1/2-1/2");
+          }
+         checkmated = true;
+        }
+      
+      }
+
       return true;
     }
     return false;

@@ -46,7 +46,7 @@ public class Pawn extends Piece {
     }
    // System.out.println(Arrays.toString(newPos));
     if (contains) {
-            Piece otherTaker = null;
+            Piece otherTaker = pieces.get(0);
           ArrayList<int[]> multiple = new ArrayList<int[]>(0);
             if (this.side()){
           for (int i = 0; i < black.size(); i++){
@@ -105,7 +105,7 @@ public class Pawn extends Piece {
                 pieces.add(original);
               }
               multiple = new ArrayList<int[]>(0);
-              otherTaker = null;
+              otherTaker = pieces.get(0);
               this.setPos(originalPos);
               return false;
             }
@@ -131,7 +131,7 @@ public class Pawn extends Piece {
                 pieces.add(original);
               }
               multiple = new ArrayList<int[]>(0);
-              otherTaker = null;
+              otherTaker = pieces.get(0);
               this.setPos(originalPos);
               return false;
             }
@@ -193,6 +193,41 @@ public class Pawn extends Piece {
             savior.setPos(origPos);
           }
         }
+                    boolean sameMove = false;
+                    String takingPiece = this.namingConvention();
+        for (int counter = 0; counter < multiple.size(); counter++){
+          if (Arrays.toString(multiple.get(counter)).equals(Arrays.toString(this.getPos()))){
+            sameMove = true;
+          }
+        }
+        if (sameMove){
+          if (otherTaker.getPos()[0] == originalPos[0]){
+            takingPiece += "" + (8 - originalPos[1]);
+          }
+        }
+        
+        sameMove = false;
+      
+ 
+        if (original != null){
+          takingPiece += files[originalPos[0]];
+          takingPiece += "x";
+        }
+        String newPiece = files[this.getPos()[0]] + (8 - this.getPos()[1]);
+        if (checkmated){
+          newPiece += "#";
+        }
+        else if (whiteInCheck || blackInCheck){
+          newPiece += "+";
+        }
+        if (enPassanted){
+          newPiece += " e.p.";
+        }
+        System.out.print(takingPiece + newPiece);
+      enPassanted = false;
+      if (this.getPos()[1] != 0 && this.getPos()[1] != 7){
+        System.out.println("");
+    }
                if (isItOver){
            if (blackInCheck || whiteInCheck){
           System.out.println("0-1");}
@@ -251,17 +286,7 @@ public class Pawn extends Piece {
             savior.setPos(origPos);
           }
         }
-            if (isItOver){
-           if (blackInCheck || whiteInCheck){
-          System.out.println("1-0");}
-          else{
-            System.out.println("1/2-1/2");
-          }
-         checkmated = true;
-        }
-    }
-     //anti pawn-promotion checker
-            boolean sameMove = false;
+                    boolean sameMove = false;
                     String takingPiece = this.namingConvention();
         for (int counter = 0; counter < multiple.size(); counter++){
           if (Arrays.toString(multiple.get(counter)).equals(Arrays.toString(this.getPos()))){
@@ -296,6 +321,16 @@ public class Pawn extends Piece {
       if (this.getPos()[1] != 0 && this.getPos()[1] != 7){
         System.out.println("");
     }
+            if (isItOver){
+           if (blackInCheck || whiteInCheck){
+          System.out.println("1-0");}
+          else{
+            System.out.println("1/2-1/2");
+          }
+         checkmated = true;
+        }
+    }
+
 
       return true;
     }
