@@ -824,14 +824,16 @@ void chessboard() {
       strokeWeight(1);
       // tint(255, 255);
       if (switcher) {
-        fill(0);
+        fill(#e3c16f);
+        stroke(0);
         square(j*100, i*100, 100);
-        pokeball(255, 0, j*100+50, i*100+50);
+        pokeball(#eeeed2, #272726, j*100+50, i*100+50);
         switcher = false;
       } else {
-        fill(255);
+        fill(#b88b4a);
+        stroke(0);
         square(j*100, i*100, 100);
-        pokeball(0, 255, j*100+50, i*100+50);
+        pokeball(#272726, #eeeed2, j*100+50, i*100+50);
         switcher = true;
       }
     }
