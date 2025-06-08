@@ -1293,7 +1293,7 @@ void keyPressed() {
           newType = "B";
         }
       }
-      System.out.println("=" + newType);
+      System.out.print("=" + newType);
        for (int i = 0; i < white.size(); i++){
           if (white.get(i).canCapture(kingPos)){
             Board.blackInCheck = true;
@@ -1373,6 +1373,15 @@ void keyPressed() {
             }
             savior.setPos(origPos);
           }
+        }
+        if (isItOver && (blackInCheck || whiteInCheck)){
+          System.out.println("#");
+        }
+        else if (whiteInCheck || blackInCheck){
+          System.out.println("+");
+        }
+        else{
+          System.out.println("");
         }
       pawnPromoting = false;
     }
