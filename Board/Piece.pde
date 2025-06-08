@@ -346,7 +346,7 @@ public abstract class Piece{
           takingPiece += "x";
         }
         String newPiece = files[this.getPos()[0]] + (8 - this.getPos()[1]);
-            if (checkmated){
+            if (isItOver && (blackInCheck || whiteInCheck)){
           newPiece += "#";
         }
         else if (whiteInCheck || blackInCheck){
