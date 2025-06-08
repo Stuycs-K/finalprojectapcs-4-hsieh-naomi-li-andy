@@ -215,7 +215,7 @@ public class Pawn extends Piece {
         if (enPassanted){
           newPiece += " e.p.";
         }
-        System.out.print(takingPiece + newPiece);
+        System.out.print("TURN " + (turnNumber % 2 + 1) +": " +takingPiece + newPiece);
       enPassanted = false;
       if (this.getPos()[1] != 0 && this.getPos()[1] != 7){
         System.out.println("");
@@ -307,7 +307,7 @@ public class Pawn extends Piece {
         if (enPassanted){
           newPiece += " e.p.";
         }
-        System.out.print(takingPiece + newPiece);
+        System.out.print("TURN " + (turnNumber % 2 + 1) +": " +takingPiece + newPiece);
       enPassanted = false;
       if (this.getPos()[1] != 0 && this.getPos()[1] != 7){
         System.out.println("");
@@ -356,8 +356,6 @@ public class Pawn extends Piece {
 
 
   public boolean reachable(int[] newPos) {
-    //  System.out.println("calling reachable for pawn");
-    //  if(newPos[0] == this.getPos()[0] && newPos[1] == this.getPos()[1] - 1) System.out.println("New x: " + newPos[0] + " New y: " + newPos[1] + " Old x: " + this.getPos()[0] + " Old y: " + this.getPos()[1]);
     boolean legalMove = false;
     if (this.side()) {
       legalMove = (newPos[0] == this.getPos()[0] && newPos[1] == this.getPos()[1] + 1);
