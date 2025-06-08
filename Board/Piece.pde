@@ -82,7 +82,6 @@ public abstract class Piece{
 
         if (white.get(i).getPos()[0] == 5 && white.get(i).getPos()[1] == 7 || white.get(i).getPos()[0] == 6 && white.get(i).getPos()[1] == 7) {
           rightSide = false;
-        //  System.out.println("can't castle to the right");
         }
         if (white.get(i).getPos()[0] == 3 && white.get(i).getPos()[1] == 7 || white.get(i).getPos()[0] == 2 && white.get(i).getPos()[1] == 7 || white.get(i).getPos()[0] == 1 && white.get(i).getPos()[1] == 7) {
           leftSide = false;
@@ -109,7 +108,7 @@ public abstract class Piece{
         if(newPos[0] == 2 && newPos[1] == 7){
           contains = true;
           leftRook.setPos(new int[]{3, 7});
-          System.out.println("0-0-0");
+          System.out.println("TURN " + (turnNumber / 2 + 1) +": "+"0-0-0");
           castled = true;
         }
       }
@@ -118,7 +117,7 @@ public abstract class Piece{
           
           contains = true;
           rightRook.setPos(new int[]{5, 7});
-          System.out.println("0-0");
+          System.out.println("TURN " + (turnNumber / 2 + 1) +": "+"0-0");
           castled = true;
         }
       }
@@ -158,7 +157,7 @@ public abstract class Piece{
         if(newPos[0] == 2 && newPos[1] == 0){
           contains = true;
           leftRook.setPos(new int[]{3, 0});
-          System.out.println("0-0-0");
+          System.out.println("TURN " + (turnNumber / 2 + 1) +": "+"0-0-0");
           castled = true;
         }
       }
@@ -166,7 +165,7 @@ public abstract class Piece{
         if(newPos[0] == 6 && newPos[1] == 0){
           contains = true;
           rightRook.setPos(new int[]{5, 0});
-          System.out.println("0-0");
+          System.out.println("TURN " + (turnNumber / 2 + 1) +": "+"0-0");
           castled = true;
         }
       }
@@ -240,7 +239,6 @@ public abstract class Piece{
           }
           for (int i = 0; i < white.size(); i++){
             if (white.get(i).canCapture(kingPos)){
-              System.out.println("illegal");
               if (original != null){
                 white.add(original);
                 pieces.add(original);
@@ -263,7 +261,6 @@ public abstract class Piece{
           }
           for (int i = 0; i < black.size(); i++){
             if (black.get(i).canCapture(kingPos)){
-              System.out.println("illegal");
               if (original != null){
                 black.add(original);
                 pieces.add(original);
@@ -355,7 +352,7 @@ public abstract class Piece{
         else if (whiteInCheck || blackInCheck){
           newPiece += "+";
         }
-        System.out.println(takingPiece + newPiece);
+        System.out.println("TURN " + (turnNumber / 2 + 1) +": "+takingPiece + newPiece);
       }
       castled = false;
          if (isItOver){
@@ -445,7 +442,7 @@ public abstract class Piece{
         else if (whiteInCheck || blackInCheck){
           newPiece += "+";
         }
-        System.out.println(takingPiece + newPiece);
+        System.out.println("TURN " + (turnNumber / 2 + 1) +": "+takingPiece + newPiece);
       }
       castled = false;
        if (isItOver){

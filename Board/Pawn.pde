@@ -215,7 +215,7 @@ public class Pawn extends Piece {
         if (enPassanted){
           newPiece += " e.p.";
         }
-        System.out.print("TURN " + (turnNumber % 2 + 1) +": " +takingPiece + newPiece);
+        System.out.print("TURN " + (turnNumber / 2 + 1) +": " +takingPiece + newPiece);
       enPassanted = false;
       if (this.getPos()[1] != 0 && this.getPos()[1] != 7){
         System.out.println("");
@@ -307,7 +307,7 @@ public class Pawn extends Piece {
         if (enPassanted){
           newPiece += " e.p.";
         }
-        System.out.print("TURN " + (turnNumber % 2 + 1) +": " +takingPiece + newPiece);
+        System.out.print("TURN " + (turnNumber / 2 + 1) +": " +takingPiece + newPiece);
       enPassanted = false;
       if (this.getPos()[1] != 0 && this.getPos()[1] != 7){
         System.out.println("");
