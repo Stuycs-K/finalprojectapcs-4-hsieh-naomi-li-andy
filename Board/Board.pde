@@ -1376,6 +1376,12 @@ void keyPressed() {
         }
         if (isItOver && (blackInCheck || whiteInCheck)){
           System.out.println("#");
+          if (blackInCheck){
+            System.out.println("1-0");
+          }
+          else{
+            System.out.println("0-1");
+          }
           checkmated = true;
         }
         else if (whiteInCheck || blackInCheck){
