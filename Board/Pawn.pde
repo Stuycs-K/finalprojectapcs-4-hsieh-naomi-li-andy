@@ -13,27 +13,7 @@ public class Pawn extends Piece {
     this.setFirstMove(true);
     this.setCanBeEnPassanted(false);
   }
-/*
-  public Piece capture() { // needs to be corrected (edit: seems to work for pawn capturing)
-    if (this.side()) {
-      for (int count = 0; count < white.size(); count++) {
-        if (white.get(count).getPos()[0] == this.getPos()[0] && white.get(count).getPos()[1] == this.getPos()[1]) {
-          Piece temp = white.get(count);
-          pieces.remove(temp);
-          return white.remove(count);
-        }
-      }
-    } else {
-      for (int count = 0; count < black.size(); count++) {
-        if (black.get(count).getPos()[0] == this.getPos()[0] && black.get(count).getPos()[1] == this.getPos()[1]) {
-          Piece temp = black.get(count);
-          pieces.remove(temp);
-          return black.remove(count);
-        }
-      }
-    }
-    return null;
-  }*/
+
 
   public boolean move(int[] newPos) {
    // System.out.println(firstMove);
@@ -339,7 +319,7 @@ public class Pawn extends Piece {
     ArrayList<int[]> toReturn = new ArrayList<int[]>();
     for (int col = 0; col < 8; col++) {
       for (int row = 0; row < 8; row++) {
-        if (reachable(new int[] {col, row})) {
+        if (reachable(new int[] {col, row}) && canMove(new int[] {col, row})) {
           toReturn.add(new int[] {col, row});
         }
       }
@@ -360,7 +340,13 @@ public class Pawn extends Piece {
         }
       }
       if (firstMove) {
-        legalMove = legalMove || newPos[0] == this.getPos()[0] && newPos[1] == this.getPos()[1] + 2;
+        boolean truthValue = true;
+        for (int i = 0; i < pieces.size(); i++){
+          if (pieces.get(i).getPos()[0] == this.getPos()[0] && pieces.get(i).getPos()[1] == this.getPos()[1] + 1){
+            truthValue = false;
+          }
+        }
+        legalMove = legalMove || newPos[0] == this.getPos()[0] && newPos[1] == this.getPos()[1] + 2 && truthValue;
       }
       for (int count = 0; count < white.size(); count++) {
         if (white.get(count).getPos()[0] == newPos[0] && white.get(count).getPos()[1] == newPos[1]) {
@@ -382,7 +368,13 @@ public class Pawn extends Piece {
         }
       }
       if (firstMove) {
-        legalMove = legalMove || newPos[0] == this.getPos()[0] && newPos[1] == this.getPos()[1] - 2;
+        boolean truthValue = true;
+        for (int i = 0; i < pieces.size(); i++){
+          if (pieces.get(i).getPos()[0] == this.getPos()[0] && pieces.get(i).getPos()[1] == this.getPos()[1] - 1){
+            truthValue = false;
+          }
+        }
+        legalMove = legalMove || (newPos[0] == this.getPos()[0] && newPos[1] == this.getPos()[1] - 2) && truthValue;
         
       }
       for (int count = 0; count < black.size(); count++) {
