@@ -839,6 +839,29 @@ void chessboard() {
     }
     switcher = !switcher;
   }
+  for (int i = 0; i < 8; i++){
+    switcher = !switcher;
+    textSize(18);
+    if (switcher){
+      fill(#b88b4a);
+      text(files[i], i * 100 + 10, height - 10);
+    }
+    else{
+      fill(#e3c16f);
+      text(files[i], i * 100 + 10, height - 10);
+    }
+  }
+  for (int j = 0; j < 8; j++){
+    switcher = !switcher;
+    if (switcher){
+      fill(#b88b4a);
+      text(("" + (8 - j)), width - 15, j * 100 + 20);
+    }
+    else{
+      fill(#e3c16f);
+      text(("" + (8 - j)), width - 15, j * 100 + 20);
+    }
+  }
 }
 
 void setup() {
