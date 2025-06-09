@@ -140,6 +140,9 @@
 			<li>boolean stalemateSetup (new)</li>
 			<li>King wKing (new)</li>
 			<li>King bKing (new)</li>
+			<li>String[] files(new)</li>
+			<li>String newType (new)</li>
+			<li>ArrayList<int[]> positions (new)</li>
 		</ul></li>
   	</ul></li>
 	
@@ -221,42 +224,45 @@ UML Diagram Version 2 (Final Version of MVP):
 How you are breaking down the project and who is responsible for which parts.
  <ul>
 	 <li>End of 5/22: Code piece movement (excluding castling for now).<ul>
-		<li>Pawn Movement: Andy</li> 
-		<li>Knight Movement: Naomi</li> 
-		<li>Bishop Movement: Andy</li> 
-		<li>Rook Movement: Naomi</li> 
-		<li>Queen Movement: Andy</li> 
-		<li>King Movement: Naomi</li> 
+		<li>Pawn Movement: Andy✅</li> 
+		<li>Knight Movement: Naomi✅</li> 
+		<li>Bishop Movement: Andy✅</li> 
+		<li>Rook Movement: Naomi & Andy (new)✅</li> 
+		<li>Queen Movement: Andy✅</li> 
+		<li>King Movement: Naomi ✅</li> 
 	 </ul></li>
   	 <li>End of 5/23: Code basic capturing (excluding en passant for now)<ul>
-		<li>Pawn Capturing: Andy</li> 
-		<li>Knight Capturing: Naomi</li> 
-		<li>Bishop Capturing: Andy</li> 
-		<li>Rook Capturing: Naomi</li> 
-		<li>Queen Capturing: Andy</li> 
-		<li>King Capturing: Naomi</li> 
+		<li>Pawn Capturing: Andy✅</li> 
+		<li>Knight Capturing: Naomi ✅</li> 
+		<li>Bishop Capturing: Andy✅</li> 
+		<li>Rook Capturing: Naomi & Andy (new)✅</li> 
+		<li>Queen Capturing: Andy✅</li> 
+		<li>King Capturing: Naomi✅</li> 
 	 </ul></li>
     	 <li>End of 5/26: Complete setup of board <ul>
-		 <li>Icons drawn: Andy and Naomi (split work depending on circumstances)</li>
-		 <li>Placement of pieces: Andy</li>
-		 <li>Chessboard drawn (& designed): Naomi</li>
+		 <li>Icons Drawn: <s>Andy and</s> Naomi <s>(split work depending on circumstances)</s> ✅</li>
+		 <li>Placement of Pieces: Andy✅</li>
+		 <li>Chessboard drawn (& designed): Naomi ✅</li>
 	 </ul></li>
-	 <li>End of 5/30 <s>5/28</s>: Code check & extra moves (castling, en passant, pawn promotion)<ul>
-		 <li>Check: Andy</li>
-		 <li>Castling: Andy </li>
-		 <li>En Passant: Naomi </li>
-		 <li>Pawn Promotion: Naomi</li>
-		 <li>If icons need more time: Andy</li>
+	 <li>End of 5/30 (new) <s>5/28</s>: Code check & extra moves (castling, en passant, pawn promotion)<ul>
+		 <li>Check: Andy✅</li>
+		 <li>Illegal Moves: Andy (new)✅</li>
+		 <li>Castling: <s>Andy</s> Naomi (new) ✅</li>
+		 <li>En Passant: Naomi ✅</li>
+		 <li>Pawn Promotion: Naomi ✅</li>
+		 <li><s>If icons need more time: Andy</s> (did not need more time)</li>
 	 </ul></li>
 	 <li>End of 6/1 <s>5/29</s>: Code checkmate/stalemate <ul>
-		 <li>Checkmate: Andy</li>
-		 <li>Stalemate: Naomi</li>
+		 <li>Checkmate: Andy✅</li>
+		 <li>Stalemate: <s>Naomi</s> Andy (new)✅</li>
 	 </ul></li>
 	 <li>End of 6/8 <s>6/1</s>: Code extras (in order of priority)<ul>
-		<li>Markers for valid squares: Naomi</li>
-		<li>Gameover screen: Naomi</li>
-		<li>Drawing/Forfeiting: Andy</li>
-		<li>Sound: Andy</li>
+		<li>Markers for valid squares: Naomi✅</li>
+		<li>Gameover screen: Naomi✅</li>
+		<li>Guide: Naomi (new)✅</li>
+		<li>Algebraic chess notation: Andy (new)✅</li>
+		<li><s>Drawing/Forfeiting: Andy</s></li>
+		<li><s>Sound: Andy</s></li>
 	 </ul></li>
  </ul>
 
