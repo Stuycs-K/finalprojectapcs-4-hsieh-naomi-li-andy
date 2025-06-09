@@ -58,3 +58,8 @@ At home: I finished the legal movement marker for en passant and wrote the legal
 In class: I implemented the code to generate a win screen and began to write a crown function for the winscreen (~30 minutes).
 
 At home: I finished the crown function and began a setup for the guide, which I will use PImage for (~30 minutes).
+
+### 2025-06-06 to 2025-06-08 - Win Screen/Guide
+In class: I began the design for the guide (~40 minutes).
+
+At home: I finished designing the guide and end screens (~255 minutes---it took a while to handwrite/draw everything with my finger since I was doing it on phone), implemented the Pimage loading, resizing, etc. (~20 minutes), implemented a stalemate cheat button (~15 minutes) and fixed some last bugs (~10 minutes).
