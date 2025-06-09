@@ -221,7 +221,10 @@ UML Diagram Version 1:
 
 UML Diagram Version 2 (Final Version of MVP):
 ![Image of UML Version 2](Chessv2.png?raw=true "Chess UML Version 2" )
-    
+
+UML Diagram Version 3 (Final Product):
+![Image of UML Version 2](Chessv3.png?raw=true "Chess UML Version 3" )
+
 # Intended Pacing:
 
 Certain methods were reassigned because we felt it easier for one person to do this rather than that and that it would make the workflow better. 
