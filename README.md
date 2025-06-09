@@ -22,5 +22,7 @@ Users must also be able to use their keyboard to access the guide and pawn promo
 | r | If a pawn is ready to pawn-promote, it turns into a rook. |
 | k | If a pawn is ready to pawn-promote, it turns into a knight. |
 | c | If checkmate or stalemate has occurred, this key opens or closes the ending screen. |
+| 1 | DEV-ONLY: Was used in presentation as a cheat code to get to a stalemate position. |
+
 
   
