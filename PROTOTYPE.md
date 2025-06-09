@@ -53,7 +53,7 @@
 			<li>int[] position (note: coordinates stored here will be one-digit, behaving as if it is 8x8 not 800x800)</li>
 			<li>String type</li>
 			<li>boolean inCheck</li>
-			<li>boolean shinySide</li></s>
+			<li>boolean shinySide</li></s> (Above are inherited variables)
 			<li>boolean canCastle</li>
 		</ul></li>
 	</ul></li>
@@ -67,7 +67,7 @@
 			<li>int[] position (note: coordinates stored here will be one-digit, behaving as if it is 8x8 not 800x800)</li>
 			<li>String type</li>
 			<li>boolean inCheck</li>
-			<li>boolean shinySide</li></s>
+			<li>boolean shinySide</li></s> (Above are inherited variables)
 			<li>boolean canCastle</li>
 		</ul></li>
 	</ul></li>
@@ -75,7 +75,7 @@
 		<li>Child-Specific/Overridden Methods<ul>
 			<s><li>void setEnPassantStatus(int[] newPos): if newPos is two steps from its original position, then set enPassant and timeFrame to true</li>
 			<li>boolean canCapture(int[] newPos): if there is a pawn under the newPos that has enPassant as true and newPos is available, return true</li>
-			<li>boolean canBeEnPassanted(): return enPassant (if the piece can be enPassanted)</li></s>
+			<li>boolean canBeEnPassanted(): return enPassant (if the piece can be enPassanted)</li></s> (Above were replaced with below methods, canCapture ended up just being inherited)
 			<li>boolean getCanBeEnPassanted(): returns canBeEnPassanted (new)</li>
 			<li>void setCanBeEnPassanted(boolean canBe): sets canBeEnPassanted to canBe (new)</li>
 			<li>boolean getFirstMove(): returns firstMove (new)</li>
@@ -87,18 +87,18 @@
 			<li>String type</li>
 			<li>boolean inCheck</li>
 			<li>boolean shinySide</li>
-			<li>boolean enPassant</li></s>
+			<li>boolean enPassant</li></s> (Above are inherited variables)
 			<li>boolean canBeEnPassanted (new)</li>
 		</ul></li>
 	</ul></li>
 	<li>Queen, Bishop, Knight classes are all extended from Piece and will have the same methods</li>
 	<li> Board Class <ul>
 		<li>Methods<ul>
-			<s><li>void keyPressed(): handles all the movement and draw() to update visuals of board (new)</li></s>
-			<li>void setup(): sets up the board, size is 800, 800 with each square being 100x100 [and draws the pieces on the board] (new)</li>
+			<s><li>void keyPressed(): handles all the movement and draw() to update visuals of board (new)</li></s> (not needed with keyPressed, keyPressed is used for something else). 
+			<li>void setup(): sets up the board, size is 800, 800 with each square being 100x100 [and draws the pieces on the board] (new)</li> 
 			<li>void draw(): draws a new board and places pieces in respective positions, updates canCastle for each king, rook. Also checks if any pawns can be promoted. If so, calls pawnPromotion() and sets pawnPromoting to true. (pawnPromotion will have drawn the screen before this) If pawnPromoting is true, remove the pawn from the ArrayList pieces and add a new piece of the type the player selected in the position of the pawn. </li>
 			<li>boolean gameOver(): checks if any opposing side has been checkmated or if it is a stalemate (i.e. if no pieces canMove() && inCheck -> checkmate, else if no pieces canMove() -> stalemate)</li>
-			<s><li>void pawnPromotion(): draws a selection screen for which piece to promote the pawn to</li></s>
+			<s><li>void pawnPromotion(): draws a selection screen for which piece to promote the pawn to</li></s> (easier to place this in draw and check using global variable)
 			<li>void pawnPromotionChecker(): checks if a pawn needs to be promoted and updates pawnPromoting and pawnBeingPromoted as such. (new)</li>
 			<li>void mouseClicked(): checks if a piece is being selected/runs move on selectedPiece (new)</li>
 			<li>void keyPressed(): checks if pawnPromoting, if so, checks the key being pressed and updates white/black & pieces as such. Also checks for guide, end screen and stalemate cheat button. (new)</li>
@@ -162,7 +162,10 @@ _**Period 4**_
 <br>
 <br>
 **Brief Project Summary**: 
-Our created project will be Pokemon Chess. The final product will act exactly like standard chess, with proper movement of pieces, proper checkmate and stalemate rules, as well as techniques such as en passant and castling. The players would click their chosen piece and then click on the square they would like to place their piece on, with markers for the valid squares. However, the pieces will be Pokemon-themed, with each piece represented by the face of a pokemon that reflects the piece's name/purpose. The Pokémon included would be <s>Perrserkers</s> Ditto (new) as the pawns, <s>Alolan/Hisuian Decidueye</s> Piplup (new) as the bishops, <s>Glastrier and Spectrier</s> Solosis (new) as the knights, <s>Golurks</s> Electrode (new) as the rooks, and <s>Armarouge and Ceruledge</s> Gulpin and Spheal (new) respectively as the kings and queens. As Pokémon aren’t monocolor like chess pieces, instead of separating the players using black and white pieces, the players are differentiated using shiny/non-shiny Pokémon as their pieces, with the <s>shiny</s> non-shiny (new) versions moving first. This game will be turn-based and played by two people on the same device. 
+
+Pokemon designs were changed because we found that it was too difficult to draw the pieces with only processing tools (we didn't want to PImage everything). 
+
+Our created project will be Pokemon Chess. The final product will act exactly like standard chess, with proper movement of pieces, proper checkmate and stalemate rules, as well as techniques such as en passant and castling. The players would click their chosen piece and then click on the square they would like to place their piece on, with markers for the valid squares. However, the pieces will be Pokemon-themed, with each piece represented by the face of a pokemon that reflects the piece's name/purpose. The Pokémon included would be <s>Perrserkers</s> Ditto (new) as the pawns, <s>Alolan/Hisuian Decidueye</s> Piplup (new) as the bishops, <s>Glastrier and Spectrier</s> Solosis (new) as the knights, <s>Golurks</s> Electrode (new) as the rooks, and <s>Armarouge and Ceruledge</s> Gulpin and Spheal (new) respectively as the kings and queens. As Pokémon aren’t monocolor like chess pieces, instead of separating the players using black and white pieces, the players are differentiated using shiny/non-shiny Pokémon as their pieces, with the <s>shiny</s> non-shiny (new) (didn't realize we put shiny at first when implementing, easier to just change prototype than re-implement) versions moving first. This game will be turn-based and played by two people on the same device. 
 <br>
 <br>
 **Critical Features (MVP):** For the minimum viable product, we want to have the icons of the pieces designed and completed. We want to be able to set up the board (grid and proper piece placement) upon the start of the program. Once the program is being run, we want to ensure that the standard chess experience can be carried out. We need to ensure that the program can detect illegal movements and prevent them from occurring, and we need to ensure that the program knows when the game ends. We also need to implement proper piece behavior, including their movement and capturing of other pieces. We need to make sure that the grid can reflect changes, such as a piece being removed or promoted.
@@ -202,11 +205,11 @@ Our created project will be Pokemon Chess. The final product will act exactly li
 
 
 <br>
-<b>Nice to Have Features:</b> Once the MVP has been completed, we plan on drastically improving the User Interface. We want the user to see available positions that a clicked-on piece can move by highlighted grids. Furthermore, we want to make the grids more interesting by laying a Pokeball pattern on them, staying true to the whole Pokemon theme. We would polish the designs of the Pokemon icons and change colors (regular vs. shiny) between the pieces of Player 1 and Player 2 to easily differentiate them, rather than doing something more basic like different color outlines. The UI would also be improved in other aspects like the pawn promotion screen. <s>We would include other additional features, such as drawing and forfeiting. If time provides and if feasible enough, we would look into audio and might add a soft Pokemon theme for the background, or the cries of Pokemon as they capture a piece.</s> We would design a guide and end screens as well as implement algebraic chess notation (new).
+<b>Nice to Have Features:</b> Once the MVP has been completed, we plan on drastically improving the User Interface. We want the user to see available positions that a clicked-on piece can move by highlighted grids. Furthermore, we want to make the grids more interesting by laying a Pokeball pattern on them, staying true to the whole Pokemon theme. We would polish the designs of the Pokemon icons and change colors (regular vs. shiny) between the pieces of Player 1 and Player 2 to easily differentiate them, rather than doing something more basic like different color outlines. The UI would also be improved in other aspects like the pawn promotion screen. <s>We would include other additional features, such as drawing and forfeiting. If time provides and if feasible enough, we would look into audio and might add a soft Pokemon theme for the background, or the cries of Pokemon as they capture a piece</s> (Drawing/forfeiting seemed like too much effort for too little output, and sound was too big of a file). We would design a guide and end screens as well as implement algebraic chess notation (new).
 		<ul>
 		<li>Markers For Valid Moves <ul><li>When the player clicks on one of the pieces, the squares where that piece can move will be marked in some way.</li></ul></li>
-		<li><s>Drawing/Forfeiting<ul><li>A button would be available where a player could offer a draw (with the other player needing to agree) or end the game early by forfeiting.</s></li></ul></li>
-		<li><s>Sound<ul><li>The game would play an ambient Pokemon theme in the background, perhaps switch to a more exciting one when the king is in check, and a victory theme for checkmate.</s> </li></ul></li> 
+		<li><s>Drawing/Forfeiting<ul><li>A button would be available where a player could offer a draw (with the other player needing to agree) or end the game early by forfeiting.</s> (see above)</li></ul></li> 
+		<li><s>Sound<ul><li>The game would play an ambient Pokemon theme in the background, perhaps switch to a more exciting one when the king is in check, and a victory theme for checkmate.</s> (see above)</li></ul></li> 
 		<li>Guide <ul><li>When the player presses g, a guide will appear telling the player the controls of the game. (new)</li></ul></li>
 		<li>Algebraic Chess Notation <ul><li>When a piece is moved, the algebraic chess notation of that piece will be printed out in the terminal. (new)</li></ul></li>
 		<li>End Screens <ul><li>When the game ends, an end screen will be generated. (new)</li></ul></li>
@@ -220,6 +223,8 @@ UML Diagram Version 2 (Final Version of MVP):
 ![Image of UML Version 2](Chessv2.png?raw=true "Chess UML Version 2" )
     
 # Intended Pacing:
+
+Certain methods were reassigned because we felt it easier for one person to do this rather than that and that it would make the workflow better. 
 
 How you are breaking down the project and who is responsible for which parts.
  <ul>
@@ -261,8 +266,8 @@ How you are breaking down the project and who is responsible for which parts.
 		<li>Gameover screen: Naomi✅</li>
 		<li>Guide: Naomi (new)✅</li>
 		<li>Algebraic chess notation: Andy (new)✅</li>
-		<li><s>Drawing/Forfeiting: Andy</s></li>
-		<li><s>Sound: Andy</s></li>
+		<li><s>Drawing/Forfeiting: Andy</s> (see above)</li>
+		<li><s>Sound: Andy</s> (see above)</li>
 	 </ul></li>
  </ul>
 
