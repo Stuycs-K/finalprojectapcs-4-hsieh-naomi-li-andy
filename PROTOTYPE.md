@@ -159,21 +159,21 @@ _**Period 4**_
 <br>
 <br>
 **Brief Project Summary**: 
-Our created project will be Pokemon Chess. The final product will act exactly like standard chess, with proper movement of pieces, proper checkmate and stalemate rules, as well as techniques such as en passant and castling. The players would click their chosen piece and then click on the square they would like to place their piece on, with markers for the valid squares. However, the pieces will be Pokemon-themed, with each piece represented by the face of a pokemon that reflects the piece's name/purpose. The Pokémon included would be Perrserkers as the pawns, Alolan/Hisuian Decidueye as the bishops, Glastrier and Spectrier as the knights, Golurks as the rooks, and Armarouge and Ceruledge respectively as the kings and queens. As Pokémon aren’t monocolor like chess pieces, instead of separating the players using black and white pieces, the players are differentiated using shiny/non-shiny Pokémon as their pieces, with the shiny versions moving first. This game will be turn-based and played by two people on the same device. 
+Our created project will be Pokemon Chess. The final product will act exactly like standard chess, with proper movement of pieces, proper checkmate and stalemate rules, as well as techniques such as en passant and castling. The players would click their chosen piece and then click on the square they would like to place their piece on, with markers for the valid squares. However, the pieces will be Pokemon-themed, with each piece represented by the face of a pokemon that reflects the piece's name/purpose. The Pokémon included would be <s>Perrserkers</s> Ditto (new) as the pawns, <s>Alolan/Hisuian Decidueye</s> Piplup (new) as the bishops, <s>Glastrier and Spectrier</s> Solosis (new) as the knights, <s>Golurks</s> Electrode (new) as the rooks, and <s>Armarouge and Ceruledge</s> Gulpin and Spheal (new) respectively as the kings and queens. As Pokémon aren’t monocolor like chess pieces, instead of separating the players using black and white pieces, the players are differentiated using shiny/non-shiny Pokémon as their pieces, with the <s>shiny</s> non-shiny (new) versions moving first. This game will be turn-based and played by two people on the same device. 
 <br>
 <br>
 **Critical Features (MVP):** For the minimum viable product, we want to have the icons of the pieces designed and completed. We want to be able to set up the board (grid and proper piece placement) upon the start of the program. Once the program is being run, we want to ensure that the standard chess experience can be carried out. We need to ensure that the program can detect illegal movements and prevent them from occurring, and we need to ensure that the program knows when the game ends. We also need to implement proper piece behavior, including their movement and capturing of other pieces. We need to make sure that the grid can reflect changes, such as a piece being removed or promoted.
 		<ul>
 			<li> Moving pieces <ul>
-				<li> Pawns (Perrserkers) can move one or two steps forward on their first move and one step forward on all other moves.</li>
-				<li> Bishops (Decidueyes) can move any amount of steps diagonally along either the white/black squares (but cannot jump over pieces).</li>
-				<li> Knights (Glastriers/Spectriers) can move in an L shape around the board, jumping over pieces as needed.</li>
-				<li> Rooks (Golurks) can move any amount of steps in a vertical/horizontal direction along the board (but cannot jump over pieces).</li>
-				<li> Queens (Ceruledges) can move any amount of steps in a  vertical, horizontal, or diagonal direction (but cannot jump over pieces).</li>
-				<li> Kings (Armarouges) can move one step vertically, horizontally, or diagonally.</li>
+				<li> Pawns (<s>Perrserkers</s> Dittos (new) ) can move one or two steps forward on their first move and one step forward on all other moves.</li>
+				<li> Bishops (<s>Decidueyes</s> Piplups (new) ) can move any amount of steps diagonally along either the white/black squares (but cannot jump over pieces).</li>
+				<li> Knights (<s>Glastriers/Spectriers</s> Solosis (new) ) can move in an L shape around the board, jumping over pieces as needed.</li>
+				<li> Rooks (<s>Golurks</s> Electrodes (new) ) can move any amount of steps in a vertical/horizontal direction along the board (but cannot jump over pieces).</li>
+				<li> Queens (<s>Ceruledges</s> Gulpins (new) ) can move any amount of steps in a  vertical, horizontal, or diagonal direction (but cannot jump over pieces).</li>
+				<li> Kings (<s>Armarouges</s> Spheals (new) ) can move one step vertically, horizontally, or diagonally.</li>
     			</ul></li>
 			<li> Taking pieces<ul>
-				<li> Pawns (Perrserkers) can take pieces one step in front of them diagonally, with the exception of en passant.</li>
+				<li> Pawns (<s>Perrserkers</s> Dittos (new) ) can take pieces one step in front of them diagonally, with the exception of en passant.</li>
 				<li> All other pieces can take pieces where they can move.</li>
 				<li> Note that different rules for taking pieces apply when your king is in check.</li>
    			</ul></li>
@@ -199,11 +199,14 @@ Our created project will be Pokemon Chess. The final product will act exactly li
 
 
 <br>
-<b>Nice to Have Features:</b> Once the MVP has been completed, we plan on drastically improving the User Interface. We want the user to see available positions that a clicked-on piece can move by highlighted grids. Furthermore, we want to make the grids more interesting by laying a Pokeball pattern on them, staying true to the whole Pokemon theme. We would polish the designs of the Pokemon icons and change colors (regular vs. shiny) between the pieces of Player 1 and Player 2 to easily differentiate them, rather than doing something more basic like different color outlines. The UI would also be improved in other aspects like the pawn promotion screen. We would include other additional features, such as drawing and forfeiting. If time provides and if feasible enough, we would look into audio and might add a soft Pokemon theme for the background, or the cries of Pokemon as they capture a piece.
+<b>Nice to Have Features:</b> Once the MVP has been completed, we plan on drastically improving the User Interface. We want the user to see available positions that a clicked-on piece can move by highlighted grids. Furthermore, we want to make the grids more interesting by laying a Pokeball pattern on them, staying true to the whole Pokemon theme. We would polish the designs of the Pokemon icons and change colors (regular vs. shiny) between the pieces of Player 1 and Player 2 to easily differentiate them, rather than doing something more basic like different color outlines. The UI would also be improved in other aspects like the pawn promotion screen. <s>We would include other additional features, such as drawing and forfeiting. If time provides and if feasible enough, we would look into audio and might add a soft Pokemon theme for the background, or the cries of Pokemon as they capture a piece.</s> We would design a guide and end screens as well as implement algebraic chess notation (new).
 		<ul>
 		<li>Markers For Valid Moves <ul><li>When the player clicks on one of the pieces, the squares where that piece can move will be marked in some way.</li></ul></li>
-		<li>Drawing/Forfeiting<ul><li>A button would be available where a player could offer a draw (with the other player needing to agree) or end the game early by forfeiting.</li></ul></li>
-		<li>Sound<ul><li>The game would play an ambient Pokemon theme in the background, perhaps switch to a more exciting one when the king is in check, and a victory theme for checkmate. </li></ul></li> 
+		<li><s>Drawing/Forfeiting<ul><li>A button would be available where a player could offer a draw (with the other player needing to agree) or end the game early by forfeiting.</s></li></ul></li>
+		<li><s>Sound<ul><li>The game would play an ambient Pokemon theme in the background, perhaps switch to a more exciting one when the king is in check, and a victory theme for checkmate.</s> </li></ul></li> 
+		<li>Guide <ul><li>When the player presses g, a guide will appear telling the player the controls of the game. (new)</li></ul></li>
+		<li>Algebraic Chess Notation <ul><li>When a piece is moved, the algebraic chess notation of that piece will be printed out in the terminal. (new)</li></ul></li>
+		<li>End Screens <ul><li>When the game ends, an end screen will be generated. (new)</li></ul></li>
 		</ul>
   <br>
 UML Diagram Version 1:
