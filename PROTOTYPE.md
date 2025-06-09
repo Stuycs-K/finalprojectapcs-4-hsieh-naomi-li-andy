@@ -27,6 +27,11 @@
 			<li>Piece getKing(): returns the king linked to a piece (new)</li>
 			<li>boolean getCanBeEnPassanted(): returns false (this is so the pawn method becomes inherited and so Piece x = new Pawn() can use the method) (new)</li>
 			<li>void setCanBeEnPassanted(boolean canBe): (this is so the pawn method becomes inherited and so Piece x = new Pawn() can use the method) (new)</li>
+			<li>void setCastleStatus(boolean status): (this is so the method becomes inherited and so certain pieces can use the method if their variable type is Piece) (new)</li>
+			<li>boolean castleStatus: (this is so the method becomes inherited and so certain pieces can use the method if their variable type is Piece) (new)</li>
+			<li>void editForCastle(ArrayList<int[]> legalMoves): edits a given arraylist of legal moves and adds the castling positions (if they are legal) (new)</li>
+			<li>void editForEnPassant(ArrayList<int[]> legalMoves): edits a given arraylist of legal moves and adds the en passant positions (if they are legal) (new)</li>
+			<li>void editForIllegalMoves(ArrayList<int[]> legalMoves): edits a given arraylist of legal moves and removes moves that would place the king in check (new)</li>
 		</ul></li>
   		<li>Instance Variables (copies of these variables will be strikethroughed in below classes because they would be null if not inherited)<ul> 
 			<li>boolean alive</li>
@@ -87,7 +92,7 @@
 		</ul></li>
 	</ul></li>
 	<li>Queen, Bishop, Knight classes are all extended from Piece and will have the same methods</li>
-	<li> Main Class <ul>
+	<li> Board Class <ul>
 		<li>Methods<ul>
 			<s><li>void keyPressed(): handles all the movement and draw() to update visuals of board (new)</li></s>
 			<li>void setup(): sets up the board, size is 800, 800 with each square being 100x100 [and draws the pieces on the board] (new)</li>
@@ -96,7 +101,7 @@
 			<s><li>void pawnPromotion(): draws a selection screen for which piece to promote the pawn to</li></s>
 			<li>void pawnPromotionChecker(): checks if a pawn needs to be promoted and updates pawnPromoting and pawnBeingPromoted as such. (new)</li>
 			<li>void mouseClicked(): checks if a piece is being selected/runs move on selectedPiece (new)</li>
-			<li>void keyPressed(): checks if pawnPromoting, if so, checks the key being pressed and updates white/black & pieces as such. (new)</li>
+			<li>void keyPressed(): checks if pawnPromoting, if so, checks the key being pressed and updates white/black & pieces as such. Also checks for guide, end screen and stalemate cheat button. (new)</li>
 			<li>void pokeball(): draws a pokeball (for the chessboard) (new)</li>
 			<li>void chessboard(): draws the board (new)</li>
 			<li>void ditto(float x, float y, boolean shiny): draws a ditto icon at (x, y) colored depending on shiny(representing a pawn) (new)</li>
@@ -105,6 +110,14 @@
 			<li>void electrode(float x, float y, boolean shiny): draws an electrode icon at (x, y) colored depending on shiny(representing a rook) (new)</li>
 			<li>void gulpin(float x, float y, boolean shiny): draws a gulpin icon at (x, y) colored depending on shiny(representing a queen) (new)</li>
 			<li>void spheal(float x, float y, boolean shiny): draws a spheal icon at (x, y) colored depending on shiny(representing a king) (new)</li>
+			<li>void pokeballLight(): draws a lit up pokeball (for the chessboard) (new)</li>
+			<li>void dittoLight(float x, float y, boolean shiny): draws a lit up ditto icon at (x, y) colored depending on shiny(representing a pawn) (new)</li>
+			<li>void piplupLight(float x, float y, boolean shiny): draws a lit up piplup icon at (x, y) colored depending on shiny(representing a bishop) (new)</li>
+			<li>void solosisLight(float x, float y, boolean shiny): draws a lit up solosis icon at (x, y) colored depending on shiny(representing a knight) (new)</li>
+			<li>void electrodeLight(float x, float y, boolean shiny): draws a lit up electrode icon at (x, y) colored depending on shiny(representing a rook) (new)</li>
+			<li>void gulpinLight(float x, float y, boolean shiny): draws a lit up gulpin icon at (x, y) colored depending on shiny(representing a queen) (new)</li>
+			<li>void sphealLight(float x, float y, boolean shiny): draws a lit up spheal icon at (x, y) colored depending on shiny(representing a king) (new)</li>
+			<li>void crown(float x, float y): draws a gold crown icon at (x, y) (new)</li>
 		</ul></li>
   		<li>Instance Variables<ul>
 			<li>ArrayList<Piece> pieces</li>
@@ -116,7 +129,17 @@
 			<li>boolean blackInCheck (new)</li>
 			<li>boolean whiteInCheck (new)</li>
 			<li>boolean checkmated (new)</li>
+			<li>boolean selectingPiece (new)</li>
 			<li>int turnNumber (new)</li>
+			<li>PImage guide (new)</li>
+			<li>PImage checkmate (new)</li>
+			<li>PImage stalemate (new)</li>
+			<li>boolean inGuide (new)</li>
+			<li>boolean inEndScreen (new)</li>
+			<li>boolean showEndScreen (new)</li>
+			<li>boolean stalemateSetup (new)</li>
+			<li>King wKing (new)</li>
+			<li>King bKing (new)</li>
 		</ul></li>
   	</ul></li>
 	
