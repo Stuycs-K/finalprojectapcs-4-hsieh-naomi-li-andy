@@ -55,3 +55,7 @@ At home, I worked on en passant algebraic notation, checkmate/stalemate messages
 
 ### 2025-06-04 to 2025-06-05 - More Algebraic Notation Pt. 2!
 Over Wednesday in-class and the break, I finished pawn promotion and started working on the exception code, which needs to be fixed, as the correct notation is not being outputted. Only committed the pawn promotion code for now (total ~30 min).
+
+### 2025-06-06 to 2025-06-08 - Algebraic Notation Exception Cases, Pawn Promotion Checkmate, Debugging, UI Revamp, Recording
+Over the last Friday-Sunday weekend for the project, I finished exception cases for algebraic notation (same file, or pieces of same type can go to same square). I also debugged and fixed several minor errors, like those affecting terminal output. I checked for checkmate after pawns were promoted, as it went unchecked before. I also revamped the UI to have nicer colors and a more drastic lit-up pokeball effect, as well as file/rank labels. I recorded the presentation with Naomi and edited. I spent a total of about five hours on all tasks mentioned (~300 min).
+
