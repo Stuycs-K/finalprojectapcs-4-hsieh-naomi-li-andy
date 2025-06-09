@@ -151,7 +151,7 @@
 	
 </ul>
 
-In our project, we will be using the topics of inheritance, abstract classes, private/public, accessor methods, ArrayList, 2D arrays, processing syntax, and more.
+In our project, we will be using the topics of inheritance, abstract classes, private/public, accessor methods, ArrayList, 2D arrays, processing syntax, and more. *Variables or methods denoted by (new) are mainly to accommodate the "getLegalMoves" method, which Mr. K advised us to implement and/or for extra nice-to have features*
      
 # Project Design
 _**Period 4**_
