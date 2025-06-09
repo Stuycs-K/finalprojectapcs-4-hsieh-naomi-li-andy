@@ -205,7 +205,7 @@ Our created project will be Pokemon Chess. The final product will act exactly li
 
 
 <br>
-<b>Nice to Have Features:</b> Once the MVP has been completed, we plan on drastically improving the User Interface. We want the user to see available positions that a clicked-on piece can move by highlighted grids. Furthermore, we want to make the grids more interesting by laying a Pokeball pattern on them, staying true to the whole Pokemon theme. We would polish the designs of the Pokemon icons and change colors (regular vs. shiny) between the pieces of Player 1 and Player 2 to easily differentiate them, rather than doing something more basic like different color outlines. The UI would also be improved in other aspects like the pawn promotion screen. <s>We would include other additional features, such as drawing and forfeiting. If time provides and if feasible enough, we would look into audio and might add a soft Pokemon theme for the background, or the cries of Pokemon as they capture a piece</s> (Drawing/forfeiting seemed like too much effort for too little output, and sound was too big of a file). We would design a guide and end screens as well as implement algebraic chess notation (new).
+<b>Nice to Have Features:</b> Once the MVP has been completed, we plan on drastically improving the User Interface. We want the user to see available positions that a clicked-on piece can move by highlighted grids. Furthermore, we want to make the grids more interesting by laying a Pokeball pattern on them, staying true to the whole Pokemon theme. We would polish the designs of the Pokemon icons and change colors (regular vs. shiny) between the pieces of Player 1 and Player 2 to easily differentiate them, rather than doing something more basic like different color outlines. The UI would also be improved in other aspects like the pawn promotion screen. <s>We would include other additional features, such as drawing and forfeiting. If time provides and if feasible enough, we would look into audio and might add a soft Pokemon theme for the background, or the cries of Pokemon as they capture a piece</s> (Drawing/forfeiting seemed like too much effort for too little output, and sound was too big of a file). We would design a guide and end screens as well as implement algebraic chess notation and file numberings(new).
 		<ul>
 		<li>Markers For Valid Moves <ul><li>When the player clicks on one of the pieces, the squares where that piece can move will be marked in some way.</li></ul></li>
 		<li><s>Drawing/Forfeiting<ul><li>A button would be available where a player could offer a draw (with the other player needing to agree) or end the game early by forfeiting.</s> (see above)</li></ul></li> 
@@ -266,6 +266,8 @@ How you are breaking down the project and who is responsible for which parts.
 		<li>Gameover screen: Naomi✅</li>
 		<li>Guide: Naomi (new)✅</li>
 		<li>Algebraic chess notation: Andy (new)✅</li>
+		<li>File Numbering: Andy (new)✅</li>
+		<li>Recolor chessboard: Andy (new)✅</li>
 		<li><s>Drawing/Forfeiting: Andy</s> (see above)</li>
 		<li><s>Sound: Andy</s> (see above)</li>
 	 </ul></li>
