@@ -62,7 +62,7 @@ At home: I finished the crown function and began a setup for the guide, which I 
 ### 2025-06-06 to 2025-06-08 - Win Screen/Guide
 In class: I began the design for the guide (~40 minutes).
 
-At home: I finished designing the guide and end screens (~255 minutes---it took a while to handwrite/draw everything with my finger since I was doing it on phone), implemented the Pimage loading, resizing, etc. (~20 minutes), implemented a stalemate cheat button (~15 minutes) and fixed some last bugs (~10 minutes).
+At home: I finished designing the guide and end screens (~255 minutes---it took a while to handwrite/draw everything with my finger since I was doing it on phone), implemented the Pimage loading, resizing, etc. (~20 minutes), implemented a stalemate cheat button (~15 minutes) and fixed some last bugs (~10 minutes). Our recording took around 60 minutes.
 
 ### Teammate Confirmation
 I, Andy Li, believe this document accurately reflects the contributions of my teammate.
